@@ -1,0 +1,28 @@
+git
+- dan den folder chua web, mo git bash
+- go cac lenh ben duoi
++++lenh su dung cho lan dau tien
+git config --global user.name "your name"
+git config --global user.email "your github register email"
+git init (khoi tao kho luu tru lan dau)
+git remote add origin [repo link]      
+https://github.com/phuduongdev/phuduongdev.github.io.git
+https://github.com/phuduongdev/project4.git
+
++++lenh phan nhanh
+git checkout -b <new_branch> <old_branch> (tao va di chuyen workspace den nhanh moi)
+git checkout <branch_name> (di chuyen den nhanh khac)
+git merge <ten nhanh con can merge>
+
++++su dung lien tuc 
+git pull <repo link> <brand>
+---co the thay <repo link> bang origin 
+git add filename.ext (chon file muon upload)
+---hoac git add . (chon tat ca)
+git status (kiem tra lai file muon upload)
+git commit -m "your message"
+git push -u origin master
+
++++thiet lap lai user/pass acc github tren windows 10
+vao windows settings > search Credential > chon Windows Credential
+xoa key luu cho github
