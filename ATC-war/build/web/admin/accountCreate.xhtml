@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="cssplus">
+                <link rel="stylesheet" type="text/css" href="assets/plugins/jquery.steps/css/jquery.steps.css" />
+            </ui:define>
+
+            <ui:define name="content">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
+                                    <ul class="dropdown-menu drop-menu-right" role="menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+
+                                <h4 class="page-title">Account</h4>
+                                <ol class="breadcrumb">
+                                    <li>
+                                        <a href="#">Ubold</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Account</a>
+                                    </li>
+                                    <li class="active">
+                                        Create New
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+
+
+                        <!-- Vertical Steps Example -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+<!--                                    <h4 class="m-t-0 header-title"><b>Vertical Steps Example</b></h4>
+                                    <p class="text-muted m-b-30 font-13">
+                                        Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
+                                    </p>-->
+
+                                    <h:form id="wizard-vertical">
+                                        <!--step 1 begin-->
+                                        <h3>Main Information</h3>
+                                        <section>
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-2 control-label " for="userName1">User name *</label>
+                                                <div class="col-lg-10">
+                                                    <h:inputText class="form-control required" id="userName1" 
+                                                                 value="${aAccountMB.userName}" required="true"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-2 control-label " for="password1"> Password *</label>
+                                                <div class="col-lg-10">
+                                                    <h:inputText id="password1" 
+                                                                 class="required form-control"
+                                                                 value="${aAccountMB.password}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-2 control-label " for="confirm1">Confirm Password *</label>
+                                                <div class="col-lg-10">
+                                                    <h:inputText id="confirm1" 
+                                                                 class="required form-control"
+                                                                 value="${aAccountMB.confirmPassword}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                            </div>
+                                        </section>
+                                        <!--step 1 end-->
+
+                                        <!--step 2 begin-->
+                                        <h3>Description</h3>
+                                        <section>
+                                            <div class="form-group clearfix">
+
+                                                <label class="col-lg-2 control-label" for="name1"> Description </label>
+                                                <div class="col-lg-10">
+                                                    <h:inputTextarea id="name1" 
+                                                                     class="required form-control"
+                                                                     value="${aAccountMB.description}"/>
+                                                </div>
+                                            </div>
+                                        </section>
+                                        <!--step 2 end-->
+
+                                        <!--step n begin-->
+                                        <!--                                        <h3>Hints</h3>
+                                                                                <section>
+                                                                                    <div class="form-group clearfix">
+                                                                                        <div class="col-lg-12">
+                                                                                            <ul class="list-unstyled w-list">
+                                                                                                <li><b>First Name :</b> Jonathan </li>
+                                                                                                <li><b>Last Name :</b> Smith </li>
+                                                                                                <li><b>Emial:</b> jonathan@smith.com</li>
+                                                                                                <li><b>Address:</b> 123 Your City, Cityname. </li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </section>
+                                                                                <h3>Finish</h3>
+                                                                                <section>
+                                                                                    <div class="form-group clearfix">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="checkbox checkbox-primary">
+                                                                                                <input id="checkbox-v" type="checkbox"/>
+                                                                                                <label for="checkbox-v"> I agree with the Terms and Conditions. </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </section>-->
+                                        <!--step n end-->
+
+                                    </h:form>
+                                    <!-- End #wizard-vertical -->
+                                </div>
+                            </div>
+                        </div><!-- End row -->
+
+
+
+                        <!-- Wizard with Validation -->
+
+                        <!--                        <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="card-box">
+                                                            <h4 class="m-t-0 header-title"><b>Wizard with Validation</b></h4>
+                                                            <p class="text-muted m-b-30 font-13">
+                                                                Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.
+                                                            </p>
+                        
+                                                            <form id="wizard-validation-form" action="#">
+                                                                <div>
+                                                                    <h3>Step 1</h3>
+                                                                    <section>
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-2 control-label " for="userName2">User name </label>
+                                                                            <div class="col-lg-10">
+                                                                                <input class="form-control" id="userName2" name="userName" type="text"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-2 control-label " for="password2"> Password *</label>
+                                                                            <div class="col-lg-10">
+                                                                                <input id="password2" name="password" type="text" class="required form-control"/>
+                        
+                                                                            </div>
+                                                                        </div>
+                        
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-2 control-label " for="confirm2">Confirm Password *</label>
+                                                                            <div class="col-lg-10">
+                                                                                <input id="confirm2" name="confirm" type="text" class="required form-control"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                                                        </div>
+                                                                    </section>
+                                                                    <h3>Step 2</h3>
+                                                                    <section>
+                        
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-2 control-label" for="name2"> First name *</label>
+                                                                            <div class="col-lg-10">
+                                                                                <input id="name2" name="name" type="text" class="required form-control"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-2 control-label " for="surname2"> Last name *</label>
+                                                                            <div class="col-lg-10">
+                                                                                <input id="surname2" name="surname" type="text" class="required form-control"/>
+                        
+                                                                            </div>
+                                                                        </div>
+                        
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-2 control-label " for="email2">Email *</label>
+                                                                            <div class="col-lg-10">
+                                                                                <input id="email2" name="email" type="text" class="required email form-control"/>
+                                                                            </div>
+                                                                        </div>
+                        
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-2 control-label " for="address2">Address </label>
+                                                                            <div class="col-lg-10">
+                                                                                <input id="address2" name="address" type="text" class="form-control"/>
+                                                                            </div>
+                                                                        </div>
+                        
+                                                                        <div class="form-group clearfix">
+                                                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                                                        </div>
+                        
+                                                                    </section>
+                                                                    <h3>Step 3</h3>
+                                                                    <section>
+                                                                        <div class="form-group clearfix">
+                                                                            <div class="col-lg-12">
+                                                                                <ul class="list-unstyled w-list">
+                                                                                    <li><b>First Name :</b> Jonathan </li>
+                                                                                    <li><b>Last Name :</b> Smith </li>
+                                                                                    <li><b>Emial:</b> jonathan@smith.com</li>
+                                                                                    <li><b>Address:</b> 123 Your City, Cityname. </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </section>
+                                                                    <h3>Step Final</h3>
+                                                                    <section>
+                                                                        <div class="form-group clearfix">
+                                                                            <div class="col-lg-12">
+                                                                                <input id="acceptTerms-2" name="acceptTerms2" type="checkbox" class="required"/>
+                                                                                    <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
+                                                                            </div>
+                                                                        </div>
+                        
+                                                                    </section>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                        <!-- End row -->
+
+                    </div> <!-- container -->
+
+                </div> 
+                <!-- content -->
+            </ui:define>
+
+            <ui:define name="jsplus">
+                <script>
+                    var resizefunc = [];
+                </script>
+
+                <!--Form Wizard-->
+                <script src="assets/plugins/jquery.steps/js/jquery.steps.min.js" type="text/javascript"></script>
+                <script type="text/javascript" src="assets/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+
+                <!--wizard initialization-->
+                <script src="assets/pages/jquery.wizard-init.js" type="text/javascript"></script>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

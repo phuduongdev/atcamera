@@ -1,0 +1,74 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package phu.admin.managedBean;
+
+import controller.AccountFacadeLocal;
+import phu.customController.admin.accountBeanLocal;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author DTP
+ */
+@ManagedBean
+@RequestScoped
+public class aLogin {
+    @EJB
+    private accountBeanLocal accountBean;
+    
+    private String username, password, msg;
+    
+    /**
+     * Creates a new instance of aLogin
+     */
+    public aLogin() {
+    }
+
+    public void checkLogin(){
+        boolean result = accountBean.checkAccountLogin(username, password);
+        if (!result){
+            msg = "Login Fails.";
+        }else msg = "Login Success.";
+    }
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+    
+}
