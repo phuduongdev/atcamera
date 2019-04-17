@@ -29,11 +29,15 @@ public class aLogin {
     public aLogin() {
     }
 
-    public void checkLogin(){
+    public String checkLogin(){
         boolean result = accountBean.checkAccountLogin(username, password);
         if (!result){
             msg = "Login Fails.";
-        }else msg = "Login Success.";
+            return "login";
+        }else {
+            msg = "Login Success.";
+            return "index";
+        }
     }
     /**
      * @return the username

@@ -6,7 +6,7 @@
     <ui:composition template="./template.xhtml">
         <ui:define name="cssplus">
             <!--Morris Chart CSS -->
-            <link rel="stylesheet" href="assets/plugins/morris/morris.css"/>
+            <h:outputStylesheet name="assets/plugins/morris/morris.css"/>
         </ui:define>
         <ui:define name="content">
             <!-- Start content -->
@@ -262,18 +262,18 @@
         </ui:define>
 
         <ui:define name="jsplus">
-            <script src="assets/plugins/peity/jquery.peity.min.js"></script>
+            <h:outputScript name="assets/plugins/peity/jquery.peity.min.js"></h:outputScript>
             
             <!-- jQuery  -->
-            <script src="assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
-            <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
+            <h:outputScript name="assets/plugins/waypoints/lib/jquery.waypoints.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/counterup/jquery.counterup.min.js"></h:outputScript>
 
-            <script src="assets/plugins/morris/morris.min.js"></script>
-            <script src="assets/plugins/raphael/raphael-min.js"></script>
+            <h:outputScript name="assets/plugins/morris/morris.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/raphael/raphael-min.js"></h:outputScript>
 
-            <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+            <h:outputScript name="assets/plugins/jquery-knob/jquery.knob.js"></h:outputScript>
 
-            <script src="assets/pages/jquery.dashboard.js"></script>
+            <h:outputScript name="assets/pages/jquery.dashboard.js"></h:outputScript>
 
             <script type="text/javascript">
                 jQuery(document).ready(function ($) {
