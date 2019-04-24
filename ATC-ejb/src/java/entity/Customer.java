@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author DTP
  */
 @Entity
-@Table(name = "Customer", catalog = "ATCameraDB", schema = "dbo")
+@Table(name = "Customer")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
@@ -50,60 +50,60 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "ctmid", nullable = false, length = 50)
+    @Column(name = "ctmid")
     private String ctmid;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "createdDate", nullable = false)
+    @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Size(max = 50)
-    @Column(name = "ctmFirstName", length = 50)
+    @Column(name = "ctmFirstName")
     private String ctmFirstName;
     @Size(max = 50)
-    @Column(name = "ctmLastName", length = 50)
+    @Column(name = "ctmLastName")
     private String ctmLastName;
     @Size(max = 1073741823)
-    @Column(name = "ctmAddress", length = 1073741823)
+    @Column(name = "ctmAddress")
     private String ctmAddress;
     @Size(max = 20)
-    @Column(name = "ctmPhone", length = 20)
+    @Column(name = "ctmPhone")
     private String ctmPhone;
     @Size(max = 200)
-    @Column(name = "ctmEmail", length = 200)
+    @Column(name = "ctmEmail")
     private String ctmEmail;
     @Basic(optional = false)
     @NotNull
     @Lob
     @Size(min = 1, max = 2147483647)
-    @Column(name = "ctmPassword", nullable = false, length = 2147483647)
+    @Column(name = "ctmPassword")
     private String ctmPassword;
     @Lob
     @Size(max = 2147483647)
-    @Column(name = "ctmSocialToken", length = 2147483647)
+    @Column(name = "ctmSocialToken")
     private String ctmSocialToken;
     @Size(max = 10)
-    @Column(name = "ctmDob", length = 10)
+    @Column(name = "ctmDob")
     private String ctmDob;
     @Lob
     @Size(max = 2147483647)
-    @Column(name = "ctmImage", length = 2147483647)
+    @Column(name = "ctmImage")
     private String ctmImage;
     @Size(max = 1073741823)
-    @Column(name = "ctmDescript", length = 1073741823)
+    @Column(name = "ctmDescript")
     private String ctmDescript;
     @Size(max = 10)
-    @Column(name = "ctmRole", length = 10)
+    @Column(name = "ctmRole")
     private String ctmRole;
     @Size(max = 50)
-    @Column(name = "ctmStatus", length = 50)
+    @Column(name = "ctmStatus")
     private String ctmStatus;
     @OneToMany(mappedBy = "ctmid")
-    private Collection<Rating> ratingCollection;
+    private List<Rating> ratingList;
     @OneToMany(mappedBy = "ctmid")
-    private Collection<Wishlist> wishlistCollection;
+    private List<Wishlist> wishlistList;
     @OneToMany(mappedBy = "ctmid")
-    private Collection<OrderMaster> orderMasterCollection;
+    private List<OrderMaster> orderMasterList;
 
     public Customer() {
     }
@@ -231,30 +231,30 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Rating> getRatingCollection() {
-        return ratingCollection;
+    public List<Rating> getRatingList() {
+        return ratingList;
     }
 
-    public void setRatingCollection(Collection<Rating> ratingCollection) {
-        this.ratingCollection = ratingCollection;
-    }
-
-    @XmlTransient
-    public Collection<Wishlist> getWishlistCollection() {
-        return wishlistCollection;
-    }
-
-    public void setWishlistCollection(Collection<Wishlist> wishlistCollection) {
-        this.wishlistCollection = wishlistCollection;
+    public void setRatingList(List<Rating> ratingList) {
+        this.ratingList = ratingList;
     }
 
     @XmlTransient
-    public Collection<OrderMaster> getOrderMasterCollection() {
-        return orderMasterCollection;
+    public List<Wishlist> getWishlistList() {
+        return wishlistList;
     }
 
-    public void setOrderMasterCollection(Collection<OrderMaster> orderMasterCollection) {
-        this.orderMasterCollection = orderMasterCollection;
+    public void setWishlistList(List<Wishlist> wishlistList) {
+        this.wishlistList = wishlistList;
+    }
+
+    @XmlTransient
+    public List<OrderMaster> getOrderMasterList() {
+        return orderMasterList;
+    }
+
+    public void setOrderMasterList(List<OrderMaster> orderMasterList) {
+        this.orderMasterList = orderMasterList;
     }
 
     @Override

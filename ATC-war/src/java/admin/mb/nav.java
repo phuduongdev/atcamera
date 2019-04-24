@@ -29,4 +29,12 @@ public class nav {
     public String accountCreate(){
         return "accountCreate";
     }
+    
+    public String accountUpdate(){
+        return "accountUpdate?faces-redirect=true";
+    }
+    
+    public String productView(){
+        return "productView?faces-redirect=true";
+    }
 }

@@ -13,19 +13,21 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author DTP
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class aAccountMB {
 
     @EJB
     private AccountFacadeLocal accountFacade;
 
-    private String userName, password, confirmPassword, description;
+    private String uid, createDate, userName, password, confirmPassword, role, description, status;
+    private Account account;
 
     /**
      * Creates a new instance of aAccountMB
@@ -46,18 +48,31 @@ public class aAccountMB {
             acc.setAccid(tools.CommonUse.generateUUID());
             acc.setCreatedDate(new Date());
             acc.setAccUserName(userName);
-            if (password.equals(confirmPassword)){
+            if (password.equals(confirmPassword)) {
                 acc.setAccPassword(password);
-            }else{
+            } else {
                 throw new Exception();
             }
             acc.setAccStatus("1");
             acc.setAccDescript(description);
         } catch (Exception e) {
-            
+
         }
 
         accountFacade.create(null);
+    }
+    
+    public void updateAccount(){
+        accountFacade.edit(account);
+        
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public String getUserName() {
@@ -90,6 +105,38 @@ public class aAccountMB {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }

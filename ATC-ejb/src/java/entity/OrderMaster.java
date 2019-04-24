@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author DTP
  */
 @Entity
-@Table(name = "OrderMaster", catalog = "ATCameraDB", schema = "dbo")
+@Table(name = "OrderMaster")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "OrderMaster.findAll", query = "SELECT o FROM OrderMaster o"),
@@ -45,27 +45,27 @@ public class OrderMaster implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "odmid", nullable = false, length = 50)
+    @Column(name = "odmid")
     private String odmid;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "createdDate", nullable = false)
+    @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Size(max = 50)
-    @Column(name = "odmTitle", length = 50)
+    @Column(name = "odmTitle")
     private String odmTitle;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "odmPrice", precision = 53)
+    @Column(name = "odmPrice")
     private Double odmPrice;
     @Size(max = 50)
-    @Column(name = "odmStatus", length = 50)
+    @Column(name = "odmStatus")
     private String odmStatus;
     @JoinColumn(name = "ctmid", referencedColumnName = "ctmid")
     @ManyToOne
     private Customer ctmid;
     @OneToMany(mappedBy = "odmid")
-    private Collection<OrderDetail> orderDetailCollection;
+    private List<OrderDetail> orderDetailList;
 
     public OrderMaster() {
     }
@@ -128,12 +128,12 @@ public class OrderMaster implements Serializable {
     }
 
     @XmlTransient
-    public Collection<OrderDetail> getOrderDetailCollection() {
-        return orderDetailCollection;
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
     }
 
-    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
-        this.orderDetailCollection = orderDetailCollection;
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
     }
 
     @Override

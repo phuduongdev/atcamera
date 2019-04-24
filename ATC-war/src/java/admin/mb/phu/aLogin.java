@@ -6,7 +6,7 @@
 package admin.mb.phu;
 
 import controller.AccountFacadeLocal;
-import phu.customController.admin.accountBeanLocal;
+import admin.customControl.phu.accountBeanLocal;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;

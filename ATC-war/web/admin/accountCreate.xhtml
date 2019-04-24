@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="./template.xhtml">
 
         <ui:define name="cssplus">
@@ -17,17 +18,6 @@
                     <!-- Page-Title -->
                     <div class="row">
                         <div class="col-sm-12">
-<!--                            <div class="btn-group pull-right m-t-15">
-                                <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
-                                <ul class="dropdown-menu drop-menu-right" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>-->
-
                             <h4 class="page-title">Account Register</h4>
                             <ol class="breadcrumb">
                                 <li>
@@ -51,83 +41,99 @@
                         <div class="col-sm-12">
                             <div class="card-box">
                                 <form id="wizard-vertical">
-                                    <h3>Information</h3>
-                                    <section>
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-3 control-label " for="uid">UID</label>
-                                            <div class="col-lg-9">
-                                                <input class="form-control required" id="uid" name="uid" type="text"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-3 control-label " for="userName1">User name *</label>
-                                            <div class="col-lg-9">
-                                                <input class="form-control required" id="userName1" name="userName" type="text"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-3 control-label " for="password1"> Password *</label>
-                                            <div class="col-lg-9">
-                                                <input id="password1" name="password" type="text" class="required form-control"/>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-3 control-label " for="confirm1">Confirm Password *</label>
-                                            <div class="col-lg-9">
-                                                <input id="confirm1" name="confirm" type="text" class="required form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
-                                        </div>
-                                    </section>
-
-                                    <h3>Role</h3>
-                                    <section>
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-3 control-label" for="accRole"> Role *</label>
-                                            <div class="col-lg-9">
-                                                <select class="form-control">
-                                                    <option>Manager</option>
-                                                    <option>Admin</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-3 control-label " for="surname1"> Description </label>
-                                            <div class="col-lg-9">
-                                                <textarea id="surname1" name="surname" class="required form-control"/>
-
-                                            </div>
-                                        </div>
-                                    </section>
-
-                                    <h3>Hints</h3>
-                                    <section>
-                                        <div class="form-group clearfix">
-                                            <div class="col-lg-12">
-                                                <ul class="list-unstyled w-list">
-                                                    <li><b>First Name :</b> Jonathan </li>
-                                                    <li><b>Last Name :</b> Smith </li>
-                                                    <li><b>Emial:</b> jonathan@smith.com</li>
-                                                    <li><b>Address:</b> 123 Your City, Cityname. </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </section><!--
-
-                                    <h3>Finish</h3>
-                                    <section>
-                                        <div class="form-group clearfix">
-                                            <div class="col-lg-12">
-                                                <div class="checkbox checkbox-primary">
-                                                    <input id="checkbox-v" type="checkbox"/>
-                                                        <label for="checkbox-v"> I agree with the Terms and Conditions. </label>
+                                    <h:form>
+                                        <h3>Information</h3>
+                                        <section>
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-3 control-label " for="userName1">User name *</label>
+                                                <div class="col-lg-9">
+                                                    <h:inputText value="${aAccountMB.userName}" styleClass="form-control required" id="userName1" />
                                                 </div>
                                             </div>
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-3 control-label " for="password1"> Password *</label>
+                                                <div class="col-lg-9">
+                                                    <h:inputText value="${aAccountMB.password}" id="password1" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-3 control-label " for="confirm1">Confirm Password *</label>
+                                                <div class="col-lg-9">
+                                                    <h:inputText value="${aAccountMB.confirmPassword}" id="confirm1" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                            </div>
+                                        </section>
+
+                                        <h3>Role</h3>
+                                        <section>
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-3 control-label" for="accRole"> Role *</label>
+                                                <div class="col-lg-9">
+                                                    <h:selectOneMenu styleClass="form-control" value="#{aAccountMB.role}">
+                                                        <f:selectItem itemValue="Manager" itemLabel="Manager"/>
+                                                        <f:selectItem itemValue="Admin" itemLabel="Admin"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-3 control-label " for="surname1"> Description </label>
+                                                <div class="col-lg-9">
+                                                    <h:inputTextarea value="${aAccountMB.description}" id="surname1" class="required form-control"/>
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <h3>Hints</h3>
+                                        <section>
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <ul class="list-unstyled w-list">
+                                                        <li><b>UID :</b> ${aAccountMB.uid} </li>
+                                                        <li><b>Username</b> ${aAccountMB.userName} </li>
+                                                        <li><b>Emial:</b> jonathan@smith.com</li>
+                                                        <li><b>Address:</b> 123 Your City, Cityname. </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </section><!--
+    
+                                        <h3>Finish</h3>
+                                        <section>
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-12">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="checkbox-v" type="checkbox"/>
+                                                            <label for="checkbox-v"> I agree with the Terms and Conditions. </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>-->
+
+                                        <div class="col-lg-12 clearfix btnCreate">
+                                            <!--                                            <button type="submit" 
+                                                                                                class="btn btn-success btn-rounded waves-effect waves-light">Create New</button>-->
+                                            <h:commandLink action="${aAccountMB.createAccount()}" value="Create New" 
+                                                           styleClass="btn btn-success btn-rounded waves-effect waves-light"></h:commandLink>
+
                                         </div>
-                                    </section>-->
+                                        <script>
+                                            //<![CDATA[
+                                            $().ready(function () {
+                                                $(".btnCreate").hide();
+                                                $(".actions ul li").last().click(function () {
+                                                    $(".actions").hide();
+                                                    $(".btnCreate").show();
+                                                });
+
+                                            });
+                                            //]]>
+                                        </script>
+                                    </h:form>
+
                                 </form>
                                 <!-- End #wizard-vertical -->
                             </div>

@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author DTP
  */
 @Entity
-@Table(name = "Wishlist", catalog = "ATCameraDB", schema = "dbo")
+@Table(name = "Wishlist")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Wishlist.findAll", query = "SELECT w FROM Wishlist w"),
@@ -37,7 +37,7 @@ public class Wishlist implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "wishid", nullable = false)
+    @Column(name = "wishid")
     private Integer wishid;
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)

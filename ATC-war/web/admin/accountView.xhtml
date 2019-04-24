@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="./template.xhtml">
         <ui:define name="cssplus">
             <h:outputStylesheet name="assets/plugins/footable/css/footable.core.css" />
@@ -59,6 +60,7 @@
                                             <th>User Name</th>
                                             <th data-hide="phone">Status</th>
                                             <th data-hide="phone, tablet">Description</th>
+                                            <th>Task</th>
                                             <!--<th data-hide="phone, tablet">Status</th>-->
                                         </tr>
                                     </thead>
@@ -85,7 +87,8 @@
                                         </div>
                                     </div>
                                     <tbody>
-                                        <c:forEach var="acc" items="${aAccountMB.accounts}">
+                                        <h:form prependId="false">
+                                            <c:forEach var="acc" items="${aAccountMB.accounts}">
                                             <tr>
                                                 <td>${acc.accid}</td>
                                                 <td>${acc.accUserName}</td>
@@ -96,8 +99,15 @@
                                                     </span>
                                                 </td>
                                                 <td>${acc.accDescript}</td>
+                                                <td>
+                                                    <h:commandLink action="#{nav.accountUpdate()}" value="Update">
+                                                        <f:setPropertyActionListener value="#{acc}" target="#{aAccountMB.account}"/>
+                                                    </h:commandLink>
+                                                </td>
                                             </tr>
                                         </c:forEach>
+                                        </h:form>
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -120,12 +130,12 @@
 
         <ui:define name="jsplus">
             <!--FooTable-->
-            <h:outputScript name="assets/plugins/footable/js/footable.all.min.js"></h:outputScript>>
+            <h:outputScript name="assets/plugins/footable/js/footable.all.min.js"></h:outputScript>
 
-            <h:outputScript name="assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></h:outputScript>>
+            <h:outputScript name="assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></h:outputScript>
 
             <!--FooTable Example-->
-            <h:outputScript name="assets/pages/jquery.footable.js"></h:outputScript>>
+            <h:outputScript name="assets/pages/jquery.footable.js"></h:outputScript>
         </ui:define>
     </ui:composition>
 

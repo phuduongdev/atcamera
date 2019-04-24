@@ -6,12 +6,14 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -28,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author DTP
  */
 @Entity
-@Table(name = "Category", catalog = "ATCameraDB", schema = "dbo")
+@Table(name = "Category")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
@@ -44,25 +46,28 @@ public class Category implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "ctgid", nullable = false, length = 50)
+    @Column(name = "ctgid")
     private String ctgid;
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Size(max = 50)
-    @Column(name = "ctgTitle", length = 50)
+    @Column(name = "ctgTitle")
     private String ctgTitle;
     @Size(max = 50)
-    @Column(name = "ctgOrigin", length = 50)
+    @Column(name = "ctgOrigin")
     private String ctgOrigin;
     @Size(max = 1073741823)
-    @Column(name = "ctgDescript", length = 1073741823)
+    @Column(name = "ctgDescript")
     private String ctgDescript;
     @Size(max = 10)
-    @Column(name = "ctgStatus", length = 10)
+    @Column(name = "ctgStatus")
     private String ctgStatus;
+    @JoinColumn(name = "collectionId", referencedColumnName = "collectionId")
+    @ManyToOne
+    private Collection collectionId;
     @OneToMany(mappedBy = "ctgid")
-    private Collection<Product> productCollection;
+    private List<Product> productList;
 
     public Category() {
     }
@@ -119,13 +124,21 @@ public class Category implements Serializable {
         this.ctgStatus = ctgStatus;
     }
 
-    @XmlTransient
-    public Collection<Product> getProductCollection() {
-        return productCollection;
+    public Collection getCollectionId() {
+        return collectionId;
     }
 
-    public void setProductCollection(Collection<Product> productCollection) {
-        this.productCollection = productCollection;
+    public void setCollectionId(Collection collectionId) {
+        this.collectionId = collectionId;
+    }
+
+    @XmlTransient
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     @Override

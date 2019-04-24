@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author DTP
  */
 @Entity
-@Table(name = "Product", catalog = "ATCameraDB", schema = "dbo")
+@Table(name = "Product")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
@@ -53,56 +53,56 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "prdid", nullable = false, length = 50)
+    @Column(name = "prdid")
     private String prdid;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "createdDate", nullable = false)
+    @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Size(max = 50)
-    @Column(name = "prdModel", length = 50)
+    @Column(name = "prdModel")
     private String prdModel;
     @Size(max = 50)
-    @Column(name = "prdType", length = 50)
+    @Column(name = "prdType")
     private String prdType;
     @Size(max = 150)
-    @Column(name = "prdSensor", length = 150)
+    @Column(name = "prdSensor")
     private String prdSensor;
     @Size(max = 150)
-    @Column(name = "prdResolution", length = 150)
+    @Column(name = "prdResolution")
     private String prdResolution;
     @Size(max = 150)
-    @Column(name = "prdInfraredRange", length = 150)
+    @Column(name = "prdInfraredRange")
     private String prdInfraredRange;
     @Size(max = 150)
-    @Column(name = "prdPower", length = 150)
+    @Column(name = "prdPower")
     private String prdPower;
     @Size(max = 150)
-    @Column(name = "prdTemperature", length = 150)
+    @Column(name = "prdTemperature")
     private String prdTemperature;
     @Size(max = 150)
-    @Column(name = "prdMaterial", length = 150)
+    @Column(name = "prdMaterial")
     private String prdMaterial;
     @Lob
     @Size(max = 2147483647)
-    @Column(name = "prdImage", length = 2147483647)
+    @Column(name = "prdImage")
     private String prdImage;
     @Size(max = 1073741823)
-    @Column(name = "prdDescript", length = 1073741823)
+    @Column(name = "prdDescript")
     private String prdDescript;
     @Size(max = 10)
-    @Column(name = "prdStatus", length = 10)
+    @Column(name = "prdStatus")
     private String prdStatus;
     @JoinColumn(name = "ctgid", referencedColumnName = "ctgid")
     @ManyToOne
     private Category ctgid;
     @OneToMany(mappedBy = "prdid")
-    private Collection<Rating> ratingCollection;
+    private List<Rating> ratingList;
     @OneToMany(mappedBy = "prdid")
-    private Collection<Wishlist> wishlistCollection;
+    private List<Wishlist> wishlistList;
     @OneToMany(mappedBy = "prdid")
-    private Collection<OrderDetail> orderDetailCollection;
+    private List<OrderDetail> orderDetailList;
 
     public Product() {
     }
@@ -229,30 +229,30 @@ public class Product implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Rating> getRatingCollection() {
-        return ratingCollection;
+    public List<Rating> getRatingList() {
+        return ratingList;
     }
 
-    public void setRatingCollection(Collection<Rating> ratingCollection) {
-        this.ratingCollection = ratingCollection;
-    }
-
-    @XmlTransient
-    public Collection<Wishlist> getWishlistCollection() {
-        return wishlistCollection;
-    }
-
-    public void setWishlistCollection(Collection<Wishlist> wishlistCollection) {
-        this.wishlistCollection = wishlistCollection;
+    public void setRatingList(List<Rating> ratingList) {
+        this.ratingList = ratingList;
     }
 
     @XmlTransient
-    public Collection<OrderDetail> getOrderDetailCollection() {
-        return orderDetailCollection;
+    public List<Wishlist> getWishlistList() {
+        return wishlistList;
     }
 
-    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
-        this.orderDetailCollection = orderDetailCollection;
+    public void setWishlistList(List<Wishlist> wishlistList) {
+        this.wishlistList = wishlistList;
+    }
+
+    @XmlTransient
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
     }
 
     @Override

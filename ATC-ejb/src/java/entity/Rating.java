@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author DTP
  */
 @Entity
-@Table(name = "Rating", catalog = "ATCameraDB", schema = "dbo")
+@Table(name = "Rating")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Rating.findAll", query = "SELECT r FROM Rating r"),
@@ -40,17 +40,17 @@ public class Rating implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "rateid", nullable = false)
+    @Column(name = "rateid")
     private Integer rateid;
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ratePoint", nullable = false)
+    @Column(name = "ratePoint")
     private int ratePoint;
     @Size(max = 1073741823)
-    @Column(name = "rateDescript", length = 1073741823)
+    @Column(name = "rateDescript")
     private String rateDescript;
     @JoinColumn(name = "prdid", referencedColumnName = "prdid")
     @ManyToOne

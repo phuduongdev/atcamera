@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author DTP
  */
 @Entity
-@Table(name = "Account", catalog = "ATCameraDB", schema = "dbo")
+@Table(name = "Account")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a"),
@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Account.findByCreatedDate", query = "SELECT a FROM Account a WHERE a.createdDate = :createdDate"),
     @NamedQuery(name = "Account.findByAccUserName", query = "SELECT a FROM Account a WHERE a.accUserName = :accUserName"),
     @NamedQuery(name = "Account.findByAccPassword", query = "SELECT a FROM Account a WHERE a.accPassword = :accPassword"),
+    @NamedQuery(name = "Account.findByAccRole", query = "SELECT a FROM Account a WHERE a.accRole = :accRole"),
     @NamedQuery(name = "Account.findByAccDescript", query = "SELECT a FROM Account a WHERE a.accDescript = :accDescript"),
     @NamedQuery(name = "Account.findByAccStatus", query = "SELECT a FROM Account a WHERE a.accStatus = :accStatus")})
 public class Account implements Serializable {
@@ -41,22 +42,25 @@ public class Account implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "accid", nullable = false, length = 50)
+    @Column(name = "accid")
     private String accid;
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Size(max = 50)
-    @Column(name = "accUserName", length = 50)
+    @Column(name = "accUserName")
     private String accUserName;
     @Size(max = 150)
-    @Column(name = "accPassword", length = 150)
+    @Column(name = "accPassword")
     private String accPassword;
+    @Size(max = 10)
+    @Column(name = "accRole")
+    private String accRole;
     @Size(max = 1073741823)
-    @Column(name = "accDescript", length = 1073741823)
+    @Column(name = "accDescript")
     private String accDescript;
     @Size(max = 50)
-    @Column(name = "accStatus", length = 50)
+    @Column(name = "accStatus")
     private String accStatus;
 
     public Account() {
@@ -96,6 +100,14 @@ public class Account implements Serializable {
 
     public void setAccPassword(String accPassword) {
         this.accPassword = accPassword;
+    }
+
+    public String getAccRole() {
+        return accRole;
+    }
+
+    public void setAccRole(String accRole) {
+        this.accRole = accRole;
     }
 
     public String getAccDescript() {
