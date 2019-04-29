@@ -18,123 +18,106 @@
                     <!-- Page-Title -->
                     <div class="row">
                         <div class="col-sm-12">
-                            <h4 class="page-title">Account Register</h4>
+                            <div class="btn-group pull-right m-t-15">
+                                <h:link outcome="accountView" styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                    <span class="m-l-5"><i class="fa fa-backward"></i></span> Back
+                                </h:link>
+                            </div>
+
+                            <h4 class="page-title">Category</h4>
                             <ol class="breadcrumb">
                                 <li>
-                                    <a href="#">Ubold</a>
+                                    <a href="#">ATC</a>
                                 </li>
                                 <li>
-                                    <a href="#">Components</a>
+                                    <a href="#">Category</a>
                                 </li>
                                 <li class="active">
-                                    Account Register
+                                    Create Category
                                 </li>
                             </ol>
                         </div>
                     </div>
-
                     <!-- End row -->
-
-
                     <!-- Vertical Steps Example -->
+
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card-box">
-                                <form id="wizard-vertical">
-                                    <h:form>
-                                        <h3>Information</h3>
-                                        <section>
-                                            <div class="form-group clearfix">
-                                                <label class="col-lg-3 control-label " for="userName1">User name *</label>
-                                                <div class="col-lg-9">
-                                                    <h:inputText value="${aAccountMB.userName}" styleClass="form-control required" id="userName1" />
-                                                </div>
+                                <h:form id="wizard-vertical" prependId="true">
+                                    <h3>Information</h3>
+                                    <section>
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="User Name *" for="accUserName" styleClass="col-lg-3 control-label" />                                                
+                                            <div class="col-lg-9">
+                                                <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}" title="AccUserName" styleClass="required form-control"/>
                                             </div>
-                                            <div class="form-group clearfix">
-                                                <label class="col-lg-3 control-label " for="password1"> Password *</label>
-                                                <div class="col-lg-9">
-                                                    <h:inputText value="${aAccountMB.password}" id="password1" styleClass="required form-control"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group clearfix">
-                                                <label class="col-lg-3 control-label " for="confirm1">Confirm Password *</label>
-                                                <div class="col-lg-9">
-                                                    <h:inputText value="${aAccountMB.confirmPassword}" id="confirm1" styleClass="required form-control"/>
-                                                </div>
-                                            </div>
-                                            <div class="form-group clearfix">
-                                                <label class="col-lg-12 control-label ">(*) Mandatory</label>
-                                            </div>
-                                        </section>
-
-                                        <h3>Role</h3>
-                                        <section>
-                                            <div class="form-group clearfix">
-                                                <label class="col-lg-3 control-label" for="accRole"> Role *</label>
-                                                <div class="col-lg-9">
-                                                    <h:selectOneMenu styleClass="form-control" value="#{aAccountMB.role}">
-                                                        <f:selectItem itemValue="Manager" itemLabel="Manager"/>
-                                                        <f:selectItem itemValue="Admin" itemLabel="Admin"/>
-                                                    </h:selectOneMenu>
-                                                </div>
-                                            </div>
-                                            <div class="form-group clearfix">
-                                                <label class="col-lg-3 control-label " for="surname1"> Description </label>
-                                                <div class="col-lg-9">
-                                                    <h:inputTextarea value="${aAccountMB.description}" id="surname1" class="required form-control"/>
-                                                </div>
-                                            </div>
-                                        </section>
-
-                                        <h3>Hints</h3>
-                                        <section>
-                                            <div class="form-group clearfix">
-                                                <div class="col-lg-12">
-                                                    <ul class="list-unstyled w-list">
-                                                        <li><b>UID :</b> ${aAccountMB.uid} </li>
-                                                        <li><b>Username</b> ${aAccountMB.userName} </li>
-                                                        <li><b>Emial:</b> jonathan@smith.com</li>
-                                                        <li><b>Address:</b> 123 Your City, Cityname. </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </section><!--
-    
-                                        <h3>Finish</h3>
-                                        <section>
-                                            <div class="form-group clearfix">
-                                                <div class="col-lg-12">
-                                                    <div class="checkbox checkbox-primary">
-                                                        <input id="checkbox-v" type="checkbox"/>
-                                                            <label for="checkbox-v"> I agree with the Terms and Conditions. </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </section>-->
-
-                                        <div class="col-lg-12 clearfix btnCreate">
-                                            <!--                                            <button type="submit" 
-                                                                                                class="btn btn-success btn-rounded waves-effect waves-light">Create New</button>-->
-                                            <h:commandLink action="${aAccountMB.createAccount()}" value="Create New" 
-                                                           styleClass="btn btn-success btn-rounded waves-effect waves-light"></h:commandLink>
-
                                         </div>
-                                        <script>
-                                            //<![CDATA[
-                                            $().ready(function () {
-                                                $(".btnCreate").hide();
-                                                $(".actions ul li").last().click(function () {
-                                                    $(".actions").hide();
-                                                    $(".btnCreate").show();
-                                                });
 
-                                            });
-                                            //]]>
-                                        </script>
-                                    </h:form>
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Password *" for="accPassword" styleClass="col-lg-3 control-label" />
+                                            <div class="col-lg-9">
+                                                <h:inputSecret id="accPassword" value="#{aAccountMB.account.accPassword}" title="AccPassword" styleClass="required form-control"/>
+                                            </div>
+                                        </div>
 
-                                </form>
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Confirm Password" for="confirmPassword" styleClass="col-lg-3 control-label" />
+                                            <div class="col-lg-9">
+                                                <h:inputSecret value="${aAccountMB.confirmPassword}" id="confirm1" styleClass="required form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Required</label>
+                                        </div>
+                                    </section>
+
+                                    <h3>Role</h3>
+                                    <section>
+                                        <div class="form-group clearfix">
+
+                                            <h:outputLabel value="Role *" for="accRole" class="col-lg-3 control-label" />
+                                            <div class="col-lg-9">
+                                                <h:selectOneMenu styleClass="form-control" value="#{aAccountMB.account.accRole}">
+                                                    <f:selectItem itemValue="manager" itemLabel="Manager"/>
+                                                    <f:selectItem itemValue="admin" itemLabel="Admin"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="AccDescript:" for="accDescript" class="col-lg-3 control-label" />
+                                            <div class="col-lg-9">
+                                                <h:inputText id="accDescript" value="#{aAccountMB.account.accDescript}" title="AccDescript" styleClass="required form-control" />
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <!--                                        <h3>Hints</h3>
+                                                                            <section>
+                                                                                <div class="form-group clearfix">
+                                                                                    <div class="col-lg-12">
+                                                                                        <ul class="list-unstyled w-list">
+                                                                                            <li><b>User Name : </b>  </li>
+                                                                                            <li><b>Password : </b> </li>
+                                                                                            <li><b>Role :</b>  </li>
+                                                                                            <li><b>Description :</b>  </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </section>-->
+
+                                    <div class="text-center btnCreate">
+
+                                        <h:commandLink action="#{aAccountMB.createAccount()}" value="Confirm" 
+                                                       styleClass="row btn btn-success waves-effect waves-light">
+                                        </h:commandLink>
+                                    </div>
+
+
+                                </h:form>
+                                <!--</form>-->
+
                                 <!-- End #wizard-vertical -->
                             </div>
                         </div>
@@ -142,22 +125,27 @@
                     <!-- End row -->
 
 
+
+
                 </div> <!-- container -->
 
             </div> 
-            <!-- content -->
-
-            <footer class="footer">
-                © 2016. All rights reserved.
-            </footer>
-
-
             <!-- content -->
         </ui:define>
 
         <ui:define name="jsplus">
             <script>
+                //<![CDATA[
                 var resizefunc = [];
+                $().ready(function () {
+                    $(".btnCreate").hide();
+                    $(".actions ul li").last().click(function () {
+                        $(".actions").hide();
+                        $(".btnCreate").show();
+                    });
+
+                });
+                //]]>
             </script>
 
             <!--Form Wizard-->

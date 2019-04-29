@@ -5,14 +5,13 @@
  */
 package admin.mb.phu;
 
-import controller.AccountFacadeLocal;
+import controller.AccountFacade;
 import entity.Account;
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -24,16 +23,16 @@ import javax.faces.bean.SessionScoped;
 public class aAccountMB {
 
     @EJB
-    private AccountFacadeLocal accountFacade;
+    private AccountFacade accountFacade;
 
-    private String uid, createDate, userName, password, confirmPassword, role, description, status;
-    private Account account;
+    private String confirmPassword, msg;
+    private Account Account;
 
     /**
      * Creates a new instance of aAccountMB
      */
     public aAccountMB() {
-
+        Account = new Account();
     }
 
 //    view all function
@@ -42,53 +41,39 @@ public class aAccountMB {
     }
 
 //    create new
-    public void createAccount() {
-        Account acc = new Account();
+    public String createAccount() {
         try {
-            acc.setAccid(tools.CommonUse.generateUUID());
-            acc.setCreatedDate(new Date());
-            acc.setAccUserName(userName);
-            if (password.equals(confirmPassword)) {
-                acc.setAccPassword(password);
-            } else {
-                throw new Exception();
-            }
-            acc.setAccStatus("1");
-            acc.setAccDescript(description);
+            Account.setAccid(tools.CommonUse.generateUUID());
+            Account.setCreatedDate(new Timestamp(new Date().getTime()));
+            Account.setAccStatus("1");
+            accountFacade.create(Account);
+            Account = new Account();
+//            confirmPassword = "";
+            return "accountView?faces-redirect=true";
         } catch (Exception e) {
-
+            msg = "TK da dc sd";
+            return "accountCreate?faces-redirect=true";
         }
-
-        accountFacade.create(null);
-    }
-    
-    public void updateAccount(){
-        accountFacade.edit(account);
         
     }
 
+    public String updateAccount() {
+        accountFacade.edit(Account);
+        return "accountView?faces-redirect=true";
+    }
+
+    public String blockAccount() {
+        Account.setAccStatus("0");
+        accountFacade.edit(Account);
+        return "accountView?faces-redirect=true";
+    }
+
     public Account getAccount() {
-        return account;
+        return Account;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAccount(Account Account) {
+        this.Account = Account;
     }
 
     public String getConfirmPassword() {
@@ -99,44 +84,12 @@ public class aAccountMB {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getDescription() {
-        return description;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
+    
 }

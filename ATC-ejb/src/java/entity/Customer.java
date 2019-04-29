@@ -99,8 +99,6 @@ public class Customer implements Serializable {
     @Column(name = "ctmStatus")
     private String ctmStatus;
     @OneToMany(mappedBy = "ctmid")
-    private List<Rating> ratingList;
-    @OneToMany(mappedBy = "ctmid")
     private List<Wishlist> wishlistList;
     @OneToMany(mappedBy = "ctmid")
     private List<OrderMaster> orderMasterList;
@@ -228,15 +226,6 @@ public class Customer implements Serializable {
 
     public void setCtmStatus(String ctmStatus) {
         this.ctmStatus = ctmStatus;
-    }
-
-    @XmlTransient
-    public List<Rating> getRatingList() {
-        return ratingList;
-    }
-
-    public void setRatingList(List<Rating> ratingList) {
-        this.ratingList = ratingList;
     }
 
     @XmlTransient

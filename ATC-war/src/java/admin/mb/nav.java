@@ -5,6 +5,9 @@
  */
 package admin.mb;
 
+import admin.mb.phu.aAccountMB;
+import entity.Account;
+import entity.Account_;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -16,25 +19,75 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class nav {
 
+    
     /**
      * Creates a new instance of nav
      */
     public nav() {
     }
-    
-    public String accountView(){
-        return "accountView";
+//    ********* test zone **************
+    public String testCreate(){
+        return "accCreate";
     }
     
-    public String accountCreate(){
-        return "accountCreate";
+//    ****************** product zone **********************
+//    ####### category ###########
+    public String categoryView(){
+        return "categoryView";
+    }
+    public String categoryCreate(){
+        return "categoryCreate";
+    }
+    public String categoryUpdate(){
+        return "categoryUpdate";
     }
     
-    public String accountUpdate(){
+    //    ####### camera ###########
+    public String cameraView(){
+        return "cameraView";
+    }
+    public String cameraCreate(){
+        return "cameraCreate";
+    }
+    public String cameraUpdate(){
+        return "cameraUpdate";
+    }
+    
+    //    ####### DVR ###########
+    public String dvrView(){
+        return "dvrView";
+    }
+    public String dvrCreate(){
+        return "dvrCreate";
+    }
+    public String dvrUpdate(){
+        return "dvrUpdate";
+    }
+    
+        //    ####### Others ###########
+    public String otherView(){
+        return "otherView";
+    }
+    public String otherCreate(){
+        return "otherCreate";
+    }
+    public String otherUpdate(){
+        return "otherUpdate";
+    }
+    
+
+//    ********** Account zone ******
+    public String accountView() {
+        return "accountView?faces-redirect=true";
+    }
+
+    public String accountCreate() {
+        
+        return "accountCreate?faces-redirect=true";
+    }
+
+    public String accountUpdate() {
         return "accountUpdate?faces-redirect=true";
     }
-    
-    public String productView(){
-        return "productView?faces-redirect=true";
-    }
+
 }

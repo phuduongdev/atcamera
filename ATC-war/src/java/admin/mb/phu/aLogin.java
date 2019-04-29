@@ -5,8 +5,7 @@
  */
 package admin.mb.phu;
 
-import controller.AccountFacadeLocal;
-import admin.customControl.phu.accountBeanLocal;
+import controller.AccountFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,7 +18,8 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class aLogin {
     @EJB
-    private accountBeanLocal accountBean;
+    private AccountFacade accountFacade;
+
     
     private String username, password, msg;
     
@@ -30,7 +30,7 @@ public class aLogin {
     }
 
     public String checkLogin(){
-        boolean result = accountBean.checkAccountLogin(username, password);
+        boolean result = accountFacade.checkAccountLogin(username, password);
         if (!result){
             msg = "Login Fails.";
             return "login";

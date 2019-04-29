@@ -12,8 +12,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -36,10 +34,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
     @NamedQuery(name = "Category.findByCtgid", query = "SELECT c FROM Category c WHERE c.ctgid = :ctgid"),
     @NamedQuery(name = "Category.findByCreatedDate", query = "SELECT c FROM Category c WHERE c.createdDate = :createdDate"),
+    @NamedQuery(name = "Category.findByCtgType", query = "SELECT c FROM Category c WHERE c.ctgType = :ctgType"),
     @NamedQuery(name = "Category.findByCtgTitle", query = "SELECT c FROM Category c WHERE c.ctgTitle = :ctgTitle"),
     @NamedQuery(name = "Category.findByCtgOrigin", query = "SELECT c FROM Category c WHERE c.ctgOrigin = :ctgOrigin"),
-    @NamedQuery(name = "Category.findByCtgDescript", query = "SELECT c FROM Category c WHERE c.ctgDescript = :ctgDescript"),
-    @NamedQuery(name = "Category.findByCtgStatus", query = "SELECT c FROM Category c WHERE c.ctgStatus = :ctgStatus")})
+    @NamedQuery(name = "Category.findByCtgStatus", query = "SELECT c FROM Category c WHERE c.ctgStatus = :ctgStatus"),
+    @NamedQuery(name = "Category.findByCtgDescript", query = "SELECT c FROM Category c WHERE c.ctgDescript = :ctgDescript")})
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,20 +51,20 @@ public class Category implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Size(max = 50)
+    @Column(name = "ctgType")
+    private String ctgType;
+    @Size(max = 50)
     @Column(name = "ctgTitle")
     private String ctgTitle;
     @Size(max = 50)
     @Column(name = "ctgOrigin")
     private String ctgOrigin;
-    @Size(max = 1073741823)
-    @Column(name = "ctgDescript")
-    private String ctgDescript;
     @Size(max = 10)
     @Column(name = "ctgStatus")
     private String ctgStatus;
-    @JoinColumn(name = "collectionId", referencedColumnName = "collectionId")
-    @ManyToOne
-    private Collection collectionId;
+    @Size(max = 1073741823)
+    @Column(name = "ctgDescript")
+    private String ctgDescript;
     @OneToMany(mappedBy = "ctgid")
     private List<Product> productList;
 
@@ -92,6 +91,14 @@ public class Category implements Serializable {
         this.createdDate = createdDate;
     }
 
+    public String getCtgType() {
+        return ctgType;
+    }
+
+    public void setCtgType(String ctgType) {
+        this.ctgType = ctgType;
+    }
+
     public String getCtgTitle() {
         return ctgTitle;
     }
@@ -108,14 +115,6 @@ public class Category implements Serializable {
         this.ctgOrigin = ctgOrigin;
     }
 
-    public String getCtgDescript() {
-        return ctgDescript;
-    }
-
-    public void setCtgDescript(String ctgDescript) {
-        this.ctgDescript = ctgDescript;
-    }
-
     public String getCtgStatus() {
         return ctgStatus;
     }
@@ -124,12 +123,12 @@ public class Category implements Serializable {
         this.ctgStatus = ctgStatus;
     }
 
-    public Collection getCollectionId() {
-        return collectionId;
+    public String getCtgDescript() {
+        return ctgDescript;
     }
 
-    public void setCollectionId(Collection collectionId) {
-        this.collectionId = collectionId;
+    public void setCtgDescript(String ctgDescript) {
+        this.ctgDescript = ctgDescript;
     }
 
     @XmlTransient

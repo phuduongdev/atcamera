@@ -37,14 +37,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findByPrdid", query = "SELECT p FROM Product p WHERE p.prdid = :prdid"),
     @NamedQuery(name = "Product.findByCreatedDate", query = "SELECT p FROM Product p WHERE p.createdDate = :createdDate"),
-    @NamedQuery(name = "Product.findByPrdModel", query = "SELECT p FROM Product p WHERE p.prdModel = :prdModel"),
-    @NamedQuery(name = "Product.findByPrdType", query = "SELECT p FROM Product p WHERE p.prdType = :prdType"),
-    @NamedQuery(name = "Product.findByPrdSensor", query = "SELECT p FROM Product p WHERE p.prdSensor = :prdSensor"),
-    @NamedQuery(name = "Product.findByPrdResolution", query = "SELECT p FROM Product p WHERE p.prdResolution = :prdResolution"),
-    @NamedQuery(name = "Product.findByPrdInfraredRange", query = "SELECT p FROM Product p WHERE p.prdInfraredRange = :prdInfraredRange"),
+    @NamedQuery(name = "Product.findByPrdTittle", query = "SELECT p FROM Product p WHERE p.prdTittle = :prdTittle"),
     @NamedQuery(name = "Product.findByPrdPower", query = "SELECT p FROM Product p WHERE p.prdPower = :prdPower"),
-    @NamedQuery(name = "Product.findByPrdTemperature", query = "SELECT p FROM Product p WHERE p.prdTemperature = :prdTemperature"),
-    @NamedQuery(name = "Product.findByPrdMaterial", query = "SELECT p FROM Product p WHERE p.prdMaterial = :prdMaterial"),
+    @NamedQuery(name = "Product.findByPrdWarranty", query = "SELECT p FROM Product p WHERE p.prdWarranty = :prdWarranty"),
+    @NamedQuery(name = "Product.findByPrdPrice", query = "SELECT p FROM Product p WHERE p.prdPrice = :prdPrice"),
     @NamedQuery(name = "Product.findByPrdDescript", query = "SELECT p FROM Product p WHERE p.prdDescript = :prdDescript"),
     @NamedQuery(name = "Product.findByPrdStatus", query = "SELECT p FROM Product p WHERE p.prdStatus = :prdStatus")})
 public class Product implements Serializable {
@@ -55,50 +51,46 @@ public class Product implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "prdid")
     private String prdid;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Size(max = 50)
-    @Column(name = "prdModel")
-    private String prdModel;
-    @Size(max = 50)
-    @Column(name = "prdType")
-    private String prdType;
-    @Size(max = 150)
-    @Column(name = "prdSensor")
-    private String prdSensor;
-    @Size(max = 150)
-    @Column(name = "prdResolution")
-    private String prdResolution;
-    @Size(max = 150)
-    @Column(name = "prdInfraredRange")
-    private String prdInfraredRange;
+    @Column(name = "prdTittle")
+    private String prdTittle;
     @Size(max = 150)
     @Column(name = "prdPower")
     private String prdPower;
-    @Size(max = 150)
-    @Column(name = "prdTemperature")
-    private String prdTemperature;
-    @Size(max = 150)
-    @Column(name = "prdMaterial")
-    private String prdMaterial;
+    @Size(max = 50)
+    @Column(name = "prdWarranty")
+    private String prdWarranty;
     @Lob
     @Size(max = 2147483647)
     @Column(name = "prdImage")
     private String prdImage;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "prdImage2")
+    private String prdImage2;
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "prdImage3")
+    private String prdImage3;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "prdPrice")
+    private Double prdPrice;
     @Size(max = 1073741823)
     @Column(name = "prdDescript")
     private String prdDescript;
     @Size(max = 10)
     @Column(name = "prdStatus")
     private String prdStatus;
+    @OneToMany(mappedBy = "prdid")
+    private List<Camera> cameraList;
     @JoinColumn(name = "ctgid", referencedColumnName = "ctgid")
     @ManyToOne
     private Category ctgid;
     @OneToMany(mappedBy = "prdid")
-    private List<Rating> ratingList;
+    private List<Dvr> dvrList;
     @OneToMany(mappedBy = "prdid")
     private List<Wishlist> wishlistList;
     @OneToMany(mappedBy = "prdid")
@@ -109,11 +101,6 @@ public class Product implements Serializable {
 
     public Product(String prdid) {
         this.prdid = prdid;
-    }
-
-    public Product(String prdid, Date createdDate) {
-        this.prdid = prdid;
-        this.createdDate = createdDate;
     }
 
     public String getPrdid() {
@@ -132,44 +119,12 @@ public class Product implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public String getPrdModel() {
-        return prdModel;
+    public String getPrdTittle() {
+        return prdTittle;
     }
 
-    public void setPrdModel(String prdModel) {
-        this.prdModel = prdModel;
-    }
-
-    public String getPrdType() {
-        return prdType;
-    }
-
-    public void setPrdType(String prdType) {
-        this.prdType = prdType;
-    }
-
-    public String getPrdSensor() {
-        return prdSensor;
-    }
-
-    public void setPrdSensor(String prdSensor) {
-        this.prdSensor = prdSensor;
-    }
-
-    public String getPrdResolution() {
-        return prdResolution;
-    }
-
-    public void setPrdResolution(String prdResolution) {
-        this.prdResolution = prdResolution;
-    }
-
-    public String getPrdInfraredRange() {
-        return prdInfraredRange;
-    }
-
-    public void setPrdInfraredRange(String prdInfraredRange) {
-        this.prdInfraredRange = prdInfraredRange;
+    public void setPrdTittle(String prdTittle) {
+        this.prdTittle = prdTittle;
     }
 
     public String getPrdPower() {
@@ -180,20 +135,12 @@ public class Product implements Serializable {
         this.prdPower = prdPower;
     }
 
-    public String getPrdTemperature() {
-        return prdTemperature;
+    public String getPrdWarranty() {
+        return prdWarranty;
     }
 
-    public void setPrdTemperature(String prdTemperature) {
-        this.prdTemperature = prdTemperature;
-    }
-
-    public String getPrdMaterial() {
-        return prdMaterial;
-    }
-
-    public void setPrdMaterial(String prdMaterial) {
-        this.prdMaterial = prdMaterial;
+    public void setPrdWarranty(String prdWarranty) {
+        this.prdWarranty = prdWarranty;
     }
 
     public String getPrdImage() {
@@ -202,6 +149,30 @@ public class Product implements Serializable {
 
     public void setPrdImage(String prdImage) {
         this.prdImage = prdImage;
+    }
+
+    public String getPrdImage2() {
+        return prdImage2;
+    }
+
+    public void setPrdImage2(String prdImage2) {
+        this.prdImage2 = prdImage2;
+    }
+
+    public String getPrdImage3() {
+        return prdImage3;
+    }
+
+    public void setPrdImage3(String prdImage3) {
+        this.prdImage3 = prdImage3;
+    }
+
+    public Double getPrdPrice() {
+        return prdPrice;
+    }
+
+    public void setPrdPrice(Double prdPrice) {
+        this.prdPrice = prdPrice;
     }
 
     public String getPrdDescript() {
@@ -220,6 +191,15 @@ public class Product implements Serializable {
         this.prdStatus = prdStatus;
     }
 
+    @XmlTransient
+    public List<Camera> getCameraList() {
+        return cameraList;
+    }
+
+    public void setCameraList(List<Camera> cameraList) {
+        this.cameraList = cameraList;
+    }
+
     public Category getCtgid() {
         return ctgid;
     }
@@ -229,12 +209,12 @@ public class Product implements Serializable {
     }
 
     @XmlTransient
-    public List<Rating> getRatingList() {
-        return ratingList;
+    public List<Dvr> getDvrList() {
+        return dvrList;
     }
 
-    public void setRatingList(List<Rating> ratingList) {
-        this.ratingList = ratingList;
+    public void setDvrList(List<Dvr> dvrList) {
+        this.dvrList = dvrList;
     }
 
     @XmlTransient

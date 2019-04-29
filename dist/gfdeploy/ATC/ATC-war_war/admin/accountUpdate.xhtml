@@ -2,15 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./template.xhtml">
-
-            <ui:define name="cssplus">
-                cssplus
-            </ui:define>
 
             <ui:define name="content">
                 <div class="content">
@@ -20,84 +17,113 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="btn-group pull-right m-t-15">
-                                    <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
-                                    <ul class="dropdown-menu drop-menu-right" role="menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
+                                    <h:link outcome="accountView" 
+                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                    Back <span class="m-l-5"><i class="fa fa-file-text"></i></span>
+                                </h:link>
                                 </div>
 
-                                <h4 class="page-title">Form Validation</h4>
+                                <h4 class="page-title">Account</h4>
                                 <ol class="breadcrumb">
-                                    <li><a href="#">Ubold</a></li>
-                                    <li><a href="#">Forms</a></li>
-                                    <li class="active">Form Validation</li>
+                                    <li><a href="#">ATC</a></li>
+                                    <li><a href="#">Account</a></li>
+                                    <li class="active">Details &amp; Update</li>
                                 </ol>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card-box">
-                                    <h4 class="m-t-0 header-title"><b>Basic Form</b></h4>
-                                    <p class="text-muted font-13 m-b-30">
-                                        Your awesome text goes here.
-                                    </p>
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                                <div class="card-box">  
+                                    <h:form styleClass="form-horizontal" prependId="false">
+                                        <div class="form-group">
+                                            <h:outputLabel styleClass="col-sm-4 control-label" value="UID" for="accid" />
+                                            <div class="col-sm-7">
+                                                <h:inputText id="accid" value="#{aAccountMB.account.accid}" 
+                                                             title="Accid" styleClass="form-control" readonly="true"/>
+                                            </div>
+                                        </div>
 
-                                    <form action="#" data-parsley-validate="" novalidate="">
-                                        <h:form prependId="false">
-                                            <div class="form-group">
-                                                <label for="uid">UID </label>
-                                                <!--                                                <input type="text" name="nick" parsley-trigger="change" required="true" placeholder="Enter user name" class="form-control" id="userName"/>-->
-                                                <h:inputText value="#{aAccountMB.account.accid}" required="true" 
-                                                             styleClass="form-control" id="userName" disabled="true"/>
+                                        <div class="form-group">
+                                            <h:outputLabel value="Created Date" for="createdDate" styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-7">
+                                                <h:inputText id="createdDate" value="#{aAccountMB.account.createdDate}" 
+                                                             title="CreatedDate" styleClass="form-control" readonly="true">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:inputText>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="userName">User Name</label>
-                                                <!--                                                <input type="text" name="nick" parsley-trigger="change" required="true" placeholder="Enter user name" class="form-control" id="userName"/>-->
-                                                <h:inputText value="#{aAccountMB.account.accUserName}" required="true" styleClass="form-control" id="userName"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="emailAddress">Password</label>
-                                                <h:inputSecret value="#{aAccountMB.account.accPassword}" required="true" class="form-control" id="emailAddress"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="pass1">Role </label>
-                                                <h:inputText id="pass1" required="true" class="form-control"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="passWord2">Description </label>
-                                                <h:inputTextarea value="#{aAccountMB.account.accDescript}" required="true" class="form-control" id="passWord2"/>
-                                            </div>
-                                            <!--                                            <div class="form-group">
-                                                                                            <div class="checkbox">
-                                                                                                <input id="remember-1" type="checkbox"/>
-                                                                                                <label for="remember-1"> Remember me </label>
-                                                                                            </div>
-                                                                                        </div>-->
+                                        </div>
 
-                                            <div class="form-group text-right m-b-0">
-                                                <!--                                                <button class="btn btn-primary waves-effect waves-light" type="submit">
-                                                                                                    Submit
-                                                                                                </button>
-                                                                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                                        <div class="form-group">
+                                            <h:outputLabel value="User Name * " for="accUserName" styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-7">
+                                                <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}" 
+                                                             title="AccUserName" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Password *" for="accPassword" styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-7">
+                                                <h:inputSecret id="accPassword" value="#{aAccountMB.account.accPassword}" 
+                                                               title="AccPassword" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Role *" for="accRole"  styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-7">
+                                                <h:inputText id="accRole" value="#{aAccountMB.account.accRole}" 
+                                                             title="AccRole" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <h:outputLabel value="Status *" for="accStatus" styleClass="col-sm-4 control-label" />
+                                            <div class="col-sm-7">
+                                                <h:inputText id="accStatus" value="#{aAccountMB.account.accStatus}"
+                                                             title="AccStatus" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <h:outputLabel value="Description" for="accDescript" styleClass="col-sm-4 control-label" />
+                                            <div class="col-sm-7">
+                                                <h:inputTextarea id="accDescript" value="#{aAccountMB.account.accDescript}" 
+                                                                 title="AccDescript" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-4 col-sm-8">
+
+                                                <label> (*) Required </label>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-4 col-sm-8">
+                                                <h:commandLink action="#{aAccountMB.updateAccount()}" value="Confirm"
+                                                               styleClass="btn btn-primary waves-effect waves-light"/>
+                                                <!--                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
                                                                                                     Cancel
                                                                                                 </button>-->
-                                                <h:commandLink action="#{aAccountMB.updateAccount()}" value="Submit" styleClass="btn btn-primary waves-effect waves-light"/>
                                             </div>
-                                        </h:form>
-                                    </form>
+                                        </div>
+
+                                    </h:form>
                                 </div>
                             </div>
-
-
+                            <div class="col"></div>
                         </div>
                     </div> <!-- container -->
 
-                </div>
+                </div> <!-- content -->
             </ui:define>
 
             <ui:define name="jsplus">
