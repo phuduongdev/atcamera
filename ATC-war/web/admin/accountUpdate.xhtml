@@ -17,10 +17,9 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="btn-group pull-right m-t-15">
-                                    <h:link outcome="accountView" 
-                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
-                                    Back <span class="m-l-5"><i class="fa fa-file-text"></i></span>
-                                </h:link>
+                                    <h:link outcome="#{aAccountMB.accountViewNav()}" styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                        <span class="m-l-5"><i class="fa fa-file-text"></i></span> Back
+                                    </h:link>
                                 </div>
 
                                 <h4 class="page-title">Account</h4>
@@ -79,7 +78,7 @@
                                                              title="AccRole" styleClass="form-control" />
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <h:outputLabel value="Status *" for="accStatus" styleClass="col-sm-4 control-label" />
                                             <div class="col-sm-7">
@@ -87,7 +86,7 @@
                                                              title="AccStatus" styleClass="form-control" />
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <h:outputLabel value="Description" for="accDescript" styleClass="col-sm-4 control-label" />
                                             <div class="col-sm-7">
@@ -95,8 +94,6 @@
                                                                  title="AccDescript" styleClass="form-control" />
                                             </div>
                                         </div>
-
-
 
                                         <div class="form-group">
                                             <div class="col-sm-offset-4 col-sm-8">

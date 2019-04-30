@@ -22,22 +22,22 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="btn-group pull-right m-t-15">
-                                    <h:link outcome="#{nav.accountView()}"
+                                    <h:link outcome="categoryView"
                                             styleClass="btn btn-default btn-custom waves-effect waves-light">
                                         Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
                                     </h:link>
                                 </div>
 
-                                <h4 class="page-title">Account</h4>
+                                <h4 class="page-title">Category</h4>
                                 <ol class="breadcrumb">
                                     <li>
-                                        <a href="#">ATC</a>
+                                        <h:link outcome="index">ATC</h:link>
                                     </li>
                                     <li>
-                                        <a href="#">Account</a>
+                                        <h:link outcome="categoryView">Category</h:link>
                                     </li>
                                     <li class="active">
-                                        Create Account
+                                        Create Category
                                     </li>
                                 </ol>
                             </div>
@@ -48,7 +48,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box">
-                                    <h:form id="wizard-vertical" prependId="true">
+                                    <h:form id="wizard-validation-form" prependId="true">
                                         <h3>Information</h3>
                                         <section>
                                             <div class="form-group clearfix">
@@ -127,7 +127,6 @@
                             $(".actions").hide();
                             $(".btnCreate").show();
                         });
-
                     });
                     //]]>
                 </script>

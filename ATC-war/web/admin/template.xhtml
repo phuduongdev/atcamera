@@ -234,11 +234,9 @@
                             <li class="text-muted menu-title">Navigation</li>
 
                             <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="ti-home"></i> 
-                                    <span> Dashboard </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="index.xhtml">Home</a></li>
-                                </ul>
+                                <h:link outcome="index" styleClass="waves-effect">
+                                    <i class="ti-home"></i> <span> Dashboard </span> <span class="menu-arrow"></span>
+                                </h:link>
                             </li>
 
                             <li class="has_sub">
@@ -246,7 +244,7 @@
                                     <i class="ti-share"></i><span>Product Management </span> <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="list-unstyled">
-                                    <li><h:link outcome="#{nav.categoryView()}">Category</h:link></li>
+                                    <li><h:link outcome="categoryView">Category</h:link></li>
                                     
                                 </ul>
                             </li>
@@ -278,8 +276,8 @@
                             </li>
 
                             <li class="has_sub">
-                                <h:link outcome="#{nav.accountView()}" class="waves-effect">
-                                    <i class="ti-key"></i>  <span> Account </span> 
+                                <h:link outcome="accountView" class="waves-effect">
+                                    <i class="ti-key"></i>  <span> Account </span> <span class="menu-arrow"></span>
                                 </h:link>
                             </li>
                         </ul>

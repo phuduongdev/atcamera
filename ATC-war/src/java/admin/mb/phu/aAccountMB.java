@@ -10,9 +10,11 @@ import entity.Account;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -25,17 +27,30 @@ public class aAccountMB {
     @EJB
     private AccountFacade accountFacade;
 
-    private String confirmPassword, msg;
-    private Account Account;
+    private String confirmPassword, msg, formStatus;
+    private Account account = new Account();
 
     /**
      * Creates a new instance of aAccountMB
      */
     public aAccountMB() {
-        Account = new Account();
     }
 
+    public String accountViewNav() {
+        return "accountView?faces-redirect=true";
+    }
+
+    public String accountCreateNav() {
+        account = new Account();
+        return "accountCreate?faces-redirect=true";
+    }
+
+    public String accountUpdateNav() {
+        
+        return "accountUpdate";
+    }
 //    view all function
+
     public List<Account> getAccounts() {
         return accountFacade.findAll();
     }
@@ -43,37 +58,30 @@ public class aAccountMB {
 //    create new
     public String createAccount() {
         try {
-            Account.setAccid(tools.CommonUse.generateUUID());
-            Account.setCreatedDate(new Timestamp(new Date().getTime()));
-            Account.setAccStatus("1");
-            accountFacade.create(Account);
-            Account = new Account();
+            account.setAccid(tools.CommonUse.generateUUID());
+            account.setCreatedDate(new Timestamp(new Date().getTime()));
+            account.setAccStatus("1");
+            accountFacade.create(account);
 //            confirmPassword = "";
             return "accountView?faces-redirect=true";
         } catch (Exception e) {
             msg = "TK da dc sd";
             return "accountCreate?faces-redirect=true";
         }
-        
+
     }
 
     public String updateAccount() {
-        accountFacade.edit(Account);
-        return "accountView?faces-redirect=true";
-    }
-
-    public String blockAccount() {
-        Account.setAccStatus("0");
-        accountFacade.edit(Account);
+        accountFacade.edit(account);
         return "accountView?faces-redirect=true";
     }
 
     public Account getAccount() {
-        return Account;
+        return account;
     }
 
-    public void setAccount(Account Account) {
-        this.Account = Account;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public String getConfirmPassword() {
@@ -91,5 +99,13 @@ public class aAccountMB {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-    
+
+    public String getFormStatus() {
+        return formStatus;
+    }
+
+    public void setFormStatus(String formStatus) {
+        this.formStatus = formStatus;
+    }
+
 }

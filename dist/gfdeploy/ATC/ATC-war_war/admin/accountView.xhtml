@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="btn-group pull-right m-t-15">
-                                <h:link outcome="#{nav.accountCreate()}" value="Create New " 
+                                <h:link outcome="#{aAccountMB.accountCreateNav()}" value="Create New " 
                                         styleClass="btn btn-default btn-custom waves-effect waves-light">
                                     <span class="m-l-5"><i class="fa fa-file-text"></i></span>
                                 </h:link>
@@ -84,26 +84,22 @@
                                     </div>
                                     <tbody>
                                         <h:form prependId="false">
-                                            <c:forEach var="acc" items="${aAccountMB.accounts}">
+                                            <c:forEach var="item" items="${aAccountMB.accounts}">
                                                 <tr>
-                                                    <td>${acc.accid}</td>
-                                                    <td>${acc.accUserName}</td>
-                                                    <!--<td>${acc.accDescript}</td>-->
+                                                    <td>${item.accid}</td>
+                                                    <td>${item.accUserName}</td>
+                                                    <!--<td>${item.accDescript}</td>-->
                                                     <td>
                                                         <span class="label label-table 
-                                                              ${acc.accStatus == 1 ? 'label-success' : 'label-inverse'}">
-                                                            ${acc.accStatus == 1 ? "Active" : "Disable"}
+                                                              ${item.accStatus == 1 ? 'label-success' : 'label-inverse'}">
+                                                            ${item.accStatus == 1 ? "Active" : "Disable"}
                                                         </span>
                                                     </td>
 
                                                     <td>
-                                                        <h:commandLink action="#{nav.accountUpdate()}" styleClass="table-action-btn">
+                                                        <h:commandLink action="#{aAccountMB.accountUpdateNav()}" styleClass="table-action-btn">
                                                             <i class="md md-edit"></i>
-                                                            <f:setPropertyActionListener value="#{acc}" target="#{aAccountMB.account}"/>
-                                                        </h:commandLink> | 
-                                                        <h:commandLink action="#{nav.accountUpdate()}" styleClass="table-action-btn">
-                                                            <i class="md md-close"></i>
-                                                            <f:setPropertyActionListener value="#{acc}" target="#{aAccountMB.account}"/>
+                                                            <f:setPropertyActionListener value="#{item}" target="#{aAccountMB.account}"/>
                                                         </h:commandLink>
                                                     </td>
                                                     <td>

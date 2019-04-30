@@ -60,7 +60,7 @@
             headerTag: "h3",
             bodyTag: "section",
             transitionEffect: "fade",
-            stepsOrientation: "vertical"
+            stepsOrientation: "vertical",
         });
         return $form_container;
     },

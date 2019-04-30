@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <ui:composition template="./template.xhtml">
 
         <ui:define name="cssplus">
@@ -19,21 +20,21 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="btn-group pull-right m-t-15">
-                                <h:link outcome="accountView" styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                <h:link outcome="#{aAccountMB.accountViewNav()}" styleClass="btn btn-default btn-custom waves-effect waves-light">
                                     <span class="m-l-5"><i class="fa fa-backward"></i></span> Back
                                 </h:link>
                             </div>
 
-                            <h4 class="page-title">Category</h4>
+                            <h4 class="page-title">Account</h4>
                             <ol class="breadcrumb">
                                 <li>
                                     <a href="#">ATC</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#">Account</a>
                                 </li>
                                 <li class="active">
-                                    Create Category
+                                    Create Account
                                 </li>
                             </ol>
                         </div>
@@ -44,27 +45,38 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card-box">
-                                <h:form id="wizard-vertical" prependId="true">
+                                <h:form id="wizard-vertical" prependId="false">
                                     <h3>Information</h3>
                                     <section>
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="User Name *" for="accUserName" styleClass="col-lg-3 control-label" />                                                
                                             <div class="col-lg-9">
-                                                <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}" title="AccUserName" styleClass="required form-control"/>
+                                                <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}"
+                                                             a:placeholder="e.g. John Smith"
+                                                             styleClass="required form-control">
+                                                    <f:validator validatorId="admin.customValidate.cantBlank"/>
+                                                </h:inputText>
+                                                <h:message for="accUserName" styleClass="error" />
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Password *" for="accPassword" styleClass="col-lg-3 control-label" />
                                             <div class="col-lg-9">
-                                                <h:inputSecret id="accPassword" value="#{aAccountMB.account.accPassword}" title="AccPassword" styleClass="required form-control"/>
+                                                <h:inputSecret id="accPassword" value="#{aAccountMB.account.accPassword}" 
+                                                               a:placeholder="must be 6 to 30 character"
+                                                               styleClass="required form-control">
+                                                    <f:validator validatorId="admin.customValidate.cantBlank"/>
+                                                </h:inputSecret>
+                                                <h:message for="accPassword" styleClass="error" />
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Confirm Password" for="confirmPassword" styleClass="col-lg-3 control-label" />
                                             <div class="col-lg-9">
-                                                <h:inputSecret value="${aAccountMB.confirmPassword}" id="confirm1" styleClass="required form-control" />
+                                                <h:inputSecret value="${aAccountMB.confirmPassword}" 
+                                                               id="confirm1" styleClass="required form-control" />
                                             </div>
                                         </div>
 
