@@ -230,7 +230,7 @@
                 <div class="sidebar-inner slimscrollleft">
                     <!--- Divider -->
                     <div id="sidebar-menu">
-                        <ul>
+                        <ul class="list-unstyled">
                             <li class="text-muted menu-title">Navigation</li>
 
                             <li class="has_sub">
@@ -241,11 +241,11 @@
 
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect">
-                                    <i class="ti-share"></i><span>Product Management </span> <span class="menu-arrow"></span>
+                                    <i class="ti-share"></i><span> Product Management </span> <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="list-unstyled">
                                     <li><h:link outcome="categoryView">Category</h:link></li>
-                                    
+                                    <li><h:link outcome="productView">Product</h:link></li>
                                 </ul>
                             </li>
 
@@ -423,13 +423,7 @@
 
         </div>
         <!-- END wrapper -->
-
-
-
-        <script>
-            var resizefunc = [];
-        </script>
-
+        
         <!--jQuery-->                
         <h:outputScript name="assets/js/jquery.min.js"></h:outputScript>
         <h:outputScript name="assets/js/bootstrap.min.js"></h:outputScript>
@@ -441,10 +435,10 @@
         <h:outputScript name="assets/js/wow.min.js"></h:outputScript>
         <h:outputScript name="assets/js/jquery.nicescroll.js"></h:outputScript>
         <h:outputScript name="assets/js/jquery.scrollTo.min.js"></h:outputScript>
-
+        
         <h:outputScript name="assets/js/jquery.core.js"></h:outputScript>
         <h:outputScript name="assets/js/jquery.app.js"></h:outputScript>
-
+        
         <ui:insert name="jsplus">
             Javasript Plus
         </ui:insert>

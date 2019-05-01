@@ -67,9 +67,9 @@
                                                     <label class="control-label m-r-5">Status</label>
                                                     <select id="demo-foo-filter-status" class="form-control input-sm">
                                                         <option value="">Show all</option>
-                                                        <option value="active">Active</option>
-                                                        <option value="disabled">Disabled</option>
-                                                        <option value="suspended">Suspended</option>
+                                                        <option value="NEW">Active</option>
+                                                        <option value="ACTIVE">Disabled</option>
+                                                        <option value="BLOCK">Suspended</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -88,22 +88,17 @@
                                                 <tr>
                                                     <td>${item.accid}</td>
                                                     <td>${item.accUserName}</td>
-                                                    <!--<td>${item.accDescript}</td>-->
                                                     <td>
                                                         <span class="label label-table 
-                                                              ${item.accStatus == 1 ? 'label-success' : 'label-inverse'}">
-                                                            ${item.accStatus == 1 ? "Active" : "Disable"}
+                                                              ${item.accStatus == 'new' ? 'label-warning' : (item.accStatus == 'active' ? 'label-success' : 'label-inverse')}">
+                                                            ${item.accStatus.toUpperCase()}
                                                         </span>
                                                     </td>
-
                                                     <td>
                                                         <h:commandLink action="#{aAccountMB.accountUpdateNav()}" styleClass="table-action-btn">
                                                             <i class="md md-edit"></i>
                                                             <f:setPropertyActionListener value="#{item}" target="#{aAccountMB.account}"/>
                                                         </h:commandLink>
-                                                    </td>
-                                                    <td>
-
                                                     </td>
                                                 </tr>
                                             </c:forEach>

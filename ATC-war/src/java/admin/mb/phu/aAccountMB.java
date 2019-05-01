@@ -28,14 +28,16 @@ public class aAccountMB {
     private AccountFacade accountFacade;
 
     private String confirmPassword, msg, formStatus;
-    private Account account = new Account();
+    private Account account;
 
     /**
      * Creates a new instance of aAccountMB
      */
     public aAccountMB() {
+        account = new Account();
     }
 
+//    ***** navigation zone
     public String accountViewNav() {
         return "accountView?faces-redirect=true";
     }
@@ -46,11 +48,10 @@ public class aAccountMB {
     }
 
     public String accountUpdateNav() {
-        
-        return "accountUpdate";
+        return "accountUpdate?faces-redirect=true";
     }
-//    view all function
 
+//    view all function
     public List<Account> getAccounts() {
         return accountFacade.findAll();
     }

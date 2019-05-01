@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -66,7 +66,7 @@ public class Category implements Serializable {
     @Column(name = "ctgDescript")
     private String ctgDescript;
     @OneToMany(mappedBy = "ctgid")
-    private List<Product> productList;
+    private Collection<Product> productCollection;
 
     public Category() {
     }
@@ -132,12 +132,12 @@ public class Category implements Serializable {
     }
 
     @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
+    public Collection<Product> getProductCollection() {
+        return productCollection;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setProductCollection(Collection<Product> productCollection) {
+        this.productCollection = productCollection;
     }
 
     @Override

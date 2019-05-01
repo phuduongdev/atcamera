@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -85,16 +85,16 @@ public class Product implements Serializable {
     @Column(name = "prdStatus")
     private String prdStatus;
     @OneToMany(mappedBy = "prdid")
-    private List<Camera> cameraList;
+    private Collection<Camera> cameraCollection;
     @JoinColumn(name = "ctgid", referencedColumnName = "ctgid")
     @ManyToOne
     private Category ctgid;
     @OneToMany(mappedBy = "prdid")
-    private List<Dvr> dvrList;
+    private Collection<Dvr> dvrCollection;
     @OneToMany(mappedBy = "prdid")
-    private List<Wishlist> wishlistList;
+    private Collection<Wishlist> wishlistCollection;
     @OneToMany(mappedBy = "prdid")
-    private List<OrderDetail> orderDetailList;
+    private Collection<OrderDetail> orderDetailCollection;
 
     public Product() {
     }
@@ -192,12 +192,12 @@ public class Product implements Serializable {
     }
 
     @XmlTransient
-    public List<Camera> getCameraList() {
-        return cameraList;
+    public Collection<Camera> getCameraCollection() {
+        return cameraCollection;
     }
 
-    public void setCameraList(List<Camera> cameraList) {
-        this.cameraList = cameraList;
+    public void setCameraCollection(Collection<Camera> cameraCollection) {
+        this.cameraCollection = cameraCollection;
     }
 
     public Category getCtgid() {
@@ -209,30 +209,30 @@ public class Product implements Serializable {
     }
 
     @XmlTransient
-    public List<Dvr> getDvrList() {
-        return dvrList;
+    public Collection<Dvr> getDvrCollection() {
+        return dvrCollection;
     }
 
-    public void setDvrList(List<Dvr> dvrList) {
-        this.dvrList = dvrList;
-    }
-
-    @XmlTransient
-    public List<Wishlist> getWishlistList() {
-        return wishlistList;
-    }
-
-    public void setWishlistList(List<Wishlist> wishlistList) {
-        this.wishlistList = wishlistList;
+    public void setDvrCollection(Collection<Dvr> dvrCollection) {
+        this.dvrCollection = dvrCollection;
     }
 
     @XmlTransient
-    public List<OrderDetail> getOrderDetailList() {
-        return orderDetailList;
+    public Collection<Wishlist> getWishlistCollection() {
+        return wishlistCollection;
     }
 
-    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
-        this.orderDetailList = orderDetailList;
+    public void setWishlistCollection(Collection<Wishlist> wishlistCollection) {
+        this.wishlistCollection = wishlistCollection;
+    }
+
+    @XmlTransient
+    public Collection<OrderDetail> getOrderDetailCollection() {
+        return orderDetailCollection;
+    }
+
+    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
+        this.orderDetailCollection = orderDetailCollection;
     }
 
     @Override

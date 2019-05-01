@@ -1,4 +1,4 @@
-/**
+///**
  * Theme: Ubold Admin Template
  * Author: Coderthemes
  * bootstrap tables
@@ -38,8 +38,8 @@ $(document).ready(function () {
 /**
  * Hack for table loading issue - ideally this should be fixed in plugin code itself.
  */
-$(window).load(function() {
-   $('[data-toggle="table"]').show();
+$(window).load(function () {
+    $('[data-toggle="table"]').show();
 });
 
 // Sample format for Invoice Column.
@@ -85,8 +85,10 @@ function statusFormatter(value, row) {
 function priceSorter(a, b) {
     a = +a.substring(1); // remove $
     b = +b.substring(1);
-    if (a > b) return 1;
-    if (a < b) return -1;
+    if (a > b)
+        return 1;
+    if (a < b)
+        return -1;
     return 0;
 }
 

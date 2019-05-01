@@ -31,36 +31,49 @@ public class aCategoryMB {
      * Creates a new instance of aCategoryMB
      */
     public aCategoryMB() {
+        category = new Category();
     }
 
+//    ***** navigation zone
+    public String categoryViewNav() {
+        return "categoryView?faces-redirect=true";
+    }
+
+    public String categoryCreateNav() {
+        category = new Category();
+        return "categoryCreate?faces-redirect=true";
+    }
+
+    public String categoryUpdateNav() {
+        return "categoryUpdate?faces-redirect=true";
+    }
+
+//    ***** process zone
     public List<Category> getCategories() {
         return categoryFacade.findAll();
     }
 
-    public String create_category() {
+    public List<String> getCategoryType(){
+        return categoryFacade.findDistinctCategoryType();
+    }
+    public String createCategory() {
         try {
-            category = new Category();
+//            category = new Category();
             category.setCtgid(tools.CommonUse.generateUUID());
             category.setCreatedDate(new Timestamp(new Date().getTime()));
             category.setCtgStatus("new");
             categoryFacade.create(category);
-            
-            category = new Category();
-            return "accountView?faces-redirect=true";
+//            category = new Category();
+            return "categoryView?faces-redirect=true";
         } catch (Exception e) {
 //            msg = "TK da dc sd";
-            return "accountCreate?faces-redirect=true";
+            return "categoryCreate?faces-redirect=true";
         }
 
     }
 
-    public String updateAccount() {
-        
-        return "accountView?faces-redirect=true";
-    }
-
-    public String blockAccount() {
-        
+    public String updateCategory() {
+        categoryFacade.edit(category);
         return "accountView?faces-redirect=true";
     }
 

@@ -17,7 +17,6 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class AccountFacade extends AbstractFacade<Account> {
-
     @PersistenceContext(unitName = "ATC-ejbPU")
     private EntityManager em;
 
@@ -29,7 +28,7 @@ public class AccountFacade extends AbstractFacade<Account> {
     public AccountFacade() {
         super(Account.class);
     }
-
+    
     public Boolean checkAccountLogin(String username, String password) {
         TypedQuery q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username "
                 + "and a.accPassword = :password", Account.class);

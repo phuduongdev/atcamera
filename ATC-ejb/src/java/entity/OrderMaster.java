@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,7 +65,7 @@ public class OrderMaster implements Serializable {
     @ManyToOne
     private Customer ctmid;
     @OneToMany(mappedBy = "odmid")
-    private List<OrderDetail> orderDetailList;
+    private Collection<OrderDetail> orderDetailCollection;
 
     public OrderMaster() {
     }
@@ -128,12 +128,12 @@ public class OrderMaster implements Serializable {
     }
 
     @XmlTransient
-    public List<OrderDetail> getOrderDetailList() {
-        return orderDetailList;
+    public Collection<OrderDetail> getOrderDetailCollection() {
+        return orderDetailCollection;
     }
 
-    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
-        this.orderDetailList = orderDetailList;
+    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
+        this.orderDetailCollection = orderDetailCollection;
     }
 
     @Override

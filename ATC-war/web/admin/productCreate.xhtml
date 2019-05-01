@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="cssplus">
+                <h:outputStylesheet name="assets/plugins/jquery.steps/css/jquery.steps.css" />
+            </ui:define>
+
+            <ui:define name="content">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <h:link outcome="#{aCategoryMB.categoryViewNav()}"
+                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                        Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
+                                    </h:link>
+                                </div>
+
+                                <h4 class="page-title">Category</h4>
+                                <ol class="breadcrumb">
+                                    <li>
+                                        <h:link outcome="index">ATC</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="categoryView">Category</h:link>
+                                    </li>
+                                    <li class="active">
+                                        Create Category
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                        <!-- End row -->
+                        <!-- Vertical Steps Example -->
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box">
+                                    <h:form id="wizard-vertical" prependId="false">
+                                        <h3>Information</h3>
+                                        <section>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Type *" for="ctgType" styleClass="col-lg-3 control-label" />                                                
+                                                <div class="col-lg-9">
+                                                    <h:inputText id="ctgType" value="#{aCategoryMB.category.ctgType}" title="CtgType" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Title *" for="ctgTitle" styleClass="col-lg-3 control-label" />
+                                                <div class="col-lg-9">
+                                                    <h:inputText id="ctgTitle" value="#{aCategoryMB.category.ctgTitle}" title="CtgTitle" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Origin" for="ctgOrigin" styleClass="col-lg-3 control-label" />
+                                                <div class="col-lg-9">
+                                                    <h:inputText id="ctgOrigin" value="#{aCategoryMB.category.ctgOrigin}" title="CtgOrigin" styleClass="required form-control" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group clearfix">
+                                                 <h:outputLabel value="Description" for="ctgDescript" styleClass="col-lg-3 control-label" />
+                                                <div class="col-lg-9">
+                                                    <h:inputTextarea id="ctgDescript" value="#{aCategoryMB.category.ctgDescript}" title="CtgDescript" styleClass="required form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group clearfix">
+                                                <label class="col-lg-12 control-label ">(*) Required</label>
+                                            </div>
+                                        </section>
+
+                                        <div class="text-center btnCreate">
+                                            <h:commandLink action="#{aCategoryMB.createCategory()}" value="Confirm" 
+                                                           styleClass="row btn btn-success waves-effect waves-light">
+                                            </h:commandLink>
+                                        </div>
+
+
+                                    </h:form>
+                                    <!--</form>-->
+
+                                    <!-- End #wizard-vertical -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End row -->
+
+
+
+
+                    </div> <!-- container -->
+
+                </div> 
+                <!-- content -->
+            </ui:define>
+
+            <ui:define name="jsplus">
+                <script>
+                    //<![CDATA[
+                    $().ready(function () {
+                        $(".btnCreate").hide();
+                        $(".actions ul li").last().click(function () {
+                            $(".actions").hide();
+                            $(".btnCreate").show();
+                        });
+                    });
+                    //]]>
+                </script>
+
+                <!--Form Wizard-->
+                <h:outputScript name="assets/plugins/jquery.steps/js/jquery.steps.min.js" ></h:outputScript>
+                <h:outputScript name="assets/plugins/jquery-validation/js/jquery.validate.min.js" ></h:outputScript>
+
+                <!--wizard initialization-->
+                <h:outputScript name="assets/pages/jquery.wizard-init.js" ></h:outputScript>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

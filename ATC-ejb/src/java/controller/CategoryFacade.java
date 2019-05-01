@@ -6,9 +6,11 @@
 package controller;
 
 import entity.Category;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,4 +30,8 @@ public class CategoryFacade extends AbstractFacade<Category> {
         super(Category.class);
     }
     
+    public List<String> findDistinctCategoryType(){
+        TypedQuery q = em.createQuery("SELECT DISTINCT c.ctgType FROM Category c", Category.class);
+        return q.getResultList();
+    }
 }

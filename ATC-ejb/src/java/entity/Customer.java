@@ -6,8 +6,8 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -99,9 +99,11 @@ public class Customer implements Serializable {
     @Column(name = "ctmStatus")
     private String ctmStatus;
     @OneToMany(mappedBy = "ctmid")
-    private List<Wishlist> wishlistList;
+    private Collection<Wishlist> wishlistCollection;
     @OneToMany(mappedBy = "ctmid")
-    private List<OrderMaster> orderMasterList;
+    private Collection<OrderMaster> orderMasterCollection;
+    @OneToMany(mappedBy = "ctmid")
+    private Collection<Wishlish> wishlishCollection;
 
     public Customer() {
     }
@@ -229,21 +231,30 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
-    public List<Wishlist> getWishlistList() {
-        return wishlistList;
+    public Collection<Wishlist> getWishlistCollection() {
+        return wishlistCollection;
     }
 
-    public void setWishlistList(List<Wishlist> wishlistList) {
-        this.wishlistList = wishlistList;
+    public void setWishlistCollection(Collection<Wishlist> wishlistCollection) {
+        this.wishlistCollection = wishlistCollection;
     }
 
     @XmlTransient
-    public List<OrderMaster> getOrderMasterList() {
-        return orderMasterList;
+    public Collection<OrderMaster> getOrderMasterCollection() {
+        return orderMasterCollection;
     }
 
-    public void setOrderMasterList(List<OrderMaster> orderMasterList) {
-        this.orderMasterList = orderMasterList;
+    public void setOrderMasterCollection(Collection<OrderMaster> orderMasterCollection) {
+        this.orderMasterCollection = orderMasterCollection;
+    }
+
+    @XmlTransient
+    public Collection<Wishlish> getWishlishCollection() {
+        return wishlishCollection;
+    }
+
+    public void setWishlishCollection(Collection<Wishlish> wishlishCollection) {
+        this.wishlishCollection = wishlishCollection;
     }
 
     @Override

@@ -4,11 +4,11 @@
  * Component: Datatable
  * 
  */
-var handleDataTableButtons = function() {
-        "use strict";
-        0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
-            dom: "Bfrtip",
-            buttons: [{
+var handleDataTableButtons = function () {
+    "use strict";
+    0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
+        dom: "Bfrtip",
+        buttons: [{
                 extend: "copy",
                 className: "btn-sm"
             }, {
@@ -24,14 +24,14 @@ var handleDataTableButtons = function() {
                 extend: "print",
                 className: "btn-sm"
             }],
-            responsive: !0
-        })
-    },
-    TableManageButtons = function() {
-        "use strict";
-        return {
-            init: function() {
-                handleDataTableButtons()
+        responsive: !0
+    })
+},
+        TableManageButtons = function () {
+            "use strict";
+            return {
+                init: function () {
+                    handleDataTableButtons()
+                }
             }
-        }
-    }();
+        }();
