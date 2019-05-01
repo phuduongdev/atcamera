@@ -77,6 +77,7 @@ public class Product implements Serializable {
     private String prdImage3;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "prdPrice")
+    
     private Double prdPrice;
     @Size(max = 1073741823)
     @Column(name = "prdDescript")
@@ -168,7 +169,7 @@ public class Product implements Serializable {
     }
 
     public Double getPrdPrice() {
-        return prdPrice;
+        return Double.parseDouble(prdPrice.toString()) ;
     }
 
     public void setPrdPrice(Double prdPrice) {

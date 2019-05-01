@@ -56,6 +56,11 @@ public class aCategoryMB {
     public List<String> getCategoryType(){
         return categoryFacade.findDistinctCategoryType();
     }
+    
+    public List<Category> getCategoryTitle(String type){
+        return categoryFacade.findCategoryTitleByType(type);
+    }
+    
     public String createCategory() {
         try {
 //            category = new Category();
@@ -75,6 +80,14 @@ public class aCategoryMB {
     public String updateCategory() {
         categoryFacade.edit(category);
         return "accountView?faces-redirect=true";
+    }
+    public String titleCategory(Category c) {
+        this.category = c;
+        return "productclient";
+    }
+    public String viewtitleCategory() {
+        categoryFacade.edit(category);
+        return "";
     }
 
     public Category getCategory() {
