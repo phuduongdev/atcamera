@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+
+            <ui:define name="content">
+                <div class="content">
+                    <div class="container">
+                        <!--Page-Title--> 
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <h:link outcome="#{aProductMB.productViewNav()}"
+                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                        Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
+                                    </h:link>
+                                </div>
+
+                                <h4 class="page-title">Product</h4>
+                                <ol class="breadcrumb">
+                                    <li><a href="#">ATC</a></li>
+                                    <li><a href="#">Product</a></li>
+                                    <li class="active">Details Product</li>
+                                </ol>
+                            </div>
+                        </div>
+
+<!--<c:if test="">-->
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <h4 class="m-t-0 header-title">
+                                        <h:outputLabel value="#{aProductMB.product.ctgid.ctgType}" styleClass="control-label" /> &reg;
+                                        <h:outputLabel value="#{aProductMB.product.ctgid.ctgTitle}" styleClass="control-label" /> &reg;
+                                        <h:outputLabel value="#{aProductMB.product.prdTittle}" styleClass="control-label" />
+                                    </h4>
+
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Category UID:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputText value="#{aProductMB.product.createdDate}" styleClass="text-info">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdPower}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="PrdWarranty:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdWarranty}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="PrdImage:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdImage}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <h4 class="m-t-0 header-title">
+                                        Bonus
+                                    </h4>
+
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <h:outputText value="PrdImage2:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdImage2}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="PrdImage3:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdImage3}" styleClass="text-info" >
+                                                    
+                                                </h:outputLabel>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="PrdPrice:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdPrice}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="PrdDescript:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--</c:if>-->
+
+                    </div>  
+                    <!--container--> 
+
+                </div> 
+            </ui:define>
+
+            <ui:define name="jsplus">
+                <h:outputScript name="assets/plugins/parsleyjs/parsley.min.js"></h:outputScript>>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    $(document).ready(function () {
+                        $('form').parsley();
+                    });
+                    //]]>
+                </script>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

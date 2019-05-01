@@ -5,10 +5,12 @@
  */
 package controller;
 
-import entity.Camera;
+import entity.*;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,4 +30,9 @@ public class CameraFacade extends AbstractFacade<Camera> {
         super(Camera.class);
     }
     
+    public Camera findCameraByProduct(Product item){
+        TypedQuery q = em.createQuery("SELECT c FROM Camera c WHERE c.prdid = :p", Camera.class);
+        q.setParameter("p", item);
+        return (Camera) q.getSingleResult();
+    }
 }

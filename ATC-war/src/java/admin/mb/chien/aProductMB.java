@@ -5,6 +5,7 @@
  */
 package admin.mb.chien;
 
+import controller.CameraFacade;
 import controller.ProductFacade;
 import entity.*;
 import java.sql.Timestamp;
@@ -22,42 +23,34 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class aProductMB {
     @EJB
+    private CameraFacade cameraFacade;
+    @EJB
     private ProductFacade productFacade;
     
+    
     private Product product;
-    private Camera camera;
-    private Dvr dvr;
+    private Camera camera = null;
+    private Dvr dvr = null;
     private String cateid;
     
     /**
      * Creates a new instance of aProductMB
      */
     public aProductMB() {
-        product = new Product();
-        camera = new Camera();
-        dvr = new Dvr();
+        this.product = new Product();
     }
     //    ***** navigation zone
     public String productViewNav() {
         return "productView?faces-redirect=true";
     }
-
     public String productCreateNav() {
-        product = new Product();
+        this.product = new Product();
         return "productCreate?faces-redirect=true";
     }
-
-    public String productUpdateNav() {
-        return "productUpdate?faces-redirect=true";
-    }
-
-    public String cameraCreateNav() {
-        camera = new Camera();
-        return "productCreate?faces-redirect=true";
-    }
-
-    public String cameraUpdateNav() {
-        return "productUpdate?faces-redirect=true";
+    public String productUpdateNav(Product item) {
+        this.product = item;
+        this.camera = cameraFacade.findCameraByProduct(item);
+        return "productDetails?faces-redirect=true";
     }
     
 //    ***** Process
@@ -78,7 +71,6 @@ public class aProductMB {
 //            msg = "TK da dc sd";
             return "productCreate?faces-redirect=true";
         }
-
     }
 
     public String updateProduct() {
@@ -100,6 +92,24 @@ public class aProductMB {
     public void setCateid(String cateid) {
         this.cateid = cateid;
     }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
+    }
+
+    public Dvr getDvr() {
+        return dvr;
+    }
+
+    public void setDvr(Dvr dvr) {
+        this.dvr = dvr;
+    }
+    
+    
     
     
 }

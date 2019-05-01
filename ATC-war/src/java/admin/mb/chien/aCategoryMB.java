@@ -25,13 +25,12 @@ public class aCategoryMB {
     @EJB
     private CategoryFacade categoryFacade;
 
-    private Category category;
+    private Category category = null;
 
     /**
      * Creates a new instance of aCategoryMB
      */
     public aCategoryMB() {
-        category = new Category();
     }
 
 //    ***** navigation zone
@@ -40,11 +39,12 @@ public class aCategoryMB {
     }
 
     public String categoryCreateNav() {
-        category = new Category();
+        category = null;
         return "categoryCreate?faces-redirect=true";
     }
 
-    public String categoryUpdateNav() {
+    public String categoryUpdateNav(Category item) {
+        category = item;
         return "categoryUpdate?faces-redirect=true";
     }
 
@@ -53,9 +53,12 @@ public class aCategoryMB {
         return categoryFacade.findAll();
     }
 
-    public List<String> getCategoryType(){
+    public List<String> getCategoryType() {
         return categoryFacade.findDistinctCategoryType();
     }
+    
+    
+
     public String createCategory() {
         try {
 //            category = new Category();
@@ -74,7 +77,7 @@ public class aCategoryMB {
 
     public String updateCategory() {
         categoryFacade.edit(category);
-        return "accountView?faces-redirect=true";
+        return "categoryView?faces-redirect=true";
     }
 
     public Category getCategory() {

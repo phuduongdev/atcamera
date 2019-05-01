@@ -34,4 +34,6 @@ public class CategoryFacade extends AbstractFacade<Category> {
         TypedQuery q = em.createQuery("SELECT DISTINCT c.ctgType FROM Category c", Category.class);
         return q.getResultList();
     }
+    
+    
 }

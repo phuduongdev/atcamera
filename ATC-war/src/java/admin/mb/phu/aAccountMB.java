@@ -51,25 +51,22 @@ public class aAccountMB {
         return "accountUpdate?faces-redirect=true";
     }
 
-//    view all function
+//    ***** Process zone
     public List<Account> getAccounts() {
         return accountFacade.findAll();
     }
 
-//    create new
     public String createAccount() {
         try {
             account.setAccid(tools.CommonUse.generateUUID());
             account.setCreatedDate(new Timestamp(new Date().getTime()));
             account.setAccStatus("1");
             accountFacade.create(account);
-//            confirmPassword = "";
             return "accountView?faces-redirect=true";
         } catch (Exception e) {
-            msg = "TK da dc sd";
+//            msg = "TK da dc sd";
             return "accountCreate?faces-redirect=true";
         }
-
     }
 
     public String updateAccount() {

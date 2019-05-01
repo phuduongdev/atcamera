@@ -11,13 +11,13 @@
             <ui:define name="content">
                 <div class="content">
                     <div class="container">
-
-                        <!-- Page-Title -->
+                         Page-Title 
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="btn-group pull-right m-t-15">
-                                    <h:link outcome="#{aCategoryMB.categoryViewNav()}" styleClass="btn btn-default btn-custom waves-effect waves-light">
-                                        <span class="m-l-5"><i class="fa fa-file-text"></i></span> Back
+                                    <h:link outcome="#{aCategoryMB.categoryViewNav()}"
+                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                        Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
                                     </h:link>
                                 </div>
 
@@ -30,23 +30,73 @@
                             </div>
                         </div>
 
+
                         <div class="row">
-                            <div class="col-lg-2"></div>
-                            <div class="col-lg-8">
-                                <div class="card-box">  
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <h4 class="m-t-0 header-title">
+                                        <h:outputLabel value="#{aCategoryMB.category.ctgType}" styleClass="control-label" /> &reg;
+                                        <h:outputLabel value="#{aCategoryMB.category.ctgTitle}" styleClass="control-label" />
+                                    </h4>
+
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Category UID:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aCategoryMB.category.ctgid}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aCategoryMB.category.createdDate}" styleClass="text-info" >
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputLabel>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Origin:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aCategoryMB.category.ctgOrigin}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Status:" for="ctgStatus" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aCategoryMB.category.ctgStatus}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Description:" for="ctgDescript" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aCategoryMB.category.ctgDescript}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <h4 class="m-t-0 header-title"><b>Category Update</b></h4>
+                                    <p class="text-muted font-13 m-b-30"></p>
+
                                     <h:form styleClass="form-horizontal" prependId="false">
                                         <div class="form-group">
                                             <h:outputLabel value="Category UID" for="ctgid" styleClass="col-sm-4 control-label"/>
-                                            <div class="col-sm-7">
+                                            <div class="col-sm-8">
                                                 <h:inputText id="ctgid" value="#{aCategoryMB.category.ctgid}" title="Ctgid" styleClass="form-control" readonly="true"/>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <h:outputLabel value="Created Date" for="createdDate" styleClass="col-sm-4 control-label"/>
-                                            <div class="col-sm-7">
-                                                <h:inputText id="createdDate" value="#{aCategoryMB.category.createdDate}" title="CreatedDate" 
-                                                             styleClass="form-control" readonly="true">
+                                            <div class="col-sm-8">
+                                                <h:inputText id="createdDate" value="#{aCategoryMB.category.createdDate}" title="CreatedDate" styleClass="form-control" readonly="true">
                                                     <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                                                 </h:inputText>
                                             </div>
@@ -54,61 +104,62 @@
 
                                         <div class="form-group">
                                             <h:outputLabel value="Type" for="ctgType" styleClass="col-sm-4 control-label"/>
-                                            <div class="col-sm-7">
-                                                <h:inputText id="ctgType" value="#{aCategoryMB.category.ctgType}" title="CtgType" styleClass="form-control" readonly="true" />
+                                            <div class="col-sm-8">
+                                                <h:inputText id="ctgType" value="#{aCategoryMB.category.ctgType}" title="CtgType" styleClass="form-control" readonly="true"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
-                                            <h:outputLabel value="Tittle | Serial" for="ctgTitle" styleClass="col-sm-4 control-label"/>
-                                            <div class="col-sm-7">
+                                            <h:outputLabel value="Tittle | Serial *" for="ctgTitle" styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-8">
                                                 <h:inputText id="ctgTitle" value="#{aCategoryMB.category.ctgTitle}" title="CtgTitle" styleClass="form-control" />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <h:outputLabel value="Origin" for="ctgOrigin" styleClass="col-sm-4 control-label"/>
-                                            <div class="col-sm-7">
+                                            <div class="col-sm-8">
                                                 <h:inputText id="ctgOrigin" value="#{aCategoryMB.category.ctgOrigin}" title="CtgOrigin" styleClass="form-control" />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <h:outputLabel value="Status" for="ctgStatus" styleClass="col-sm-4 control-label" />
-                                            <div class="col-sm-7">
-                                                <h:inputText id="ctgStatus" value="#{aCategoryMB.category.ctgStatus}" title="CtgStatus" styleClass="form-control" />
+                                            <div class="col-sm-8">
+                                                <h:selectOneRadio id="ctgStatus" value="#{aCategoryMB.category.ctgStatus}" 
+                                                                  title="CtgStatus" class="radio radio-purple radio-inline" layout="pageDirection">
+                                                    <f:selectItem itemValue = "active" itemLabel="Active"/>
+                                                    <f:selectItem itemValue = "block" itemLabel = "Block" />
+                                                    <f:selectItem itemValue = "new" itemLabel = "New" />
+                                                </h:selectOneRadio>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <h:outputLabel value="Description:" for="ctgDescript" styleClass="col-sm-4 control-label" />
-                                            <div class="col-sm-7">
+                                            <div class="col-sm-8">
                                                 <h:inputTextarea id="ctgDescript" value="#{aCategoryMB.category.ctgDescript}" title="CtgDescript" styleClass="form-control" />
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
-                                            <div class="col-sm-offset-4 col-sm-8"><label> (*) Required </label></div>
+                                        <div class="form-group clearfix">
+                                            <label class="col-sm-4 control-label"> (*) Required </label>
+                                            
                                         </div>
 
                                         <div class="form-group">
-                                            <div class="col-sm-offset-4 col-sm-8">
-                                                <h:commandLink action="#{aCategoryMB.updateCategory()}" value="Confirm"
+                                            <div class="col-sm-12 text-center">
+                                                <h:commandLink action="#{aCategoryMB.updateCategory()}" value="Update"
                                                                styleClass="btn btn-success waves-effect waves-light"/>
-                                                <!--                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                                                                                                    Cancel
-                                                                                                </button>-->
                                             </div>
                                         </div>
-
                                     </h:form>
                                 </div>
                             </div>
-                            <div class="col"></div>
                         </div>
-                    </div> <!-- container -->
+                    </div>  container 
 
-                </div> <!-- content -->
+                </div> 
             </ui:define>
 
             <ui:define name="jsplus">
