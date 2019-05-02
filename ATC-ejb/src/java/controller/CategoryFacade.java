@@ -35,6 +35,7 @@ public class CategoryFacade extends AbstractFacade<Category> {
         return q.getResultList();
     }
     
+<<<<<<< HEAD
     public List<Category> findSerialOfCamera(){
         TypedQuery q = em.createQuery("SELECT c FROM Category c WHERE c.ctgType LIKE 'camera'", Category.class);
         return q.getResultList();
@@ -47,6 +48,11 @@ public class CategoryFacade extends AbstractFacade<Category> {
     
     public List<Category> findSerialOfOther(){
         TypedQuery q = em.createQuery("SELECT c FROM Category c WHERE c.ctgType LIKE 'other'", Category.class);
+=======
+    public List<Category> findCategoryTitleByType(String type){
+        TypedQuery q = em.createQuery("SELECT c  FROM Category c WHERE c.ctgType = :type", Category.class);
+        q.setParameter("type", type);
+>>>>>>> ae91deaa1f6865571fd5b5e5fd175d096b905eef
         return q.getResultList();
     }
 }

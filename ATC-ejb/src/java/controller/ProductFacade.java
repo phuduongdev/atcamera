@@ -5,10 +5,14 @@
  */
 package controller;
 
+
+import entity.Category;
 import entity.Product;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,5 +31,16 @@ public class ProductFacade extends AbstractFacade<Product> {
     public ProductFacade() {
         super(Product.class);
     }
+    public List<Product> findProductbyCtg(Category ctg) {
+         TypedQuery q = em.createQuery("SELECT c  FROM Product c WHERE c.ctgid = :type", Product.class);
+        q.setParameter("type", ctg);
+        return q.getResultList();
+    }
+     public List<Product> Listproduct(Product product) {
+         TypedQuery q = em.createQuery("SELECT top 10 * FROM Product ", Product.class);
+        
+        return q.getResultList();
+    }
+
     
 }

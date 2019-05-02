@@ -1,2 +1,8 @@
 /ATC-ejb/build/
+<<<<<<< HEAD
 /ATC-ejb/dist/
+=======
+/ATC-ejb/dist/
+/ATC-war/build/
+/ATC-war/dist/
+>>>>>>> ae91deaa1f6865571fd5b5e5fd175d096b905eef

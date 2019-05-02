@@ -62,8 +62,15 @@ public class aCategoryMB implements Serializable{
         return categoryFacade.findDistinctCategoryType();
     }
     
+<<<<<<< HEAD
     
 
+=======
+    public List<Category> getCategoryTitle(String type){
+        return categoryFacade.findCategoryTitleByType(type);
+    }
+    
+>>>>>>> ae91deaa1f6865571fd5b5e5fd175d096b905eef
     public String createCategory() {
         try {
 //            category = new Category();
@@ -85,6 +92,7 @@ public class aCategoryMB implements Serializable{
         categoryFacade.edit(category);
         return "categoryView?faces-redirect=true";
     }
+
 
     public Category getCategory() {
         return category;
