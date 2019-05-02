@@ -46,18 +46,12 @@
                         <div class="col-sm-12">
                             <div class="card-box">
                                 <h:form id="wizard-vertical" prependId="false" enctype="multipart/form-data">
-                                    <h3>Information</h3>
+                                    <h3>#{aProductMB.productCreateTittle.equalsIgnoreCase('camera') ? 'Create Camera' : 
+                                          (aProductMB.productCreateTittle.equalsIgnoreCase('dvr') ? 'Create DVR' : 'Create Accessory')}</h3>
                                     <section>
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Model *" for="prdTittle" styleClass="col-lg-3 control-label" />                                                
-                                            <div class="col-lg-9">
-                                                <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" styleClass="form-control" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group clearfix">
-                                            <h:outputLabel value="Title/Serial *" for="ctgid" styleClass="col-lg-3 control-label" />
-                                            <div class="col-lg-9">
+                                            <h:outputLabel value="Category Title/Serial *" for="ctgid" styleClass="col-lg-4 control-label" />
+                                            <div class="col-lg-8">
                                                 <h:selectOneMenu id="ctgid" value="#{aProductMB.cateid}" title="Ctgid" 
                                                                  styleClass="form-control">
                                                     <f:selectItem itemLabel="- Select one -" itemValue="test"/>
@@ -68,15 +62,22 @@
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Power *" for="prdPower" styleClass="col-lg-3 control-label" />
-                                            <div class="col-lg-9">
+                                            <h:outputLabel value="Product Model *" for="prdTittle" styleClass="col-lg-4 control-label" />                                                
+                                            <div class="col-lg-8">
+                                                <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Produc Power" for="prdPower" styleClass="col-lg-4 control-label" />
+                                            <div class="col-lg-8">
                                                 <h:inputText id="prdPower" value="#{aProductMB.product.prdPower}" title="PrdPower" styleClass="required form-control"/>
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Warranty *" for="prdWarranty" styleClass="col-lg-3 control-label" />
-                                            <div class="col-lg-9">
+                                            <h:outputLabel value="Warranty *" for="prdWarranty" styleClass="col-lg-4 control-label" />
+                                            <div class="col-lg-8">
                                                 <h:selectOneMenu id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty" styleClass="required form-control">
                                                     <!-- TODO: update below reference to list of available items-->
                                                     <f:selectItem itemLabel="--- Select one ---" itemValue=""/>
@@ -87,13 +88,15 @@
 
                                             </div>
                                         </div>
-
-<!--                                        <div class="form-group clearfix">
-                                            <h:outputLabel value="Image *" for="prdImage" styleClass="col-lg-3 control-label" />
-                                            <div class="col-lg-9">
-                                                <h:inputFile  id="prdImage" value="#{aProductMB.product.prdImage}" title="PrdImage" styleClass="required control-label" />
+                                        
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Image *" for="prdImage" styleClass="col-lg-4 control-label" />
+                                            <div class="col-lg-8">
+                                                <h:inputFile id="prdImage" value="#{aProductMB.file}" 
+                                                              title="PrdImage" styleClass="control-label">
+                                                </h:inputFile>
                                             </div>
-                                        </div>-->
+                                        </div>
 
                                         <div class="form-group clearfix">
                                             <label class="col-lg-12 control-label ">(*) Required</label>
@@ -102,23 +105,26 @@
                                     <h3>Bonus</h3>
                                     <section>
 <!--                                        <div class="form-group clearfix">
-                                            <h:outputLabel value="PrdImage2:" for="prdImage2" styleClass="col-lg-3 control-label" />
-                                            <div class="col-lg-9">
+                                            <h:outputLabel value="PrdImage2:" for="prdImage2" styleClass="col-lg-4 control-label" />
+                                            <div class="col-lg-8">
                                                 <h:inputFile id="prdImage2" value="#{aProductMB.product.prdImage2}" title="PrdImage2" />
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="PrdImage3:" for="prdImage3" styleClass="col-lg-3 control-label" />
-                                            <div class="col-lg-9">
+                                            <h:outputLabel value="PrdImage3:" for="prdImage3" styleClass="col-lg-4 control-label" />
+                                            <div class="col-lg-8">
                                                 <h:inputFile id="prdImage3" value="#{aProductMB.product.prdImage3}" title="PrdImage3" />
                                             </div>
                                         </div>-->
+                                        
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Description" for="prdDescript" styleClass="col-lg-3 control-label" />
-                                            <div class="col-lg-9">
+                                            <h:outputLabel value="Description" for="prdDescript" styleClass="col-lg-4 control-label" />
+                                            <div class="col-lg-8">
                                                 <h:inputTextarea id="prdDescript" value="#{aProductMB.product.prdDescript}" title="PrdDescript" styleClass="required form-control" />
                                             </div>
                                         </div>
+                                        
                                     </section>
 
 

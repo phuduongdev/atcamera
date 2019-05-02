@@ -13,9 +13,13 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -38,6 +42,12 @@ public class aProductMB implements Serializable {
     private Camera camera;
     private Dvr dvr;
     private String cateid;
+    private String productCreateTittle;
+
+    private Part file;
+    private String fileName;
+    private long fileSize;
+    private String imgaePath;
 
     /**
      * Creates a new instance of aProductMB
@@ -53,10 +63,10 @@ public class aProductMB implements Serializable {
         return "productView?faces-redirect=true";
     }
 
-    public String productCreateNav(String cateType) {
-        if (cateType.equalsIgnoreCase("camera")) {
+    public String productCreateNav() {
+        if (productCreateTittle.equalsIgnoreCase("camera")) {
             this.camera = new Camera();
-        } else if (cateType.equalsIgnoreCase("dvr")) {
+        } else if (productCreateTittle.equalsIgnoreCase("dvr")) {
             this.dvr = new Dvr();
         } else {
             this.product = new Product();
@@ -89,7 +99,13 @@ public class aProductMB implements Serializable {
     }
 
     public List<Category> getCategories() {
-        return categoryFacade.findAll();
+        if (productCreateTittle.equalsIgnoreCase("camera")) {
+            return categoryFacade.findSerialOfCamera();
+        } else if (productCreateTittle.equalsIgnoreCase("dvr")) {
+            return categoryFacade.findSerialOfDvr();
+        } else {
+            return categoryFacade.findSerialOfOther();
+        }
     }
 
     public String createProduct() {
@@ -98,11 +114,31 @@ public class aProductMB implements Serializable {
             product.setCreatedDate(new Timestamp(new Date().getTime()));
             product.setPrdStatus("new");
             product.setCtgid(categoryFacade.find(cateid));
+            upload();
+            product.setPrdImage(imgaePath);
             productFacade.create(product);
             return "productView?faces-redirect=true";
         } catch (Exception e) {
 //            msg = "TK da dc sd";
             return "productCreate?faces-redirect=true";
+        }
+    }
+
+    public void upload() {
+        try {
+            // get name of selected file
+            fileName = file.getSubmittedFileName();
+            // get file's size
+            fileSize = file.getSize();
+            // get fullpath of opload folder in web root
+            String dirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("\\");
+            System.out.println("------------- real path --" + dirPath);
+            imgaePath = dirPath + "upload\\" + fileName;
+            System.out.println("------------- image path" + imgaePath);
+            // write file to upload folder
+            file.write(dirPath + "upload\\" + fileName);
+        } catch (Exception ex) {
+            Logger.getLogger(uploadFile.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -142,4 +178,43 @@ public class aProductMB implements Serializable {
         this.dvr = dvr;
     }
 
+    public String getProductCreateTittle() {
+        return productCreateTittle;
+    }
+
+    public void setProductCreateTittle(String productCreateTittle) {
+        this.productCreateTittle = productCreateTittle;
+    }
+
+    public Part getFile() {
+        return file;
+    }
+
+    public void setFile(Part file) {
+        this.file = file;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getImgaePath() {
+        return imgaePath;
+    }
+
+    public void setImgaePath(String imgaePath) {
+        this.imgaePath = imgaePath;
+    }
 }
