@@ -81,14 +81,7 @@ public class aCategoryMB {
         categoryFacade.edit(category);
         return "accountView?faces-redirect=true";
     }
-    public String titleCategory(Category c) {
-        this.category = c;
-        return "productclient";
-    }
-    public String viewtitleCategory() {
-        categoryFacade.edit(category);
-        return "";
-    }
+
 
     public Category getCategory() {
         return category;

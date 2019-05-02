@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Product")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
+    @NamedQuery(name = "Product.findAll", query = "SELECT  p FROM Product p"),
     @NamedQuery(name = "Product.findByPrdid", query = "SELECT p FROM Product p WHERE p.prdid = :prdid"),
     @NamedQuery(name = "Product.findByCreatedDate", query = "SELECT p FROM Product p WHERE p.createdDate = :createdDate"),
     @NamedQuery(name = "Product.findByPrdTittle", query = "SELECT p FROM Product p WHERE p.prdTittle = :prdTittle"),
@@ -169,7 +169,7 @@ public class Product implements Serializable {
     }
 
     public Double getPrdPrice() {
-        return Double.parseDouble(prdPrice.toString()) ;
+        return prdPrice ;
     }
 
     public void setPrdPrice(Double prdPrice) {

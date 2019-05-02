@@ -62,4 +62,7 @@ public class ProductController {
     public List<Product> getProductType(){
         return productFacade.findProductbyCtg(ctg);
     }
+    public  List<Product> getProductlist(){
+        return productFacade.Listproduct(product);
+    }
 }
