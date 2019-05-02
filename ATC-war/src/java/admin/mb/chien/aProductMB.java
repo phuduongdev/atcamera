@@ -6,8 +6,10 @@
 package admin.mb.chien;
 
 import controller.CameraFacade;
+import controller.CategoryFacade;
 import controller.ProductFacade;
 import entity.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -21,51 +23,82 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class aProductMB {
+public class aProductMB implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @EJB
+    private CategoryFacade categoryFacade;
     @EJB
     private CameraFacade cameraFacade;
     @EJB
     private ProductFacade productFacade;
-    
-    
+
     private Product product;
-    private Camera camera = null;
-    private Dvr dvr = null;
+    private Camera camera;
+    private Dvr dvr;
     private String cateid;
-    
+
     /**
      * Creates a new instance of aProductMB
      */
     public aProductMB() {
         this.product = new Product();
+        this.camera = new Camera();
+        this.dvr = new Dvr();
     }
+
     //    ***** navigation zone
     public String productViewNav() {
         return "productView?faces-redirect=true";
     }
-    public String productCreateNav() {
-        this.product = new Product();
+
+    public String productCreateNav(String cateType) {
+        if (cateType.equalsIgnoreCase("camera")) {
+            this.camera = new Camera();
+        } else if (cateType.equalsIgnoreCase("dvr")) {
+            this.dvr = new Dvr();
+        } else {
+            this.product = new Product();
+        }
         return "productCreate?faces-redirect=true";
     }
+
     public String productUpdateNav(Product item) {
         this.product = item;
-        this.camera = cameraFacade.findCameraByProduct(item);
+        if (item.getCtgid().getCtgType().equalsIgnoreCase("camera")) {
+            this.camera = cameraFacade.findCameraByProduct(item);
+        }
+        return "productUpdate?faces-redirect=true";
+    }
+
+    public String productDetailsNav(Product item) {
+        this.product = item;
+        productFacade.edit(item);
+        //chu y truong hop category type bi null
+        if (item.getCtgid().getCtgType().equalsIgnoreCase("camera")) {
+            this.camera = cameraFacade.findCameraByProduct(item);
+            cameraFacade.edit(camera);
+        }
         return "productDetails?faces-redirect=true";
     }
-    
-//    ***** Process
 
+//    ***** Process ************
     public List<Product> getProducts() {
         return productFacade.findAll();
     }
 
+    public List<Category> getCategories() {
+        return categoryFacade.findAll();
+    }
+
     public String createProduct() {
         try {
-//            product.setCtgid(tools.CommonUse.generateUUID());
-//            product.setCreatedDate(new Timestamp(new Date().getTime()));
-//            product.setCtgStatus("new");
+            product.setPrdid(tools.CommonUse.generateUUID());
+            product.setCreatedDate(new Timestamp(new Date().getTime()));
+            product.setPrdStatus("new");
+            product.setCtgid(categoryFacade.find(cateid));
             productFacade.create(product);
-//            category = new Category();
             return "productView?faces-redirect=true";
         } catch (Exception e) {
 //            msg = "TK da dc sd";
@@ -108,8 +141,5 @@ public class aProductMB {
     public void setDvr(Dvr dvr) {
         this.dvr = dvr;
     }
-    
-    
-    
-    
+
 }

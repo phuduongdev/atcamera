@@ -7,6 +7,7 @@ package admin.mb.chien;
 
 import controller.CategoryFacade;
 import entity.Category;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -20,17 +21,20 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class aCategoryMB {
+public class aCategoryMB implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+    
     @EJB
     private CategoryFacade categoryFacade;
 
-    private Category category = null;
+    private Category category;
 
     /**
      * Creates a new instance of aCategoryMB
      */
     public aCategoryMB() {
+        category = new Category();
     }
 
 //    ***** navigation zone
@@ -39,7 +43,7 @@ public class aCategoryMB {
     }
 
     public String categoryCreateNav() {
-        category = null;
+        category = new Category();
         return "categoryCreate?faces-redirect=true";
     }
 
@@ -49,6 +53,7 @@ public class aCategoryMB {
     }
 
 //    ***** process zone
+    
     public List<Category> getCategories() {
         return categoryFacade.findAll();
     }
@@ -65,6 +70,7 @@ public class aCategoryMB {
             category.setCtgid(tools.CommonUse.generateUUID());
             category.setCreatedDate(new Timestamp(new Date().getTime()));
             category.setCtgStatus("new");
+            
             categoryFacade.create(category);
 //            category = new Category();
             return "categoryView?faces-redirect=true";

@@ -76,7 +76,7 @@
 
                                             <c:forEach var="item" items="${aProductMB.products}">
                                                 <tr>
-                                                    <td>#{item.prdid}</td>
+                                                    <td>#{item.prdid.length() gt 2 ? item.prdid.substring(2) : item.prdid}</td>
                                                     <td>#{item.prdImage}</td>
                                                     <td>#{item.ctgid.ctgType}</td>
                                                     <td>#{item.ctgid.ctgTitle}</td>
@@ -92,6 +92,9 @@
                                                     <td>
                                                         <h:commandLink action="#{aProductMB.productUpdateNav(item)}">
                                                             <i class="md md-edit"></i>
+                                                        </h:commandLink> | 
+                                                        <h:commandLink action="#{aProductMB.productDetailsNav(item)}">
+                                                            <i class="md md-details md-3d-rotation"></i>
                                                         </h:commandLink>
                                                     </td>
                                                 </tr>
@@ -113,26 +116,26 @@
                 <button type="button" class="close" onclick="Custombox.close();">
                     <span>&times;</span><span class="sr-only">Close</span>
                 </button>
-                <h4 class="custom-modal-title">Select Category</h4>
+                <h4 class="custom-modal-title btn-purple">Select Category</h4>
                 <div class="custom-modal-text">
                     <div class="row">
                         <div class="col-sm-4">
-                            <h:link outcome="cameraCreate">
-                                <h:graphicImage name="hardImage/product.camera.png" styleClass="img-circle thumb-lg"/>
+                            <h:link outcome="#{aProductMB.productCreateNav('camera')}">
+                                <span class="md md-remove-red-eye md-4x"></span>
                                 <br/>
                                 Camera
                             </h:link>
                         </div>
                         <div class="col-sm-4">
-                            <h:link outcome="dvrCreate">
-                                <h:graphicImage name="hardImage/product.dvr.png" styleClass="img-circle thumb-lg"/>
+                            <h:link outcome="#{aProductMB.productCreateNav('dvr')}">
+                                <span class="md md-camera-roll md-4x"></span>
                                 <br/>
                                 DVR
                             </h:link>
                         </div>
                         <div class="col-sm-4">
-                            <h:link outcome="#{aProductMB.productCreateNav()}">
-                                <h:graphicImage name="hardImage/product.plus.png" styleClass="img-circle thumb-lg"/>
+                            <h:link outcome="#{aProductMB.productCreateNav('')}">
+                                <span class="md md-more md-dvr md-4x"></span>
                                 <br/>
                                 Accessories
                             </h:link>

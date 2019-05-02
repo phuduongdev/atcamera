@@ -33,10 +33,10 @@ public class CommonUse {
         List<String> sevenDayOfMonth = new ArrayList<>();
         Calendar date = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        
+
         for (int i = 0; i < 7; i++) {
             date.add(Calendar.DAY_OF_MONTH, 0);
-            if(i>0){
+            if (i > 0) {
                 date.add(Calendar.DAY_OF_MONTH, 1);
             }
             // Create new instance of cal
@@ -47,5 +47,14 @@ public class CommonUse {
             sevenDayOfMonth.add(sdf.format(tmp.getTime()));
         }
         return sevenDayOfMonth;
+    }
+
+    public static String shortUID(String s) {
+//        if (s.length() > 5) {
+//            int position = s.length() - 5;
+//            s = s.substring(position);
+//            return s;
+//        } 
+        return s;
     }
 }

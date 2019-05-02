@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="PrdTittle:" for="prdTittle" />
+                    <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" />
+                    <h:outputLabel value="PrdPower:" for="prdPower" />
+                    <h:inputText id="prdPower" value="#{aProductMB.product.prdPower}" title="PrdPower" />
+                    <h:outputLabel value="PrdWarranty:" for="prdWarranty" />
+                    <h:inputText id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty" />
+                    <h:outputLabel value="PrdImage:" for="prdImage" />
+                    <h:inputTextarea rows="4" cols="30" id="prdImage" value="#{aProductMB.product.prdImage}" title="PrdImage" />
+                    <h:outputLabel value="PrdImage2:" for="prdImage2" />
+                    <h:inputTextarea rows="4" cols="30" id="prdImage2" value="#{aProductMB.product.prdImage2}" title="PrdImage2" />
+                    <h:outputLabel value="PrdImage3:" for="prdImage3" />
+                    <h:inputTextarea rows="4" cols="30" id="prdImage3" value="#{aProductMB.product.prdImage3}" title="PrdImage3" />
+                    <h:outputLabel value="PrdPrice:" for="prdPrice" />
+                    <h:inputText id="prdPrice" value="#{aProductMB.product.prdPrice}" title="PrdPrice" />
+                    <h:outputLabel value="PrdDescript:" for="prdDescript" />
+                    <h:inputText id="prdDescript" value="#{aProductMB.product.prdDescript}" title="PrdDescript" />
+                    <h:outputLabel value="PrdStatus:" for="prdStatus" />
+                    <h:inputText id="prdStatus" value="#{aProductMB.product.prdStatus}" title="PrdStatus" />
+                    <h:outputLabel value="Ctgid:" for="ctgid" />
+                    <h:selectOneMenu id="ctgid" value="#{aProductMB.product.ctgid}" title="Ctgid" 
+                                     converter="tools.categoryCvt">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{aCategoryMB.categories}" var="cate"
+                                       itemLabel="#{cate.ctgTitle}" itemValue="#{cate}"/>
+                    </h:selectOneMenu>
+                    <h:outputText/>
+                    <h:commandLink action="#{aProductMB.createProduct()}" value="Create">
+                    </h:commandLink>
+            </h:panelGrid>
+        </h:form>
+    </f:view>
+
+
+
+
+</h:body>
+</html>
+

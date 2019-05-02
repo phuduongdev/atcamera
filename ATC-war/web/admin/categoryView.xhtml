@@ -30,9 +30,9 @@
                             <div class="col-sm-12">
                                 <div class="btn-group pull-right m-t-15">
                                     <h:link outcome="#{aCategoryMB.categoryCreateNav()}" value="Create New " 
-                                        styleClass="btn btn-default btn-custom waves-effect waves-light">
-                                    <span class="m-l-5"><i class="fa fa-file-text"></i></span>
-                                </h:link>
+                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                        <span class="m-l-5"><i class="fa fa-file-text"></i></span>
+                                    </h:link>
                                 </div>
 
                                 <h4 class="page-title">Category</h4>
@@ -69,12 +69,12 @@
                                             </thead>
                                             <tbody>
 
-                                                <c:forEach var="item" items="${aCategoryMB.categories}">
+                                                <c:forEach var="item" items="#{aCategoryMB.categories}">
                                                     <tr>
-                                                        <td>${item.ctgid}</td>
-                                                        <td>${item.ctgType}</td>
-                                                        <td>${item.ctgTitle}</td>
-                                                        <td>${item.ctgOrigin}</td>
+                                                        <td>#{item.ctgid}</td>
+                                                        <td>#{item.ctgType}</td>
+                                                        <td>#{item.ctgTitle}</td>
+                                                        <td>#{item.ctgOrigin}</td>
                                                         <td>
                                                             <span class="label label-table ${item.ctgStatus == 'new' ? 'label-warning' : (
                                                                                              item.ctgStatus == 'active' ? 'label-success' : 'label-inverse')}">

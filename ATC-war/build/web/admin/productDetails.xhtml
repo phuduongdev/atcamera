@@ -5,146 +5,269 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="cssplus">
+            <h:outputStylesheet name="assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css"  />
+            <h:outputStylesheet name="assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css"  />
+        </ui:define>
 
-    <body>
+        <ui:define name="content">
+            <div class="content">
+                <div class="container">
+                    <!--Page-Title--> 
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group pull-right m-t-15">
+                                <h:link outcome="#{aProductMB.productViewNav()}"
+                                        styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                    Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
+                                </h:link>
+                            </div>
 
-        <ui:composition template="./template.xhtml">
+                            <h4 class="page-title">Product</h4>
+                            <ol class="breadcrumb">
+                                <li><a href="#">ATC</a></li>
+                                <li><a href="#">Product</a></li>
+                                <li class="active">Details</li>
+                            </ol>
+                        </div>
+                    </div>
 
+                    <div class="col-lg-6">
+                        <div class="panel panel-color panel-custom">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <h:outputText value="#{aProductMB.product.ctgid.ctgType}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                    <h:outputText value="#{aProductMB.product.ctgid.ctgTitle}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                    <h:outputText value="#{aProductMB.product.prdTittle}" styleClass="control-label" />
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="clearfix form-group">
+                                        <h:outputText value="Product UID:" styleClass="col-sm-4 text-muted text-right" />
+                                        <div class="col-sm-8">
+                                            <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-purple" />
+                                        </div>
+                                    </div>
 
-            <ui:define name="content">
-                <div class="content">
-                    <div class="container">
-                        <!--Page-Title--> 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="btn-group pull-right m-t-15">
-                                    <h:link outcome="#{aProductMB.productViewNav()}"
-                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
-                                        Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
-                                    </h:link>
-                                </div>
+                                    <div class="form-group">
+                                        <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                        <div class="col-sm-8">
+                                            <h:outputLabel value="#{aProductMB.product.createdDate}" styleClass="text-purple">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                            </h:outputLabel>
+                                        </div>
+                                    </div>
 
-                                <h4 class="page-title">Product</h4>
-                                <ol class="breadcrumb">
-                                    <li><a href="#">ATC</a></li>
-                                    <li><a href="#">Product</a></li>
-                                    <li class="active">Details Product</li>
-                                </ol>
+                                    <div class="form-group">
+                                        <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
+                                        <div class="col-sm-8">
+                                            <h:outputLabel value="#{aProductMB.product.prdPower}" styleClass="text-purple" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:outputText value="Warranty:" styleClass="col-sm-4 text-muted text-right" />
+                                        <div class="col-sm-8">
+                                            <h:outputLabel value="#{aProductMB.product.prdWarranty}" styleClass="text-purple" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <h:outputText value="Price:" styleClass="col-sm-4 text-muted text-right"/>
+                                        <div class="col-sm-8">
+                                            <h:outputLabel value="#{aProductMB.product.prdPrice}" styleClass="text-info" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <h:outputText value="Description:" styleClass="col-sm-4 text-muted text-right" />
+                                        <div class="col-sm-8">
+                                            <h:outputLabel value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="owl-carousel owl-theme" id="owl-multi">
+                                            <div class="item">
+                                                <h:graphicImage name="assets/images/gallery/1.jpg" />
+                                            </div>
+                                            <div class="item">
+                                                <h:graphicImage name="assets/images/gallery/2.jpg" />
+                                            </div>
+                                            <div class="item">
+                                                <h:graphicImage name="assets/images/gallery/3.jpg" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </form>
                             </div>
                         </div>
+                    </div>
 
-<!--<c:if test="">-->
-                        <div class="row">
+                    <div class="row">
+                        <c:if test="#{aProductMB.product.ctgid.ctgType.equalsIgnoreCase('camera')}">
                             <div class="col-lg-6">
-                                <div class="card-box">
-                                    <h4 class="m-t-0 header-title">
-                                        <h:outputLabel value="#{aProductMB.product.ctgid.ctgType}" styleClass="control-label" /> &reg;
-                                        <h:outputLabel value="#{aProductMB.product.ctgid.ctgTitle}" styleClass="control-label" /> &reg;
-                                        <h:outputLabel value="#{aProductMB.product.prdTittle}" styleClass="control-label" />
-                                    </h4>
-
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <h:outputLabel value="Category UID:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-info" />
+                                <div class="panel panel-color panel-custom">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <h:outputText value="Test" styleClass="control-label" />
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="Product UID:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-purple" />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:outputText value="#{aProductMB.product.createdDate}" styleClass="text-info">
-                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                                </h:outputText>
+                                            <div class="form-group">
+                                                <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.createdDate}" styleClass="text-purple">
+                                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                    </h:outputLabel>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdPower}" styleClass="text-info" />
+                                            <div class="form-group">
+                                                <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.prdPower}" styleClass="text-purple" />
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group">
-                                            <h:outputText value="PrdWarranty:" styleClass="col-sm-4 text-muted text-right" />
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdWarranty}" styleClass="text-info" />
+                                            <div class="form-group">
+                                                <h:outputText value="Warranty:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.prdWarranty}" styleClass="text-purple" />
+                                                </div>
                                             </div>
-                                        </div>
+                                            
+                                            <div class="form-group">
+                                                <h:outputText value="Price:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.prdPrice}" styleClass="text-info" />
+                                                </div>
+                                            </div>
 
-                                        <div class="form-group">
-                                            <h:outputText value="PrdImage:" styleClass="col-sm-4 text-muted text-right" />
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdImage}" styleClass="text-info" />
+                                            <div class="form-group">
+                                                <h:outputText value="Description:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                            
+                                            <div class="form-group">
+                                                <div class="owl-carousel owl-theme" id="owl-multi">
+                                                    <div class="item">
+                                                        <h:graphicImage name="assets/images/gallery/1.jpg" />
+                                                    </div>
+                                                    <div class="item">
+                                                        <h:graphicImage name="assets/images/gallery/2.jpg" />
+                                                    </div>
+                                                    <div class="item">
+                                                        <h:graphicImage name="assets/images/gallery/3.jpg" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+                        </c:if>
+                    </div>
 
-                            <div class="col-lg-6">
-                                <div class="card-box">
-                                    <h4 class="m-t-0 header-title">
-                                        Bonus
-                                    </h4>
 
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <h:outputText value="PrdImage2:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdImage2}" styleClass="text-info" />
-                                            </div>
-                                        </div>
+                </div>  
+                <!--container--> 
 
-                                        <div class="form-group">
-                                            <h:outputText value="PrdImage3:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdImage3}" styleClass="text-info" >
-                                                    
-                                                </h:outputLabel>
-                                            </div>
-                                        </div>
+            </div> 
+        </ui:define>
 
-                                        <div class="form-group">
-                                            <h:outputText value="PrdPrice:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdPrice}" styleClass="text-info" />
-                                            </div>
-                                        </div>
+        <ui:define name="jsplus">
+            <h:outputScript name="assets/plugins/parsleyjs/parsley.min.js"></h:outputScript>>
+            <h:outputScript name="assets/plugins/owl.carousel/dist/owl.carousel.min.js"></h:outputScript>
 
-                                        <div class="form-group">
-                                            <h:outputText value="PrdDescript:" styleClass="col-sm-4 text-muted text-right" />
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <!--</c:if>-->
-
-                    </div>  
-                    <!--container--> 
-
-                </div> 
-            </ui:define>
-
-            <ui:define name="jsplus">
-                <h:outputScript name="assets/plugins/parsleyjs/parsley.min.js"></h:outputScript>>
-
-                <script type="text/javascript">
-                    //<![CDATA[
-                    $(document).ready(function () {
-                        $('form').parsley();
+            <script type="text/javascript">
+                //<![CDATA[
+                $(document).ready(function () {
+                    $('form').parsley();
+                });
+                jQuery(document).ready(function ($) {
+                    //owl carousel
+                    $("#owl-slider").owlCarousel({
+                        loop: true,
+                        nav: false,
+                        autoplay: true,
+                        autoplayTimeout: 4000,
+                        autoplayHoverPause: true,
+                        animateOut: 'fadeOut',
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 1
+                            },
+                            1000: {
+                                items: 1
+                            }
+                        }
                     });
-                    //]]>
-                </script>
-            </ui:define>
 
-        </ui:composition>
+                    $("#owl-slider-2").owlCarousel({
+                        loop: false,
+                        nav: false,
+                        autoplay: true,
+                        autoplayTimeout: 4000,
+                        autoplayHoverPause: true,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            600: {
+                                items: 1
+                            },
+                            1000: {
+                                items: 1
+                            }
+                        }
+                    });
 
-    </body>
+                    //Owl-Multi
+                    $('#owl-multi').owlCarousel({
+                        loop: true,
+                        margin: 20,
+                        nav: false,
+                        autoplay: true,
+                        responsive: {
+                            0: {
+                                items: 1
+                            },
+                            480: {
+                                items: 2
+                            },
+                            700: {
+                                items: 4
+                            },
+                            1000: {
+                                items: 3
+                            },
+                            1100: {
+                                items: 5
+                            }
+                        }
+                    })
+                });
+                //]]>
+            </script>
+        </ui:define>
+
+    </ui:composition>
 </html>
