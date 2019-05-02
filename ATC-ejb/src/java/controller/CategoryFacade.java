@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class CategoryFacade extends AbstractFacade<Category> {
+
     @PersistenceContext(unitName = "ATC-ejbPU")
     private EntityManager em;
 
@@ -29,30 +30,31 @@ public class CategoryFacade extends AbstractFacade<Category> {
     public CategoryFacade() {
         super(Category.class);
     }
-    
-    public List<String> findDistinctCategoryType(){
+
+    public List<String> findDistinctCategoryType() {
         TypedQuery q = em.createQuery("SELECT DISTINCT c.ctgType FROM Category c", Category.class);
         return q.getResultList();
     }
-    
-<<<<<<< HEAD
-    public List<Category> findSerialOfCamera(){
+
+    public List<Category> findSerialOfCamera() {
         TypedQuery q = em.createQuery("SELECT c FROM Category c WHERE c.ctgType LIKE 'camera'", Category.class);
         return q.getResultList();
     }
-    
-    public List<Category> findSerialOfDvr(){
+
+    public List<Category> findSerialOfDvr() {
         TypedQuery q = em.createQuery("SELECT c FROM Category c WHERE c.ctgType LIKE 'dvr'", Category.class);
         return q.getResultList();
     }
-    
-    public List<Category> findSerialOfOther(){
+
+    public List<Category> findSerialOfOther() {
         TypedQuery q = em.createQuery("SELECT c FROM Category c WHERE c.ctgType LIKE 'other'", Category.class);
-=======
-    public List<Category> findCategoryTitleByType(String type){
+        return q.getResultList();
+    }
+
+    public List<Category> findCategoryTitleByType(String type) {
         TypedQuery q = em.createQuery("SELECT c  FROM Category c WHERE c.ctgType = :type", Category.class);
         q.setParameter("type", type);
->>>>>>> ae91deaa1f6865571fd5b5e5fd175d096b905eef
+
         return q.getResultList();
     }
 }
