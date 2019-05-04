@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="content">
+                <div class="content">
+                    <div class="container">
+
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <h:link outcome="#{aAccountMB.accountViewNav()}" styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                        <span class="m-l-5"><i class="fa fa-file-text"></i></span> Back
+                                    </h:link>
+                                </div>
+
+                                <h4 class="page-title">Account</h4>
+                                <ol class="breadcrumb">
+                                    <li><a href="#">ATC</a></li>
+                                    <li><a href="#">Account</a></li>
+                                    <li class="active">Details &amp; Update Account</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-8">
+                                <div class="card-box">  
+                                    <h:form styleClass="form-horizontal" prependId="false">
+                                        <div class="form-group">
+                                            <h:outputLabel styleClass="col-sm-4 control-label" value="UID" for="accid" />
+                                            <div class="col-sm-7">
+                                                <h:inputText id="accid" value="#{aAccountMB.account.accid}" 
+                                                             title="Accid" styleClass="form-control" readonly="true"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Created Date" for="createdDate" styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-7">
+                                                <h:inputText id="createdDate" value="#{aAccountMB.account.createdDate}" 
+                                                             title="CreatedDate" styleClass="form-control" readonly="true">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:inputText>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="User Name * " for="accUserName" styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-7">
+                                                <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}" 
+                                                             title="AccUserName" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Password *" for="accPassword" styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-7">
+                                                <h:inputSecret id="accPassword" value="#{aAccountMB.account.accPassword}" 
+                                                               title="AccPassword" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Role *" for="accRole"  styleClass="col-sm-4 control-label"/>
+                                            <div class="col-sm-7">
+                                                <h:inputText id="accRole" value="#{aAccountMB.account.accRole}" 
+                                                             title="AccRole" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Status *" for="accStatus" styleClass="col-sm-4 control-label" />
+                                            <div class="col-sm-7">
+                                                <h:inputText id="accStatus" value="#{aAccountMB.account.accStatus}"
+                                                             title="AccStatus" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputLabel value="Description" for="accDescript" styleClass="col-sm-4 control-label" />
+                                            <div class="col-sm-7">
+                                                <h:inputTextarea id="accDescript" value="#{aAccountMB.account.accDescript}" 
+                                                                 title="AccDescript" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-4 col-sm-8">
+
+                                                <label> (*) Required </label>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-4 col-sm-8">
+                                                <h:commandLink action="#{aAccountMB.updateAccount()}" value="Confirm"
+                                                               styleClass="btn btn-primary waves-effect waves-light"/>
+                                                <!--                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                                                                                                    Cancel
+                                                                                                </button>-->
+                                            </div>
+                                        </div>
+
+                                    </h:form>
+                                </div>
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+            </ui:define>
+
+            <ui:define name="jsplus">
+                <h:outputScript name="assets/plugins/parsleyjs/parsley.min.js"></h:outputScript>>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    $(document).ready(function () {
+                        $('form').parsley();
+                    });
+                    //]]>
+                </script>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
