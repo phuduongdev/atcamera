@@ -48,7 +48,6 @@ public class OrderMaster implements Serializable {
     @Column(name = "odmid")
     private String odmid;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;

@@ -25,7 +25,7 @@ public class CustomerController {
     private CustomerFacade customerFacade;
 
     private Customer ctm = new Customer();
-    private String confim, msg=" ";
+    private String confim, msg = " ";
 
     public String getConfim() {
         return confim;
@@ -51,22 +51,19 @@ public class CustomerController {
     }
 
     public String add() {
-       
-            
-            if (this.confim.equals(ctm.getCtmPassword())) {
-                ctm.setCtmid(tools.CommonUse.generateUUID());
-                ctm.setCreatedDate(new Timestamp(new Date().getTime()));
-                ctm.setCtmStatus("new");
-                 this.customerFacade.create(this.ctm);
-                 this.ctm = new Customer();
-                    return "index";
-            }else{
-                this.msg = "Pass khong khop";
-                return "register";
-            }
-           
-            
-       
+
+        if (this.confim.equals(ctm.getCtmPassword())) {
+            ctm.setCtmid(tools.CommonUse.generateUUID());
+            ctm.setCreatedDate(new Timestamp(new Date().getTime()));
+            ctm.setCtmStatus("new");
+            this.customerFacade.create(this.ctm);
+            this.ctm = new Customer();
+            return "index";
+        } else {
+            this.msg = "Pass khong khop";
+            return "register";
+        }
+
     }
 
     public String navResgiter() {

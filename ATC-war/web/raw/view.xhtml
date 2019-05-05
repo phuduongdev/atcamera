@@ -5,34 +5,103 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet name="vendor/bootstrap/css/bootstrap.min.css"/>
     </h:head>
     <h:body>
-        
         <f:view>
+            <h:form prependId="false">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p>#{orderController.msg}</p>
+                            <p>so luong sp: #{orderController.cart.size()}</p>
+                            <p>
+                                <h:commandButton id="btnCheckout" value="checkout" action="#{orderController.checkOut()}">
+                                </h:commandButton>
+                            </p>
+
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-6">
+                            <h1><h:outputText value="Product List"/></h1>
+                            <h:dataTable value="#{orderController.testProduct}" var="item"
+                                         styleClass="table table-responsive table-striped">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Prdid"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.prdid}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="PrdPrice"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.prdPrice}"/>
+                                </h:column>
+                                <h:column>
+                                    <h:commandButton id="btnAddToCart" value="test add cart" >
+                                        <f:ajax event="click" render="cartList" listener="#{orderController.cartsControl(item, 'additem')}"/>
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+
+                        <div class="col-6">
+                            <h1><h:outputText value="Cart List"/></h1>
+                            <h:dataTable id="cartList" styleClass="table table-responsive table-striped" value="#{orderController.cart}" var="itemView">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Prdid"/>
+                                    </f:facet>
+                                    <h:outputText value="#{itemView.prdid.prdid}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="OddQuantity"/>
+                                    </f:facet>
+                                    <h:outputText value="#{itemView.oddQuantity}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="OddPrice"/>
+                                    </f:facet>
+                                    <h:outputText value="#{itemView.oddPrice}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <h:commandButton id="btnAdd" value="add" >
+                                        <f:ajax event="click" listener="#{orderController.cartsControl(itemView.prdid , 'additem')}" 
+                                                render="@form"/>
+                                    </h:commandButton>
+                                    <h:commandButton id="btnSub" value="sub" >
+                                        <f:ajax event="click" listener="#{orderController.cartsControl(itemView.prdid , 'subitem')}" 
+                                                render="@form"/>
+                                    </h:commandButton>
+
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+
+                    </div>
 
 
-            <h:form>
-                <h1><h:outputText value="View"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputText value="Accid:"/>
-                    <h:outputText value="#{aAccountMB.account.accid}" title="Accid"/>
-                    <h:outputText value="CreatedDate:"/>
-                    <h:outputText value="#{aAccountMB.account.createdDate}" title="CreatedDate">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:outputText>
-                    <h:outputText value="AccUserName:"/>
-                    <h:outputText value="#{aAccountMB.account.accUserName}" title="AccUserName"/>
-                    <h:outputText value="AccPassword:"/>
-                    <h:outputText value="#{aAccountMB.account.accPassword}" title="AccPassword"/>
-                    <h:outputText value="AccRole:"/>
-                    <h:outputText />
-                    
-                    <h:outputText value="#{aAccountMB.account.accDescript}" title="AccDescript"/>
-                    />
-                    <h:outputText />
-                </h:panelGrid>
+                </div>
+
+
+
             </h:form>
+
         </f:view>
+
+
 
     </h:body>
 </html>
