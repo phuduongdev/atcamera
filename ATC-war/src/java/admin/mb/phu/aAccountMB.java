@@ -58,9 +58,8 @@ public class aAccountMB {
 
     public String createAccount() {
         try {
-            account.setAccid(tools.CommonUse.generateUUID());
-            account.setCreatedDate(new Timestamp(new Date().getTime()));
-            account.setAccStatus("1");
+            account.setAccid(tools.CommonUse.generateUUID());//            
+            account.setAccStatus("new");
             accountFacade.create(account);
             return "accountView?faces-redirect=true";
         } catch (Exception e) {

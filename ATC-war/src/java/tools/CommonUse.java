@@ -5,6 +5,8 @@
  */
 package tools;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,19 +18,22 @@ import java.util.UUID;
  *
  * @author DTP
  */
-public class CommonUse {
+public class CommonUse implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     public static String generateUUID() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
+
     }
 
-    public static String generateDateForSql() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
-        return formatter.format(date);
-    }
-
+//    public static Timestamp generateCreatedDate() {
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date date = new Date();
+//        LocalDateTime datetime = 
+//        return new Timestamp(date.getTime());
+//    }
     public static List<String> generateSevenDayFromCurrent() {
         List<String> sevenDayOfMonth = new ArrayList<>();
         Calendar date = Calendar.getInstance();
@@ -56,5 +61,9 @@ public class CommonUse {
 //            return s;
 //        } 
         return s;
+    }
+
+    public static String changePriceToVND(double priceInput) {
+        return "";
     }
 }
