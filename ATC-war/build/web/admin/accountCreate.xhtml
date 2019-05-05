@@ -21,7 +21,7 @@
                         <div class="col-sm-12">
                             <div class="btn-group pull-right m-t-15">
                                 <h:link outcome="#{aAccountMB.accountViewNav()}" styleClass="btn btn-default btn-custom waves-effect waves-light">
-                                    <span class="m-l-5"><i class="fa fa-backward"></i></span> Back
+                                    Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
                                 </h:link>
                             </div>
 
@@ -52,11 +52,13 @@
                                             <h:outputLabel value="User Name *" for="accUserName" styleClass="col-lg-3 control-label" />                                                
                                             <div class="col-lg-9">
                                                 <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}"
-                                                             a:placeholder="e.g. John Smith"
+                                                             a:placeholder="e.g. John"
                                                              styleClass="required form-control">
-                                                    <f:validator validatorId="admin.customValidate.cantBlank"/>
+                                                    <f:validator validatorId="admin.customValidate.cantBlank" />
+                                                    <f:ajax event="change" render="msgUsername"/>
                                                 </h:inputText>
-                                                <h:message for="accUserName" styleClass="error" />
+                                                <h:message id="msgUsername" for="accUserName" styleClass="error">
+                                                </h:message>
                                             </div>
                                         </div>
 
@@ -73,22 +75,15 @@
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Confirm Password" for="confirmPassword" styleClass="col-lg-3 control-label" />
+                                            <h:outputLabel value="Confirm Password *" for="confirmPassword" styleClass="col-lg-3 control-label" />
                                             <div class="col-lg-9">
-                                                <h:inputSecret value="${aAccountMB.confirmPassword}" 
-                                                               id="confirm1" styleClass="required form-control" />
+                                                <h:inputSecret id="confirm1" value="${aAccountMB.confirmPassword}" 
+                                                               a:placeholder="must be same password"
+                                                               styleClass="required form-control" />
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <label class="col-lg-12 control-label ">(*) Required</label>
-                                        </div>
-                                    </section>
-
-                                    <h3>Role</h3>
-                                    <section>
-                                        <div class="form-group clearfix">
-
                                             <h:outputLabel value="Role *" for="accRole" class="col-lg-3 control-label" />
                                             <div class="col-lg-9">
                                                 <h:selectOneMenu styleClass="form-control" value="#{aAccountMB.account.accRole}">
@@ -97,13 +92,23 @@
                                                 </h:selectOneMenu>
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="AccDescript:" for="accDescript" class="col-lg-3 control-label" />
+                                            <h:outputLabel value="Description" for="accDescript" class="col-lg-3 control-label" />
                                             <div class="col-lg-9">
-                                                <h:inputText id="accDescript" value="#{aAccountMB.account.accDescript}" title="AccDescript" styleClass="required form-control" />
+                                                <h:inputTextarea id="accDescript" value="#{aAccountMB.account.accDescript}" title="AccDescript" styleClass="required form-control" />
                                             </div>
                                         </div>
+                                        
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Required</label>
+                                        </div>
                                     </section>
+
+<!--                                    <h3>Role</h3>
+                                    <section>
+
+                                    </section>-->
 
                                     <!--                                        <h3>Hints</h3>
                                                                             <section>
