@@ -22,10 +22,11 @@ public class cantBlank implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         if (value.toString().length() < 3) {
+            System.out.println("----------- context ???? --------------" + context.toString());
+            System.out.println("----------- context ???? --------------" + component.getClientId());
             FacesMessage msg = new FacesMessage("check blank", "This field is required");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
     }
-
 }
