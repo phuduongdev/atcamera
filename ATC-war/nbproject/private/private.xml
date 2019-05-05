@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-=======
-            <file>file:/E:/anthangcamera/ATC-war/web/user.client/register.xhtml</file>
-            <file>file:/E:/anthangcamera/ATC-war/src/java/admin/mb/chien/aCategoryMB.java</file>
->>>>>>> 7cbd5f1ae5d94a63bbc2136cff9dea10a120652f
-            <file>file:/E:/anthangcamera/ATC-war/src/java/admin/mb/chien/aCustomer.java</file>
-            <file>file:/E:/anthangcamera/ATC-war/web/user.client/newTemplate.xhtml</file>
-            <file>file:/E:/anthangcamera/ATC-war/src/java/user/CustomerController.java</file>
-<<<<<<< HEAD
-            <file>file:/E:/anthangcamera/ATC-war/web/user.client/register.xhtml</file>
-            <file>file:/E:/anthangcamera/ATC-war/src/java/admin/mb/chien/aCategoryMB.java</file>
-=======
->>>>>>> 7cbd5f1ae5d94a63bbc2136cff9dea10a120652f
+            <file>file:/E:/atcamera/ATC-war/src/java/user/CustomerController.java</file>
+            <file>file:/E:/atcamera/ATC-war/src/java/admin/mb/chien/aProductMB.java</file>
+            <file>file:/E:/atcamera/ATC-war/web/user.client/newTemplate.xhtml</file>
+            <file>file:/E:/atcamera/ATC-war/web/admin/template.xhtml</file>
+            <file>file:/E:/atcamera/ATC-war/web/admin/productCreate.xhtml</file>
+            <file>file:/E:/atcamera/ATC-war/web/raw/create.xhtml</file>
+            <file>file:/E:/atcamera/ATC-war/web/admin/productView.xhtml</file>
         </group>
     </open-files>
 </project-private>

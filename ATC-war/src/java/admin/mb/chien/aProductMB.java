@@ -108,15 +108,21 @@ public class aProductMB implements Serializable {
         }
     }
 
-    public String createProduct() {
+    public String createProduct(String option) {
+        String prid = tools.CommonUse.generateUUID();
         try {
-            product.setPrdid(tools.CommonUse.generateUUID());
-            product.setCreatedDate(new Timestamp(new Date().getTime()));
-            product.setPrdStatus("new");
-            product.setCtgid(categoryFacade.find(cateid));
-            upload();
-            product.setPrdImage(imgaePath);
-            productFacade.create(product);
+            if (option.equalsIgnoreCase("camera")) {
+                product.setPrdid(prid);
+                product.setCreatedDate(new Timestamp(new Date().getTime()));
+                product.setPrdStatus("new");
+                product.setCtgid(categoryFacade.find(cateid));
+                upload();
+                product.setPrdImage(imgaePath);
+                productFacade.create(product);
+                camera.setPrdid(product);
+                cameraFacade.create(camera);
+            }
+
             return "productView?faces-redirect=true";
         } catch (Exception e) {
 //            msg = "TK da dc sd";
