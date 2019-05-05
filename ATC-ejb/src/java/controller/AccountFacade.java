@@ -29,15 +29,11 @@ public class AccountFacade extends AbstractFacade<Account> {
         super(Account.class);
     }
     
-    public Boolean checkAccountLogin(String username, String password) {
-        TypedQuery q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username "
-                + "and a.accPassword = :password", Account.class);
+    public Account checkAccountLogin(String username, String password) {
+        TypedQuery<Account> q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username "
+                + "and a.accPassword = :password ", Account.class);
         q.setParameter("username", username);
         q.setParameter("password", password);
-        if (q.getResultList().size() == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return q.getSingleResult();
     }
 }
