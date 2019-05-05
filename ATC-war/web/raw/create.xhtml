@@ -7,41 +7,45 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+       
         <f:view>
+
+
             <h:form>
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="PrdTittle:" for="prdTittle" />
-                    <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" />
-                    <h:outputLabel value="PrdPower:" for="prdPower" />
-                    <h:inputText id="prdPower" value="#{aProductMB.product.prdPower}" title="PrdPower" />
-                    <h:outputLabel value="PrdWarranty:" for="prdWarranty" />
-                    <h:inputText id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty" />
-                    <h:outputLabel value="PrdImage:" for="prdImage" />
-                    <h:inputTextarea rows="4" cols="30" id="prdImage" value="#{aProductMB.product.prdImage}" title="PrdImage" />
-                    <h:outputLabel value="PrdImage2:" for="prdImage2" />
-                    <h:inputTextarea rows="4" cols="30" id="prdImage2" value="#{aProductMB.product.prdImage2}" title="PrdImage2" />
-                    <h:outputLabel value="PrdImage3:" for="prdImage3" />
-                    <h:inputTextarea rows="4" cols="30" id="prdImage3" value="#{aProductMB.product.prdImage3}" title="PrdImage3" />
-                    <h:outputLabel value="PrdPrice:" for="prdPrice" />
-                    <h:inputText id="prdPrice" value="#{aProductMB.product.prdPrice}" title="PrdPrice" />
-                    <h:outputLabel value="PrdDescript:" for="prdDescript" />
-                    <h:inputText id="prdDescript" value="#{aProductMB.product.prdDescript}" title="PrdDescript" />
-                    <h:outputLabel value="PrdStatus:" for="prdStatus" />
-                    <h:inputText id="prdStatus" value="#{aProductMB.product.prdStatus}" title="PrdStatus" />
-                    <h:outputLabel value="Ctgid:" for="ctgid" />
-                    <h:selectOneMenu id="ctgid" value="#{aProductMB.product.ctgid}" title="Ctgid" 
-                                     converter="tools.categoryCvt">
+                    <h:outputLabel value="Camid:" for="camid" />
+                    <h:inputText id="camid" value="#{aProductMB.camera.camid}" title="Camid" required="true" requiredMessage="The Camid field is required."/>
+                    <h:outputLabel value="CreatedDate:" for="createdDate" />
+                    <h:inputText id="createdDate" value="#{aProductMB.camera.createdDate}" title="CreatedDate" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="CamSensor:" for="camSensor" />
+                    <h:inputText id="camSensor" value="#{aProductMB.camera.camSensor}" title="CamSensor" />
+                    <h:outputLabel value="CamResolution:" for="camResolution" />
+                    <h:inputText id="camResolution" value="#{aProductMB.camera.camResolution}" title="CamResolution" />
+                    <h:outputLabel value="CamIR:" for="camIR" />
+                    <h:inputText id="camIR" value="#{aProductMB.camera.camIR}" title="CamIR" />
+                    <h:outputLabel value="CamLen:" for="camLen" />
+                    <h:inputText id="camLen" value="#{aProductMB.camera.camLen}" title="CamLen" />
+                    <h:outputLabel value="CamVideoStandard:" for="camVideoStandard" />
+                    <h:inputText id="camVideoStandard" value="#{aProductMB.camera.camVideoStandard}" title="CamVideoStandard" />
+                    <h:outputLabel value="CamRecord:" for="camRecord" />
+                    <h:inputText id="camRecord" value="#{aProductMB.camera.camRecord}" title="CamRecord" />
+                    <h:outputLabel value="CamTemperature:" for="camTemperature" />
+                    <h:inputText id="camTemperature" value="#{aProductMB.camera.camTemperature}" title="CamTemperature" />
+                    <h:outputLabel value="CamMemory:" for="camMemory" />
+                    <h:inputText id="camMemory" value="#{aProductMB.camera.camMemory}" title="CamMemory" />
+                    <h:outputLabel value="CamMaterial:" for="camMaterial" />
+                    <h:inputText id="camMaterial" value="#{aProductMB.camera.camMaterial}" title="CamMaterial" />
+                    <h:outputLabel value="Prdid:" for="prdid" />
+                    <h:selectOneMenu id="prdid" value="#{aProductMB.camera.prdid}" title="Prdid" >
                         <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{aCategoryMB.categories}" var="cate"
-                                       itemLabel="#{cate.ctgTitle}" itemValue="#{cate}"/>
+                        <f:selectItems value="#{fixme}"/>
                     </h:selectOneMenu>
-                    <h:outputText/>
-                    <h:commandLink action="#{aProductMB.createProduct()}" value="Create">
-                    </h:commandLink>
-            </h:panelGrid>
-        </h:form>
-    </f:view>
+                </h:panelGrid>
+            </h:form>
+        </f:view>
 
 
 
