@@ -8,3 +8,6 @@
 >>>>>>> ae91deaa1f6865571fd5b5e5fd175d096b905eef
 ATC-ejb/nbproject/private/private.xml
 ATC-war/nbproject/private/private.xml
+dist/gfdeploy/ATC/ATC-ejb_jar/resouces.res
+build/ATC-war.war
+ATC-war/dist/ATC-war.war

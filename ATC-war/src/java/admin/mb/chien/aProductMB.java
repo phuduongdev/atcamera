@@ -69,8 +69,10 @@ public class aProductMB implements Serializable {
 
     public String productCreateNav() {
         if (productCreateTittle.equalsIgnoreCase("camera")) {
+            this.product = new Product();
             this.camera = new Camera();
         } else if (productCreateTittle.equalsIgnoreCase("dvr")) {
+            this.product = new Product();
             this.dvr = new Dvr();
         } else {
             this.product = new Product();
