@@ -7,6 +7,7 @@ package admin.mb.phu;
 
 import controller.AccountFacade;
 import entity.Account;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -22,8 +23,9 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @SessionScoped
-public class aAccountMB {
+public class aAccountMB implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @EJB
     private AccountFacade accountFacade;
 

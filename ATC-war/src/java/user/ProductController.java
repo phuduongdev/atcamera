@@ -7,6 +7,7 @@ package user;
 
 import controller.ProductFacade;
 import entity.*;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -18,8 +19,9 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ProductController {
+public class ProductController implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @EJB
     private ProductFacade productFacade;
     Category ctg = new Category();

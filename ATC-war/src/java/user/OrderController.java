@@ -108,17 +108,17 @@ public class OrderController implements Serializable {
                             case "additem":
                                 existItemQuan = existItem.getOddQuantity() + 1;
                                 existItemPrice = existItem.getOddPrice() + selectItem.getOddPrice();
-                                msg = "update quantity success";
+                                msg = "addition quantity success";
                                 break;
                             case "subitem":
                                 if (existItem.getOddQuantity() > 1) {
                                     existItemQuan = existItem.getOddQuantity() - 1;
                                     existItemPrice = existItem.getOddPrice() - selectItem.getOddPrice();
-                                    msg = "update quantity success";
+                                    msg = "subtraction quantity success";
                                 } else {
                                     existItemQuan = existItem.getOddQuantity();
                                     existItemPrice = existItem.getOddPrice();
-                                    msg = "San pham can it nhat 1 don vi de hoan thanh don hang";
+                                    msg = "need at least one product quantity";
                                 }
                                 break;
                         }

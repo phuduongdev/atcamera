@@ -8,6 +8,7 @@ package admin.mb.phu;
 import controller.AccountFacade;
 import entity.Account;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -20,8 +21,9 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @RequestScoped
-public class aLogin {
+public class aLogin implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @EJB
     private AccountFacade accountFacade;
 
@@ -45,7 +47,6 @@ public class aLogin {
 //            return "index";
 //        }
 //    }
-
     public void login() {
         loginAccount = accountFacade.checkAccountLogin(username, password);
         FacesContext context = FacesContext.getCurrentInstance();

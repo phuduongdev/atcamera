@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.*;
 import entity.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import javax.ejb.EJB;
 
@@ -19,8 +20,9 @@ import javax.ejb.EJB;
  */
 @ManagedBean
 @SessionScoped
-public class CustomerController {
+public class CustomerController implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @EJB
     private CustomerFacade customerFacade;
 
