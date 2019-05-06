@@ -51,7 +51,7 @@
                                           (aProductMB.productCreateTittle.equalsIgnoreCase('dvr') ? 'Create DVR' : 'Create Accessory')}</h3>
                                     <section>
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Category Title/Serial *" for="ctgid" styleClass="col-lg-4 control-label" />
+                                            <h:outputLabel value="Category *" for="ctgid" styleClass="col-lg-4 control-label" />
                                             <div class="col-lg-8">
                                                 <h:selectOneMenu id="ctgid" value="#{aProductMB.cateid}" title="Ctgid" 
                                                                  styleClass="form-control">
@@ -66,6 +66,12 @@
                                             <h:outputLabel value="Product Model *" for="prdTittle" styleClass="col-lg-4 control-label" />                                                
                                             <div class="col-lg-8">
                                                 <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Price *" for="prdPrice" styleClass="col-lg-4 control-label" />                                                
+                                            <div class="col-lg-8">
+                                                <h:inputText id="prdPrice" value="#{aProductMB.product.prdPrice}" title="PrdPrice" styleClass="form-control" />
                                             </div>
                                         </div>
 
@@ -124,15 +130,107 @@
                                             <div class="col-lg-8">
                                                 <h:inputTextarea id="prdDescript" value="#{aProductMB.product.prdDescript}" title="PrdDescript" styleClass="required form-control" />
                                             </div>
-                                            
+
                                         </div>
                                         <c:if test="#{aProductMB.productCreateTittle=='camera'}">
-                                            <div class="form-group clearfix">
-                                                <h:outputLabel value="Description" for="prdDescript" styleClass="col-lg-4 control-label" />
-                                                <div class="col-lg-8">
-                                                    <h:inputText id="camid" value="#{aProductMB.camera.camid}" title="Camid" required="true" requiredMessage="The Camid field is required." styleClass="required form-control"/>
-                                                </div>
 
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamSensor" for="camSensor" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camSensor" value="#{aProductMB.camera.camSensor}" title="CamSensor" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamResolution" for="camResolution" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camResolution" value="#{aProductMB.camera.camRecord}" title="CamResolution" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamIR" for="camIR" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camIR" value="#{aProductMB.camera.camIR}" title="CamIR" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamLen" for="camLen" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camLen" value="#{aProductMB.camera.camLen}" title="CamLen" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamVideoStandard" for="camVideoStandard" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camVideoStandard" value="#{aProductMB.camera.camVideoStandard}" title="CamVideoStandard" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamRecord" for="camRecord" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camRecord" value="#{aProductMB.camera.camRecord}" title="CamRecord" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamTemperature" for="camTemperature" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camTemperature" value="#{aProductMB.camera.camTemperature}" title="CamTemperature" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamMemory" for="camMemory" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camMemory" value="#{aProductMB.camera.camMemory}" title="CamMemory" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="CamMaterial" for="camMaterial" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="camMaterial" value="#{aProductMB.camera.camMaterial}" title="CamMaterial" styleClass="required form-control"/>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="#{aProductMB.productCreateTittle=='dvr'}">
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Channel:" for="dvrChannel" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="dvrChannel" value="#{aProductMB.dvr.dvrChannel}" title="DvrChannel" styleClass="required form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="InPort" for="dvrInPort" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="dvrInPort" value="#{aProductMB.dvr.dvrInPort}" title="DvrInPort" styleClass="required form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="OutPort" for="dvrOutPort" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="dvrOutPort" value="#{aProductMB.dvr.dvrOutPort}" title="DvrOutPort" styleClass="required form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Compression" for="dvrCompression" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="dvrCompression" value="#{aProductMB.dvr.dvrCompression}" title="DvrCompression" styleClass="required form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Record" for="dvrRecord" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="dvrRecord" value="#{aProductMB.dvr.dvrRecord}" title="DvrRecord" styleClass="required form-control" />
+                                                </div>
+                                            </div>
+                                            <h:outputLabel value="Playback" for="dvrPlayback" styleClass="col-lg-4 control-label" />
+                                            <div class="form-group clearfix">
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="dvrPlayback" value="#{aProductMB.dvr.dvrPlayback}" title="DvrPlayback" styleClass="required form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Power" for="dvrPower" styleClass="col-lg-4 control-label" />
+                                                <div class="col-lg-8">
+                                                    <h:inputText id="dvrPower" value="#{aProductMB.dvr.dvrPower}" title="DvrPower" styleClass="required form-control" />
+                                                </div>
                                             </div>
                                         </c:if>
                                     </section>

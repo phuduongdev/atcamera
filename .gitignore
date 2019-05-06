@@ -6,6 +6,7 @@
 /ATC-war/build/
 /ATC-war/dist/
 >>>>>>> ae91deaa1f6865571fd5b5e5fd175d096b905eef
+<<<<<<< HEAD
 ATC-ejb/nbproject/private/private.properties
 ATC-ejb/nbproject/private/private.xml
 ATC-war/dist/ATC-war.war
@@ -14,3 +15,7 @@ ATC-war/nbproject/private/private.xml
 build/ATC-ejb.jar
 build/ATC-war.war
 nbproject/private/private.properties
+=======
+ATC-ejb/nbproject/private/private.xml
+ATC-war/nbproject/private/private.xml
+>>>>>>> chien

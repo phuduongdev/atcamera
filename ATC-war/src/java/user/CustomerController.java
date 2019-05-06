@@ -53,6 +53,7 @@ public class CustomerController implements Serializable {
     }
 
     public String add() {
+<<<<<<< HEAD
 
         if (this.confim.equals(ctm.getCtmPassword())) {
             ctm.setCtmid(tools.CommonUse.generateUUID());
@@ -66,6 +67,24 @@ public class CustomerController implements Serializable {
             return "register";
         }
 
+=======
+       
+            
+            if (this.confim.equals(ctm.getCtmPassword())) {
+                ctm.setCtmid(tools.CommonUse.generateUUID());
+                ctm.setCreatedDate(new Timestamp(new Date().getTime()));
+                ctm.setCtmStatus("new");
+                 this.customerFacade.create(this.ctm);
+                 this.ctm = new Customer();
+                    return "index";
+            }else{
+                this.msg = "Not match!!!";
+                return "register";
+            }
+           
+            
+       
+>>>>>>> chien
     }
 
     public String navResgiter() {
