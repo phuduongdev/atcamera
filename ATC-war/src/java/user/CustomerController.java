@@ -61,7 +61,7 @@ public class CustomerController {
                  this.ctm = new Customer();
                     return "index";
             }else{
-                this.msg = "Pass khong khop";
+                this.msg = "Not match!!!";
                 return "register";
             }
            
