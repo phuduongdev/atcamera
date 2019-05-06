@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="cssplus">
+                <h:outputStylesheet name="assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css"  />
+                <h:outputStylesheet name="assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css"  />
+            </ui:define>
+
+            <ui:define name="content">
+                <!-- content -->
+                <div class="content">
+                    <div class="container">
+                        <!-- Page-Title -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <h:link outcome="#{aOrderMB.viewNav()}" styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                    Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
+                                    </h:link>
+                                </div>
+
+                                <h4 class="page-title">Order</h4>
+                                <ol class="breadcrumb">
+                                    <li><a href="#">ATC</a></li>
+                                    <li><a href="#">Order</a></li>
+                                    <li class="active">Details &amp; Update</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 card-box">
+
+                                <!--Details-->
+                                <div class="col-lg-6">
+                                    <div class="panel panel-color panel-custom">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                &bull;&nbsp;<h:outputText value="#{aOrderMB.order.ctmid.ctmFirstName}" styleClass="control-label" />
+                                                &bull;&nbsp;<h:outputText value="Details" styleClass="control-label" />
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <form class="form-horizontal">
+<!--                                                <div class="form-group">
+                                                    <h:graphicImage name="assets/images/gallery/1.jpg" styleClass="img img-thumbnail img-circle img-container small"/>
+                                                </div>-->
+
+                                                <div class="form-group">
+                                                    <h:outputText value="Order ID :" styleClass="col-sm-4 text-muted text-right"/>
+                                                    <div class="col-sm-8">
+                                                        <h:outputText value="#{aOrderMB.order.odmid}" title="Odmid" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <h:outputText value="Created Date :" styleClass="col-sm-4 text-muted text-right"/>
+                                                    <div class="col-sm-8">
+                                                        <h:outputLabel value="#{aOrderMB.order.createdDate}">
+                                                            <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
+                                                        </h:outputLabel>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h:outputText value="Total Price :" styleClass="col-sm-4 text-muted text-right"/>
+                                                    <div class="col-sm-8">
+                                                        <h:outputText value="#{aOrderMB.order.odmPrice}" title="OdmPrice"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h:outputText value="OdmStatus:" styleClass="col-sm-4 text-muted text-right" />
+                                                    <div class="col-sm-8">
+                                                        <h:outputText value="#{aOrderMB.order.odmStatus}" title="OdmStatus"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h:outputText value="Ctmid:" styleClass="col-sm-4 text-muted text-right"/>
+                                                    <div class="col-sm-8">
+                                                        <h:outputText value="#{aOrderMB.order.ctmid.ctmLastName}" title="Ctmid"/>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div><!--details-->
+
+                                <!--Update-->
+                                <div class="col-lg-6">
+                                    <div class="panel panel-color panel-custom">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">
+                                                &bull;&nbsp;<h:outputText value="Update" styleClass="control-label" />
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <h:form styleClass="form-horizontal" prependId="false">
+                                                <div class="form-group">
+                                                    <h:outputLabel styleClass="col-sm-4 control-label" value="Account ID" for="accid" />
+                                                    <div class="col-sm-8">
+                                                        <h:inputText id="accid" value="#{aAccountMB.account.accid}" 
+                                                                     title="Accid" styleClass="form-control" readonly="true"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Created Date" for="createdDate" styleClass="col-sm-4 control-label"/>
+                                                    <div class="col-sm-8">
+                                                        <h:inputText id="createdDate" value="#{aAccountMB.account.createdDate}" 
+                                                                     title="CreatedDate" styleClass="form-control" readonly="true">
+                                                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                        </h:inputText>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h:outputLabel value="User Name * " for="accUserName" styleClass="col-sm-4 control-label"/>
+                                                    <div class="col-sm-8">
+                                                        <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}" 
+                                                                     title="AccUserName" styleClass="form-control" />
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Password *" for="accPassword" styleClass="col-sm-4 control-label"/>
+                                                    <div class="col-sm-8">
+                                                        <h:inputSecret id="accPassword" value="#{aAccountMB.account.accPassword}" 
+                                                                       title="AccPassword" styleClass="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Role *" for="accRole"  styleClass="col-sm-4 control-label"/>
+                                                    <div class="col-sm-8">
+                                                        <h:selectOneMenu value="#{aAccountMB.account.accRole}" styleClass="form-control">
+                                                            <f:selectItem itemValue="manager" itemLabel="Manager"/>
+                                                            <f:selectItem itemValue="admin" itemLabel="Admin"/>
+                                                        </h:selectOneMenu>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Status *" for="accStatus" styleClass="col-sm-4 control-label" />
+                                                    <div class="col-sm-8">
+                                                        <h:selectOneRadio id="ctgStatus" value="#{aAccountMB.account.accStatus}" 
+                                                                          title="CtgStatus" class="radio radio-purple"  layout="pageDirection">
+                                                            <f:selectItem itemValue = "active" itemLabel="Active"/>
+                                                            <f:selectItem itemValue = "block" itemLabel = "Block" />
+                                                            <f:selectItem itemValue = "new" itemLabel = "New" />
+                                                        </h:selectOneRadio>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Description" for="accDescript" styleClass="col-sm-4 control-label" />
+                                                    <div class="col-sm-8">
+                                                        <h:inputTextarea id="accDescript" value="#{aAccountMB.account.accDescript}" 
+                                                                         title="AccDescript" styleClass="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-4 col-sm-8">
+
+                                                        <label> (*) Required </label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-4 col-sm-8">
+                                                        <h:commandLink action="#{aAccountMB.updateAccount()}" value="Confirm"
+                                                                       styleClass="btn btn-success waves-effect waves-light"/>
+                                                        <!--                                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                                                                                                            Cancel
+                                                                                                        </button>-->
+                                                    </div>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div><!--update-->
+
+                            </div>
+                        </div>
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+            </ui:define>
+
+            <ui:define name="jsplus">
+                <h:outputScript name="assets/plugins/parsleyjs/parsley.min.js"></h:outputScript>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    $(document).ready(function () {
+                        $('form').parsley();
+                    });
+                    //]]>
+                </script>
+
+                <h:outputScript name="assets/plugins/owl.carousel/dist/owl.carousel.min.js"></h:outputScript>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    $(document).ready(function () {
+                        $('form').parsley();
+                    });
+                    jQuery(document).ready(function ($) {
+                        //owl carousel
+                        $("#owl-slider").owlCarousel({
+                            loop: true,
+                            nav: false,
+                            autoplay: true,
+                            autoplayTimeout: 4000,
+                            autoplayHoverPause: true,
+                            animateOut: 'fadeOut',
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                600: {
+                                    items: 1
+                                },
+                                1000: {
+                                    items: 1
+                                }
+                            }
+                        });
+
+                        $("#owl-slider-2").owlCarousel({
+                            loop: false,
+                            nav: false,
+                            autoplay: true,
+                            autoplayTimeout: 4000,
+                            autoplayHoverPause: true,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                600: {
+                                    items: 1
+                                },
+                                1000: {
+                                    items: 1
+                                }
+                            }
+                        });
+
+                        //Owl-Multi
+                        $('#owl-multi').owlCarousel({
+                            loop: true,
+                            margin: 20,
+                            nav: false,
+                            autoplay: true,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                480: {
+                                    items: 2
+                                },
+                                700: {
+                                    items: 4
+                                },
+                                1000: {
+                                    items: 3
+                                },
+                                1100: {
+                                    items: 5
+                                }
+                            }
+                        })
+                    });
+                    //]]>
+                </script>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

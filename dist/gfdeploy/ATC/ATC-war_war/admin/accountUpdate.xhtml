@@ -4,8 +4,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <body>
         <ui:composition template="./template.xhtml">
             <ui:define name="cssplus">
                 <h:outputStylesheet name="assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css"  />
@@ -13,6 +11,7 @@
             </ui:define>
 
             <ui:define name="content">
+                <!-- content -->
                 <div class="content">
                     <div class="container">
                         <!-- Page-Title -->
@@ -205,94 +204,7 @@
             </ui:define>
 
             <ui:define name="jsplus">
-                <h:outputScript name="assets/plugins/parsleyjs/parsley.min.js"></h:outputScript>
-
-                <script type="text/javascript">
-                    //<![CDATA[
-                    $(document).ready(function () {
-                        $('form').parsley();
-                    });
-                    //]]>
-                </script>
-
-                <h:outputScript name="assets/plugins/owl.carousel/dist/owl.carousel.min.js"></h:outputScript>
-
-                <script type="text/javascript">
-                    //<![CDATA[
-                    $(document).ready(function () {
-                        $('form').parsley();
-                    });
-                    jQuery(document).ready(function ($) {
-                        //owl carousel
-                        $("#owl-slider").owlCarousel({
-                            loop: true,
-                            nav: false,
-                            autoplay: true,
-                            autoplayTimeout: 4000,
-                            autoplayHoverPause: true,
-                            animateOut: 'fadeOut',
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                600: {
-                                    items: 1
-                                },
-                                1000: {
-                                    items: 1
-                                }
-                            }
-                        });
-
-                        $("#owl-slider-2").owlCarousel({
-                            loop: false,
-                            nav: false,
-                            autoplay: true,
-                            autoplayTimeout: 4000,
-                            autoplayHoverPause: true,
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                600: {
-                                    items: 1
-                                },
-                                1000: {
-                                    items: 1
-                                }
-                            }
-                        });
-
-                        //Owl-Multi
-                        $('#owl-multi').owlCarousel({
-                            loop: true,
-                            margin: 20,
-                            nav: false,
-                            autoplay: true,
-                            responsive: {
-                                0: {
-                                    items: 1
-                                },
-                                480: {
-                                    items: 2
-                                },
-                                700: {
-                                    items: 4
-                                },
-                                1000: {
-                                    items: 3
-                                },
-                                1100: {
-                                    items: 5
-                                }
-                            }
-                        })
-                    });
-                    //]]>
-                </script>
+                
             </ui:define>
-
         </ui:composition>
-
-    </body>
 </html>

@@ -16,7 +16,7 @@ div.dataTables_filter {
 div.dataTables_filter label {
 	font-weight: normal;
 	white-space: nowrap;
-	text-align: left;
+        text-align: left;
 }
 
 div.dataTables_filter input {
