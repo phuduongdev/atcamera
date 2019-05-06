@@ -7,68 +7,7 @@
    
    
        <ui:composition template="./newTemplate.xhtml">
-
-            <ui:define name="content">
-                
-        <div id="content">
-           
-        <div id="hot">
-                           
-                            <div class="container">  
-                                <c:forEach items="#{productController.findAll()}" var="p">
-                                     
-                                <div class="product-slider owl-carousel owl-theme">
-                                    
-
-
-                                        <div class="item">
-                                           
-                                            <div class="product">
-                                                <div class="flip-container">
-                                                    <div class="flipper">
-                                                        <div class="front">
-                                                            
-                                                                <h:graphicImage name="img/KX-1004C4.png" alt="" styleClass="img-fluid"/>
-                                                           
-                                                        </div>
-                                                        <div class="back">
-                                                           
-                                                                <h:graphicImage name="img/KX-1004C4.png" alt="" styleClass="img-fluid"/>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                    <h:graphicImage name="img/KX-1004C4.png" alt=""  styleClass="img-fluid"/>
-                                                
-                                                <div class="text">
-                                                    <h3>
-                                                        
-                                                        <h:outputText value="#{p.prdTittle}"/>
-                                                        
-                                                    </h3>
-                                                    <p class="price"> 
-                                                       
-                                                        <h:outputText value=" VND"></h:outputText>
-                                                       
-                                                    </p>
-                                                </div>
-                                            </div>
-                                           
-                                        </div>      
-
-
-
-                                   
-                                </div>
-                                 
-                                </c:forEach>  
-                            </div>
-                         
-                     </div>
-                
-                </div>
-               
+            <ui:define name="content">               
             </ui:define>
        </ui:composition>
     

@@ -7,11 +7,15 @@ package tools;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Currency;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -64,6 +68,20 @@ public class CommonUse implements Serializable {
     }
 
     public static String changePriceToVND(double priceInput) {
+        try {
+            double price = priceInput;
+            Locale locale = new Locale("vi", "VN");
+            Currency currency = Currency.getInstance("VND");
+
+            DecimalFormatSymbols df = DecimalFormatSymbols.getInstance(locale);
+            df.setCurrency(currency);
+            NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+            numberFormat.setCurrency(currency);
+//            System.out.println();
+            return numberFormat.format(price);
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
         return "";
     }
 }

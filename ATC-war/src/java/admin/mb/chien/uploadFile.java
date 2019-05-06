@@ -6,6 +6,7 @@
 package admin.mb.chien;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -19,8 +20,9 @@ import javax.servlet.http.Part;
  */
 @ManagedBean
 @RequestScoped
-public class uploadFile {
+public class uploadFile implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private Part file;
     private String fileName;
     private long fileSize;

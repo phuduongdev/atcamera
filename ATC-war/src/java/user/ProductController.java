@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package user;
+
 import controller.ProductFacade;
 import entity.*;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 
 /**
  *
@@ -18,7 +19,9 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean
 @SessionScoped
-public class ProductController {
+public class ProductController implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @EJB
     private ProductFacade productFacade;
     Category ctg = new Category();
@@ -39,30 +42,38 @@ public class ProductController {
     public void setProduct(Product product) {
         this.product = product;
     }
+
     /**
      * Creates a new instance of ProductController
      */
     public ProductController() {
     }
-     public List<Product> findAll(){
-       return this.productFacade.findAll();
+
+    public List<Product> findAll() {
+        return this.productFacade.findAll();
     }
-    public String details(Product p){
+
+    public String details(Product p) {
         this.product = p;
-        return "details";
+        return "details?faces-redirect=true";
     }
-    public String details(){
+
+    public String details() {
         this.productFacade.edit(product);
         return "";
     }
-    public String productclient(Category ctg){
+
+    public String productclient(Category ctg) {
         this.ctg = ctg;
-        return "productclient";
-    };
-    public List<Product> getProductType(){
+        return "productclient?faces-redirect=true";
+    }
+
+    ;
+    public List<Product> getProductType() {
         return productFacade.findProductbyCtg(ctg);
     }
-    public  List<Product> getProductlist(){
+
+    public List<Product> getProductlist() {
         return productFacade.Listproduct(product);
     }
 }

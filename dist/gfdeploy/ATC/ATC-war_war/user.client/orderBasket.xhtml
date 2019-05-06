@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="./newTemplate.xhtml">
+        <ui:define name="content">
+            <div id="all">
+                <div id="content">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- breadcrumb-->
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li aria-current="page" class="breadcrumb-item active">Shopping cart</li>
+                                    </ol>
+                                </nav>
+                            </div>
+
+                            <div id="basket" class="col-lg-8">
+                                <h:form id="checkoutForm" prependId="false">
+                                    <div class="box">
+                                        <h1>Shopping cart</h1>
+                                        <!--<h:form id="checkoutForm" prependId="false">-->
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="text-center">
+                                                        <th>Image</th>
+                                                        <th>Product</th>
+                                                        <th>Quantity</th>
+                                                        <th>Unit price</th>
+                                                        <th>Discount</th>
+                                                        <th colspan="2">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <c:forEach var="item" items="#{orderController.cart}">
+                                                    <tbody>
+                                                        <tr class="text-center">
+                                                            <td><a href="#"><h:graphicImage name="#{item.prdid.prdImage}" alt=""/></a></td>
+                                                            <td>#{item.prdid.prdTittle}</td>
+                                                            <td class="text-center form-group">
+                                                                <h:commandLink id="btnSub" styleClass="fa fa-minus-square">
+                                                                    <f:ajax event="click" listener="#{orderController.cartsControl( item.prdid , 'subitem')}" 
+                                                                            render="@form summaryForm" />
+                                                                </h:commandLink>
+                                                                &nbsp;<h:inputText id="testQuan" value="#{item.oddQuantity}" styleClass="form-control-sm"  readonly="true"/>
+                                                                &nbsp;<h:commandLink id="btnAdd" styleClass="fa fa-plus-square">
+                                                                    <f:ajax event="click" listener="#{orderController.cartsControl(item.prdid , 'additem')}" 
+                                                                            render="@form summaryForm"/>
+                                                                </h:commandLink>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <h:outputText value="#{item.prdid.prdPrice}" >
+                                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td >
+                                                                <h:outputText value="#{orderController.discount}">
+                                                                    <f:convertNumber pattern="### %"/>
+                                                                </h:outputText></td>
+                                                            <td class="text-right">
+                                                                <h:outputText id="total-item" value="#{item.oddPrice}">
+                                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                                        </tr>                
+                                                    </tbody>    
+                                                </c:forEach>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th colspan="5">Total</th>
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <!--</h:form>-->
+                                        <!-- /.table-responsive-->
+                                        <!--<h:form prependId="false">-->
+                                        <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                                            <div class="left"><a href="index.xhtml" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
+                                            <div class="right">
+                                                <!--<button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button>-->
+                                                <!--<button type="submit" class="btn btn-primary">Proceed to checkout </button>-->
+                                                <h:commandLink id="btnCheckout" action="#{orderController.checkOut()}"
+                                                               value="Proceed to checkout " styleClass="btn btn-primary">
+                                                    <i class="fa fa-chevron-right"></i>
+                                                </h:commandLink>
+                                                <p>#{orderController.msg}</p>
+                                            </div>
+                                        </div>
+                                        <!--</h:form>-->
+                                    </div>
+                                    <!-- /.box-->
+                                </h:form>
+                            </div>
+
+
+
+                            <!-- /.col-lg-9-->
+                            <div class="col-lg-4">
+                                <h:form prependId="false" id="summaryForm">
+                                    <div id="order-summary" class="box">
+                                        <div class="box-header">
+                                            <h3 class="mb-0">Order summary</h3>
+                                        </div>
+                                        <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Order subtotal</td>
+                                                        <th>
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Shipping and handling</td>
+                                                        <th>
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tax</td>
+                                                        <th>
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr class="total">
+                                                        <td>Total</td>
+                                                        <th>
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </h:form>
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h4 class="mb-0">Coupon code</h4>
+                                    </div>
+                                    <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
+                                    <form>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control"/><span class="input-group-append">
+                                                <button type="button" class="btn btn-primary"><i class="fa fa-gift"></i></button></span>
+                                        </div>
+                                        <!-- /input-group-->
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /.col-md-3-->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>
+
