@@ -36,20 +36,27 @@ public class OrderController implements Serializable {
     
     private List<OrderDetail> cart;
     private String msg;
+    private int discount = 0;
 
     /**
      * Creates a new instance of CartController
      */
     public OrderController() {
         cart = new ArrayList();
-        
+        msg = "";
     }
     
     public List<Product> getTestProduct() {
         return productFacade.findAll().subList(1, 10);
     }
     
-    
+    public double pickODMasterPrice(){
+        double odmprice = 0;
+        for (OrderDetail item : cart) {
+            odmprice = odmprice + item.getOddPrice();
+        }
+        return odmprice;
+    } 
     
     public String checkOut() {
         try {
@@ -59,12 +66,7 @@ public class OrderController implements Serializable {
             om.setOdmid(tools.CommonUse.generateUUID());
             om.setCreatedDate(new Timestamp(new Date().getTime()));
 //            om.setCtmid(new Customer());
-            double omPrice = 0;
-            for (OrderDetail item : cart) {
-                
-                omPrice = omPrice + item.getOddPrice();
-            }
-            om.setOdmPrice(omPrice);
+            om.setOdmPrice(pickODMasterPrice());
             om.setOdmStatus("new");
             orderMasterFacade.create(om);
             for (OrderDetail item : cart) {
@@ -90,13 +92,11 @@ public class OrderController implements Serializable {
             selectItem.setOddQuantity(1);
             selectItem.setOddPrice(selectProduct.getPrdPrice());
             selectItem.setPrdid(selectProduct);
-//            OrderMaster odm = new OrderMaster();
-//            odm.setOdmid(odmUID);
-//            selectItem.setOdmid(odm);
 //            chua co sp nao trong gio hang
             if (cart.size() == 0) {
                 cart.add(selectItem);
             } else {
+                //da co selectProduct
                 boolean cartHasItem = false;
                 for (OrderDetail existItem : cart) {
                     if (selectItem.getPrdid().equals(existItem.getPrdid())) {
@@ -128,7 +128,7 @@ public class OrderController implements Serializable {
                         break;
                     }
                 }
-                //da co selectProduct
+                
                 if (!cartHasItem) {
                     //chua co selectProduct
                     cart.add(selectItem);
@@ -138,7 +138,7 @@ public class OrderController implements Serializable {
         } catch (Exception e) {
             System.err.println("------------ ??? ----------------" + e.getMessage());
         }
-        return "view";
+        return "orderBasket";
     }
     
     public List<OrderDetail> getCart() {
@@ -155,6 +155,14 @@ public class OrderController implements Serializable {
     
     public void setMsg(String msg) {
         this.msg = msg;
+    }    
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
     
 }

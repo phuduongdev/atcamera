@@ -91,9 +91,9 @@
                                             <p class="price text-center"><h:outputLabel>#{productController.product.prdPrice} VND</h:outputLabel></p>
 
                                             <p class="text-center buttons">
-                                                <h:commandLink action="#{orderController.addCart(productController.product)}" 
-                                                               class="btn btn-primary">
+                                                <h:commandLink class="btn btn-primary">
                                                     <i class="fa fa-shopping-cart"></i> Add to cart
+                                                    <f:ajax render="cartSize" listener="#{orderController.cartsControl(productController.product, 'additem')}"/>
                                                 </h:commandLink>
                                                 <a href="basket.xhtml" class="btn btn-outline-primary">
                                                     <i class="fa fa-heart"></i> Add to wishlist
