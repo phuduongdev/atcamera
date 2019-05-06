@@ -7,6 +7,7 @@ package admin.mb.chien;
 
 import controller.CameraFacade;
 import controller.CategoryFacade;
+import controller.DvrFacade;
 import controller.ProductFacade;
 import entity.*;
 import java.io.Serializable;
@@ -28,6 +29,9 @@ import javax.servlet.http.Part;
 @ManagedBean
 @SessionScoped
 public class aProductMB implements Serializable {
+
+    @EJB
+    private DvrFacade dvrFacade;
 
     private static final long serialVersionUID = 1L;
 
@@ -119,8 +123,30 @@ public class aProductMB implements Serializable {
                 upload();
                 product.setPrdImage(imgaePath);
                 productFacade.create(product);
+                camera.setCamid(tools.CommonUse.generateUUID());
+                camera.setCreatedDate(new Timestamp(new Date().getTime()));
                 camera.setPrdid(product);
                 cameraFacade.create(camera);
+            } else if (option.equalsIgnoreCase("dvr")) {
+                product.setPrdid(prid);
+                product.setCreatedDate(new Timestamp(new Date().getTime()));
+                product.setPrdStatus("new");
+                product.setCtgid(categoryFacade.find(cateid));
+                upload();
+                product.setPrdImage(imgaePath);
+                productFacade.create(product);
+                dvr.setDvrid(tools.CommonUse.generateUUID());
+                dvr.setCreatedDate(new Timestamp(new Date().getTime()));
+                dvr.setPrdid(product);
+                dvrFacade.create(dvr);
+            } else {
+                product.setPrdid(prid);
+                product.setCreatedDate(new Timestamp(new Date().getTime()));
+                product.setPrdStatus("new");
+                product.setCtgid(categoryFacade.find(cateid));
+                upload();
+                product.setPrdImage(imgaePath);
+                productFacade.create(product);
             }
 
             return "productView?faces-redirect=true";
