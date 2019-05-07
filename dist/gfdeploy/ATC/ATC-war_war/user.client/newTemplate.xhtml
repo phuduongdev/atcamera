@@ -40,14 +40,27 @@
                 <div id="top">
                     <div class="container">
                         <div class="row">
-                            <div><a>Wellcome to An Thang camera store</a></div>
-                            <div class="col-lg-6 text-center text-lg-right">
-                                <ul class="menu list-inline mb-0">
-                                    <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
-                                    <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
-                                    <li class="list-inline-item"><a href="contain.html">Contact</a></li>
-                                </ul>
-                            </div>
+                            <c:if test="${member==null}">
+                                <div><a>Wellcome to An Thang camera store</a></div>
+                                <div class="col-lg-6 text-center text-lg-right">
+                                    <ul class="menu list-inline mb-0">
+                                        <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                                        <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
+                                        <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </c:if>
+                            <c:if test="${member!=null}">
+                                <div><a>Wellcome <h:commandLink action="#{login.accountViewNav()}" value="#{member.ctmEmail}"/> </a><a>to An Thang camera store</a></div>
+                                
+                                <div class="col-lg-6 text-center text-lg-right">
+                                    <ul class="menu list-inline mb-0">
+                                        <li class="list-inline-item"><h:commandLink action="#{login.logout()}">Logout</h:commandLink></li>
+                                        <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
+                                        <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                 </div><!-- *** TOP BAR END ***-->
@@ -152,10 +165,9 @@
         <div id="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="mb-3">Where to find us</h4>
-                        <p><strong>Obaju Ltd.</strong><br/>13/25 New Avenue<br/>New Heaven<br/>45Y 73J<br/>England<br/><strong>Great Britain</strong></p>
-                        <hr class="d-block d-md-none"/>
+                    <div class="col-md-4">
+                        <h3><i class="fa fa-map-marker"></i>Address</h3>
+                        <p>872 Ta Quang Buu<br/>District 5<br/>Ho Chi Minh<br/>Viet Nam<br/><strong>An Thang Camera Store</strong></p>
                     </div>
                     <!-- /.col-lg-3-->
 
@@ -190,31 +202,32 @@
         <!-- *** COPYRIGHT END ***-->
 
         <!-- Login modal -->
-        <!--                <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Customer login</h5>
-                                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="customer-orders.html" method="post">
-                                    <div class="form-group">
-                                        <input id="email-modal" type="text" placeholder="email" class="form-control"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <input id="password-modal" type="password" placeholder="password" class="form-control"/>
-                                    </div>
-                                    <p class="text-center">
-                                        <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
-                                    </p>
-                                </form>
-                                <p class="text-center text-muted">Not registered yet?</p>
-                                <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
-                            </div>
-                        </div>
+        <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Customer login</h5>
+                        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                     </div>
-                </div>-->
+                    <div class="modal-body">
+                        <h:form>
+                             
+                            <div class="form-group">
+                                <h:inputText id="email-modal" title="email" class="form-control" value="#{login.email}"  styleClass="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <h:inputSecret id="password-modal" title="password" value="#{login.password}"  styleClass="form-control"/>
+                            </div>
+                            <p class="text-center">
+                                <h:commandLink styleClass="btn btn-primary" action="#{login.login()}"><i class="fa fa-sign-in"></i> Log in</h:commandLink>
+                            </p>
+                        </h:form>
+                        <p class="text-center text-muted">Not registered yet?</p>
+                        <p class="text-center text-muted"><a href="register.xhtml"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- JavaScript files-->
         <h:outputScript name="vendor/jquery/jquery.min.js"></h:outputScript>

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="./newTemplate.xhtml">
+        <ui:define name="content">
+            <div id="all">
+                <div id="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="box">
+                                    <h1>Login</h1>
+                                    <p class="lead">Already our customer?</p>
+                                    <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                                    <hr/>
+                                    <h:form id="loginuser">
+                                        <h:messages style="color: red"/>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <h:inputText id="loginemail" class="form-control" value="#{login.email}">
+                                            </h:inputText>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="loginpassword">Password</label>
+                                            <h:inputSecret id="password" class="form-control" value="#{login.password}" >
+                                            </h:inputSecret>
+                                        </div>
+                                        <div class="text-center">
+                                            <h:commandLink action="#{login.login()}" type="submit" styleClass="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</h:commandLink>
+                                        </div>
+                                    </h:form>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -27,7 +27,46 @@ public class CustomerController implements Serializable {
     private CustomerFacade customerFacade;
 
     private Customer ctm = new Customer();
-    private String confim, msg = " ";
+    private String confim, msg = " ",ctmid;
+
+    
+
+    public CustomerController() {
+    }
+
+    public List<Customer> getCustomer() {
+        return customerFacade.findAll();
+    }
+
+    public String add() {
+        if (this.confim.equals(ctm.getCtmPassword())) {
+            ctm.setCtmid(tools.CommonUse.generateUUID());
+            ctm.setCreatedDate(new Timestamp(new Date().getTime()));
+            ctm.setCtmStatus("new");
+            this.customerFacade.create(this.ctm);
+            this.ctm = new Customer();
+            return "index";
+        } else {
+            this.msg = "Not match!!!";
+            return "register";
+        }
+
+    }
+   
+
+    public String navResgiter() {
+        msg = " ";
+
+        return "register";
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     public String getConfim() {
         return confim;
@@ -44,60 +83,11 @@ public class CustomerController implements Serializable {
     public void setCtm(Customer ctm) {
         this.ctm = ctm;
     }
-
-    public CustomerController() {
+    public String getCtmid() {
+        return ctmid;
     }
 
-    public List<Customer> getCustomer() {
-        return customerFacade.findAll();
+    public void setCtmid(String ctmid) {
+        this.ctmid = ctmid;
     }
-
-    public String add() {
-<<<<<<< HEAD
-
-        if (this.confim.equals(ctm.getCtmPassword())) {
-            ctm.setCtmid(tools.CommonUse.generateUUID());
-            ctm.setCreatedDate(new Timestamp(new Date().getTime()));
-            ctm.setCtmStatus("new");
-            this.customerFacade.create(this.ctm);
-            this.ctm = new Customer();
-            return "index";
-        } else {
-            this.msg = "Pass khong khop";
-            return "register";
-        }
-
-=======
-       
-            
-            if (this.confim.equals(ctm.getCtmPassword())) {
-                ctm.setCtmid(tools.CommonUse.generateUUID());
-                ctm.setCreatedDate(new Timestamp(new Date().getTime()));
-                ctm.setCtmStatus("new");
-                 this.customerFacade.create(this.ctm);
-                 this.ctm = new Customer();
-                    return "index";
-            }else{
-                this.msg = "Not match!!!";
-                return "register";
-            }
-           
-            
-       
->>>>>>> chien
-    }
-
-    public String navResgiter() {
-        msg = " ";
-        return "register";
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
 }

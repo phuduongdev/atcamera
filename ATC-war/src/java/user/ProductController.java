@@ -73,7 +73,7 @@ public class ProductController implements Serializable {
         return productFacade.findProductbyCtg(ctg);
     }
 
-    public List<Product> getProductlist() {
-        return productFacade.Listproduct(product);
+    public List<Product> getCamlist() {
+        return productFacade.Listproduct("camera");
     }
 }

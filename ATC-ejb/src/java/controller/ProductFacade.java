@@ -36,10 +36,10 @@ public class ProductFacade extends AbstractFacade<Product> {
         q.setParameter("type", ctg);
         return q.getResultList();
     }
-     public List<Product> Listproduct(Product product) {
-         TypedQuery q = em.createQuery("SELECT top 10 * FROM Product ", Product.class);
-        
-        return q.getResultList();
+     public List<Product> Listproduct(String ctgType) {
+         TypedQuery q = em.createQuery("SELECT  p FROM Product p where p.ctgid.ctgType = :type", Product.class);
+        q.setParameter("type", ctgType);
+        return q.getResultList().subList(1, 10);
     }
 
     
