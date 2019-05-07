@@ -60,7 +60,8 @@ public class aAccountMB implements Serializable {
 
     public String createAccount() {
         try {
-            account.setAccid(tools.CommonUse.generateUUID());//            
+            account.setAccid(tools.CommonUse.generateUUID());
+            account.setCreatedDate(new Timestamp(new Date().getTime()));
             account.setAccStatus("new");
             accountFacade.create(account);
             return "accountView?faces-redirect=true";
