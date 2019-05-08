@@ -52,8 +52,6 @@ public class Customer implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "ctmid")
     private String ctmid;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
@@ -99,11 +97,11 @@ public class Customer implements Serializable {
     @Column(name = "ctmStatus")
     private String ctmStatus;
     @OneToMany(mappedBy = "ctmid")
+    private Collection<Rating> ratingCollection;
+    @OneToMany(mappedBy = "ctmid")
     private Collection<Wishlist> wishlistCollection;
     @OneToMany(mappedBy = "ctmid")
     private Collection<OrderMaster> orderMasterCollection;
-    @OneToMany(mappedBy = "ctmid")
-    private Collection<Wishlish> wishlishCollection;
 
     public Customer() {
     }
@@ -112,9 +110,8 @@ public class Customer implements Serializable {
         this.ctmid = ctmid;
     }
 
-    public Customer(String ctmid, Date createdDate, String ctmPassword) {
+    public Customer(String ctmid, String ctmPassword) {
         this.ctmid = ctmid;
-        this.createdDate = createdDate;
         this.ctmPassword = ctmPassword;
     }
 
@@ -231,6 +228,15 @@ public class Customer implements Serializable {
     }
 
     @XmlTransient
+    public Collection<Rating> getRatingCollection() {
+        return ratingCollection;
+    }
+
+    public void setRatingCollection(Collection<Rating> ratingCollection) {
+        this.ratingCollection = ratingCollection;
+    }
+
+    @XmlTransient
     public Collection<Wishlist> getWishlistCollection() {
         return wishlistCollection;
     }
@@ -246,15 +252,6 @@ public class Customer implements Serializable {
 
     public void setOrderMasterCollection(Collection<OrderMaster> orderMasterCollection) {
         this.orderMasterCollection = orderMasterCollection;
-    }
-
-    @XmlTransient
-    public Collection<Wishlish> getWishlishCollection() {
-        return wishlishCollection;
-    }
-
-    public void setWishlishCollection(Collection<Wishlish> wishlishCollection) {
-        this.wishlishCollection = wishlishCollection;
     }
 
     @Override

@@ -34,12 +34,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Product")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT  p FROM Product p"),
+    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findByPrdid", query = "SELECT p FROM Product p WHERE p.prdid = :prdid"),
     @NamedQuery(name = "Product.findByCreatedDate", query = "SELECT p FROM Product p WHERE p.createdDate = :createdDate"),
-    @NamedQuery(name = "Product.findByPrdTittle", query = "SELECT p FROM Product p WHERE p.prdTittle = :prdTittle"),
+    @NamedQuery(name = "Product.findByPrdModel", query = "SELECT p FROM Product p WHERE p.prdModel = :prdModel"),
     @NamedQuery(name = "Product.findByPrdPower", query = "SELECT p FROM Product p WHERE p.prdPower = :prdPower"),
     @NamedQuery(name = "Product.findByPrdWarranty", query = "SELECT p FROM Product p WHERE p.prdWarranty = :prdWarranty"),
+    @NamedQuery(name = "Product.findByPrdDiscount", query = "SELECT p FROM Product p WHERE p.prdDiscount = :prdDiscount"),
     @NamedQuery(name = "Product.findByPrdPrice", query = "SELECT p FROM Product p WHERE p.prdPrice = :prdPrice"),
     @NamedQuery(name = "Product.findByPrdDescript", query = "SELECT p FROM Product p WHERE p.prdDescript = :prdDescript"),
     @NamedQuery(name = "Product.findByPrdStatus", query = "SELECT p FROM Product p WHERE p.prdStatus = :prdStatus")})
@@ -55,8 +56,8 @@ public class Product implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @Size(max = 50)
-    @Column(name = "prdTittle")
-    private String prdTittle;
+    @Column(name = "prdModel")
+    private String prdModel;
     @Size(max = 150)
     @Column(name = "prdPower")
     private String prdPower;
@@ -75,9 +76,10 @@ public class Product implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "prdImage3")
     private String prdImage3;
+    @Column(name = "prdDiscount")
+    private Integer prdDiscount;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "prdPrice")
-    
     private Double prdPrice;
     @Size(max = 1073741823)
     @Column(name = "prdDescript")
@@ -120,12 +122,12 @@ public class Product implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public String getPrdTittle() {
-        return prdTittle;
+    public String getPrdModel() {
+        return prdModel;
     }
 
-    public void setPrdTittle(String prdTittle) {
-        this.prdTittle = prdTittle;
+    public void setPrdModel(String prdModel) {
+        this.prdModel = prdModel;
     }
 
     public String getPrdPower() {
@@ -168,8 +170,16 @@ public class Product implements Serializable {
         this.prdImage3 = prdImage3;
     }
 
+    public Integer getPrdDiscount() {
+        return prdDiscount;
+    }
+
+    public void setPrdDiscount(Integer prdDiscount) {
+        this.prdDiscount = prdDiscount;
+    }
+
     public Double getPrdPrice() {
-        return prdPrice ;
+        return prdPrice;
     }
 
     public void setPrdPrice(Double prdPrice) {

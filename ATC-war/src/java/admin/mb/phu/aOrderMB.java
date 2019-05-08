@@ -5,6 +5,7 @@
  */
 package admin.mb.phu;
 
+import controller.OrderDetailFacade;
 import controller.OrderMasterFacade;
 import entity.*;
 import java.io.Serializable;
@@ -20,9 +21,12 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class aOrderMB implements Serializable {
+    @EJB
+    private OrderDetailFacade orderDetailFacade;
 
     @EJB
     private OrderMasterFacade orderMasterFacade;
+    
 
     private static final long serialVersionUID = 1L;
 
@@ -50,7 +54,9 @@ public class aOrderMB implements Serializable {
         return orderMasterFacade.findAll();
     }
     
-    
+    public List<OrderDetail> getOrderDetailsByOMID(OrderMaster selectOM){
+        return orderDetailFacade.findOrderDetailsByOrderMasterID(selectOM);
+    }
 
     public OrderMaster getOrder() {
         return order;
