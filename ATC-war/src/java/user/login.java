@@ -44,7 +44,6 @@ public class login {
         HttpSession httpSession = request.getSession(false);
         loginCustomer = (Customer) httpSession.getAttribute("member");
         return "myAccount?faces-redirect=true";
-
     }
 
     public String updatePro() {

@@ -26,3 +26,5 @@ ATC-war/dist/ATC-war.war
 ATC-war/nbproject/private/private.xml
 build/ATC-ejb.jar
 build/ATC-war.war
+ATC-war/dist/ATC-war.war
+build/ATC-war.war
