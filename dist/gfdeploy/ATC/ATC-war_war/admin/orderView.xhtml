@@ -73,14 +73,16 @@
                                                                 <f:convertNumber pattern="#,###,###,### đ"/>
                                                             </h:outputText>
                                                         </td>
-                                                        <td>
+                                                        <td align="center">
                                                             <span class="label label-table 
-                                                                  ${item.odmStatus == 'new' ? 'label-warning' : (
-                                                                    item.odmStatus == 'active' ? 'label-success' : 'label-inverse')}">
+                                                                  ${item.odmStatus eq 'new' ? 'label-danger' : (
+                                                                    item.odmStatus eq 'active' ? 'label-info' : (
+                                                                    item.odmStatus eq 'half' ? 'label-warning' : (
+                                                                    item.odmStatus eq 'completed' ? 'label-success' : 'label-inverse')))}">
                                                                   ${item.odmStatus.toUpperCase()}
                                                             </span>
                                                         </td>
-                                                        <td></td>
+                                                        <td>#{item.ctmid.ctmFirstName}</td>
                                                         <td>
                                                             <h:commandLink action="#{aOrderMB.updateNav()}" styleClass="table-action-btn">
                                                                 <i class="md md-edit"></i>

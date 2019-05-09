@@ -4,9 +4,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-    <body>
-
         <ui:composition template="./template.xhtml">
             <ui:define name="content">
                 <div class="content">
@@ -157,24 +154,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>  container 
+                    </div>  
+                    <!--container--> 
 
                 </div> 
             </ui:define>
-
-            <ui:define name="jsplus">
-                <h:outputScript name="assets/plugins/parsleyjs/parsley.min.js"></h:outputScript>>
-
-                <script type="text/javascript">
-                    //<![CDATA[
-                    $(document).ready(function () {
-                        $('form').parsley();
-                    });
-                    //]]>
-                </script>
-            </ui:define>
-
         </ui:composition>
-
-    </body>
 </html>

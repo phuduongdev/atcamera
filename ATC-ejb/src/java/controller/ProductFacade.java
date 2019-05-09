@@ -5,7 +5,6 @@
  */
 package controller;
 
-
 import entity.Category;
 import entity.Product;
 import java.util.List;
@@ -20,6 +19,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class ProductFacade extends AbstractFacade<Product> {
+
     @PersistenceContext(unitName = "ATC-ejbPU")
     private EntityManager em;
 
@@ -31,16 +31,16 @@ public class ProductFacade extends AbstractFacade<Product> {
     public ProductFacade() {
         super(Product.class);
     }
+
     public List<Product> findProductbyCtg(Category ctg) {
-         TypedQuery q = em.createQuery("SELECT c  FROM Product c WHERE c.ctgid = :type", Product.class);
+        TypedQuery q = em.createQuery("SELECT c FROM Product c WHERE c.ctgid = :type", Product.class);
         q.setParameter("type", ctg);
         return q.getResultList();
     }
-     public List<Product> Listproduct(String ctgType) {
-         TypedQuery q = em.createQuery("SELECT  p FROM Product p where p.ctgid.ctgType = :type", Product.class);
+
+    public List<Product> Listproduct(String ctgType) {
+        TypedQuery q = em.createQuery("SELECT  p FROM Product p where p.ctgid.ctgType = :type", Product.class);
         q.setParameter("type", ctgType);
         return q.getResultList().subList(1, 10);
     }
-
-    
 }

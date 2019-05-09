@@ -5,6 +5,9 @@
         <group>
             <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/admin/orderUpdate.xhtml</file>
             <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/src/java/admin/mb/phu/aOrderMB.java</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/admin/template.xhtml</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/src/java/admin/mb/phu/aLogin.java</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/admin/orderView.xhtml</file>
         </group>
     </open-files>
 </project-private>
