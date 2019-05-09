@@ -3,22 +3,362 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
         <ui:composition template="./template.xhtml">
 
             <ui:define name="cssplus">
-                cssplus
+                <h:outputStylesheet name="assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css"  />
+                <h:outputStylesheet name="assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css"  />
             </ui:define>
 
             <ui:define name="content">
-                
+                <div class="content">
+                    <div class="container">
+                        <!--Page-Title--> 
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <h:link outcome="#{aProductMB.productViewNav()}"
+                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                        Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
+                                    </h:link>
+                                </div>
+
+                                <h4 class="page-title">Product</h4>
+                                <ol class="breadcrumb">
+                                    <li><a href="#">ATC</a></li>
+                                    <li><a href="#">Product</a></li>
+                                    <li class="active">Details</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="panel panel-color panel-custom">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <h:outputText value="#{aProductMB.product.ctgid.ctgType}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                        <h:outputText value="#{aProductMB.product.ctgid.ctgTitle}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                        <h:outputText value="#{aProductMB.product.prdTittle}" styleClass="control-label" />
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <h:form class="form-horizontal">
+                                        <div class="clearfix form-group">
+                                            <h:outputText value="Product UID:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.product.createdDate}" styleClass="text-purple">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                </h:outputLabel>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:inputText value="#{aProductMB.product.prdPower}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Warranty:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:inputText value="#{aProductMB.product.prdWarranty}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Price:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:inputText value="#{aProductMB.product.prdPrice}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Description:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:inputText value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="owl-carousel owl-theme" id="owl-multi">
+                                                <div class="item">
+                                                    <h:graphicImage name="assets/images/gallery/1.jpg" />
+                                                </div>
+                                                <div class="item">
+                                                    <h:graphicImage name="assets/images/gallery/2.jpg" />
+                                                </div>
+                                                <div class="item">
+                                                    <h:graphicImage name="assets/images/gallery/3.jpg" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12 text-center">
+                                                <h:commandLink action="#{aProductMB.update()}" value="Update"
+                                                               styleClass="btn btn-success waves-effect waves-light"/>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <c:if test="#{aProductMB.product.ctgid.ctgType.equalsIgnoreCase('dvr')}">
+                            <div class="col-lg-6">
+                                <div class="panel panel-color panel-custom">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <h:outputText value="DVR" styleClass="control-label" />
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="DVR UID:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.dvr.dvrid}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Channel:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.dvr.dvrChannel}" styleClass="text-purple">
+
+                                                    </h:inputText>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Compression:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.dvr.dvrCompression}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="InPort:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.dvr.dvrInPort}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="OutPort:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.dvr.dvrOutPort}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Playback:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.dvr.dvrPlayback}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.dvr.dvrPower}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Record:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.dvr.dvrRecord}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+
+                        <c:if test="#{aProductMB.product.ctgid.ctgType.equalsIgnoreCase('camera')}">
+                            <div class="col-lg-6">
+                                <div class="panel panel-color panel-custom">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <h:outputText value="Camera" styleClass="control-label" />
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <form class="form-horizontal">
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="Camera UID:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.camera.camid}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="IR:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camIR}" styleClass="text-purple">
+
+                                                    </h:inputText>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Len:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camLen}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Material:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camMaterial}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Memory:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camMemory}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Record:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camRecord}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Resolution:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camResolution}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Sensor:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camSensor}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Temperature:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camTemperature}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="VideoStandard:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.camera.camVideoStandard}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
+                        
+                    </div><!--container--> 
+                </div><!--content-->
             </ui:define>
 
             <ui:define name="jsplus">
-                jsplus
+                <h:outputScript name="assets/plugins/parsleyjs/parsley.min.js"></h:outputScript>>
+                <h:outputScript name="assets/plugins/owl.carousel/dist/owl.carousel.min.js"></h:outputScript>
+
+                <script type="text/javascript">
+                    //<![CDATA[
+                    $(document).ready(function () {
+                        $('form').parsley();
+                    });
+                    jQuery(document).ready(function ($) {
+                        //owl carousel
+                        $("#owl-slider").owlCarousel({
+                            loop: true,
+                            nav: false,
+                            autoplay: true,
+                            autoplayTimeout: 4000,
+                            autoplayHoverPause: true,
+                            animateOut: 'fadeOut',
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                600: {
+                                    items: 1
+                                },
+                                1000: {
+                                    items: 1
+                                }
+                            }
+                        });
+
+                        $("#owl-slider-2").owlCarousel({
+                            loop: false,
+                            nav: false,
+                            autoplay: true,
+                            autoplayTimeout: 4000,
+                            autoplayHoverPause: true,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                600: {
+                                    items: 1
+                                },
+                                1000: {
+                                    items: 1
+                                }
+                            }
+                        });
+
+                        //Owl-Multi
+                        $('#owl-multi').owlCarousel({
+                            loop: true,
+                            margin: 20,
+                            nav: false,
+                            autoplay: true,
+                            responsive: {
+                                0: {
+                                    items: 1
+                                },
+                                480: {
+                                    items: 2
+                                },
+                                700: {
+                                    items: 4
+                                },
+                                1000: {
+                                    items: 3
+                                },
+                                1100: {
+                                    items: 5
+                                }
+                            }
+                        })
+                    });
+                    //]]>
+                </script>
             </ui:define>
 
         </ui:composition>

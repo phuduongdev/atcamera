@@ -50,10 +50,14 @@ public class aCustomer implements Serializable {
         return "customerCreate?faces-redirect=true";
     }
 
-    public String customerUpdateNav() {
+    public String customerUpdateNav(Customer item) {
+        this.ctm = item;
         return "customerUpdate?faces-redirect=true";
     }
-
+    public String updateCustomer() {
+        customerFacade.edit(ctm);
+        return "customerView?faces-redirect=true";
+    }
     public List<Customer> getCustomer() {
         return customerFacade.findAll();
     }

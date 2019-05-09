@@ -107,80 +107,168 @@
                         </div>
                     </div>
 
+                     <c:if test="#{aProductMB.product.ctgid.ctgType.equalsIgnoreCase('dvr')}">
+                        <div class="col-lg-6">
+                            <div class="panel panel-color panel-custom">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        <h:outputText value="DVR" styleClass="control-label" />
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal">
+                                        <div class="clearfix form-group">
+                                            <h:outputText value="DVR UID:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.dvr.dvrid}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Channel:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.dvr.dvrChannel}" styleClass="text-purple">
+                                                   
+                                                </h:outputLabel>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Compression:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.dvr.dvrCompression}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="InPort:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.dvr.dvrInPort}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="OutPort:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.dvr.dvrOutPort}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h:outputText value="Playback:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.dvr.dvrPlayback}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.dvr.dvrPower}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="form-group">
+                                            <h:outputText value="Record:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.dvr.dvrRecord}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+                                        
+                                      
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
 
                     <c:if test="#{aProductMB.product.ctgid.ctgType.equalsIgnoreCase('camera')}">
                         <div class="col-lg-6">
                             <div class="panel panel-color panel-custom">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
-                                        <h:outputText value="Test" styleClass="control-label" />
+                                        <h:outputText value="Camera" styleClass="control-label" />
                                     </h3>
                                 </div>
                                 <div class="panel-body">
                                     <form class="form-horizontal">
                                         <div class="clearfix form-group">
-                                            <h:outputText value="Product UID:" styleClass="col-sm-4 text-muted text-right" />
+                                            <h:outputText value="Camera UID:" styleClass="col-sm-4 text-muted text-right" />
                                             <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-purple" />
+                                                <h:outputLabel value="#{aProductMB.camera.camid}" styleClass="text-purple" />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <h:outputText value="IR:" styleClass="col-sm-4 text-muted text-right"/>
                                             <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.createdDate}" styleClass="text-purple">
-                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                <h:outputLabel value="#{aProductMB.camera.camIR}" styleClass="text-purple">
+                                                   
                                                 </h:outputLabel>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <h:outputText value="Len:" styleClass="col-sm-4 text-muted text-right"/>
                                             <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdPower}" styleClass="text-purple" />
+                                                <h:outputLabel value="#{aProductMB.camera.camLen}" styleClass="text-purple" />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:outputText value="Warranty:" styleClass="col-sm-4 text-muted text-right" />
+                                            <h:outputText value="Material:" styleClass="col-sm-4 text-muted text-right" />
                                             <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdWarranty}" styleClass="text-purple" />
+                                                <h:outputLabel value="#{aProductMB.camera.camMaterial}" styleClass="text-purple" />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:outputText value="Price:" styleClass="col-sm-4 text-muted text-right"/>
+                                            <h:outputText value="Memory:" styleClass="col-sm-4 text-muted text-right"/>
                                             <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdPrice}" styleClass="text-info" />
+                                                <h:outputLabel value="#{aProductMB.camera.camMemory}" styleClass="text-purple" />
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <h:outputText value="Description:" styleClass="col-sm-4 text-muted text-right" />
+                                            <h:outputText value="Record:" styleClass="col-sm-4 text-muted text-right" />
                                             <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
+                                                <h:outputLabel value="#{aProductMB.camera.camRecord}" styleClass="text-purple" />
                                             </div>
                                         </div>
-
+                                        
                                         <div class="form-group">
-                                            <div class="owl-carousel owl-theme" id="owl-multi">
-                                                <div class="item">
-                                                    <h:graphicImage name="assets/images/gallery/1.jpg" />
-                                                </div>
-                                                <div class="item">
-                                                    <h:graphicImage name="assets/images/gallery/2.jpg" />
-                                                </div>
-                                                <div class="item">
-                                                    <h:graphicImage name="assets/images/gallery/3.jpg" />
-                                                </div>
+                                            <h:outputText value="Resolution:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.camera.camResolution}" styleClass="text-purple" />
                                             </div>
                                         </div>
-
+                                        
+                                         <div class="form-group">
+                                            <h:outputText value="Sensor:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.camera.camSensor}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+                                        
+                                         <div class="form-group">
+                                            <h:outputText value="Temperature:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.camera.camTemperature}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <h:outputText value="VideoStandard:" styleClass="col-sm-4 text-muted text-right" />
+                                            <div class="col-sm-8">
+                                                <h:outputLabel value="#{aProductMB.camera.camVideoStandard}" styleClass="text-purple" />
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </c:if>
+                    
                 </div><!--container--> 
             </div><!--content-->
         </ui:define>

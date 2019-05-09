@@ -93,7 +93,11 @@
                                                     <td>#{item.ctgid.ctgTitle}</td>
                                                     <td>#{item.prdTittle}</td>
                                                     <td>#{item.prdWarranty}</td>
-                                                    <td>#{item.prdPrice}</td>
+                                                    <td>
+                                                        <h:outputText value="#{item.prdPrice}">
+                                                           <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </td>
                                                     <td>
                                                         <span class="label label-table ${item.prdStatus == 'new' ? 'label-warning' : (
                                                                                          item.prdStatus == 'active' ? 'label-success' : 'label-inverse')}">

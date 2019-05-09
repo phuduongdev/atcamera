@@ -27,19 +27,15 @@
                         <!-- Page-Title -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="btn-group pull-right m-t-15">
-                                    <h:link outcome="#{aCategoryMB.categoryCreateNav()}" styleClass="btn btn-default btn-custom waves-effect waves-light">
-                                        <span class="m-l-5"><i class="fa fa-file-text"></i></span> Create New
-                                    </h:link>
-                                </div>
+                                
 
-                                <h4 class="page-title">Category</h4>
+                                <h4 class="page-title">Customer</h4>
                                 <ol class="breadcrumb">
                                     <li>
                                         <a href="#">ATC</a>
                                     </li>
                                     <li class="active">
-                                        <a href="#">Category</a>
+                                        <a href="#">Customer</a>
                                     </li>
                                     <li class="active">View All</li>
                                 </ol>
@@ -50,7 +46,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card-box table-responsive">
-                                    <h4 class="m-t-0 header-title"><b>Category - View All</b></h4>
+                                    <h4 class="m-t-0 header-title"><b>Customer - View All</b></h4>
                                     <p class="text-muted font-13 m-b-30">
                                         Show all category.
                                     </p>
@@ -81,8 +77,8 @@
                                                             </span>
                                                         </td>
                                                         <td>
-                                                            <h:commandLink action="#{aCategoryMB.categoryUpdateNav()}" >
-                                                                <f:setPropertyActionListener value="#{item}" target="#{aCategoryMB.category}" />
+                                                            <h:commandLink action="#{aCustomer.customerUpdateNav(item)}" >
+                                                                <f:setPropertyActionListener value="#{item}" target="#{aCustomer.ctm}" />
                                                                 <i class="md md-edit" />
                                                             </h:commandLink>
                                                         </td>

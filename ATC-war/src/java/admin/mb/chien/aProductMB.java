@@ -82,19 +82,46 @@ public class aProductMB implements Serializable {
 
     public String productUpdateNav(Product item) {
         this.product = item;
+
+        //chu y truong hop category type bi null
         if (item.getCtgid().getCtgType().equalsIgnoreCase("camera")) {
+            productFacade.edit(item);
             this.camera = cameraFacade.findCameraByProduct(item);
+            cameraFacade.edit(camera);
+        } else if (item.getCtgid().getCtgType().equalsIgnoreCase("dvr")) {
+            productFacade.edit(item);
+            this.dvr = dvrFacade.findDVRByProduct(item);
+            dvrFacade.edit(dvr);
+        } else {
+            productFacade.edit(item);
         }
         return "productUpdate?faces-redirect=true";
     }
 
+    public String update() {
+        
+
+        //chu y truong hop category type bi null
+        if (product.getCtgid().getCtgType().equalsIgnoreCase("camera")) {
+            productFacade.edit(product);
+
+            cameraFacade.edit(camera);
+        } else if (product.getCtgid().getCtgType().equalsIgnoreCase("dvr")) {
+            productFacade.edit(product);
+
+            dvrFacade.edit(dvr);
+        } else {
+            productFacade.edit(product);
+        }
+        return "productView?faces-redirect=true";
+    }
+
     public String productDetailsNav(Product item) {
         this.product = item;
-        productFacade.edit(item);
-        //chu y truong hop category type bi null
         if (item.getCtgid().getCtgType().equalsIgnoreCase("camera")) {
             this.camera = cameraFacade.findCameraByProduct(item);
-            cameraFacade.edit(camera);
+        } else if (item.getCtgid().getCtgType().equalsIgnoreCase("dvr")) {
+            this.dvr = dvrFacade.findDVRByProduct(item);
         }
         return "productDetails?faces-redirect=true";
     }
