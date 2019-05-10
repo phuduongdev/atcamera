@@ -32,8 +32,9 @@ public class AccountFacade extends AbstractFacade<Account> {
 
     public Account checkAccountLogin(String username, String password) {
         try {
-            TypedQuery<Account> q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username "
-                    + "and a.accPassword = :password ", Account.class);
+            TypedQuery<Account> q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username"
+                    + " and a.accPassword = :password"
+                    + " and a.accStatus = 'active'", Account.class);
             q.setParameter("username", username);
             q.setParameter("password", password);
             return q.getSingleResult();
@@ -41,5 +42,16 @@ public class AccountFacade extends AbstractFacade<Account> {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public Integer checkDuplicateAccUsername(String username){
+        try {
+            TypedQuery q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username", Account.class);
+            q.setParameter("username", username);
+            return q.getMaxResults();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

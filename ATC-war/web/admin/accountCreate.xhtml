@@ -51,14 +51,14 @@
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="User Name *" for="accUserName" styleClass="col-lg-3 control-label" />                                                
                                             <div class="col-lg-9">
+                                                <h:message id="msgUsername" for="accUserName" styleClass="error"/>
                                                 <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}"
                                                              a:placeholder="e.g. John"
-                                                             styleClass="required form-control">
-                                                    <f:validator validatorId="admin.customValidate.cantBlank" />
+                                                             styleClass="form-control">
+                                                    <f:validator validatorId="admin.customValidate.checkBlank" />
                                                     <f:ajax event="change" render="msgUsername"/>
                                                 </h:inputText>
-                                                <h:message id="msgUsername" for="accUserName" styleClass="error">
-                                                </h:message>
+                                                
                                             </div>
                                         </div>
 
@@ -68,7 +68,7 @@
                                                 <h:inputSecret id="accPassword" value="#{aAccountMB.account.accPassword}" 
                                                                a:placeholder="must be 6 to 30 character"
                                                                styleClass="required form-control">
-                                                    <f:validator validatorId="admin.customValidate.cantBlank"/>
+                                                    <f:validator validatorId="admin.customValidate.checkBlank"/>
                                                 </h:inputSecret>
                                                 <h:message for="accPassword" styleClass="error" />
                                             </div>
@@ -79,7 +79,11 @@
                                             <div class="col-lg-9">
                                                 <h:inputSecret id="confirm1" value="${aAccountMB.confirmPassword}" 
                                                                a:placeholder="must be same password"
-                                                               styleClass="required form-control" />
+                                                               styleClass="required form-control" >
+                                                    <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                    <!--<f:validator validatorId="admin.customValidate.checkConfirm"/>-->
+                                                </h:inputSecret>
+                                                <h:message for="accPassword" styleClass="error" />
                                             </div>
                                         </div>
 

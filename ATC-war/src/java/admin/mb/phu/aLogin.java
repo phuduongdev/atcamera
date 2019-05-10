@@ -37,6 +37,9 @@ public class aLogin implements Serializable {
      */
     public aLogin() {
         loginAccount = new Account();
+        username = "";
+        password = "";
+        msg = "";
     }
 
 //    public String checkLogin() {
@@ -51,27 +54,9 @@ public class aLogin implements Serializable {
 //    }
     public void login() {
         FacesContext context = FacesContext.getCurrentInstance();
-//        System.out.println("----getClientId-------" + context.getViewRoot().getClientId());
-////        System.out.println("----getDefaultEventName-------" + context.getViewRoot().getDefaultEventName());
-//        System.out.println("----getFamily-------" + context.getViewRoot().getFamily());
-//        System.out.println("----getId-------" + context.getViewRoot().getId());
-//        System.out.println("----getRenderKitId-------" + context.getViewRoot().getRenderKitId());
-//        System.out.println("----getRendererType-------" + context.getViewRoot().getRendererType());
-//        System.out.println("----getViewId-------" + context.getViewRoot().getViewId());
-//        
-//        System.out.println("----getApplication-------" + context.getApplication());
-//        System.out.println("----getAttributes-------" + context.getAttributes());
-//        System.out.println("----getClientIdsWithMessages-------" + context.getClientIdsWithMessages());
-//        System.out.println("----getCurrentPhaseId-------" + context.getCurrentPhaseId());
-//        System.out.println("----getELContext-------" + context.getELContext());
-//        System.out.println("----getPartialViewContext-------" + context.getPartialViewContext());
-//        System.out.println("----getNamingContainerSeparatorChar-------" + context.getNamingContainerSeparatorChar());
-//        System.out.println("----getAttributes-------" + context.getAttributes());
-//        System.out.println("----getAttributes-------" + context.getAttributes());
-//        System.out.println("----getAttributes-------" + context.getAttributes());
-        
         loginAccount = accountFacade.checkAccountLogin(username, password);
         if (loginAccount != null) {
+            msg = "";
             context.getExternalContext().getSessionMap().put("user", loginAccount);
 //            context.getExternalContext().getSessionMap().put("role", loginAccount.getAccRole());
             try {
@@ -81,7 +66,8 @@ public class aLogin implements Serializable {
             }
         } else {
             //Send an error message on Login Failure 
-            context.addMessage(null, new FacesMessage("Authentication Failed. Check username or password."));
+//            context.addMessage(null, new FacesMessage());
+            msg = "Authentication Failed. Check username or password.";
         }
 
     }
