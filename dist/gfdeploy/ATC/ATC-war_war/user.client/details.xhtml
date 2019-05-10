@@ -95,9 +95,10 @@
                                                     <i class="fa fa-shopping-cart"></i> Add to cart
                                                     <f:ajax render="cartSize" listener="#{orderController.cartsControl(productController.product, 'additem')}"/>
                                                 </h:commandLink>
-                                                <a href="basket.xhtml" class="btn btn-outline-primary">
+                                                <h:commandLink action="#{wishListController.addWL()}" class="btn btn-outline-primary">
                                                     <i class="fa fa-heart"></i> Add to wishlist
-                                                </a>
+                                                    <f:setPropertyActionListener target="#{wishListController.prd}" value="#{productController.product}"/>
+                                                </h:commandLink>
                                             </p>
                                             <p>#{orderController.msg} #{orderController.cart.size()}</p>
                                         </h:form>

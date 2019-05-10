@@ -51,26 +51,36 @@
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Type *" for="ctgType" styleClass="col-lg-3 control-label" />                                                
                                             <div class="col-lg-9">
-                                                <h:selectOneMenu id="ctgType" value="#{aCategoryMB.category.ctgType}" title="CtgType" styleClass="form-control">
+                                                <h:selectOneMenu id="ctgType" value="#{aCategoryMB.category.ctgType}" title="CtgType" styleClass="form-control" required="true" requiredMessage="Select Type Plz">
                                                     <f:selectItem itemLabel="*** Select ***" itemValue=""/>
                                                     <f:selectItems var="type" value="#{aCategoryMB.categoryType}"
                                                                    itemValue="#{type}" itemLabel="#{type}"/>
                                                 </h:selectOneMenu>
+                                                <h:message for="ctgType" style="color : red"/>
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Title *" for="ctgTitle" styleClass="col-lg-3 control-label" />
                                             <div class="col-lg-9">
-                                                <h:inputText id="ctgTitle" value="#{aCategoryMB.category.ctgTitle}" title="CtgTitle" styleClass="required form-control"/>
+                                                <h:inputText id="ctgTitle" value="#{aCategoryMB.category.ctgTitle}" title="CtgTitle" styleClass="required form-control" required="true" requiredMessage="Enter Title"/>
+                                                <h:message for="ctgTitle" style="color : red" />
                                             </div>
+                                           
                                         </div>
 
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Origin" for="ctgOrigin" styleClass="col-lg-3 control-label" />
                                             <div class="col-lg-9">
-                                                <h:inputText id="ctgOrigin" value="#{aCategoryMB.category.ctgOrigin}" title="CtgOrigin" styleClass="required form-control" />
+                                                <h:selectOneMenu id="ctgOrigin" value="#{aCategoryMB.category.ctgOrigin}" title="CtgType" styleClass="form-control" required="true" requiredMessage="Select Origin Plz">
+                                                    <f:selectItem itemLabel="*** Origin ***" itemValue=""/>
+                                                    <f:selectItem itemValue="VN" itemLabel="VN"/>
+                                                    <f:selectItem itemValue="US" itemLabel="US"/>
+                                                    <f:selectItem itemValue="KR" itemLabel="KR"/>
+                                                </h:selectOneMenu>
+                                                <h:message for="ctgOrigin" style="color : red" />
                                             </div>
+                                            
                                         </div>
 
                                         <div class="form-group clearfix">
@@ -78,6 +88,7 @@
                                             <div class="col-lg-9">
                                                 <h:inputTextarea id="ctgDescript" value="#{aCategoryMB.category.ctgDescript}" title="CtgDescript" styleClass="required form-control" />
                                             </div>
+                                            
                                         </div>
 
                                         <div class="form-group clearfix">

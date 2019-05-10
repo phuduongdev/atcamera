@@ -10,6 +10,9 @@ import controller.CategoryFacade;
 import controller.DvrFacade;
 import controller.ProductFacade;
 import entity.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -49,6 +52,10 @@ public class aProductMB implements Serializable {
     private String productCreateTittle;
 
     private Part file;
+    private Part file2;
+
+   
+    private Part file3;
     private String fileName;
     private long fileSize;
     private String imgaePath;
@@ -140,7 +147,75 @@ public class aProductMB implements Serializable {
             return categoryFacade.findSerialOfOther();
         }
     }
-
+    public void uploadFile(){
+        try {
+            
+            InputStream input = file.getInputStream();
+            
+            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/"+file.getSubmittedFileName());
+            
+            if(!f.exists()){
+                f.createNewFile();
+            }
+            FileOutputStream output= new FileOutputStream(f);
+            byte[] buffer = new byte[1024];
+            int length;
+            while((length=input.read(buffer))>0){
+                output.write(buffer,0,length);
+            }
+            input.close();
+            output.close();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        
+    }
+    public void uploadFile2(){
+        try {
+            
+            InputStream input = file2.getInputStream();
+            
+            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/"+file.getSubmittedFileName());
+            
+            if(!f.exists()){
+                f.createNewFile();
+            }
+            FileOutputStream output= new FileOutputStream(f);
+            byte[] buffer = new byte[1024];
+            int length;
+            while((length=input.read(buffer))>0){
+                output.write(buffer,0,length);
+            }
+            input.close();
+            output.close();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        
+    }
+    public void uploadFile3(){
+        try {
+            
+            InputStream input = file3.getInputStream();
+            
+            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/"+file.getSubmittedFileName());
+            
+            if(!f.exists()){
+                f.createNewFile();
+            }
+            FileOutputStream output= new FileOutputStream(f);
+            byte[] buffer = new byte[1024];
+            int length;
+            while((length=input.read(buffer))>0){
+                output.write(buffer,0,length);
+            }
+            input.close();
+            output.close();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        
+    }
     public String createProduct(String option) {
         String prid = tools.CommonUse.generateUUID();
         try {
@@ -149,8 +224,9 @@ public class aProductMB implements Serializable {
                 product.setCreatedDate(new Timestamp(new Date().getTime()));
                 product.setPrdStatus("new");
                 product.setCtgid(categoryFacade.find(cateid));
-                upload();
-                product.setPrdImage(imgaePath);
+                uploadFile();
+                product.setPrdImage("img/"+file.getSubmittedFileName());
+                
                 productFacade.create(product);
                 camera.setCamid(tools.CommonUse.generateUUID());
                 camera.setCreatedDate(new Timestamp(new Date().getTime()));
@@ -161,8 +237,8 @@ public class aProductMB implements Serializable {
                 product.setCreatedDate(new Timestamp(new Date().getTime()));
                 product.setPrdStatus("new");
                 product.setCtgid(categoryFacade.find(cateid));
-                upload();
-                product.setPrdImage(imgaePath);
+                uploadFile();
+                product.setPrdImage("img/"+file.getSubmittedFileName());
                 productFacade.create(product);
                 dvr.setDvrid(tools.CommonUse.generateUUID());
                 dvr.setCreatedDate(new Timestamp(new Date().getTime()));
@@ -173,8 +249,12 @@ public class aProductMB implements Serializable {
                 product.setCreatedDate(new Timestamp(new Date().getTime()));
                 product.setPrdStatus("new");
                 product.setCtgid(categoryFacade.find(cateid));
-                upload();
-                product.setPrdImage(imgaePath);
+                uploadFile();
+                product.setPrdImage("img/"+file.getSubmittedFileName());
+                uploadFile2();
+                product.setPrdImage2("img/"+file2.getSubmittedFileName());
+                uploadFile3();
+                product.setPrdImage3("img/"+file3.getSubmittedFileName());
                 productFacade.create(product);
             }
 
@@ -277,5 +357,20 @@ public class aProductMB implements Serializable {
 
     public void setImgaePath(String imgaePath) {
         this.imgaePath = imgaePath;
+    }
+     public Part getFile2() {
+        return file2;
+    }
+
+    public void setFile2(Part file2) {
+        this.file2 = file2;
+    }
+
+    public Part getFile3() {
+        return file3;
+    }
+
+    public void setFile3(Part file3) {
+        this.file3 = file3;
     }
 }

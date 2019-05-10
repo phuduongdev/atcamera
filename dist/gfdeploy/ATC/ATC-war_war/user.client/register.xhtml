@@ -17,41 +17,46 @@
                                     <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
                                     <p class="text-muted">If you have any questions, please feel free to <a href="faces/contact.xhtml">contact us</a>, our customer service center is working for you 24/7.</p>
                                     <hr/>
-                                    <f:view>
-                                        <h:form>
-                                            <h:messages style="color: red"/>
-                                            <h:outputText style="color : red" value="#{customerController.msg}" escape="false"></h:outputText>
-                                            <h:panelGrid columns="2">
+
+                                    <h:form>
+
+                                        <h:outputText style="color : red" value="#{customerController.msg}" escape="false"></h:outputText>
 
 
-                                                <div class="form-group">
-                                                    <label  for="email">Email</label>
-                                                    <h:inputText id="email" class="form-control" value="#{customerController.ctm.ctmEmail}" required="true" requiredMessage="Enter Email"
-                                                                 validatorMessage="Enter email in the form 'abc@abc.abc' plz">
-                                                        <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
-                                                    </h:inputText>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="password">Password</label>
-                                                    <h:inputSecret id="password" class="form-control" value="#{customerController.ctm.ctmPassword}" required="true" requiredMessage="Enter Password" validatorMessage="6-15 character for pass please.">
-                                                        <f:validateLength minimum="6" maximum="15"/>
-                                                    </h:inputSecret>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="confirm1password">Confirm Password</label>
-                                                    <h:inputSecret id="confirm1password" class="form-control" value="#{customerController.confim}"/>
-                                                </div>
 
-                                                <div class="text-center">
-                                                    <h:commandLink styleClass="btn btn-primary" action="#{customerController.add()}">Register<i class="fa fa-user-md"></i> </h:commandLink>
+                                        <div class="form-group">
+                                            <label  for="email">Email</label>
+                                            <h:inputText id="email" class="form-control" value="#{customerController.ctm.ctmEmail}" required="true" requiredMessage="Enter Email"
+                                                         validatorMessage="Enter email in the form 'abc@abc.abc' plz">
+                                                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
 
-                                                </div>
-                                            </h:panelGrid>
-                                        </h:form>
-                                    </f:view>
+                                            </h:inputText>
+                                            <h:message for="email" style="color: red"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <h:inputSecret id="password" class="form-control" value="#{customerController.ctm.ctmPassword}" required="true" requiredMessage="Enter Password" validatorMessage="6-15 character and start'a-z' for pass please.
+                                                           Ex:member123">
+                                                <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
+
+                                            </h:inputSecret>
+                                            <h:message for="password" style="color: red"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirm1password">Confirm Password</label>
+                                            <h:inputSecret id="confirm1password" class="form-control" value="#{customerController.confim}" required="true" requiredMessage="Enter Confirm Password"/>
+                                        </div>
+                                        <h:message for="confirm1password" style="color: red"/>
+                                        <div class="text-center">
+                                            <h:commandLink styleClass="btn btn-primary" action="#{customerController.add()}">Register<i class="fa fa-user-md"></i> </h:commandLink>
+
+                                        </div>
+
+                                    </h:form>
+
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

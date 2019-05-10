@@ -54,24 +54,29 @@
                                             <h:outputLabel value="Category *" for="ctgid" styleClass="col-lg-4 control-label" />
                                             <div class="col-lg-8">
                                                 <h:selectOneMenu id="ctgid" value="#{aProductMB.cateid}" title="Ctgid" 
-                                                                 styleClass="form-control">
-                                                    <f:selectItem itemLabel="- Select one -" itemValue="test"/>
+                                                                 styleClass="form-control" required="true" requiredMessage="Please Select Category" >
+                                                    <f:selectItem itemLabel="- Select one -" itemValue=""/>
                                                     <f:selectItems value="#{aProductMB.categories}" var="cate"
                                                                    itemLabel="#{cate.ctgTitle}" itemValue="#{cate.ctgid}" />
                                                 </h:selectOneMenu>
+                                                <h:message for="ctgid" style="color: red"/>
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Product Model *" for="prdTittle" styleClass="col-lg-4 control-label" />                                                
+                                            <h:outputLabel value="Product Model *" for="prdTittle" styleClass="col-lg-4 control-label"/>                                                
                                             <div class="col-lg-8">
-                                                <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" styleClass="form-control" />
+                                                <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" styleClass="form-control" 
+                                                             required="true" requiredMessage="Enter Model"/>
+                                                <h:message for="prdTittle" style="color: red"/>
                                             </div>
                                         </div>
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Price *" for="prdPrice" styleClass="col-lg-4 control-label" />                                                
                                             <div class="col-lg-8">
-                                                <h:inputText id="prdPrice" value="#{aProductMB.product.prdPrice}" title="PrdPrice" styleClass="form-control" />
+                                                <h:inputText id="prdPrice" value="#{aProductMB.product.prdPrice}" title="PrdPrice" 
+                                                             required="true" requiredMessage="Enter Price" styleClass="form-control" />
+                                                <h:message for="prdPrice" style="color: red"/>
                                             </div>
                                         </div>
 
@@ -85,26 +90,44 @@
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Warranty *" for="prdWarranty" styleClass="col-lg-4 control-label" />
                                             <div class="col-lg-8">
-                                                <h:selectOneMenu id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty" styleClass="required form-control">
+                                                <h:selectOneMenu id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty"  styleClass="required form-control">
                                                     <!-- TODO: update below reference to list of available items-->
                                                     <f:selectItem itemLabel="--- Select one ---" itemValue=""/>
                                                     <f:selectItem itemLabel="3 Tháng" itemValue="3"/>
                                                     <f:selectItem itemLabel="6 Tháng" itemValue="6"/>
                                                     <f:selectItem itemLabel="12 Tháng" itemValue="12"/>
                                                 </h:selectOneMenu>
-
+                                                
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Image *" for="prdImage" styleClass="col-lg-4 control-label" />
+                                            <h:outputLabel value="Image *" for="prdImage" styleClass="col-lg-4 control-label"  />
                                             <div class="col-lg-8">
                                                 <h:inputFile id="prdImage" value="#{aProductMB.file}" 
-                                                             title="PrdImage" styleClass="control-label">
+                                                             title="PrdImage" styleClass="control-label" >
+                                                    <f:passThroughAttribute name="accept" value="image/png"/>
                                                 </h:inputFile>
                                             </div>
                                         </div>
-
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Image 2" for="prdImage" styleClass="col-lg-4 control-label"  />
+                                            <div class="col-lg-8">
+                                                <h:inputFile id="prdImage2" value="#{aProductMB.file2}" 
+                                                             title="PrdImage" styleClass="control-label" >
+                                                    <f:passThroughAttribute name="accept" value="image/png"/>
+                                                </h:inputFile>
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Image 3" for="prdImage" styleClass="col-lg-4 control-label"  />
+                                            <div class="col-lg-8">
+                                                <h:inputFile id="prdImage3" value="#{aProductMB.file3}" 
+                                                             title="PrdImage" styleClass="control-label" >
+                                                    <f:passThroughAttribute name="accept" value="image/png"/>
+                                                </h:inputFile>
+                                            </div>
+                                        </div>
                                         <div class="form-group clearfix">
                                             <label class="col-lg-12 control-label ">(*) Required</label>
                                         </div>
@@ -135,103 +158,113 @@
                                         <c:if test="#{aProductMB.productCreateTittle=='camera'}">
 
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="CamSensor" for="camSensor" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="CamSensor *" for="camSensor" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camSensor" value="#{aProductMB.camera.camSensor}" title="CamSensor" styleClass="required form-control"/>
+                                                    <h:inputText id="camSensor" value="#{aProductMB.camera.camSensor}" title="CamSensor" required="true" requiredMessage="Enter Sensor" styleClass="required form-control"/>
+                                                    <h:message for="camSensor" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="CamResolution" for="camResolution" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="CamResolution *" for="camResolution" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camResolution" value="#{aProductMB.camera.camRecord}" title="CamResolution" styleClass="required form-control"/>
+                                                    <h:inputText id="camResolution" value="#{aProductMB.camera.camRecord}" title="CamResolution" required="true" requiredMessage="Enter Record" styleClass="required form-control"/>
+                                                    <h:message for="camResolution" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="CamIR" for="camIR" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="CamIR" for="camIR *" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camIR" value="#{aProductMB.camera.camIR}" title="CamIR" styleClass="required form-control"/>
+                                                    <h:inputText id="camIR" value="#{aProductMB.camera.camIR}" title="CamIR" required="true" requiredMessage="Enter IR" styleClass="required form-control"/>
+                                                    <h:message for="camIR" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="CamLen" for="camLen" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="CamLen" for="camLen *" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camLen" value="#{aProductMB.camera.camLen}" title="CamLen" styleClass="required form-control"/>
+                                                    <h:inputText id="camLen" value="#{aProductMB.camera.camLen}" title="CamLen" required="true" requiredMessage="Enter CamLen" styleClass="required form-control"/>
+                                                    <h:message for="camLen" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="CamVideoStandard" for="camVideoStandard" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="CamVideoStandard *" for="camVideoStandard" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camVideoStandard" value="#{aProductMB.camera.camVideoStandard}" title="CamVideoStandard" styleClass="required form-control"/>
+                                                    <h:inputText id="camVideoStandard" value="#{aProductMB.camera.camVideoStandard}" title="CamVideoStandard" required="true" requiredMessage="Enter VideoStandard" styleClass="required form-control"/>
+                                                    <h:message for="camVideoStandard" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
                                                 <h:outputLabel value="CamRecord" for="camRecord" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camRecord" value="#{aProductMB.camera.camRecord}" title="CamRecord" styleClass="required form-control"/>
+                                                    <h:inputText id="camRecord" value="#{aProductMB.camera.camRecord}" title="CamRecord" required="true" requiredMessage="Enter Record" styleClass="required form-control"/>
+                                                    <h:message for="camRecord" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
                                                 <h:outputLabel value="CamTemperature" for="camTemperature" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camTemperature" value="#{aProductMB.camera.camTemperature}" title="CamTemperature" styleClass="required form-control"/>
+                                                    <h:inputText id="camTemperature" value="#{aProductMB.camera.camTemperature}" title="CamTemperature" required="true" requiredMessage="Enter Temperature" styleClass="required form-control"/>
+                                                    <h:message for="camTemperature" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="CamMemory" for="camMemory" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="CamMemory *" for="camMemory" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camMemory" value="#{aProductMB.camera.camMemory}" title="CamMemory" styleClass="required form-control"/>
+                                                    <h:inputText id="camMemory" value="#{aProductMB.camera.camMemory}" title="CamMemory" required="true" requiredMessage="Enter Memory"  styleClass="required form-control"/>
+                                                    <h:message for="camMemory" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="CamMaterial" for="camMaterial" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="CamMaterial *" for="camMaterial" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="camMaterial" value="#{aProductMB.camera.camMaterial}" title="CamMaterial" styleClass="required form-control"/>
+                                                    <h:inputText id="camMaterial" value="#{aProductMB.camera.camMaterial}" title="CamMaterial" required="true" requiredMessage="Enter Material" styleClass="required form-control"/>
+                                                    <h:message for="camMaterial" style="color: red"/>
                                                 </div>
                                             </div>
                                         </c:if>
                                         <c:if test="#{aProductMB.productCreateTittle=='dvr'}">
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="Channel:" for="dvrChannel" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="Channel *" for="dvrChannel" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="dvrChannel" value="#{aProductMB.dvr.dvrChannel}" title="DvrChannel" styleClass="required form-control" />
+                                                    <h:inputText id="dvrChannel" value="#{aProductMB.dvr.dvrChannel}" title="DvrChannel" required="true" requiredMessage="Enter DvrChannel" styleClass="required form-control" />
+                                                    <h:message for="dvrChannel" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="InPort" for="dvrInPort" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="InPort *" for="dvrInPort" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="dvrInPort" value="#{aProductMB.dvr.dvrInPort}" title="DvrInPort" styleClass="required form-control" />
+                                                    <h:inputText id="dvrInPort" value="#{aProductMB.dvr.dvrInPort}" title="DvrInPort" required="true" requiredMessage="Enter DvrInPort" styleClass="required form-control" />
+                                                    <h:message for="dvrInPort" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
-                                                <h:outputLabel value="OutPort" for="dvrOutPort" styleClass="col-lg-4 control-label" />
+                                                <h:outputLabel value="OutPort *" for="dvrOutPort" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="dvrOutPort" value="#{aProductMB.dvr.dvrOutPort}" title="DvrOutPort" styleClass="required form-control" />
+                                                    <h:inputText id="dvrOutPort" value="#{aProductMB.dvr.dvrOutPort}" title="DvrOutPort" required="true" requiredMessage="Enter DvrOutPort" styleClass="required form-control" />
+                                                    <h:message for="dvrOutPort" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
                                                 <h:outputLabel value="Compression" for="dvrCompression" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="dvrCompression" value="#{aProductMB.dvr.dvrCompression}" title="DvrCompression" styleClass="required form-control" />
+                                                    <h:inputText id="dvrCompression" value="#{aProductMB.dvr.dvrCompression}" title="DvrCompression" required="true" requiredMessage="Enter DvrCompression" styleClass="required form-control" />
+                                                    <h:message for="dvrCompression" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group clearfix">
                                                 <h:outputLabel value="Record" for="dvrRecord" styleClass="col-lg-4 control-label" />
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="dvrRecord" value="#{aProductMB.dvr.dvrRecord}" title="DvrRecord" styleClass="required form-control" />
+                                                    <h:inputText id="dvrRecord" value="#{aProductMB.dvr.dvrRecord}" title="DvrRecord" required="true" requiredMessage="Enter DvrRecord" styleClass="required form-control" />
+                                                    <h:message for="dvrRecord" style="color: red"/>
                                                 </div>
                                             </div>
-                                            <h:outputLabel value="Playback" for="dvrPlayback" styleClass="col-lg-4 control-label" />
+                                            <h:outputLabel value="Playback " for="dvrPlayback" styleClass="col-lg-4 control-label" />
                                             <div class="form-group clearfix">
                                                 <div class="col-lg-8">
-                                                    <h:inputText id="dvrPlayback" value="#{aProductMB.dvr.dvrPlayback}" title="DvrPlayback" styleClass="required form-control" />
+                                                    <h:inputText id="dvrPlayback" value="#{aProductMB.dvr.dvrPlayback}" title="DvrPlayback" required="true" requiredMessage="Enter DvrPlayback" styleClass="required form-control" />
+                                                    <h:message for="dvrPlayback" style="color: red"/>
                                                 </div>
                                             </div>
-                                            <div class="form-group clearfix">
-                                                <h:outputLabel value="Power" for="dvrPower" styleClass="col-lg-4 control-label" />
-                                                <div class="col-lg-8">
-                                                    <h:inputText id="dvrPower" value="#{aProductMB.dvr.dvrPower}" title="DvrPower" styleClass="required form-control" />
-                                                </div>
-                                            </div>
+
                                         </c:if>
                                     </section>
 

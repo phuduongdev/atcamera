@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/atcamera/ATC-war/web/admin/orderView.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/web/user.client/newTemplate.xhtml</file>
+            <file>file:/E:/atcamera/ATC-war/src/java/user/login.java</file>
             <file>file:/E:/atcamera/ATC-war/src/java/admin/mb/chien/aProductMB.java</file>
-            <file>file:/E:/atcamera/ATC-war/web/user.client/details.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/web/admin/categoryCreate.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/web/user.client/index.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/web/admin/productDetails.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/web/admin/productView.xhtml</file>
+            <file>file:/E:/atcamera/ATC-war/web/admin/productCreate.xhtml</file>
+            <file>file:/E:/atcamera/ATC-war/web/user.client/myAccount.xhtml</file>
         </group>
     </open-files>
 </project-private>
