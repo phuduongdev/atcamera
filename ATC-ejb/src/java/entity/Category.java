@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -66,7 +65,7 @@ public class Category implements Serializable {
     @Size(max = 1073741823)
     @Column(name = "ctgDescript")
     private String ctgDescript;
-    @OneToMany(mappedBy = "ctgid", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "ctgid")
     private Collection<Product> productCollection;
 
     public Category() {

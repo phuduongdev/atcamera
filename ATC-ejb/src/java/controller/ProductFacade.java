@@ -33,7 +33,7 @@ public class ProductFacade extends AbstractFacade<Product> {
     }
 
     public List<Product> findProductbyCtg(Category ctg) {
-        TypedQuery q = em.createQuery("SELECT c  FROM Product c WHERE c.ctgid = :type", Product.class);
+        TypedQuery q = em.createQuery("SELECT c FROM Product c WHERE c.ctgid = :type", Product.class);
         q.setParameter("type", ctg);
         return q.getResultList();
     }
@@ -66,4 +66,5 @@ public class ProductFacade extends AbstractFacade<Product> {
         }
         return null;
     }
+
 }

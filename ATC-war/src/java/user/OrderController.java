@@ -72,6 +72,9 @@ public class OrderController implements Serializable {
             for (OrderDetail item : cart) {
                 item.setOdmid(om);
                 orderDetailFacade.create(item);
+                
+                item.getPrdid().setPrdStatus("active");
+                productFacade.edit(item.getPrdid());
             }
             cart = new ArrayList<>();
             msg = "Tao order thanh cong";
@@ -93,7 +96,7 @@ public class OrderController implements Serializable {
             selectItem.setOddPrice(selectProduct.getPrdPrice());
             selectItem.setPrdid(selectProduct);
 //            chua co sp nao trong gio hang
-            if (cart.size() == 0) {
+            if (cart.isEmpty()) {
                 cart.add(selectItem);
             } else {
                 //da co selectProduct

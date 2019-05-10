@@ -5,7 +5,7 @@
  */
 package controller;
 
-import entity.Sysdiagrams;
+import entity.Rating;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author DTP
  */
 @Stateless
-public class SysdiagramsFacade extends AbstractFacade<Sysdiagrams> {
+public class RatingFacade extends AbstractFacade<Rating> {
     @PersistenceContext(unitName = "ATC-ejbPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class SysdiagramsFacade extends AbstractFacade<Sysdiagrams> {
         return em;
     }
 
-    public SysdiagramsFacade() {
-        super(Sysdiagrams.class);
+    public RatingFacade() {
+        super(Rating.class);
     }
     
 }

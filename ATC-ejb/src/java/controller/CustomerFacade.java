@@ -5,7 +5,6 @@
  */
 package controller;
 
-
 import entity.Customer;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -19,6 +18,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class CustomerFacade extends AbstractFacade<Customer> {
+
     @PersistenceContext(unitName = "ATC-ejbPU")
     private EntityManager em;
 
@@ -30,22 +30,23 @@ public class CustomerFacade extends AbstractFacade<Customer> {
     public CustomerFacade() {
         super(Customer.class);
     }
+
     public Customer checkAccountLogin(String email, String password) {
         try {
-             TypedQuery<Customer> q = em.createQuery("SELECT a FROM Customer a WHERE a.ctmEmail = :email"
-                + " and a.ctmPassword = :password", Customer.class);
-        q.setParameter("email", email);
-        q.setParameter("password", password);
-        return q.getSingleResult();
+            TypedQuery<Customer> q = em.createQuery("SELECT a FROM Customer a WHERE a.ctmEmail = :email"
+                    + " and a.ctmPassword = :password", Customer.class);
+            q.setParameter("email", email);
+            q.setParameter("password", password);
+            return q.getSingleResult();
         } catch (Exception e) {
         }
-       return null;
+        return null;
     }
-   public List<Customer> findCustomerTitleByType(String type) {
+
+    public List<Customer> findCustomerTitleByType(String type) {
         TypedQuery q = em.createQuery("SELECT c  FROM Customer c WHERE c.ctmid = :type", Customer.class);
         q.setParameter("type", type);
 
         return q.getResultList();
     }
-    
 }

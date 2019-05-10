@@ -16,17 +16,18 @@ import javax.faces.validator.ValidatorException;
  *
  * @author DTP
  */
-@FacesValidator("admin.customValidate.cantBlank")
-public class cantBlank implements Validator {
+@FacesValidator("admin.customValidate.checkSpecialChars")
+public class checkSpecialChars implements Validator{
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        if (value.toString().length() < 3) {
-            System.out.println("----------- context ???? --------------" + context.toString());
-            System.out.println("----------- context ???? --------------" + component.getClientId());
-            FacesMessage msg = new FacesMessage("check blank", "This field is required");
+//        String pattern = "[a-zA-z0-9]+([ '-][a-zA-Z0-9]+)*";
+        String patternSpecialChars = "[a-zA-z0-9]+";
+        if (!value.toString().matches(patternSpecialChars)){
+            FacesMessage msg = new FacesMessage("check special character", component.getClientId() + " cannot contain special characters");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }
     }
+    
 }

@@ -6,7 +6,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,14 +16,12 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,12 +31,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "Product")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT  p FROM Product p"),
+    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findByPrdid", query = "SELECT p FROM Product p WHERE p.prdid = :prdid"),
     @NamedQuery(name = "Product.findByCreatedDate", query = "SELECT p FROM Product p WHERE p.createdDate = :createdDate"),
     @NamedQuery(name = "Product.findByPrdTittle", query = "SELECT p FROM Product p WHERE p.prdTittle = :prdTittle"),
     @NamedQuery(name = "Product.findByPrdPower", query = "SELECT p FROM Product p WHERE p.prdPower = :prdPower"),
     @NamedQuery(name = "Product.findByPrdWarranty", query = "SELECT p FROM Product p WHERE p.prdWarranty = :prdWarranty"),
+    @NamedQuery(name = "Product.findByPrdDiscount", query = "SELECT p FROM Product p WHERE p.prdDiscount = :prdDiscount"),
     @NamedQuery(name = "Product.findByPrdPrice", query = "SELECT p FROM Product p WHERE p.prdPrice = :prdPrice"),
     @NamedQuery(name = "Product.findByPrdDescript", query = "SELECT p FROM Product p WHERE p.prdDescript = :prdDescript"),
     @NamedQuery(name = "Product.findByPrdStatus", query = "SELECT p FROM Product p WHERE p.prdStatus = :prdStatus")})
@@ -75,9 +73,10 @@ public class Product implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "prdImage3")
     private String prdImage3;
+    @Column(name = "prdDiscount")
+    private Integer prdDiscount;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "prdPrice")
-    
     private Double prdPrice;
     @Size(max = 1073741823)
     @Column(name = "prdDescript")
@@ -85,17 +84,9 @@ public class Product implements Serializable {
     @Size(max = 10)
     @Column(name = "prdStatus")
     private String prdStatus;
-    @OneToMany(mappedBy = "prdid")
-    private Collection<Camera> cameraCollection;
     @JoinColumn(name = "ctgid", referencedColumnName = "ctgid")
     @ManyToOne
     private Category ctgid;
-    @OneToMany(mappedBy = "prdid")
-    private Collection<Dvr> dvrCollection;
-    @OneToMany(mappedBy = "prdid")
-    private Collection<Wishlist> wishlistCollection;
-    @OneToMany(mappedBy = "prdid")
-    private Collection<OrderDetail> orderDetailCollection;
 
     public Product() {
     }
@@ -168,8 +159,16 @@ public class Product implements Serializable {
         this.prdImage3 = prdImage3;
     }
 
+    public Integer getPrdDiscount() {
+        return prdDiscount;
+    }
+
+    public void setPrdDiscount(Integer prdDiscount) {
+        this.prdDiscount = prdDiscount;
+    }
+
     public Double getPrdPrice() {
-        return prdPrice ;
+        return prdPrice;
     }
 
     public void setPrdPrice(Double prdPrice) {
@@ -192,48 +191,12 @@ public class Product implements Serializable {
         this.prdStatus = prdStatus;
     }
 
-    @XmlTransient
-    public Collection<Camera> getCameraCollection() {
-        return cameraCollection;
-    }
-
-    public void setCameraCollection(Collection<Camera> cameraCollection) {
-        this.cameraCollection = cameraCollection;
-    }
-
     public Category getCtgid() {
         return ctgid;
     }
 
     public void setCtgid(Category ctgid) {
         this.ctgid = ctgid;
-    }
-
-    @XmlTransient
-    public Collection<Dvr> getDvrCollection() {
-        return dvrCollection;
-    }
-
-    public void setDvrCollection(Collection<Dvr> dvrCollection) {
-        this.dvrCollection = dvrCollection;
-    }
-
-    @XmlTransient
-    public Collection<Wishlist> getWishlistCollection() {
-        return wishlistCollection;
-    }
-
-    public void setWishlistCollection(Collection<Wishlist> wishlistCollection) {
-        this.wishlistCollection = wishlistCollection;
-    }
-
-    @XmlTransient
-    public Collection<OrderDetail> getOrderDetailCollection() {
-        return orderDetailCollection;
-    }
-
-    public void setOrderDetailCollection(Collection<OrderDetail> orderDetailCollection) {
-        this.orderDetailCollection = orderDetailCollection;
     }
 
     @Override

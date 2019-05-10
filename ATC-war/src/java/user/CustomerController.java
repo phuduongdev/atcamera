@@ -39,7 +39,6 @@ public class CustomerController implements Serializable {
     }
 
     public String add() {
-
         if (this.confim.equals(ctm.getCtmPassword())) {
             ctm.setCtmid(tools.CommonUse.generateUUID());
             ctm.setCreatedDate(new Timestamp(new Date().getTime()));
@@ -51,8 +50,6 @@ public class CustomerController implements Serializable {
             this.msg = "Not match!!!";
             return "register";
         }
-
-
     }
    
 

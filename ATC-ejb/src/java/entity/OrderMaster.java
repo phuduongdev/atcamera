@@ -36,9 +36,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "OrderMaster.findAll", query = "SELECT o FROM OrderMaster o"),
     @NamedQuery(name = "OrderMaster.findByOdmid", query = "SELECT o FROM OrderMaster o WHERE o.odmid = :odmid"),
     @NamedQuery(name = "OrderMaster.findByCreatedDate", query = "SELECT o FROM OrderMaster o WHERE o.createdDate = :createdDate"),
-    @NamedQuery(name = "OrderMaster.findByOdmTitle", query = "SELECT o FROM OrderMaster o WHERE o.odmTitle = :odmTitle"),
+    @NamedQuery(name = "OrderMaster.findByInstallationDate", query = "SELECT o FROM OrderMaster o WHERE o.installationDate = :installationDate"),
     @NamedQuery(name = "OrderMaster.findByOdmPrice", query = "SELECT o FROM OrderMaster o WHERE o.odmPrice = :odmPrice"),
-    @NamedQuery(name = "OrderMaster.findByOdmStatus", query = "SELECT o FROM OrderMaster o WHERE o.odmStatus = :odmStatus")})
+    @NamedQuery(name = "OrderMaster.findByOdmPayments", query = "SELECT o FROM OrderMaster o WHERE o.odmPayments = :odmPayments"),
+    @NamedQuery(name = "OrderMaster.findByOdmStatus", query = "SELECT o FROM OrderMaster o WHERE o.odmStatus = :odmStatus"),
+    @NamedQuery(name = "OrderMaster.findByOdmDescript", query = "SELECT o FROM OrderMaster o WHERE o.odmDescript = :odmDescript")})
 public class OrderMaster implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,19 +49,24 @@ public class OrderMaster implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "odmid")
     private String odmid;
-    @Basic(optional = false)
     @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    @Size(max = 50)
-    @Column(name = "odmTitle")
-    private String odmTitle;
+    @Column(name = "installationDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date installationDate;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "odmPrice")
     private Double odmPrice;
-    @Size(max = 50)
+    @Size(max = 20)
+    @Column(name = "odmPayments")
+    private String odmPayments;
+    @Size(max = 10)
     @Column(name = "odmStatus")
     private String odmStatus;
+    @Size(max = 1073741823)
+    @Column(name = "odmDescript")
+    private String odmDescript;
     @JoinColumn(name = "ctmid", referencedColumnName = "ctmid")
     @ManyToOne
     private Customer ctmid;
@@ -71,11 +78,6 @@ public class OrderMaster implements Serializable {
 
     public OrderMaster(String odmid) {
         this.odmid = odmid;
-    }
-
-    public OrderMaster(String odmid, Date createdDate) {
-        this.odmid = odmid;
-        this.createdDate = createdDate;
     }
 
     public String getOdmid() {
@@ -94,12 +96,12 @@ public class OrderMaster implements Serializable {
         this.createdDate = createdDate;
     }
 
-    public String getOdmTitle() {
-        return odmTitle;
+    public Date getInstallationDate() {
+        return installationDate;
     }
 
-    public void setOdmTitle(String odmTitle) {
-        this.odmTitle = odmTitle;
+    public void setInstallationDate(Date installationDate) {
+        this.installationDate = installationDate;
     }
 
     public Double getOdmPrice() {
@@ -110,12 +112,28 @@ public class OrderMaster implements Serializable {
         this.odmPrice = odmPrice;
     }
 
+    public String getOdmPayments() {
+        return odmPayments;
+    }
+
+    public void setOdmPayments(String odmPayments) {
+        this.odmPayments = odmPayments;
+    }
+
     public String getOdmStatus() {
         return odmStatus;
     }
 
     public void setOdmStatus(String odmStatus) {
         this.odmStatus = odmStatus;
+    }
+
+    public String getOdmDescript() {
+        return odmDescript;
+    }
+
+    public void setOdmDescript(String odmDescript) {
+        this.odmDescript = odmDescript;
     }
 
     public Customer getCtmid() {

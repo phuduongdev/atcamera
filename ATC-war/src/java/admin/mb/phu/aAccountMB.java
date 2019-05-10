@@ -13,9 +13,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 /**
  *
@@ -29,7 +31,7 @@ public class aAccountMB implements Serializable {
     @EJB
     private AccountFacade accountFacade;
 
-    private String confirmPassword, msg, formStatus;
+    private String pass, confirmPassword, msg, formStatus;
     private Account account;
 
     /**
@@ -37,6 +39,9 @@ public class aAccountMB implements Serializable {
      */
     public aAccountMB() {
         account = new Account();
+        pass = "";
+        confirmPassword = "";
+        msg = "";
     }
 
 //    ***** navigation zone
@@ -60,20 +65,41 @@ public class aAccountMB implements Serializable {
 
     public String createAccount() {
         try {
-            account.setAccid(tools.CommonUse.generateUUID());
-            account.setCreatedDate(new Timestamp(new Date().getTime()));
-            account.setAccStatus("new");
-            accountFacade.create(account);
-            return "accountView?faces-redirect=true";
+            List<Account> acc = accountFacade.checkDuplicateAccUsername(account.getAccUserName());
+            if (accountFacade.checkDuplicateAccUsername(account.getAccUserName()).size() == 0) {
+                msg = "";
+                account.setAccid(tools.CommonUse.generateUUID());
+                account.setCreatedDate(new Timestamp(new Date().getTime()));
+                account.setAccStatus("new");
+                accountFacade.create(account);
+                return "accountView?faces-redirect=true";
+            } else {
+                msg = "Invalid Username";
+            }
+
         } catch (Exception e) {
 //            msg = "TK da dc sd";
-            return "accountCreate?faces-redirect=true";
         }
+        return "accountCreate?faces-redirect=true";
     }
 
     public String updateAccount() {
+        updateAccPassword();
         accountFacade.edit(account);
         return "accountView?faces-redirect=true";
+    }
+
+    public String updateProfile() {
+        updateAccPassword();
+        accountFacade.edit(account);
+        return "accountUpdate?faces-redirect=true";
+    }
+
+    private void updateAccPassword() {
+        if (pass.equals("") || pass == null) {
+            pass = account.getAccPassword();
+        }
+        account.setAccPassword(pass);
     }
 
     public Account getAccount() {
@@ -106,6 +132,14 @@ public class aAccountMB implements Serializable {
 
     public void setFormStatus(String formStatus) {
         this.formStatus = formStatus;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
 }

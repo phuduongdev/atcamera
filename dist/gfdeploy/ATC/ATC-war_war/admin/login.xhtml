@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -27,72 +29,58 @@
         <div class="wrapper-page">
             <div class=" card-box">
                 <div class="panel-heading"> 
-                    <h3 class="text-center"> Sign In to <strong class="text-custom">An Thang</strong> </h3>
+                    <h3 class="text-center"><strong class="text-custom">An Thang Group</strong><br/>Sign In</h3>
                 </div> 
 
                 <div class="panel-body">
                     <h:form class="form-horizontal m-t-20" prependId="false" id="adminLogin">
                         <div class="form-group ">
                             <div class="col-xs-12">
-                                <h:inputText value="#{aLogin.username}" id="aloginUsername" 
-                                             class="form-control" required="true" requiredMessage="Username can't blank"/>
-                                <h:message for="aloginUsername" styleClass="error"/>
+                                <h:message id="msgUsername" for="Username" styleClass="alert-danger"/>
+                            </div>
+                            <div class="col-xs-12">
+
+                                <h:inputText value="#{aLogin.username}" id="Username" 
+                                             a:placeholder="User Name" class="form-control">
+                                    <f:ajax event="keyup" render="msgUsername"/>
+                                    <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                    <f:validator validatorId="admin.customValidate.checkNameLength"/>
+                                    <f:validator validatorId="admin.customValidate.checkSpecialChars"/>
+                                </h:inputText>
+
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <h:inputSecret value="#{aLogin.password}" id="aloginPass"
-                                               class="form-control" required="true" requiredMessage="Password can't blank"/>
-                                <h:message for="aloginPass" styleClass="error" />
+                                <h:message id="msgPassword" for="Password" styleClass="alert-danger" />
                             </div>
-                        </div>
-
-<!--                        <div class="form-group ">
                             <div class="col-xs-12">
-                                <div class="checkbox checkbox-primary">
-                                    <input id="checkbox-signup" type="checkbox"/>
-                                    <label for="checkbox-signup">
-                                        Remember me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>-->
+                                <h:inputSecret value="#{aLogin.password}" id="Password"
+                                               a:placeholder="Password" class="form-control">
+                                    <f:ajax event="keyup" render="msgPassword"/>
+                                    <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                    <f:validator validatorId="admin.customValidate.checkPasswordLength"/>
+                                    <f:validator validatorId="admin.customValidate.checkWhitespace"/>
+                                </h:inputSecret>
 
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                <label>
-                                    ${aLogin.msg}
-                                </label>
                             </div>
                         </div>
 
                         <div class="form-group text-center m-t-40">
-                            <div class="col-xs-12">
-                                <h:commandLink class="btn btn-info btn-block text-uppercase waves-effect waves-light" 
-                                               action="#{aLogin.login()}">Log In</h:commandLink>
-                            </div>
-                        </div>
-                        <div class="form-group text-center m-t-40">
-                            <div class="col-xs-12">
-                                <h:messages showDetail="false" showSummary="true" styleClass="error" />
-                            </div>
+                            
+                                <h:commandLink action="#{aLogin.login()}" class="btn btn-info btn-block 
+                                               text-uppercase waves-effect waves-light">Log In</h:commandLink>
+                            
+                            
+                                <!--<h:messages globalOnly="true" styleClass="alert-danger list-group list-unstyled" />-->
+                                <h:outputText id="authenMsg" value="#{aLogin.msg}" styleClass="alert-danger"/>
+                            
                         </div>
 
-                        <div class="form-group m-t-30 m-b-0">
-                            <div class="col-sm-12">
-                                <a href="page-recoverpw.html" class="text-dark"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
-                            </div>
-                        </div>
                     </h:form> 
-
                 </div>   
             </div>                              
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <p>Don't have an account? <a href="page-register.html" class="text-primary m-l-5"><b>Sign Up</b></a></p>
-                </div>
-            </div>
 
         </div>
 

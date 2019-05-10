@@ -6,9 +6,12 @@
 package controller;
 
 import entity.OrderDetail;
+import entity.OrderMaster;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -28,4 +31,9 @@ public class OrderDetailFacade extends AbstractFacade<OrderDetail> {
         super(OrderDetail.class);
     }
     
+    public List<OrderDetail> findOrderDetailsByOrderMasterID(OrderMaster select) {
+        TypedQuery q = em.createQuery("SELECT od FROM OrderDetail od WHERE od.odmid = :id", OrderDetail.class);
+        q.setParameter("id", select);
+        return q.getResultList();
+    }
 }

@@ -27,16 +27,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author DTP
  */
 @Entity
-@Table(name = "Wishlish")
+@Table(name = "Rating")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Wishlish.findAll", query = "SELECT w FROM Wishlish w"),
-    @NamedQuery(name = "Wishlish.findByRateid", query = "SELECT w FROM Wishlish w WHERE w.rateid = :rateid"),
-    @NamedQuery(name = "Wishlish.findByCreatedDate", query = "SELECT w FROM Wishlish w WHERE w.createdDate = :createdDate"),
-    @NamedQuery(name = "Wishlish.findByRatePoint", query = "SELECT w FROM Wishlish w WHERE w.ratePoint = :ratePoint"),
-    @NamedQuery(name = "Wishlish.findByCamid", query = "SELECT w FROM Wishlish w WHERE w.camid = :camid"),
-    @NamedQuery(name = "Wishlish.findByRateDescript", query = "SELECT w FROM Wishlish w WHERE w.rateDescript = :rateDescript")})
-public class Wishlish implements Serializable {
+    @NamedQuery(name = "Rating.findAll", query = "SELECT r FROM Rating r"),
+    @NamedQuery(name = "Rating.findByRateid", query = "SELECT r FROM Rating r WHERE r.rateid = :rateid"),
+    @NamedQuery(name = "Rating.findByCreatedDate", query = "SELECT r FROM Rating r WHERE r.createdDate = :createdDate"),
+    @NamedQuery(name = "Rating.findByRatePoint", query = "SELECT r FROM Rating r WHERE r.ratePoint = :ratePoint"),
+    @NamedQuery(name = "Rating.findByCamid", query = "SELECT r FROM Rating r WHERE r.camid = :camid"),
+    @NamedQuery(name = "Rating.findByRateDescript", query = "SELECT r FROM Rating r WHERE r.rateDescript = :rateDescript")})
+public class Rating implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -60,14 +60,14 @@ public class Wishlish implements Serializable {
     @ManyToOne
     private Customer ctmid;
 
-    public Wishlish() {
+    public Rating() {
     }
 
-    public Wishlish(Integer rateid) {
+    public Rating(Integer rateid) {
         this.rateid = rateid;
     }
 
-    public Wishlish(Integer rateid, int ratePoint) {
+    public Rating(Integer rateid, int ratePoint) {
         this.rateid = rateid;
         this.ratePoint = ratePoint;
     }
@@ -130,10 +130,10 @@ public class Wishlish implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Wishlish)) {
+        if (!(object instanceof Rating)) {
             return false;
         }
-        Wishlish other = (Wishlish) object;
+        Rating other = (Rating) object;
         if ((this.rateid == null && other.rateid != null) || (this.rateid != null && !this.rateid.equals(other.rateid))) {
             return false;
         }
@@ -142,7 +142,7 @@ public class Wishlish implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Wishlish[ rateid=" + rateid + " ]";
+        return "entity.Rating[ rateid=" + rateid + " ]";
     }
     
 }

@@ -33,7 +33,6 @@ public class adminFilter implements Filter {
         HttpSession session = reqt.getSession(false);
 
         String loginURI = reqt.getContextPath() + "/faces/admin/login.xhtml";
-        System.out.println("-----------------------" + loginURI);
         boolean loggedIn = session != null && session.getAttribute("user") != null;
         boolean loginRequest = reqt.getRequestURI().equals(loginURI);
         boolean resourceRequest = reqt.getRequestURI().startsWith(reqt.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER);

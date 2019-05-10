@@ -5,168 +5,168 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="./template.xhtml">
+        <ui:define name="cssplus">
+            <!--DataTables--> 
+            <h:outputStylesheet name="assets/plugins/datatables/jquery.dataTables.min.css" />
+            <h:outputStylesheet name="assets/plugins/datatables/buttons.bootstrap.min.css" />
+            <h:outputStylesheet name="assets/plugins/datatables/fixedHeader.bootstrap.min.css" />
+            <h:outputStylesheet name="assets/plugins/datatables/responsive.bootstrap.min.css" />
+            <h:outputStylesheet name="assets/plugins/datatables/scroller.bootstrap.min.css" />
+            <h:outputStylesheet name="assets/plugins/datatables/dataTables.colVis.css" />
+            <h:outputStylesheet name="assets/plugins/datatables/dataTables.bootstrap.min.css" />
+            <h:outputStylesheet name="assets/plugins/datatables/fixedColumns.dataTables.min.css" />
 
-    <body>
+            <!--Modal-->
+            <h:outputStylesheet name="assets/plugins/custombox/css/custombox.css"/>
+        </ui:define>
 
-        <ui:composition template="./template.xhtml">
-
-            <ui:define name="cssplus">
-                <!--DataTables--> 
-                <h:outputStylesheet name="assets/plugins/datatables/jquery.dataTables.min.css" />
-                <h:outputStylesheet name="assets/plugins/datatables/buttons.bootstrap.min.css" />
-                <h:outputStylesheet name="assets/plugins/datatables/fixedHeader.bootstrap.min.css" />
-                <h:outputStylesheet name="assets/plugins/datatables/responsive.bootstrap.min.css" />
-                <h:outputStylesheet name="assets/plugins/datatables/scroller.bootstrap.min.css" />
-                <h:outputStylesheet name="assets/plugins/datatables/dataTables.colVis.css" />
-                <h:outputStylesheet name="assets/plugins/datatables/dataTables.bootstrap.min.css" />
-                <h:outputStylesheet name="assets/plugins/datatables/fixedColumns.dataTables.min.css" />
-
-                <!--Modal-->
-                <h:outputStylesheet name="assets/plugins/custombox/css/custombox.css"/>
-            </ui:define>
-
-            <ui:define name="content">
-                <!-- Start content -->
-                <div class="content">
-                    <div class="container">
-                        <!-- Page-Title -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="page-title">Order</h4>
-                                <ol class="breadcrumb">
-                                    <li>
-                                        <a href="#">ATC</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Order</a>
-                                    </li>
-                                    <li class="active">
-                                        View All
-                                    </li>
-                                </ol>
-                            </div>
+        <ui:define name="content">
+            <!-- Start content -->
+            <div class="content">
+                <div class="container">
+                    <!-- Page-Title -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="page-title">Order</h4>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <a href="#">ATC</a>
+                                </li>
+                                <li>
+                                    <a href="#">Order</a>
+                                </li>
+                                <li class="active">
+                                    View All
+                                </li>
+                            </ol>
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card-box table-responsive">
-                                    <h:form prependId="false">
-                                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                                            <thead>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-box table-responsive">
+                                <h4 class="m-t-0 header-title"><b>Order - View All</b></h4>
+                                <p class="text-muted font-13 m-b-30">
+                                    Show all order.
+                                </p>
+                                <h:form prependId="false">
+                                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Created Date</th>
+                                                <th>UID</th>
+                                                <th>Price</th>
+                                                <th>Status</th>
+                                                <th>Customer</th>
+                                                <th>Task</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="item" items="${aOrderMB.orders}">
                                                 <tr>
-                                                    <th>Created Date</th>
-                                                    <th>UID</th>
-                                                    <th>Price</th>
-                                                    <th>Status</th>
-                                                    <th>Customer</th>
-                                                    <th>Task</th>
+                                                    <td>
+                                                        <h:outputText value="#{item.createdDate}">
+                                                            <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td>${item.odmid.length() gt 5 ? item.odmid.substring(
+                                                          item.odmid.length() - 5) : item.odmid}</td>
+                                                    <td class="text-right">
+                                                        <h:outputText value="${item.odmPrice}">
+                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td align="center">
+                                                        <span class="label label-table 
+                                                              ${item.odmStatus eq 'new' ? 'label-danger' : (
+                                                                item.odmStatus eq 'active' ? 'label-info' : (
+                                                                item.odmStatus eq 'half' ? 'label-warning' : (
+                                                                item.odmStatus eq 'completed' ? 'label-success' : 'label-inverse')))}">
+                                                              ${item.odmStatus.toUpperCase()}
+                                                        </span>
+                                                    </td>
+                                                    <td>#{item.ctmid.ctmFirstName}</td>
+                                                    <td>
+                                                        <h:commandLink action="#{aOrderMB.updateNav()}" styleClass="table-action-btn">
+                                                            <i class="md md-edit"></i>
+                                                            <f:setPropertyActionListener value="#{item}" target="#{aOrderMB.order}"/>
+                                                        </h:commandLink>
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach var="item" items="${aOrderMB.orders}">
-                                                    <tr>
-                                                        <td>
-                                                            <h:outputText value="#{item.createdDate}">
-                                                                <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
-                                                            </h:outputText>
-                                                        </td>
-                                                        <td>${item.odmid.length() gt 5 ? item.odmid.substring(
-                                                              item.odmid.length() - 5) : item.odmid}</td>
-                                                        <td class="text-right">
-                                                            <h:outputText value="${item.odmPrice}">
-                                                                <f:convertNumber pattern="#,###,###,### đ"/>
-                                                            </h:outputText>
-                                                        </td>
-                                                        <td>
-                                                            <span class="label label-table 
-                                                                  ${item.odmStatus == 'new' ? 'label-warning' : (
-                                                                    item.odmStatus == 'active' ? 'label-success' : 'label-inverse')}">
-                                                                  ${item.odmStatus.toUpperCase()}
-                                                            </span>
-                                                        </td>
-                                                        <td></td>
-                                                        <td>
-                                                            <h:commandLink action="#{aOrderMB.updateNav()}" styleClass="table-action-btn">
-                                                                <i class="md md-edit"></i>
-                                                                <f:setPropertyActionListener value="#{item}" target="#{aOrderMB.order}"/>
-                                                            </h:commandLink>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </h:form>
-                                </div>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </h:form>
                             </div>
                         </div>
-                    </div> <!-- container -->
-                </div> 
-                <!-- content -->
-            </ui:define>
+                    </div>
+                </div> <!-- container -->
+            </div> 
+            <!-- content -->
+        </ui:define>
 
-            <ui:define name="jsplus">
-                <!-- Modal-Effect -->
-                <h:outputScript name="assets/plugins/custombox/js/custombox.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/custombox/js/legacy.min.js"></h:outputScript>
+        <ui:define name="jsplus">
+            <!-- Modal-Effect -->
+            <h:outputScript name="assets/plugins/custombox/js/custombox.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/custombox/js/legacy.min.js"></h:outputScript>
 
-                <!--DataTables--> 
-                <h:outputScript name="assets/plugins/datatables/jquery.dataTables.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/dataTables.bootstrap.js"></h:outputScript>
+            <!--DataTables--> 
+            <h:outputScript name="assets/plugins/datatables/jquery.dataTables.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/dataTables.bootstrap.js"></h:outputScript>
 
-                <h:outputScript name="assets/plugins/datatables/dataTables.buttons.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/buttons.bootstrap.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/jszip.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/pdfmake.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/vfs_fonts.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/buttons.html5.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/buttons.print.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/dataTables.fixedHeader.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/dataTables.keyTable.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/dataTables.responsive.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/responsive.bootstrap.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/dataTables.scroller.min.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/dataTables.colVis.js"></h:outputScript>
-                <h:outputScript name="assets/plugins/datatables/dataTables.fixedColumns.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/dataTables.buttons.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/buttons.bootstrap.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/jszip.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/pdfmake.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/vfs_fonts.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/buttons.html5.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/buttons.print.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/dataTables.fixedHeader.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/dataTables.keyTable.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/dataTables.responsive.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/responsive.bootstrap.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/dataTables.scroller.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/dataTables.colVis.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/datatables/dataTables.fixedColumns.min.js"></h:outputScript>
 
-                <h:outputScript name="assets/pages/datatables.init.js"></h:outputScript>
+            <h:outputScript name="assets/pages/datatables.init.js"></h:outputScript>
 
-                <script>
-                    //<![CDATA[
-                    $(document).ready(function () {
-                        $('#datatable').dataTable();
-                        $('#datatable-keytable').DataTable({keys: true});
-                        $('#datatable-responsive').DataTable();
-                        $('#datatable-colvid').DataTable({
-                            "dom": 'C<"clear">lfrtip',
-                            "colVis": {
-                                "buttonText": "Change columns"
-                            }
-                        });
-                        $('#datatable-scroller').DataTable({
-                            ajax: "assets/plugins/datatables/json/scroller-demo.json",
-                            deferRender: true,
-                            scrollY: 380,
-                            scrollCollapse: true,
-                            scroller: true
-                        });
-                        var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
-                        var table = $('#datatable-fixed-col').DataTable({
-                            scrollY: "300px",
-                            scrollX: true,
-                            scrollCollapse: true,
-                            paging: false,
-                            fixedColumns: {
-                                leftColumns: 1,
-                                rightColumns: 1
-                            }
-                        });
+            <script>
+                //<![CDATA[
+                $(document).ready(function () {
+                    $('#datatable').dataTable();
+                    $('#datatable-keytable').DataTable({keys: true});
+                    $('#datatable-responsive').DataTable();
+                    $('#datatable-colvid').DataTable({
+                        "dom": 'C<"clear">lfrtip',
+                        "colVis": {
+                            "buttonText": "Change columns"
+                        }
                     });
-                    TableManageButtons.init();
-                    //]]>
-                </script>
-            </ui:define>
+                    $('#datatable-scroller').DataTable({
+                        ajax: "assets/plugins/datatables/json/scroller-demo.json",
+                        deferRender: true,
+                        scrollY: 380,
+                        scrollCollapse: true,
+                        scroller: true
+                    });
+                    var table = $('#datatable-fixed-header').DataTable({fixedHeader: true});
+                    var table = $('#datatable-fixed-col').DataTable({
+                        scrollY: "300px",
+                        scrollX: true,
+                        scrollCollapse: true,
+                        paging: false,
+                        fixedColumns: {
+                            leftColumns: 1,
+                            rightColumns: 1
+                        }
+                    });
+                });
+                TableManageButtons.init();
+                //]]>
+            </script>
+        </ui:define>
 
-        </ui:composition>
-
-    </body>
+    </ui:composition>
 </html>

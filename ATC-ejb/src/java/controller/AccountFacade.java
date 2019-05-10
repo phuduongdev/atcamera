@@ -6,6 +6,7 @@
 package controller;
 
 import entity.Account;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,11 +33,23 @@ public class AccountFacade extends AbstractFacade<Account> {
 
     public Account checkAccountLogin(String username, String password) {
         try {
-            TypedQuery<Account> q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username "
-                    + "and a.accPassword = :password ", Account.class);
+            TypedQuery<Account> q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username"
+                    + " and a.accPassword = :password"
+                    + " and a.accStatus = 'active'", Account.class);
             q.setParameter("username", username);
             q.setParameter("password", password);
             return q.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public List<Account> checkDuplicateAccUsername(String username){
+        try {
+            TypedQuery q = em.createQuery("SELECT a FROM Account a WHERE a.accUserName = :username", Account.class);
+            q.setParameter("username", username);
+            return q.getResultList();
         } catch (Exception e) {
             e.printStackTrace();
         }
