@@ -72,6 +72,9 @@ public class OrderController implements Serializable {
             for (OrderDetail item : cart) {
                 item.setOdmid(om);
                 orderDetailFacade.create(item);
+                
+                item.getPrdid().setPrdStatus("active");
+                productFacade.edit(item.getPrdid());
             }
             cart = new ArrayList<>();
             msg = "Tao order thanh cong";

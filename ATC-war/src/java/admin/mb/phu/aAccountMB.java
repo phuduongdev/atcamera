@@ -65,20 +65,22 @@ public class aAccountMB implements Serializable {
 
     public String createAccount() {
         try {
-            account.setAccid(tools.CommonUse.generateUUID());
-            account.setCreatedDate(new Timestamp(new Date().getTime()));
-            if (accountFacade.checkDuplicateAccUsername(account.getAccUserName()) < 0) {
-                FacesMessage msg = new FacesMessage("duplicate account user name", "Unvalid Username");
-                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-                throw new ValidatorException(msg);
+            List<Account> acc = accountFacade.checkDuplicateAccUsername(account.getAccUserName());
+            if (accountFacade.checkDuplicateAccUsername(account.getAccUserName()).size() == 0) {
+                msg = "";
+                account.setAccid(tools.CommonUse.generateUUID());
+                account.setCreatedDate(new Timestamp(new Date().getTime()));
+                account.setAccStatus("new");
+                accountFacade.create(account);
+                return "accountView?faces-redirect=true";
+            } else {
+                msg = "Invalid Username";
             }
-            account.setAccStatus("new");
-            accountFacade.create(account);
-            return "accountView?faces-redirect=true";
+
         } catch (Exception e) {
 //            msg = "TK da dc sd";
-            return "accountCreate?faces-redirect=true";
         }
+        return "accountCreate?faces-redirect=true";
     }
 
     public String updateAccount() {

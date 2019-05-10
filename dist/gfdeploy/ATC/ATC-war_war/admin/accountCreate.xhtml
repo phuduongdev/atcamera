@@ -48,42 +48,53 @@
                                 <h:form id="wizard-vertical" prependId="false">
                                     <h3>Information</h3>
                                     <section>
+                                        <div class="form-group clearfix text-center">
+                                            <h:outputText value="#{aAccountMB.msg}" styleClass="alert-danger"/>
+                                        </div>
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="User Name *" for="accUserName" styleClass="col-lg-3 control-label" />                                                
+                                            <h:outputLabel value="User Name *" for="Username" styleClass="col-lg-3 control-label" />                                                
                                             <div class="col-lg-9">
-                                                <h:message id="msgUsername" for="accUserName" styleClass="error"/>
-                                                <h:inputText id="accUserName" value="#{aAccountMB.account.accUserName}"
+                                                <h:message id="msgUsername" for="Username" styleClass="alert-danger"/>
+                                                <h:inputText id="Username" value="#{aAccountMB.account.accUserName}"
                                                              a:placeholder="e.g. John"
-                                                             styleClass="form-control">
+                                                             styleClass="form-control form">
+                                                    <f:ajax event="keyup" render="msgUsername"/>
                                                     <f:validator validatorId="admin.customValidate.checkBlank" />
-                                                    <f:ajax event="change" render="msgUsername"/>
+                                                    <f:validator validatorId="admin.customValidate.checkNameLength"/>
+                                                    <f:validator validatorId="admin.customValidate.checkSpecialChars"/>
+                                                    <f:validator validatorId="admin.customValidate.checkDuplicate"/>
                                                 </h:inputText>
-                                                
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Password *" for="accPassword" styleClass="col-lg-3 control-label" />
+                                            <h:outputLabel value="Password *" for="Password" styleClass="col-lg-3 control-label" />
                                             <div class="col-lg-9">
-                                                <h:inputSecret id="accPassword" value="#{aAccountMB.account.accPassword}" 
-                                                               a:placeholder="must be 6 to 30 character"
+                                                <h:message id="passwordMsg" for="Password" styleClass="alert-danger" />
+                                                <h:inputSecret id="Password" value="#{aAccountMB.account.accPassword}" 
+                                                               a:placeholder="Must be 6 to 30 character"
                                                                styleClass="required form-control">
+                                                    <f:ajax event="keyup" render="passwordMsg"/>
                                                     <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                    <f:validator validatorId="admin.customValidate.checkPasswordLength"/>
+                                                    <f:validator validatorId="admin.customValidate.checkWhitespace"/>
                                                 </h:inputSecret>
-                                                <h:message for="accPassword" styleClass="error" />
                                             </div>
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Confirm Password *" for="confirmPassword" styleClass="col-lg-3 control-label" />
+                                            <h:outputLabel value="Confirm Password *" for="ConfirmPassword" styleClass="col-lg-3 control-label" />
                                             <div class="col-lg-9">
-                                                <h:inputSecret id="confirm1" value="${aAccountMB.confirmPassword}" 
-                                                               a:placeholder="must be same password"
+                                                <h:message id="msgConfirmPassword" for="ConfirmPassword" styleClass="alert-danger" />
+                                                <h:inputSecret id="ConfirmPassword" value="${aAccountMB.confirmPassword}" 
+                                                               a:placeholder="Must be same password"
                                                                styleClass="required form-control" >
+                                                    <f:ajax event="keyup" render="msgConfirmPassword"/>
+                                                    <f:attribute name="fieldPassword" value="#{component.parent.parent.clientId}:Username"/>
                                                     <f:validator validatorId="admin.customValidate.checkBlank"/>
-                                                    <!--<f:validator validatorId="admin.customValidate.checkConfirm"/>-->
+                                                    <!--<f:validator validatorId="admin.customValidate.checkConfirmPass"/>-->
                                                 </h:inputSecret>
-                                                <h:message for="accPassword" styleClass="error" />
+                                                
                                             </div>
                                         </div>
 
@@ -96,23 +107,23 @@
                                                 </h:selectOneMenu>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Description" for="accDescript" class="col-lg-3 control-label" />
                                             <div class="col-lg-9">
                                                 <h:inputTextarea id="accDescript" value="#{aAccountMB.account.accDescript}" title="AccDescript" styleClass="required form-control" />
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group clearfix">
                                             <label class="col-lg-12 control-label ">(*) Required</label>
                                         </div>
                                     </section>
 
-<!--                                    <h3>Role</h3>
-                                    <section>
-
-                                    </section>-->
+                                    <!--                                    <h3>Role</h3>
+                                                                        <section>
+                                    
+                                                                        </section>-->
 
                                     <!--                                        <h3>Hints</h3>
                                                                             <section>
