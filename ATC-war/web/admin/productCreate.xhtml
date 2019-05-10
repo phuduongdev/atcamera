@@ -105,10 +105,11 @@
                                             <h:outputLabel value="Image *" for="prdImage" styleClass="col-lg-4 control-label"  />
                                             <div class="col-lg-8">
                                                 <h:inputFile id="prdImage" value="#{aProductMB.file}" 
-                                                             title="PrdImage" styleClass="control-label" >
+                                                             title="PrdImage" styleClass="control-label" required="true" requiredMessage="chose img plz">
                                                     <f:passThroughAttribute name="accept" value="image/png"/>
                                                 </h:inputFile>
                                             </div>
+                                            <h:message for="prdImage" style="color: red"/>
                                         </div>
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Image 2" for="prdImage" styleClass="col-lg-4 control-label"  />

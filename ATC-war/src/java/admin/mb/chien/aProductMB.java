@@ -48,6 +48,9 @@ public class aProductMB implements Serializable {
     private Product product;
     private Camera camera;
     private Dvr dvr;
+    private Category ctg;
+
+   
     private String cateid;
     private String productCreateTittle;
 
@@ -226,12 +229,14 @@ public class aProductMB implements Serializable {
                 product.setCtgid(categoryFacade.find(cateid));
                 uploadFile();
                 product.setPrdImage("img/"+file.getSubmittedFileName());
-                
                 productFacade.create(product);
                 camera.setCamid(tools.CommonUse.generateUUID());
                 camera.setCreatedDate(new Timestamp(new Date().getTime()));
                 camera.setPrdid(product);
                 cameraFacade.create(camera);
+                ctg.setCtgStatus("active");
+                categoryFacade.edit(ctg);
+                
             } else if (option.equalsIgnoreCase("dvr")) {
                 product.setPrdid(prid);
                 product.setCreatedDate(new Timestamp(new Date().getTime()));
@@ -244,6 +249,8 @@ public class aProductMB implements Serializable {
                 dvr.setCreatedDate(new Timestamp(new Date().getTime()));
                 dvr.setPrdid(product);
                 dvrFacade.create(dvr);
+                ctg.setCtgStatus("active");
+                categoryFacade.edit(ctg);
             } else {
                 product.setPrdid(prid);
                 product.setCreatedDate(new Timestamp(new Date().getTime()));
@@ -251,11 +258,18 @@ public class aProductMB implements Serializable {
                 product.setCtgid(categoryFacade.find(cateid));
                 uploadFile();
                 product.setPrdImage("img/"+file.getSubmittedFileName());
+                if(product.getPrdImage2()!= null){
                 uploadFile2();
                 product.setPrdImage2("img/"+file2.getSubmittedFileName());
+                }
+                if(product.getPrdImage2()!= null){
                 uploadFile3();
                 product.setPrdImage3("img/"+file3.getSubmittedFileName());
+                }
                 productFacade.create(product);
+                Category cate = product.getCtgid();
+                cate.setCtgStatus("active");
+                categoryFacade.edit(cate);
             }
 
             return "productView?faces-redirect=true";
@@ -372,5 +386,12 @@ public class aProductMB implements Serializable {
 
     public void setFile3(Part file3) {
         this.file3 = file3;
+    }
+     public Category getCtg() {
+        return ctg;
+    }
+
+    public void setCtg(Category ctg) {
+        this.ctg = ctg;
     }
 }

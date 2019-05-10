@@ -25,6 +25,26 @@ public class ProductController implements Serializable {
     @EJB
     private ProductFacade productFacade;
     Category ctg = new Category();
+    String Name;
+    int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
 
     public Category getCtg() {
         return ctg;
@@ -67,7 +87,14 @@ public class ProductController implements Serializable {
         this.ctg = ctg;
         return "productclient?faces-redirect=true";
     }
-
+    public String findname(String name){
+        this.Name = name;
+        return "searchname?faces-redirect=true";
+    }
+    public String findprice(int price){
+        this.price = price;
+        return "searchprice?faces-redirect=true";
+    }
     ;
     public List<Product> getProductType() {
         return productFacade.findProductbyCtg(ctg);
@@ -75,5 +102,11 @@ public class ProductController implements Serializable {
 
     public List<Product> getCamlist() {
         return productFacade.Listproduct("camera");
+    }
+    public List<Product> getname(){
+         return productFacade.findProductbyName(Name);
+    }
+    public List<Product> getprice(){
+         return productFacade.findProductbyPrice(price);
     }
 }
