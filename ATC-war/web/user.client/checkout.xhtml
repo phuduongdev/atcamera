@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./newTemplate.xhtml">
+
+            <ui:define name="cssplus">
+                <h:outputStylesheet name="assets/plugins/jquery.steps/css/jquery.steps.css"/>
+            </ui:define>
+
+            <ui:define name="content">
+
+                <div id="all">
+                    <div id="content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <!-- breadcrumb-->
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                            <li aria-current="page" class="breadcrumb-item active">Checkout - Address</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                                <div id="checkout" class="col-lg-9">
+                                    <div class="card-box">
+                                        <h:form id="basic-form" prependId="false">
+                                            <div>
+                                                <h3><br/>Address <i class="fa fa-map-marker"></i></h3>
+                                                <section>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="First Name" for="FirstName" />
+                                                                <h:inputText id="FirstName" value="#{customerController.ctm.ctmFirstName}" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="Last Name" for="LastName" />
+                                                                <h:inputText id="LastName" value="#{customerController.ctm.ctmLastName}" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="Address" for="Address" />
+                                                                <h:inputText id="Address" value="#{customerController.ctm.ctmAddress}" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="Phone" for="Phone" />
+                                                                <h:inputText id="Phone" value="#{customerController.ctm.ctmPhone}" title="CtmPhone" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="DoB" for="DoB" />
+                                                                <h:inputText id="DoB" value="#{customerController.ctm.ctmDob}" class="form-control"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <h:outputLabel value="Email:" for="Email" />
+                                                                <h:inputText id="ctmEmail" value="#{customerController.ctm.ctmEmail}" class="form-control" readonly="true"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+
+                                                <h3><br/>Payment Method <i class="fa fa-money"></i></h3>
+                                                <section>
+                                                    <div class="form-group clearfix">
+
+                                                        <label class="col-lg-2 control-label" for="name"> First name *</label>
+                                                        <div class="col-lg-10">
+                                                            <input id="name" name="name" type="text" class="required form-control"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group clearfix">
+                                                        <label class="col-lg-2 control-label " for="surname"> Last name *</label>
+                                                        <div class="col-lg-10">
+                                                            <input id="surname" name="surname" type="text" class="required form-control"/>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group clearfix">
+                                                        <label class="col-lg-2 control-label " for="email">Email *</label>
+                                                        <div class="col-lg-10">
+                                                            <input id="email" name="email" type="text" class="required email form-control"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group clearfix">
+                                                        <label class="col-lg-2 control-label " for="address">Address *</label>
+                                                        <div class="col-lg-10">
+                                                            <input id="address" name="address" type="text" class="form-control"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group clearfix">
+                                                        <label class="col-lg-12 control-label ">(*) Mandatory</label>
+                                                    </div>
+
+                                                </section>
+                                                <h3><br/>Order Review <i class="fa fa-eye"></i></h3>
+                                                <section>
+                                                    <div class="form-group clearfix">
+                                                        <div class="col-lg-12">
+                                                            <iframe frameborder="0" width="100%" src="orderPrint.xhtml" height="100%" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group text-center">
+                                                        <h:commandLink action="#{aAccountMB.createAccount()}" value="Confirm" 
+                                                                       styleClass="row btn btn-success waves-effect waves-light">
+                                                        </h:commandLink>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </h:form> 
+                                    </div>
+                                    <!-- /.box-->
+                                </div>
+                                <!-- /.col-lg-9-->
+                                <div class="col-lg-3">
+                                    <h:form prependId="false" id="summaryForm">
+                                    <div id="order-summary" class="box">
+                                        <div class="box-header">
+                                            <h3 class="mb-0">Order summary</h3>
+                                        </div>
+                                        <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Order subtotal</td>
+                                                        <th>
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Shipping and handling</td>
+                                                        <th>
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tax</td>
+                                                        <th>
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr class="total">
+                                                        <td>Total</td>
+                                                        <th>
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </h:form>
+                                    <div id="order-summary" class="card">
+                                        <div class="card-header">
+                                            <h3 class="mt-4 mb-4">Order summary</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Order subtotal</td>
+                                                            <th>$446.00</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Shipping and handling</td>
+                                                            <th>$10.00</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tax</td>
+                                                            <th>$0.00</th>
+                                                        </tr>
+                                                        <tr class="total">
+                                                            <td>Total</td>
+                                                            <th>$456.00</th>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-3-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+
+            <ui:define name="jsplus">
+                <script>
+                    //<![CDATA[
+
+                    $().ready(function () {
+                        $(".actions ul li").last().hide();
+
+                    });
+                    //]]>
+                </script>
+
+                <h:outputScript name="assets/pages/jquery.form-pickers.init.js"></h:outputScript>
+                <!--Form Wizard-->
+                <h:outputScript name="assets/plugins/jquery.steps/js/jquery.steps.min.js" ></h:outputScript>
+                <h:outputScript name="assets/plugins/jquery-validation/js/jquery.validate.min.js" ></h:outputScript>
+
+                <!--wizard initialization-->
+                <h:outputScript name="assets/pages/jquery.wizard-init.js" ></h:outputScript>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

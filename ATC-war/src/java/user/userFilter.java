@@ -43,11 +43,10 @@ public class userFilter implements Filter {
         HttpSession session = reqt.getSession(false);
 
         String loginURI = reqt.getContextPath() + "/faces/user.client/login.xhtml";
-        System.out.println("-----------------------" + loginURI);
+//        System.out.println("-----------------------" + loginURI);
         boolean loggedIn = session != null && session.getAttribute("member") != null;
         boolean loginRequest = reqt.getRequestURI().equals(loginURI);
         boolean resourceRequest = reqt.getRequestURI().startsWith(reqt.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER);
-
         if (loggedIn || loginRequest || resourceRequest) {
             chain.doFilter(request, response);
         } else {

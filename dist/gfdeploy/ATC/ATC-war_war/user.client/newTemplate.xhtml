@@ -13,6 +13,11 @@
         <meta name="deh:outputScription" content=""/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="robots" content="all,follow"/>
+
+        <ui:insert name="cssplus">
+            test
+        </ui:insert>
+
         <!-- Bootstrap CSS-->
         <h:outputStylesheet name="vendor/bootstrap/css/bootstrap.min.css"/>
         <!-- Font Awesome CSS-->
@@ -172,18 +177,18 @@
                     </div>
                     <!-- /.col-lg-3-->
                     <div class="col-lg-3 col-md-6">
-                        
+
                         <h:form>
-                        <h4 class="mb-3">Top categories</h4>
-                        <c:forEach items="#{aCategoryMB.categoryType}" var="type">
-                            <h5>#{type}</h5>
-                        <ul class="list-unstyled">
-                            <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title">
-                                <li><h:commandLink action="#">#{title.ctgTitle}</h:commandLink></li>
+                            <h4 class="mb-3">Top categories</h4>
+                            <c:forEach items="#{aCategoryMB.categoryType}" var="type">
+                                <h5>#{type}</h5>
+                                <ul class="list-unstyled">
+                                    <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title">
+                                        <li><h:commandLink action="#">#{title.ctgTitle}</h:commandLink></li>
+                                    </c:forEach>
+                                </ul>
+
                             </c:forEach>
-                        </ul>
-                        
-                        </c:forEach>
                         </h:form>
                     </div>
                     <!-- /.col-lg-3-->
@@ -252,6 +257,9 @@
         <h:outputScript name="vendor/owl.carousel/owl.carousel.min.js"></h:outputScript>
         <h:outputScript name="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></h:outputScript>
         <h:outputScript name="js/front.js"></h:outputScript>
+        <ui:insert name="jsplus">
+            Content
+        </ui:insert>
     </h:body>
 
 </html>

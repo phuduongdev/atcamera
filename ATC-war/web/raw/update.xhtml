@@ -7,32 +7,8 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <f:view>
+        
 
-
-            <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Odmid:" for="odmid" />
-                    <h:inputText id="odmid" value="#{aOrderMB.order.odmid}" title="Odmid" required="true" requiredMessage="The Odmid field is required."/>
-                    <h:outputLabel value="CreatedDate:" for="createdDate" />
-                    <h:inputText id="createdDate" value="#{aOrderMB.order.createdDate}" title="CreatedDate" required="true" requiredMessage="The CreatedDate field is required.">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
-                    <h:outputLabel value="OdmTitle:" for="odmTitle" />
-                    <h:inputText id="odmTitle" value="#{aOrderMB.order.odmTitle}" title="OdmTitle" />
-                    <h:outputLabel value="OdmPrice:" for="odmPrice" />
-                    <h:inputText id="odmPrice" value="#{aOrderMB.order.odmPrice}" title="OdmPrice" />
-                    <h:outputLabel value="OdmStatus:" for="odmStatus" />
-                    <h:inputText id="odmStatus" value="#{aOrderMB.order.odmStatus}" title="OdmStatus" />
-                    <h:outputLabel value="Ctmid:" for="ctmid" />
-                    <h:selectOneMenu id="ctmid" value="#{aOrderMB.order.ctmid}" title="Ctmid" >
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{fixme}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-            </h:form>
-        </f:view>
 
 
     </h:body>

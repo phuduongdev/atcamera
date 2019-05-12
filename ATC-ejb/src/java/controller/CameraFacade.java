@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class CameraFacade extends AbstractFacade<Camera> {
+
     @PersistenceContext(unitName = "ATC-ejbPU")
     private EntityManager em;
 
@@ -29,10 +30,14 @@ public class CameraFacade extends AbstractFacade<Camera> {
     public CameraFacade() {
         super(Camera.class);
     }
-    
-    public Camera findCameraByProduct(Product item){
-        TypedQuery q = em.createQuery("SELECT c FROM Camera c WHERE c.prdid = :p", Camera.class);
-        q.setParameter("p", item);
-        return (Camera) q.getSingleResult();
+
+    public Camera findCameraByProduct(Product item) {
+        try {
+            TypedQuery q = em.createQuery("SELECT c FROM Camera c WHERE c.prdid = :p", Camera.class);
+            q.setParameter("p", item);
+            return (Camera) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return null;
     }
 }

@@ -43,3 +43,8 @@ dist/gfdeploy/ATC/ATC-ejb_jar/entity/OrderMaster.rapt
 dist/gfdeploy/ATC/ATC-ejb_jar/entity/Product.rapt
 dist/gfdeploy/ATC/ATC-ejb_jar/entity/Rating.rapt
 dist/gfdeploy/ATC/ATC-ejb_jar/entity/Wishlist.rapt
+dist/gfdeploy/ATC/gfv3ee6.dpf
+dist/gfdeploy/ATC/ATC-war_war/WEB-INF/web.xml
+build/ATC-war.war
+build/ATC-ejb.jar
+ATC-war/dist/ATC-war.war

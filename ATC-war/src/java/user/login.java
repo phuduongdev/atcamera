@@ -6,6 +6,7 @@
 package user;
 
 import admin.mb.chien.uploadFile;
+import admin.mb.phu.aLogin;
 import controller.CustomerFacade;
 import entity.Customer;
 import java.io.File;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -30,8 +33,7 @@ import javax.servlet.http.Part;
  */
 @ManagedBean
 @SessionScoped
-public class login implements Serializable{
-    
+public class login implements Serializable {
 
     @EJB
     private CustomerFacade customerFacade;
@@ -39,12 +41,10 @@ public class login implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private Customer loginCustomer;
-    private String email, password, msg , namefile;
+    private String email, password, msg, namefile;
 
-   
-    private Part file; 
-    
-    
+    private Part file;
+
     public List<Customer> getMyaccount(String type) {
         return customerFacade.findCustomerTitleByType(type);
     }
@@ -58,39 +58,39 @@ public class login implements Serializable{
     }
 
     public String updatePro() {
-        if(file != null){
-        uploadFile();
-        loginCustomer.setCtmImage("img/"+file.getSubmittedFileName());
-        customerFacade.edit(loginCustomer);
-        }
-        else{
-        customerFacade.edit(loginCustomer);
+        if (file != null) {
+            uploadFile();
+            loginCustomer.setCtmImage("img/" + file.getSubmittedFileName());
+            customerFacade.edit(loginCustomer);
+        } else {
+            customerFacade.edit(loginCustomer);
         }
         return "myAccount?faces-redirect=true";
 
     }
-    public void uploadFile(){
+
+    public void uploadFile() {
         try {
-            
+
             InputStream input = file.getInputStream();
-            
-            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/"+file.getSubmittedFileName());
-            
-            if(!f.exists()){
+
+            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/" + file.getSubmittedFileName());
+
+            if (!f.exists()) {
                 f.createNewFile();
             }
-            FileOutputStream output= new FileOutputStream(f);
+            FileOutputStream output = new FileOutputStream(f);
             byte[] buffer = new byte[1024];
             int length;
-            while((length=input.read(buffer))>0){
-                output.write(buffer,0,length);
+            while ((length = input.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
             }
             input.close();
             output.close();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        
+
     }
 
     /**
@@ -100,27 +100,28 @@ public class login implements Serializable{
         loginCustomer = new Customer();
     }
 
-    public String login() {
-        loginCustomer = customerFacade.checkAccountLogin(email, password);
+    public void login() {
         FacesContext context = FacesContext.getCurrentInstance();
-        try {
-            if (loginCustomer != null) {
-                context.getExternalContext().getSessionMap().put("member", loginCustomer);
-                try {
-                    context.getExternalContext().redirect("index.xhtml");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                //Send an error message on Login Failure 
-                context.addMessage(null, new FacesMessage("Authentication Failed. Check email or password."));
-                return "login";
-
+//        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+//        HttpSession httpSession = request.getSession(false);
+        loginCustomer = customerFacade.checkAccountLogin(email, password);
+        if (loginCustomer != null) {
+            context.getExternalContext().getSessionMap().put("user", loginCustomer);
+//            context.getExternalContext().getSessionMap().put("role", loginAccount.getAccRole());
+            try {
+//                String beforeLoginUrl = (String) httpSession.getAttribute("afterLogin");
+//                if (beforeLoginUrl != null) {
+//                    context.getExternalContext().redirect(beforeLoginUrl);
+//                }
+                context.getExternalContext().redirect("index.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(aLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception e) {
-            context.addMessage(null, new FacesMessage("Authentication Failed."));
+        } else {
+            //Send an error message on Login Failure 
+//            context.addMessage(null, new FacesMessage());
+            msg = "Authentication Failed. Check username or password.";
         }
-        return "";
     }
 
     public void logout() {
@@ -164,6 +165,7 @@ public class login implements Serializable{
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
     public Part getFile() {
         return file;
     }
@@ -171,7 +173,8 @@ public class login implements Serializable{
     public void setFile(Part file) {
         this.file = file;
     }
-     public String getNamefile() {
+
+    public String getNamefile() {
         return namefile;
     }
 

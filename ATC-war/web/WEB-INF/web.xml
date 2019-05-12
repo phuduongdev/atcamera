@@ -50,6 +50,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/admin/index.xhtml</welcome-file>
+        <welcome-file>faces/user.client/index.xhtml</welcome-file>
     </welcome-file-list>
 </web-app>

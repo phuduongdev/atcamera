@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <!--<link rel="shortcut icon" href="assets/images/favicon_1.ico"/>-->
+        <h:outputStylesheet name="assets/images/favicon_1.ico"/>
+
+        <title>ATC Admin Dashboard</title>
+
+        <!--All pages css-->
+        <h:outputStylesheet name="assets/css/bootstrap.min.css" />
+        <h:outputStylesheet name="assets/css/core.css" />
+        <h:outputStylesheet name="assets/css/components.css" />
+        <h:outputStylesheet name="assets/css/icons.css" />
+        <h:outputStylesheet name="assets/css/pages.css"/>
+        <h:outputStylesheet name="assets/css/responsive.css"/>
+
+        <h:outputScript name="assets/js/modernizr.min.js"></h:outputScript>
+    </h:head>
+    <h:body>
+
+        <div class="container-alt">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <!-- <div class="panel-heading">
+                            <h4>Invoice</h4>
+                        </div> -->
+                        <div class="panel-body">
+                            <h:form id="checkoutForm" prependId="false">
+                                <div class="box">
+                                    <table class="table table-responsive table-bordered" >
+                                        <thead>
+                                            <tr>
+                                                <h:graphicImage name="hardImage/nameCard.png" alt="Name Card" styleClass="img-responsive"/>
+                                            </tr>
+                                            <tr><h4 class="text-center"><b>BẢNG CHÀO GIÁ CAMERA KBVISION USA</b></h4></tr>
+                                            <tr><h5 class="text-center text-muted">CTY An Thắng xin trân trọng gửi đến Quý khách hàng bảng chào giá camera KB-VISION - USA</h5></tr>
+                                            <tr>
+                                                <h4><b>PHẦN I: HỆ THỐNG CAMERA GIÁM SÁT</b></h4>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <th>Image</th>
+                                                <th>Product Details</th>
+                                                <th>Technology</th>
+                                                <th>Warranty</th>
+                                                <th>Quantity</th>
+                                                <th>Unit Price</th>
+                                                <th>Total Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="item" items="#{orderController.cart}">
+                                                <tr class="text-center">
+                                                    <td>
+                                                        <a href="#"><h:graphicImage name="#{item.prdid.prdImage}" alt="" style="logo" height="100"/></a>
+                                                        <br/><h:outputLabel value="#{item.prdid.prdTittle}"/>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <ul class="list-group list-unstyled">
+                                                            <li>test</li>
+                                                            <li>test</li>
+                                                            <li>test</li>
+                                                            <li>test</li>
+                                                        </ul>
+                                                    </td>
+                                                    <td class="">
+                                                        <h:outputText value="#{item.prdid.ctgid.ctgOrigin}" styleClass="form-control-sm"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <h:outputText value="#{item.prdid.prdWarranty}" >
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td >
+                                                        <h:outputText value="#{item.oddQuantity}">
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <h:outputText id="total-item" value="#{item.prdid.prdPrice}">
+                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <h:outputText id="total-item" value="#{item.oddPrice}">
+                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+
+                                    <table class="table table-responsive table-borderless">
+                                        <tr><h4><b>PHẦN II: GIÁ TRỊ HỢP ĐỒNG:</b></h4></tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="5">• Tổng giá trị hợp đồng trước thuế (chưa VAT) :</td>
+                                            <th class="text-right">
+                                                <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                    <f:convertNumber pattern="#,###,###,###,### đ"/>
+                                                </h:outputText>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="5" >• Thuế VAT 10% :</td>
+                                            <th class="text-right">
+                                                <h:outputText value="#{orderController.pickODMasterPrice()*0.1}">
+                                                    <f:convertNumber pattern="#,###,###,###,### đ"/>
+                                                </h:outputText>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td colspan="5">• Tổng thành tiền :</td>
+                                            <th class="text-right">
+                                                <h:outputText value="#{orderController.pickODMasterPrice()*1.1}">
+                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                </h:outputText>
+                                            </th>
+                                        </tr>
+                                    </table>
+
+                                    <table class="table table-responsive ">
+                                        <tbody>
+                                            <tr><h4><b>PHẦN III: CÁC LƯU Ý KHÁC:</b></h4></tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="5" class="">• Hàng mới 100%, hình ảnh rõ đẹp.</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="5" class="">• Vật tư phụ dự toán như trên, sẽ tính thực tế khi thi công xong.</td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="7" class="text-center">TRÂN TRỌNG</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.box-->
+                            </h:form>
+
+
+                            <div class="row">
+                                <div class="pull-right m-t-30">
+                                    <strong>Customer(Mr/Mrs): </strong> test test tes test
+                                    <strong>Order Date: </strong> Jun 15, 2015 
+                                    <strong>Order Status: </strong> <span class="label label-pink">Pending</span> 
+                                    <strong>Order ID: </strong> #123456
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="hidden-print">
+                                <div class="pull-right">
+                                    <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print">&nbsp;&nbsp;Print</i></a>
+                                    <a href="#" class="btn btn-primary waves-effect waves-light">Back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            //<![CDATA[
+            var resizefunc = [];
+            //]]>
+        </script>
+        <!-- END wrapper -->        
+        <!--jQuery-->                
+        <h:outputScript name="assets/js/jquery.min.js"></h:outputScript>
+        <h:outputScript name="assets/js/bootstrap.min.js"></h:outputScript>
+        <h:outputScript name="assets/js/detect.js"></h:outputScript>
+        <h:outputScript name="assets/js/fastclick.js"></h:outputScript>
+        <h:outputScript name="assets/js/jquery.slimscroll.js"></h:outputScript>
+        <h:outputScript name="assets/js/jquery.blockUI.js"></h:outputScript>
+        <h:outputScript name="assets/js/waves.js"></h:outputScript>
+        <h:outputScript name="assets/js/wow.min.js"></h:outputScript>
+        <h:outputScript name="assets/js/jquery.nicescroll.js"></h:outputScript>
+        <h:outputScript name="assets/js/jquery.scrollTo.min.js"></h:outputScript>
+
+        <h:outputScript name="assets/js/jquery.core.js"></h:outputScript>
+        <h:outputScript name="assets/js/jquery.app.js"></h:outputScript>
+
+        <h:outputScript name="assets/pages/jquery.form-pickers.init.js"></h:outputScript>
+
+
+    </h:body>
+
+</html>
+

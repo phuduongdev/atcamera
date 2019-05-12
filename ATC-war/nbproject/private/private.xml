@@ -3,17 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-
-            <file>file:/E:/atcamera/ATC-war/web/user.client/searchprice.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/src/java/admin/mb/chien/aProductMB.java</file>
-            <file>file:/E:/atcamera/ATC-war/web/user.client/newTemplate.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/web/user.client/details.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/src/java/admin/mb/chien/aCustomer.java</file>
-            <file>file:/E:/atcamera/ATC-war/src/java/user/ProductController.java</file>
-            <file>file:/E:/atcamera/ATC-war/web/admin/accountUpdate.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/web/admin/productCreate.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/web/user.client/searchname.xhtml</file>
-
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/checkout.xhtml</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/src/java/user/OrderController.java</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/newTemplate.xhtml</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/orderBasket.xhtml</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/src/java/user/login.java</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/src/java/admin/mb/phu/adminFilter.java</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/login.xhtml</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/src/java/user/userFilter.java</file>
+            <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/index.xhtml</file>
         </group>
     </open-files>
 </project-private>
