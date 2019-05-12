@@ -100,10 +100,10 @@ public class login implements Serializable{
         loginCustomer = new Customer();
     }
 
-    public String login() {
+    public void login() {
         loginCustomer = customerFacade.checkAccountLogin(email, password);
         FacesContext context = FacesContext.getCurrentInstance();
-        try {
+       
             if (loginCustomer != null) {
                 context.getExternalContext().getSessionMap().put("member", loginCustomer);
                 try {
@@ -114,13 +114,11 @@ public class login implements Serializable{
             } else {
                 //Send an error message on Login Failure 
                 context.addMessage(null, new FacesMessage("Authentication Failed. Check email or password."));
-                return "login";
+                
 
             }
-        } catch (Exception e) {
-            context.addMessage(null, new FacesMessage("Authentication Failed."));
-        }
-        return "";
+        
+       
     }
 
     public void logout() {

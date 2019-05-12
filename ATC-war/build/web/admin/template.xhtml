@@ -167,13 +167,13 @@
                                         <i class="ti-user"></i> <span> Customer </span> <span class="menu-arrow"></span>
                                     </h:commandLink>
                                 </li>
-                                <!--<c:if test="#{aLogin.loginAccount.accRole eq 'admin'}">-->
+                                <c:if test="#{aLogin.loginAccount.accRole eq 'admin'}">
                                     <li class="has_sub">
                                         <h:commandLink action="#{aAccountMB.accountViewNav()}" class="waves-effect">
                                             <i class="ti-key"></i>  <span> Account </span> <span class="menu-arrow"></span>
                                         </h:commandLink>
                                     </li>
-                                <!--</c:if>-->
+                                </c:if>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
