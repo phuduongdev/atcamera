@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <meta charset="utf-8"/>
@@ -47,23 +48,25 @@
                     <div class="container">
                         <div class="row">
                             <c:if test="${member==null}">
-                                <div><a>Wellcome to An Thang camera store</a></div>
+                                <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome to An Thang camera store</a></div>
                                 <div class="col-lg-6 text-center text-lg-right">
                                     <ul class="menu list-inline mb-0">
-                                        <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#login-modal">Login</a></li>
+<!--                                        <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>-->
                                         <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
                                         <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
+                                        <li class="list-inline-item"><a href="login.xhtml">Login</a></li>
                                     </ul>
                                 </div>
                             </c:if>
                             <c:if test="${member!=null}">
-                                <div><a>Wellcome <h:commandLink action="#{login.accountViewNav()}" value="#{member.ctmEmail}"/> </a><a>to An Thang camera store</a></div>
+                                <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome <h:commandLink style="color: orange" action="#{login.accountViewNav()}" value="#{member.ctmEmail}"/> </a><a>to An Thang camera store</a></div>
 
                                 <div class="col-lg-6 text-center text-lg-right">
                                     <ul class="menu list-inline mb-0">
                                         <li class="list-inline-item"><h:commandLink action="#{login.logout()}">Logout</h:commandLink></li>
                                         <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
                                         <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
+                                        <li class="list-inline-item"><h:commandLink action="#{wishListController.navWish()}">Wish List</h:commandLink></li>
                                     </ul>
                                 </div>
                             </c:if>
@@ -125,6 +128,27 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="nav-item dropdown menu-large">
+                                    <a href="#" data-toggle="dropdown" data-hover="dropdown" 
+                                       data-delay="200" class="dropdown-toggle nav-link">Page<b class="caret"></b></a>
+                                    <ul class="dropdown-menu megamenu">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-3">
+                                                <li class="nav-item"><a href="aboutus.xhtml">About us</a></li>
+                                            </div>                                      
+                                            <div class="col-md-6 col-lg-3">
+                                                <li class="nav-item"><a href="termsandconditions.xhtml">Terms and conditions</a></li>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3">
+                                                <li class="nav-item"> <a href="fag.xhtml">FAG</a></li>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3">
+                                                <li class="nav-item"> <a href="contact.xhtml">Contact Us</a></li>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a href="news.xhtml" class="nav-link">News</a></li>
                             </ul>
 
                             <div class="navbar-buttons d-flex justify-content-end">
@@ -171,29 +195,42 @@
         <div id="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
-                        <h3><i class="fa fa-map-marker"></i>Address</h3>
-                        <p>872 Ta Quang Buu<br/>District 5<br/>Ho Chi Minh<br/>Viet Nam<br/><strong>An Thang Camera Store</strong></p>
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">Pages</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="aboutus.xhtml">About us</a></li>
+                            <li><a href="termsandconditions.xhtml">Terms and conditions</a></li>
+                            <li><a href="fag.xhtml">FAQ</a></li>
+                            <li><a href="contact.xhtml">Contact us</a></li>
+                        </ul>
+                        <hr/>
+                        <h4 class="mb-3">User section</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="login.xhtml">Login</a></li>
+                            <li><a href="register.xhtml">Regiter</a></li>
+                        </ul>
                     </div>
                     <!-- /.col-lg-3-->
                     <div class="col-lg-3 col-md-6">
 
-                        <h:form>
-                            <h4 class="mb-3">Top categories</h4>
-                            <c:forEach items="#{aCategoryMB.categoryType}" var="type">
-                                <h5>#{type}</h5>
-                                <ul class="list-unstyled">
-                                    <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title">
-                                        <li><h:commandLink action="#">#{title.ctgTitle}</h:commandLink></li>
-                                    </c:forEach>
-                                </ul>
-
-                            </c:forEach>
-                        </h:form>
+                        <h4 class="mb-3">Top categories</h4>
+                        <c:forEach items="#{aCategoryMB.categoryType}" var="type">
+                            <h5>#{type}</h5>
+                        </c:forEach>
                     </div>
                     <!-- /.col-lg-3-->
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">Where to find us</h4>
+                        <p><strong>An Thắng Camera</strong><br/>872 Ta Quang Buu<br/>District 5<br/>Ho Chi Minh<br/>Viet Nam<br/><strong>Smart Security</strong></p><a href="contact.xhtml">Go to contact page</a>
+                        <hr class="d-block d-md-none"/>
+                    </div>
+                    <!-- /.col-lg-3-->
+                    <div class="col-lg-3 col-md-6">                       
+                        <h4 class="mb-3">Stay in touch</h4>
+                        <p class="social"><a href="#" class="facebook external"><i class="fa fa-facebook"></i></a><a href="#" class="twitter external"><i class="fa fa-twitter"></i></a><a href="#" class="instagram external"><i class="fa fa-instagram"></i></a><a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a><a href="#" class="email external"><i class="fa fa-envelope"></i></a></p>
+                    </div>
+                    <!-- /.row-->
                 </div>
-                <!-- /.row-->
             </div>
             <!-- /.container-->
         </div>
@@ -223,32 +260,7 @@
         <!-- *** COPYRIGHT END ***-->
 
         <!-- Login modal -->
-        <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" class="modal fade">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Customer login</h5>
-                        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <h:form>
 
-                            <div class="form-group">
-                                <h:inputText id="email-modal" title="email" class="form-control" value="#{login.email}"  styleClass="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <h:inputSecret id="password-modal" title="password" value="#{login.password}"  styleClass="form-control"/>
-                            </div>
-                            <p class="text-center">
-                                <h:commandLink styleClass="btn btn-primary" action="#{login.login()}"><i class="fa fa-sign-in"></i> Log in</h:commandLink>
-                            </p>
-                        </h:form>
-                        <p class="text-center text-muted">Not registered yet?</p>
-                        <p class="text-center text-muted"><a href="register.xhtml"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- JavaScript files-->
         <h:outputScript name="vendor/jquery/jquery.min.js"></h:outputScript>

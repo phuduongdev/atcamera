@@ -50,14 +50,12 @@ public class aProductMB implements Serializable {
     private Dvr dvr;
     private Category ctg;
 
-   
     private String cateid;
     private String productCreateTittle;
 
     private Part file;
     private Part file2;
 
-   
     private Part file3;
     private String fileName;
     private long fileSize;
@@ -109,18 +107,51 @@ public class aProductMB implements Serializable {
     }
 
     public String update() {
-        
 
         //chu y truong hop category type bi null
         if (product.getCtgid().getCtgType().equalsIgnoreCase("camera")) {
+//            if (product.getPrdImage() != null) {
+//                uploadFile();
+//                product.setPrdImage("img/" + file.getSubmittedFileName());
+//            }
+//            if (product.getPrdImage2() != null) {
+//                uploadFile2();
+//                product.setPrdImage2("img/" + file2.getSubmittedFileName());
+//            }
+//            if (product.getPrdImage3() != null) {
+//                uploadFile3();
+//                product.setPrdImage3("img/" + file3.getSubmittedFileName());
+//            }
             productFacade.edit(product);
-
             cameraFacade.edit(camera);
         } else if (product.getCtgid().getCtgType().equalsIgnoreCase("dvr")) {
+//            if (product.getPrdImage() != null) {
+//                uploadFile();
+//                product.setPrdImage("img/" + file.getSubmittedFileName());
+//            }
+//            if (product.getPrdImage2() != null) {
+//                uploadFile2();
+//                product.setPrdImage2("img/" + file2.getSubmittedFileName());
+//            }
+//            if (product.getPrdImage3() != null) {
+//                uploadFile3();
+//                product.setPrdImage3("img/" + file3.getSubmittedFileName());
+//            }
             productFacade.edit(product);
-
             dvrFacade.edit(dvr);
         } else {
+            if (product.getPrdImage() != null) {
+                uploadFile();
+                product.setPrdImage("img/" + file.getSubmittedFileName());
+            }
+            if (product.getPrdImage2() != null) {
+                uploadFile2();
+                product.setPrdImage2("img/" + file2.getSubmittedFileName());
+            }
+            if (product.getPrdImage3() != null) {
+                uploadFile3();
+                product.setPrdImage3("img/" + file3.getSubmittedFileName());
+            }
             productFacade.edit(product);
         }
         return "productView?faces-redirect=true";
@@ -132,6 +163,8 @@ public class aProductMB implements Serializable {
             this.camera = cameraFacade.findCameraByProduct(item);
         } else if (item.getCtgid().getCtgType().equalsIgnoreCase("dvr")) {
             this.dvr = dvrFacade.findDVRByProduct(item);
+        }else{
+            
         }
         return "productDetails?faces-redirect=true";
     }
@@ -150,75 +183,79 @@ public class aProductMB implements Serializable {
             return categoryFacade.findSerialOfOther();
         }
     }
-    public void uploadFile(){
+
+    public void uploadFile() {
         try {
-            
+
             InputStream input = file.getInputStream();
-            
-            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/"+file.getSubmittedFileName());
-            
-            if(!f.exists()){
+
+            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/" + file.getSubmittedFileName());
+
+            if (!f.exists()) {
                 f.createNewFile();
             }
-            FileOutputStream output= new FileOutputStream(f);
+            FileOutputStream output = new FileOutputStream(f);
             byte[] buffer = new byte[1024];
             int length;
-            while((length=input.read(buffer))>0){
-                output.write(buffer,0,length);
+            while ((length = input.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
             }
             input.close();
             output.close();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        
+
     }
-    public void uploadFile2(){
+
+    public void uploadFile2() {
         try {
-            
+
             InputStream input = file2.getInputStream();
-            
-            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/"+file.getSubmittedFileName());
-            
-            if(!f.exists()){
+
+            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/" + file.getSubmittedFileName());
+
+            if (!f.exists()) {
                 f.createNewFile();
             }
-            FileOutputStream output= new FileOutputStream(f);
+            FileOutputStream output = new FileOutputStream(f);
             byte[] buffer = new byte[1024];
             int length;
-            while((length=input.read(buffer))>0){
-                output.write(buffer,0,length);
+            while ((length = input.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
             }
             input.close();
             output.close();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        
+
     }
-    public void uploadFile3(){
+
+    public void uploadFile3() {
         try {
-            
+
             InputStream input = file3.getInputStream();
-            
-            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/"+file.getSubmittedFileName());
-            
-            if(!f.exists()){
+
+            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/" + file.getSubmittedFileName());
+
+            if (!f.exists()) {
                 f.createNewFile();
             }
-            FileOutputStream output= new FileOutputStream(f);
+            FileOutputStream output = new FileOutputStream(f);
             byte[] buffer = new byte[1024];
             int length;
-            while((length=input.read(buffer))>0){
-                output.write(buffer,0,length);
+            while ((length = input.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
             }
             input.close();
             output.close();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        
+
     }
+
     public String createProduct(String option) {
         String prid = tools.CommonUse.generateUUID();
         try {
@@ -228,43 +265,61 @@ public class aProductMB implements Serializable {
                 product.setPrdStatus("new");
                 product.setCtgid(categoryFacade.find(cateid));
                 uploadFile();
-                product.setPrdImage("img/"+file.getSubmittedFileName());
+                product.setPrdImage("img/" + file.getSubmittedFileName());
+                if (product.getPrdImage() != null) {
+                    uploadFile2();
+                    product.setPrdImage2("img/" + file2.getSubmittedFileName());
+                }
+                if (product.getPrdImage3() != null) {
+                    uploadFile3();
+                    product.setPrdImage3("img/" + file3.getSubmittedFileName());
+                }
                 productFacade.create(product);
                 camera.setCamid(tools.CommonUse.generateUUID());
                 camera.setCreatedDate(new Timestamp(new Date().getTime()));
                 camera.setPrdid(product);
                 cameraFacade.create(camera);
-                ctg.setCtgStatus("active");
-                categoryFacade.edit(ctg);
-                
+                Category cate = product.getCtgid();
+                cate.setCtgStatus("active");
+                categoryFacade.edit(cate);
+
             } else if (option.equalsIgnoreCase("dvr")) {
                 product.setPrdid(prid);
                 product.setCreatedDate(new Timestamp(new Date().getTime()));
                 product.setPrdStatus("new");
                 product.setCtgid(categoryFacade.find(cateid));
                 uploadFile();
-                product.setPrdImage("img/"+file.getSubmittedFileName());
+                product.setPrdImage("img/" + file.getSubmittedFileName());
+                if (product.getPrdImage() != null) {
+                    uploadFile2();
+                    product.setPrdImage2("img/" + file2.getSubmittedFileName());
+                }
+                if (product.getPrdImage3() != null) {
+                    uploadFile3();
+                    product.setPrdImage3("img/" + file3.getSubmittedFileName());
+                }
                 productFacade.create(product);
                 dvr.setDvrid(tools.CommonUse.generateUUID());
                 dvr.setCreatedDate(new Timestamp(new Date().getTime()));
                 dvr.setPrdid(product);
                 dvrFacade.create(dvr);
-                ctg.setCtgStatus("active");
-                categoryFacade.edit(ctg);
+                Category cate = product.getCtgid();
+                cate.setCtgStatus("active");
+                categoryFacade.edit(cate);
             } else {
                 product.setPrdid(prid);
                 product.setCreatedDate(new Timestamp(new Date().getTime()));
                 product.setPrdStatus("new");
                 product.setCtgid(categoryFacade.find(cateid));
                 uploadFile();
-                product.setPrdImage("img/"+file.getSubmittedFileName());
-                if(product.getPrdImage2()!= null){
-                uploadFile2();
-                product.setPrdImage2("img/"+file2.getSubmittedFileName());
+                product.setPrdImage("img/" + file.getSubmittedFileName());
+                if (product.getPrdImage2() != null) {
+                    uploadFile2();
+                    product.setPrdImage2("img/" + file2.getSubmittedFileName());
                 }
-                if(product.getPrdImage2()!= null){
-                uploadFile3();
-                product.setPrdImage3("img/"+file3.getSubmittedFileName());
+                if (product.getPrdImage3() != null) {
+                    uploadFile3();
+                    product.setPrdImage3("img/" + file3.getSubmittedFileName());
                 }
                 productFacade.create(product);
                 Category cate = product.getCtgid();
@@ -372,7 +427,8 @@ public class aProductMB implements Serializable {
     public void setImgaePath(String imgaePath) {
         this.imgaePath = imgaePath;
     }
-     public Part getFile2() {
+
+    public Part getFile2() {
         return file2;
     }
 
@@ -387,7 +443,8 @@ public class aProductMB implements Serializable {
     public void setFile3(Part file3) {
         this.file3 = file3;
     }
-     public Category getCtg() {
+
+    public Category getCtg() {
         return ctg;
     }
 

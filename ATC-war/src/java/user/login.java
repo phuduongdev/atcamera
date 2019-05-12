@@ -101,27 +101,28 @@ public class login implements Serializable {
     }
 
     public void login() {
-        FacesContext context = FacesContext.getCurrentInstance();
-//        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-//        HttpSession httpSession = request.getSession(false);
+
         loginCustomer = customerFacade.checkAccountLogin(email, password);
-        if (loginCustomer != null) {
-            context.getExternalContext().getSessionMap().put("user", loginCustomer);
-//            context.getExternalContext().getSessionMap().put("role", loginAccount.getAccRole());
-            try {
-//                String beforeLoginUrl = (String) httpSession.getAttribute("afterLogin");
+        FacesContext context = FacesContext.getCurrentInstance();
+       //        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+//        HttpSession httpSession = request.getSession(false);
+            if (loginCustomer != null) {
+                context.getExternalContext().getSessionMap().put("member", loginCustomer);
+                //                String beforeLoginUrl = (String) httpSession.getAttribute("afterLogin");
 //                if (beforeLoginUrl != null) {
 //                    context.getExternalContext().redirect(beforeLoginUrl);
 //                }
-                context.getExternalContext().redirect("index.xhtml");
-            } catch (IOException ex) {
-                Logger.getLogger(aLogin.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    context.getExternalContext().redirect("index.xhtml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                //Send an error message on Login Failure 
+                context.addMessage(null, new FacesMessage("Authentication Failed. Check email or password."));
+                
+
             }
-        } else {
-            //Send an error message on Login Failure 
-//            context.addMessage(null, new FacesMessage());
-            msg = "Authentication Failed. Check username or password.";
-        }
     }
 
     public void logout() {

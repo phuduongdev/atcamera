@@ -87,7 +87,9 @@
                                             <h:form>
                                                 <h1 class="text-center"><h:outputLabel>#{productController.product.prdTittle}</h:outputLabel></h1>
 
-                                                <p class="price text-center"><h:outputLabel>#{productController.product.prdPrice}</h:outputLabel></p>
+                                                <p class="price text-center"><h:outputLabel value="#{productController.product.prdPrice}">
+                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                    </h:outputLabel></p>
 
                                                 <p class="text-center buttons">
                                                     <h:commandLink class="btn btn-primary">

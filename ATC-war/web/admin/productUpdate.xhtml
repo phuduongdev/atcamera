@@ -36,100 +36,241 @@
                                 </ol>
                             </div>
                         </div>
-                        
-                        <div class="col-lg-6">
-                            <div class="panel panel-color panel-custom">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">
-                                        <h:outputText value="#{aProductMB.product.ctgid.ctgType}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
-                                        <h:outputText value="#{aProductMB.product.ctgid.ctgTitle}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
-                                        <h:outputText value="#{aProductMB.product.prdTittle}" styleClass="control-label" />
-                                    </h3>
-                                </div>
-                                <div class="panel-body">
-                                    <h:form class="form-horizontal">
-                                        <div class="clearfix form-group">
-                                            <h:outputText value="Product UID:" styleClass="col-sm-4 text-muted text-right" />
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-purple" />
-                                            </div>
-                                        </div>
-                                        <div class="clearfix form-group">
-                                            <h:outputText value="Product Model:" styleClass="col-sm-4 text-muted text-right" />
-                                            <div class="col-sm-8">
-                                                <h:inputText id="title" value="#{aProductMB.product.prdTittle}" required="true" requiredMessage="Enter Model" styleClass="text-purple" />
-                                                <h:message for="title" style="color: red"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:outputLabel value="#{aProductMB.product.createdDate}" styleClass="text-purple">
-                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
-                                                </h:outputLabel>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:inputText value="#{aProductMB.product.prdPower}" styleClass="text-purple" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:outputText value="Warranty:" styleClass="col-sm-4 text-muted text-right" />
-                                            <div class="col-sm-8">
-                                                <h:selectOneMenu id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty"  styleClass="text-purple">
-                                                    <!-- TODO: update below reference to list of available items-->
-                                                    <f:selectItem itemLabel="--- Select one ---" itemValue=""/>
-                                                    <f:selectItem itemLabel="3 Tháng" itemValue="3"/>
-                                                    <f:selectItem itemLabel="6 Tháng" itemValue="6"/>
-                                                    <f:selectItem itemLabel="12 Tháng" itemValue="12"/>
-                                                </h:selectOneMenu>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:outputText value="Price:" styleClass="col-sm-4 text-muted text-right"/>
-                                            <div class="col-sm-8">
-                                                <h:inputText id="price" value="#{aProductMB.product.prdPrice}" rendered="true" requiredMessage="Enter Price" styleClass="text-purple" />
-                                                <h:message for="price" style="color: red"/>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h:outputText value="Description:" styleClass="col-sm-4 text-muted text-right" />
-                                            <div class="col-sm-8">
-                                                <h:inputText value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="owl-carousel owl-theme" id="owl-multi">
-                                                <div class="item">
-                                                    <h:graphicImage name="assets/images/gallery/1.jpg" />
-                                                </div>
-                                                <div class="item">
-                                                    <h:graphicImage name="assets/images/gallery/2.jpg" />
-                                                </div>
-                                                <div class="item">
-                                                    <h:graphicImage name="assets/images/gallery/3.jpg" />
+                        <c:if test="#{aProductMB.product.ctgid.ctgType.equalsIgnoreCase('other')}">
+                            <div class="col-lg-6">
+                                <div class="panel panel-color panel-custom">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <h:outputText value="#{aProductMB.product.ctgid.ctgType}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                            <h:outputText value="#{aProductMB.product.ctgid.ctgTitle}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                            <h:outputText value="#{aProductMB.product.prdTittle}" styleClass="control-label" />
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <h:form class="form-horizontal">
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="Product UID:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-purple" />
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-12 text-center">
-                                                <h:commandLink action="#{aProductMB.update()}" value="Update"
-                                                               styleClass="btn btn-success waves-effect waves-light"/>
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="Product Model:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText id="title" value="#{aProductMB.product.prdTittle}" required="true" requiredMessage="Enter Model" styleClass="text-purple" />
+                                                    <h:message for="title" style="color: red"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </h:form>
+                                            <div class="form-group">
+                                                <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.createdDate}" styleClass="text-purple">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                    </h:outputLabel>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.product.prdPower}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Warranty:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:selectOneMenu id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty"  styleClass="text-purple">
+                                                        <!-- TODO: update below reference to list of available items-->
+                                                        <f:selectItem itemLabel="--- Select one ---" itemValue=""/>
+                                                        <f:selectItem itemLabel="3 Tháng" itemValue="3"/>
+                                                        <f:selectItem itemLabel="6 Tháng" itemValue="6"/>
+                                                        <f:selectItem itemLabel="12 Tháng" itemValue="12"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Price:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText id="price" value="#{aProductMB.product.prdPrice}" rendered="true" requiredMessage="Enter Price" styleClass="text-purple" />
+                                                    <h:message for="price" style="color: red"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Image *" for="prdImage" styleClass="col-lg-4 control-label"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage" value="#{aProductMB.file}" 
+                                                                 title="PrdImage" styleClass="control-label" required="true" requiredMessage="chose img plz">
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+                                                <h:message for="prdImage" style="color: red"/>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Image 2" for="prdImage" styleClass="col-lg-4 control-label"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage2" value="#{aProductMB.file2}" 
+                                                                 title="PrdImage" styleClass="control-label" >
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <h:outputLabel value="Image 3" for="prdImage" styleClass="col-lg-4 control-label"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage3" value="#{aProductMB.file3}" 
+                                                                 title="PrdImage" styleClass="control-label" >
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Description:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="owl-carousel owl-theme" id="owl-multi">
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage}" />
+                                                    </div>
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage2}" />
+                                                    </div>
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage3}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12 text-center">
+                                                    <h:commandLink action="#{aProductMB.update()}" value="Update"
+                                                                   styleClass="btn btn-success waves-effect waves-light"/>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
+                        </c:if>
                         <c:if test="#{aProductMB.product.ctgid.ctgType.equalsIgnoreCase('dvr')}">
+                            <div class="col-lg-6">
+                                <div class="panel panel-color panel-custom">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                            <h:outputText value="#{aProductMB.product.ctgid.ctgType}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                            <h:outputText value="#{aProductMB.product.ctgid.ctgTitle}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                            <h:outputText value="#{aProductMB.product.prdTittle}" styleClass="control-label" />
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <h:form class="form-horizontal">
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="Product UID:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="Product Model:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText id="title" value="#{aProductMB.product.prdTittle}" required="true" requiredMessage="Enter Model" styleClass="text-purple" />
+                                                    <h:message for="title" style="color: red"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.createdDate}" styleClass="text-purple">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                    </h:outputLabel>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.product.prdPower}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Warranty:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:selectOneMenu id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty"  styleClass="text-purple">
+                                                        <!-- TODO: update below reference to list of available items-->
+                                                        <f:selectItem itemLabel="--- Select one ---" itemValue=""/>
+                                                        <f:selectItem itemLabel="3 Tháng" itemValue="3"/>
+                                                        <f:selectItem itemLabel="6 Tháng" itemValue="6"/>
+                                                        <f:selectItem itemLabel="12 Tháng" itemValue="12"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Price:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText id="price" value="#{aProductMB.product.prdPrice}" rendered="true" requiredMessage="Enter Price" styleClass="text-purple" />
+                                                    <h:message for="price" style="color: red"/>
+                                                </div>
+                                            </div>
+<!--                                            <div class="form-group">
+                                                <h:outputText value="Image" styleClass="col-sm-4 text-muted text-right"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage" value="#{aProductMB.file}" 
+                                                                 title="PrdImage" styleClass="control-label">
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Image2" styleClass="col-sm-4 text-muted text-right"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage2" value="#{aProductMB.file2}" 
+                                                                 title="PrdImage2" styleClass="control-label">
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Image3" styleClass="col-sm-4 text-muted text-right"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage3" value="#{aProductMB.file3}" 
+                                                                 title="PrdImage3" styleClass="control-label">
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+                                            </div>-->
+                                            <div class="form-group">
+                                                <h:outputText value="Description:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="owl-carousel owl-theme" id="owl-multi">
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage}" />
+                                                    </div>
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage2}" />
+                                                    </div>
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage3}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-lg-6">
                                 <div class="panel panel-color panel-custom">
                                     <div class="panel-heading">
@@ -138,7 +279,7 @@
                                         </h3>
                                     </div>
                                     <div class="panel-body">
-                                        <form class="form-horizontal">
+                                        <h:form styleClass="form-horizontal" enctype="multipart/form-data">
                                             <div class="clearfix form-group">
                                                 <h:outputText value="DVR UID:" styleClass="col-sm-4 text-muted text-right" />
                                                 <div class="col-sm-8">
@@ -188,7 +329,7 @@
                                                 <h:message for="playback" style="color: red"/>
                                             </div>
 
-                                            
+
 
                                             <div class="form-group">
                                                 <h:outputText value="Record:" styleClass="col-sm-4 text-muted text-right" />
@@ -198,8 +339,13 @@
                                                 <h:message for="record" style="color: red"/>
                                             </div>
 
-
-                                        </form>
+                                            <div class="form-group">
+                                                <div class="col-sm-12 text-center">
+                                                    <h:commandLink action="#{aProductMB.update()}" value="Update"
+                                                                   styleClass="btn btn-success waves-effect waves-light"/>
+                                                </div>
+                                            </div>
+                                        </h:form>
                                     </div>
                                 </div>
                             </div>
@@ -210,11 +356,125 @@
                                 <div class="panel panel-color panel-custom">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
+                                            <h:outputText value="#{aProductMB.product.ctgid.ctgType}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                            <h:outputText value="#{aProductMB.product.ctgid.ctgTitle}" styleClass="control-label" /> &nbsp;&bull;&nbsp;
+                                            <h:outputText value="#{aProductMB.product.prdTittle}" styleClass="control-label" />
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <h:form class="form-horizontal" enctype="multipart/form-data">
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="Product UID:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.prdid}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+                                            <div class="clearfix form-group">
+                                                <h:outputText value="Product Model:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText id="title" value="#{aProductMB.product.prdTittle}" required="true" requiredMessage="Enter Model" styleClass="text-purple" />
+                                                    <h:message for="title" style="color: red"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Created Date:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aProductMB.product.createdDate}" styleClass="text-purple">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                                                    </h:outputLabel>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Power:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.product.prdPower}" styleClass="text-purple" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Warranty:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:selectOneMenu id="prdWarranty" value="#{aProductMB.product.prdWarranty}" title="PrdWarranty"  styleClass="text-purple">
+                                                        <!-- TODO: update below reference to list of available items-->
+                                                        <f:selectItem itemLabel="--- Select one ---" itemValue=""/>
+                                                        <f:selectItem itemLabel="3 Tháng" itemValue="3"/>
+                                                        <f:selectItem itemLabel="6 Tháng" itemValue="6"/>
+                                                        <f:selectItem itemLabel="12 Tháng" itemValue="12"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h:outputText value="Price:" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:inputText id="price" value="#{aProductMB.product.prdPrice}" rendered="true" requiredMessage="Enter Price" styleClass="text-purple" />
+                                                    <h:message for="price" style="color: red"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Image" styleClass="col-sm-4 text-muted text-right"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage" value="#{aProductMB.file}" 
+                                                                 title="PrdImage" styleClass="control-label">
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Image2" styleClass="col-sm-4 text-muted text-right"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage2" value="#{aProductMB.file2}" 
+                                                                 title="PrdImage2" styleClass="control-label">
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Image3" styleClass="col-sm-4 text-muted text-right"  />
+                                                <div class="col-lg-8">
+                                                    <h:inputFile id="prdImage3" value="#{aProductMB.file3}" 
+                                                                 title="PrdImage3" styleClass="control-label">
+                                                        <f:passThroughAttribute name="accept" value="image/png"/>
+                                                    </h:inputFile>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputText value="Description:" styleClass="col-sm-4 text-muted text-right" />
+                                                <div class="col-sm-8">
+                                                    <h:inputText value="#{aProductMB.product.prdDescript}" styleClass="text-info" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="owl-carousel owl-theme" id="owl-multi">
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage}" />
+                                                    </div>
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage2}" />
+                                                    </div>
+                                                    <div class="item">
+                                                        <h:graphicImage name="#{aProductMB.product.prdImage3}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="panel panel-color panel-custom">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
                                             <h:outputText value="Camera" styleClass="control-label" />
                                         </h3>
                                     </div>
                                     <div class="panel-body">
-                                        <h:form class="form-horizontal">
+                                        <h:form class="form-horizontal" enctype="multipart/form-data">
                                             <div class="clearfix form-group">
                                                 <h:outputText value="Camera UID:" styleClass="col-sm-4 text-muted text-right" />
                                                 <div class="col-sm-8">
@@ -226,7 +486,7 @@
                                                 <h:outputText value="IR:" styleClass="col-sm-4 text-muted text-right"/>
                                                 <div class="col-sm-8">
                                                     <h:inputText id="ircam" value="#{aProductMB.camera.camIR}" required="true" requiredMessage="Enter IR" styleClass="text-purple"/>
-                                                   
+
                                                     <h:message for="ircam" style="color: red"/>
                                                 </div>
                                             </div>
@@ -237,7 +497,7 @@
                                                     <h:inputText id="lens" value="#{aProductMB.camera.camLen}" required="true" requiredMessage="Enter CamLen" styleClass="text-purple" />
                                                     <h:message for="lens" style="color: red"/>
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="form-group">
@@ -295,12 +555,18 @@
                                                     <h:message for="video" style="color: red"/>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12 text-center">
+                                                    <h:commandLink action="#{aProductMB.update()}" value="Update"
+                                                                   styleClass="btn btn-success waves-effect waves-light"/>
+                                                </div>
+                                            </div>
                                         </h:form>
                                     </div>
                                 </div>
                             </div>
                         </c:if>
-                        
+
                     </div><!--container--> 
                 </div><!--content-->
             </ui:define>

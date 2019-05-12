@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/checkout.xhtml</file>
             <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/src/java/user/OrderController.java</file>
             <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/newTemplate.xhtml</file>
@@ -12,6 +13,7 @@
             <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/login.xhtml</file>
             <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/src/java/user/userFilter.java</file>
             <file>file:/D:/_APTech/_Semester_IV/ProjectATC/atcamera/ATC-war/web/user.client/index.xhtml</file>
+
         </group>
     </open-files>
 </project-private>
