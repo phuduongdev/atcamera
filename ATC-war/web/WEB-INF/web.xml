@@ -25,6 +25,7 @@
     <filter-mapping>
         <filter-name>userAuthen</filter-name>
         <url-pattern>/faces/user.client/myAccount.xhtml</url-pattern>
+        <url-pattern>/faces/user.client/checkout.xhtml</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>

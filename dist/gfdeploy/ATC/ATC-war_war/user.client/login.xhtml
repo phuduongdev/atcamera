@@ -3,71 +3,109 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <ui:composition template="./newTemplate.xhtml">
         <ui:define name="content">
             <div id="all">
                 <div id="content">
                     <div class="container">
-                         <nav aria-label="breadcrumb">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- breadcrumb-->
+                                <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
                                         <li aria-current="page" class="breadcrumb-item active">Login</li>
                                     </ol>
                                 </nav>
-                        <div class="row">
-                                
-                                <div class="col-lg-3">
-                                    <!--
-                                    *** PAGES MENU ***
-                                    _________________________________________________________
-                                    -->
-                                    <div class="card sidebar-menu mb-4">
-                                        <div class="card-header">
-                                            <h3 class="h4 card-title">Pages</h3>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="box">
+                                    <h1>Register</h1>
+                                    <p class="text-muted">Not our registered customer yet?</p>
+                                    <hr/>
+                                    <h:form>
+                                        <h:outputText styleClass="form-check-label" value="#{customerController.msg}" escape="false"></h:outputText>
+                                        <div class="form-group">
+                                            <label  for="email">Email</label>
+                                            <h:inputText id="email" class="form-control" value="#{customerController.ctm.ctmEmail}" required="true" requiredMessage="Enter Email"
+                                                         validatorMessage="Enter Email with form 'abc@gmail.com' or 'abc@gmail.com.vn'"
+                                                         a:placeholder="abc@gmail.com">
+                                                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
+                                                <f:ajax render="emailMsg" event="keyup"/>
+                                            </h:inputText>
+                                            <h:message id="emailMsg" for="email" styleClass="form-control form-check-label"/>
                                         </div>
-                                        <div class="card-body">
-                                            <ul class="nav nav-pills flex-column">
-                                                <li><a href="login.xhtml" class="nav-link">Login</a></li>
-                                                <li><a href="register.xhtml" class="nav-link">Register</a></li>
-                                                <li><a href="contact.xhtml" class="nav-link">Contact page</a></li>
-                                            </ul>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <h:inputSecret id="password" class="form-control" value="#{customerController.ctm.ctmPassword}" 
+                                                           required="true" requiredMessage="Enter Password" 
+                                                           validatorMessage="Must be between 6 to 20 characters which contain at least one letter(a-z)"
+                                                           a:placeholder="Must be 6 to 15 character">
+                                                <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
+                                                <f:ajax render="passMsg" event="keyup"/>
+                                            </h:inputSecret>
+                                            <h:message id="passMsg" for="password" styleClass="form-check-label"/>
                                         </div>
-                                    </div>
-                                    <!-- *** PAGES MENU END ***-->
-                                    <div class="banner"><a href="#"><h:graphicImage name="img/banner.jpg" alt="sales 2014" class="img-fluid"/></a></div>
+                                        <div class="form-group">
+                                            <label for="confirm1password">Confirm Password</label>
+                                            <h:inputSecret id="confirm1password" class="form-control" value="#{customerController.confim}" 
+                                                           required="true" requiredMessage="Enter Confirm Password"
+                                                           validatorMessage="Must be between 6 to 20 characters and contain at least one letter(a-z)"
+                                                           a:placeholder="Must be same password">
+                                                <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
+                                                <f:ajax render="confirmMsg" event="keyup"/>
+                                            </h:inputSecret>
+                                            <h:message id="confirmMsg" for="confirm1password" style="color: red"/>
+                                        </div>
+                                        <div class="text-center">
+                                            <h:commandLink styleClass="btn btn-primary" action="#{customerController.add()}">
+                                                <i class="fa fa-user-md"></i>&nbsp;Register
+                                            </h:commandLink>
+                                        </div>
+                                    </h:form>
                                 </div>
-                                <div class="col-lg-9">
-                                    <div class="box">
-                                        <h1>Login</h1>
-                                        <p class="lead">Already our customer?</p>
-                                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                                        <hr/>
-                                        <h:form id="loginuser">
-                                            <h:messages style="color: red"/>
-                                            <div class="form-group">
-                                                <label for="email">Email</label>
-                                                <h:inputText id="loginemail" class="form-control" value="#{login.email}" required="true" requiredMessage="Enter Email"
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="box">
+                                    <h1>Login</h1>
+                                    <p class="text-muted">Already our customer?</p>
+                                    <hr/>
+                                    <h:form id="loginuser">
+                                        <h:messages style="color: red" globalOnly="true"/>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <h:inputText id="loginemail" class="form-control" value="#{login.email}" 
+                                                         required="true" requiredMessage="Enter Email"
+                                                         a:placeholder="abc@gmail.com"
                                                          validatorMessage="Enter email in the form 'abc@abc.abc' plz">
-                                                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
-                                                </h:inputText>
-                                                <h:message for="loginemail" style="color: red"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="loginpassword">Password</label>
-                                                <h:inputSecret id="password" class="form-control" value="#{login.password}" required="true" requiredMessage="Enter Password" validatorMessage="6-15 character and start'a-z' for pass please.
-                                                           Ex:member123">
-                                                    <!--<f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />-->
-                                                </h:inputSecret>
-                                                <h:message for="password" style="color: red"/>
-                                            </div>
-                                            <div class="text-center">
-                                                <h:commandLink action="#{login.login()}" type="submit" styleClass="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</h:commandLink>
-                                            </div>
-                                        </h:form>
-                                    </div> 
-                                </div>
-                           
+                                                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
+                                                <f:ajax event="keyup" render="loginEmailMsg"/>
+                                            </h:inputText>
+                                            <h:message id="loginEmailMsg" for="loginemail" style="color: red"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="loginpassword">Password</label>
+                                            <h:inputSecret id="password" class="form-control" value="#{login.password}" 
+                                                           required="true" requiredMessage="Enter Password" 
+                                                           a:placeholder="Must be 6 to 15 character"
+                                                           validatorMessage="Must be between 6 to 20 characters and contain at least one letter(a-z). ex: a12345 ">
+                                                <!--<f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />-->
+                                            </h:inputSecret>
+                                            <h:message for="password" style="color: red"/>
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                        </div>
+                                        <div class="text-center">
+                                            <h:commandLink action="#{login.login()}" styleClass="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</h:commandLink>
+                                        </div>
+                                    </h:form>
+                                </div> 
+                            </div>
                         </div>
                     </div>
                 </div>

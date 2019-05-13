@@ -102,6 +102,7 @@ public class OrderController implements Serializable {
             if (cart.size() < 1) {
                 throw new Exception("Please choose some product");
             }
+            checkoutCustomer.setCtmAddress(checkoutCustomer.getCtmAddress().toUpperCase());
             customerFacade.edit(checkoutCustomer);
             //        create order master
             OrderMaster om = new OrderMaster();

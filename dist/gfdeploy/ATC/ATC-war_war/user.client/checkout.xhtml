@@ -4,17 +4,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <ui:composition template="./newTemplate.xhtml">
 
         <ui:define name="cssplus">
             <h:outputStylesheet name="assets/plugins/jquery.steps/css/jquery.steps.css"/>
         </ui:define>
-
         <ui:define name="content">
-
-            <!--            <div id="all">
-                            <div id="content">-->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -35,28 +32,51 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <h:outputLabel value="First Name" for="FirstName" />
-                                                    <h:inputText id="FirstName" value="#{orderController.checkoutCustomer.ctmFirstName}" class="form-control"/>
+                                                    <h:outputLabel value="First Name *" for="FirstName" />
+                                                    <h:inputText id="FirstName" value="#{orderController.checkoutCustomer.ctmFirstName}" 
+                                                                 class="form-control" a:placeholder="e.g Jack">
+                                                        <f:ajax event="keyup" render="fnmsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                        <f:validator validatorId="admin.customValidate.checkMultiSpecialChars"/>
+                                                    </h:inputText>
+                                                    <h:message id="fnmsg" for="FirstName" styleClass="alert-danger"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <h:outputLabel value="Last Name" for="LastName" />
-                                                    <h:inputText id="LastName" value="#{orderController.checkoutCustomer.ctmLastName}" class="form-control"/>
+                                                    <h:inputText id="LastName" value="#{orderController.checkoutCustomer.ctmLastName}" 
+                                                                 class="form-control" a:placeholder="e.g Sparrow">
+                                                        <f:ajax event="keyup" render="lnmsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkMultiSpecialChars"/>
+                                                    </h:inputText>
+                                                    <h:message id="lnmsg" for="LastName" styleClass="alert-danger"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <h:outputLabel value="Address" for="Address" />
-                                                    <h:inputText id="Address" value="#{orderController.checkoutCustomer.ctmAddress}" class="form-control"/>
+                                                    <h:outputLabel value="Address *" for="Address" />
+                                                    <h:inputText id="Address" value="#{orderController.checkoutCustomer.ctmAddress}" 
+                                                                 class="form-control" a:placeholder="e.g 61 Park Street, Camden, ME, 04843, US">
+                                                        <f:ajax event="keyup" render="addrmsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                        <f:validator validatorId="admin.customValidate.checkAddress"/>
+                                                    </h:inputText>
+                                                    <h:message id="addrmsg" for="Address" styleClass="alert-danger"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <h:outputLabel value="Phone" for="Phone" />
-                                                    <h:inputText id="Phone" value="#{orderController.checkoutCustomer.ctmPhone}" title="CtmPhone" class="form-control"/>
+                                                    <h:outputLabel value="Phone *" for="Phone" />
+                                                    <h:inputText id="Phone" value="#{orderController.checkoutCustomer.ctmPhone}"
+                                                                 class="form-control">
+                                                        <f:ajax event="keyup" render="phonemsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                        <f:validator validatorId="admin.customValidate.checkPhone"/>
+                                                    </h:inputText>
+                                                    <h:message id="phonemsg" for="Phone" styleClass="alert-danger"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +84,12 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <h:outputLabel value="DoB" for="DoB" />
-                                                    <h:inputText id="DoB" value="#{orderController.checkoutCustomer.ctmDob}" class="form-control"/>
+                                                    <h:inputText id="DoB" value="#{orderController.checkoutCustomer.ctmDob}" 
+                                                                 class="form-control" a:placeholder="yyyy/MM/dd">
+                                                        <f:ajax event="keyup" render="DoBmsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkDob"/>
+                                                    </h:inputText>
+                                                    <h:message id="DoBmsg" for="Phone" styleClass="alert-danger"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -74,42 +99,34 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Required</label>
+                                        </div>
                                     </section>
 
-                                    <h3><br/>Payment <i class="fa fa-money"></i></h3>
+<!--                                    <h3><br/>Payment <i class="fa fa-money"></i></h3>
                                     <section>
-                                        <div class="form-group clearfix">
-
-                                            <label class="col-lg-2 control-label" for="name"> First name *</label>
-                                            <div class="col-lg-10">
-                                                <input id="name" name="name" type="text" class="required form-control"/>
+                                        <div class="col-md-6">
+                                            <div class="box shipping-method">
+                                                <h4>USPS Next Day</h4>
+                                                <p>Get it right on next day - fastest option possible.</p>
+                                                <div class="box-footer text-center">
+                                                    <input type="radio" name="delivery" value="delivery1"/>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-2 control-label " for="surname"> Last name *</label>
-                                            <div class="col-lg-10">
-                                                <input id="surname" name="surname" type="text" class="required form-control"/>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-2 control-label " for="email">Email *</label>
-                                            <div class="col-lg-10">
-                                                <input id="email" name="email" type="text" class="required email form-control"/>
+                                        <div class="col-md-6">
+                                            <div class="box shipping-method">
+                                                <h4>USPS Next Day</h4>
+                                                <p>Get it right on next day - fastest option possible.</p>
+                                                <div class="box-footer text-center">
+                                                    <input type="radio" name="delivery" value="delivery1"/>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-2 control-label " for="address">Address *</label>
-                                            <div class="col-lg-10">
-                                                <input id="address" name="address" type="text" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group clearfix">
-                                            <label class="col-lg-12 control-label ">(*) Mandatory</label>
-                                        </div>
-                                    </section>
+                                    </section>-->
+
                                     <h3><br/>Order Review <i class="fa fa-eye"></i></h3>
                                     <section>
                                         <table class="table table-responsive">
@@ -123,8 +140,9 @@
                                                     <th>Total</th>
                                                 </tr>
                                             </thead>
-                                            <c:forEach var="item" items="#{orderController.cart}">
-                                                <tbody>
+                                            <tbody>
+                                                <c:forEach var="item" items="#{orderController.cart}">
+
                                                     <tr class="text-center">
                                                         <td><a href="#"><h:graphicImage name="#{item.prdid.prdImage}" alt="#{item.prdid.prdTittle}" height="80"/></a></td>
                                                         <td>#{item.prdid.prdTittle}</td>
@@ -146,8 +164,9 @@
                                                             </h:outputText>
                                                         </td>
                                                     </tr>                
-                                                </tbody>    
-                                            </c:forEach>
+
+                                                </c:forEach>
+                                            </tbody>  
                                             <tfoot>
                                                 <tr>
                                                     <th colspan="5">Total</th>
