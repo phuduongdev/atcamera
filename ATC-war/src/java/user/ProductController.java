@@ -5,6 +5,8 @@
  */
 package user;
 
+import controller.CameraFacade;
+import controller.DvrFacade;
 import controller.ProductFacade;
 import entity.*;
 import java.io.Serializable;
@@ -20,11 +22,27 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class ProductController implements Serializable {
+    @EJB
+    private DvrFacade dvrFacade;
+    @EJB
+    private CameraFacade cameraFacade;
 
     private static final long serialVersionUID = 1L;
     @EJB
     private ProductFacade productFacade;
+    
+    
     Category ctg = new Category();
+    Camera cam = new Camera();
+    Dvr dvr = new Dvr();
+
+    public Camera getCam() {
+        return cam;
+    }
+
+    public void setCam(Camera cam) {
+        this.cam = cam;
+    }
     String Name;
     int price;
 
@@ -82,7 +100,7 @@ public class ProductController implements Serializable {
         this.productFacade.edit(product);
         return "";
     }
-
+    
     public String productclient(Category ctg) {
         this.ctg = ctg;
         return "productclient?faces-redirect=true";
@@ -99,9 +117,25 @@ public class ProductController implements Serializable {
     public List<Product> getProductType() {
         return productFacade.findProductbyCtg(ctg);
     }
-
-    public List<Product> getCamlist() {
+    
+    public List<Camera> getCamera() {
+        return cameraFacade.Listcamera();
+    }
+     public List<Dvr> getDvr() {
+        return dvrFacade.Listdvr();
+    }
+    public List<Product> getNewCamera() {
         return productFacade.Listproduct("camera");
+    }
+     public List<Product> getNewDvr() {
+        return productFacade.Listproduct("dvr");
+    }
+     
+      public List<Product> getNewOther() {
+        return productFacade.Listproduct("other");
+    }
+    public List<Product> getCamlist() {
+        return productFacade.findProductall();
     }
     public List<Product> getname(){
          return productFacade.findProductbyName(Name);

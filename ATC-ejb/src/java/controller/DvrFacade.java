@@ -8,6 +8,7 @@ package controller;
 import entity.Camera;
 import entity.Dvr;
 import entity.Product;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -34,6 +35,17 @@ public class DvrFacade extends AbstractFacade<Dvr> {
         TypedQuery<Dvr> q = em.createQuery("SELECT d FROM Dvr d WHERE d.prdid = :p", Dvr.class);
         q.setParameter("p", item);
         return q.getSingleResult();
+    }
+
+
+    public  List<Dvr> Listdvr() {
+        try {
+            TypedQuery q = em.createQuery("SELECT c FROM Dvr c Order by c.createdDate desc ", Dvr.class);
+        
+        return q.setMaxResults(10).getResultList();
+        } catch (Exception e) {
+        }
+       return null;
     }
 
   

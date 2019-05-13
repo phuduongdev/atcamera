@@ -88,7 +88,7 @@
                                                 <h1 class="text-center"><h:outputLabel>#{productController.product.prdTittle}</h:outputLabel></h1>
 
                                                 <p class="price text-center"><h:outputLabel value="#{productController.product.prdPrice}">
-                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        <f:convertNumber pattern="#,###,###,### đ"/>
                                                     </h:outputLabel></p>
 
                                                 <p class="text-center buttons">
@@ -115,13 +115,190 @@
                                 <div id="details" class="box">
                                     <p></p>
                                     <h4>Power</h4>
-                                    <p><h:outputLabel>#{productController.product.prdPower}</h:outputLabel></p>
+                                    <ul>
+                                        <li><h:outputLabel>#{productController.product.prdPower}</h:outputLabel></li>
+                                    </ul>
+
                                     <h4>Warranty</h4>
-                                    <p><h:outputLabel>#{productController.product.prdWarranty}</h:outputLabel></p>
-                                    
+                                    <ul>
+                                        <li>
+                                            <h:outputLabel>#{productController.product.prdWarranty}</h:outputLabel>
+
+                                        </li>
+                                    </ul>
+
                                     <blockquote>
+
                                         <p><em><h:outputLabel>#{productController.product.prdDescript}</h:outputLabel></em></p>
                                     </blockquote>
+                                    <c:if test="#{productController.product.ctgid.ctgType.equalsIgnoreCase('dvr')}">
+                                        
+                                            <h4>Channel</h4>
+                                            
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.dvr.dvrChannel}" styleClass="text-purple">
+
+                                                        </h:outputLabel>
+                                                    </li>
+                                                </ul>
+
+                                           
+                                        
+
+                                       
+                                            <h4>Compression</h4>
+                                          
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.dvr.dvrCompression}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>  
+                                            
+
+                                       
+                                            <h4>In Port</h4>
+                                           
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.dvr.dvrInPort}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>
+                                                
+                                          
+
+                                        
+                                            <h4>Out Port</h4>
+                                            
+                                                <ul>
+                                                    <li>
+                                                         <h:outputLabel value="#{aProductMB.dvr.dvrOutPort}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>
+                                               
+                                            
+
+                                       
+                                            <h4>Playback</h4>
+                                            
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.dvr.dvrPlayback}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>
+                                         
+
+
+
+                                        
+                                            <h4>Record</h4>
+                                            
+                                                <ul>
+                                                    <li>
+                                                      <h:outputLabel value="#{aProductMB.dvr.dvrRecord}" styleClass="text-purple" />  
+                                                    </li>
+                                                </ul>
+                                            
+                                    </c:if>
+                                    <c:if test="#{productController.product.ctgid.ctgType.equalsIgnoreCase('camera')}">
+                                        <div class="form-group">
+                                            <h4>IR</h4>
+                                            <div class="col-sm-8">
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camIR}" styleClass="text-purple">
+
+                                                        </h:outputLabel>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4>Len</h4>
+                                            <div class="col-sm-8">
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camLen}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>  
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4>Material</h4>
+                                            <div class="col-sm-8">
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camMaterial}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+
+                                      
+                                            <h4>Record</h4>
+                                            
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camRecord}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>
+                                               
+                                           
+                                       
+
+                                        
+                                            <h4>Resolution</h4>
+                                           
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camResolution}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>
+                                                
+                                           
+                                            <h4>Sensor</h4>
+                                            
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camSensor}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>
+                                          
+                                        
+                                        
+                                            <h4>Sensor</h4>
+                                           
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camSensor}" styleClass="text-purple" />
+                                                    </li>
+                                                </ul>
+                                                
+                                           
+                                      
+
+                                       
+                                            <h4>Temperature</h4>
+                                           
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camTemperature}" styleClass="text-purple" />  
+                                                    </li>
+                                                </ul>
+                                                
+                                          
+                                            <h4>Video Standard</h4>
+                                            
+                                                <ul>
+                                                    <li>
+                                                        <h:outputLabel value="#{aProductMB.camera.camVideoStandard}" styleClass="text-purple" />  
+                                                    </li>
+                                                </ul>                                                     
+                                    </c:if>
                                     <hr/>
                                     <div class="social">
                                         <h4>Show it to your friends</h4>

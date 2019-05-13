@@ -36,4 +36,6 @@ public class OrderDetailFacade extends AbstractFacade<OrderDetail> {
         q.setParameter("id", select);
         return q.getResultList();
     }
+    
+    
 }

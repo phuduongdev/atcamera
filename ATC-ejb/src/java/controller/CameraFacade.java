@@ -31,8 +31,18 @@ public class CameraFacade extends AbstractFacade<Camera> {
     }
     
     public Camera findCameraByProduct(Product item){
-        TypedQuery q = em.createQuery("SELECT c FROM Camera c WHERE c.prdid = :p", Camera.class);
+        try {
+            TypedQuery q = em.createQuery("SELECT c FROM Camera c WHERE c.prdid = :p", Camera.class);
         q.setParameter("p", item);
         return (Camera) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public List<Camera> Listcamera() {
+        TypedQuery q = em.createQuery("SELECT c FROM Camera c Order by c.createdDate desc ", Camera.class);
+        
+        return q.setMaxResults(10).getResultList();
     }
 }

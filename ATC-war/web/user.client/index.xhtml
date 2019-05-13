@@ -17,9 +17,9 @@
                             <div class="col-md-12">
                                 <div id="main-slider" class="owl-carousel owl-theme">
                                     <div class="item"><h:graphicImage name="img/main.png" alt="" class="img-fluid"/></div>
-                                    <div class="item"><h:graphicImage name="img/main.png" alt="" class="img-fluid"/></div>
-                                    <div class="item"><h:graphicImage name="img/main.png" alt="" class="img-fluid"/></div>
-                                    <div class="item"><h:graphicImage name="img/main.png" alt="" class="img-fluid"/></div>
+                                    <div class="item"><h:graphicImage name="img/sl1.png" alt="" class="img-fluid"/></div>
+                                    <div class="item"><h:graphicImage name="img/sl2.png" alt="" class="img-fluid"/></div>
+                                    <div class="item"><h:graphicImage name="img/sl3.png" alt="" class="img-fluid"/></div>
                                 </div>
                                 <!-- /#main-slider-->
                             </div>
@@ -36,6 +36,220 @@
                     *** HOT PRODUCT SLIDESHOW ***
                     _________________________________________________________
                     -->
+
+                    <!-- /.ribbon-->
+
+                    <div id="hot">
+                        <div class="box py-4">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2 class="mb-0">New Camera</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h:form>
+                            <div class="container">  
+                                <div class="product-slider owl-carousel owl-theme">
+                                    <c:forEach var="p" items="#{productController.camera}">
+                                        <div class="item">
+                                            <div class="product">
+                                                <div class="flip-container">
+                                                    <div class="flipper">
+                                                        <div class="front">
+
+                                                            <h:commandLink action="${productController.details(p.prdid)}">
+                                                                <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                            </h:commandLink>
+                                                        </div>
+                                                        <div class="back">
+                                                            <h:commandLink action="${productController.details(p.prdid)}">
+                                                                <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                            </h:commandLink>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h:commandLink action="#{productController.details(p.prdid)}" 
+                                                               class="invisible">
+                                                    <h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/>
+                                                </h:commandLink>
+                                                <div class="text">
+
+                                                    <div class="text-center"> 
+                                                        <h:outputText class="font-weight-bold" value="#{p.prdid.prdTittle}"/>
+                                                        <br/>
+                                                        <h:outputText value="#{p.camResolution}"/>
+                                                        <hr/>
+                                                    </div>
+
+
+                                                    <p class="price"> 
+                                                        <h:outputText value="#{p.prdid.prdPrice}">
+                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </p>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                <!--<div class="ribbon new">-->
+                                                <div class="theribbon">#{p.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                            </div>
+
+                                            <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                <div class="theribbon ">#{p.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                            </div>  
+                                        </div>      
+
+
+
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </h:form> 
+                    </div>
+                    <div id="hot">
+                        <div class="box py-4">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2 class="mb-0">New DVR</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h:form>
+                            <div class="container">  
+                                <div class="product-slider owl-carousel owl-theme">
+                                    <c:forEach var="d" items="#{productController.dvr}">
+                                        <div class="item">
+                                            <div class="product">
+                                                <div class="flip-container">
+                                                    <div class="flipper">
+                                                        <div class="front">
+                                                            <h:commandLink action="${productController.details(d.prdid)}">
+                                                                <h:graphicImage name="#{d.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                            </h:commandLink>
+                                                        </div>
+                                                        <div class="back">
+                                                            <h:commandLink action="${productController.details(d.prdid)}">
+                                                                <h:graphicImage name="#{d.prdid.prdImage2}" alt="" class="img-fluid"/>
+                                                            </h:commandLink>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h:commandLink action="#{productController.details(d.prdid)}" 
+                                                               class="invisible">
+                                                    <h:graphicImage name="#{d.prdid.prdImage3}" alt="" class="img-fluid"/>
+                                                </h:commandLink>
+                                                <div class="text">
+                                                    <div class="text-center"> 
+                                                        <h:outputText class="font-weight-bold" value="#{d.prdid.prdTittle}"/>
+                                                        <br/>
+                                                        <h:outputText value="#{d.dvrChannel}"/>
+                                                        <br/>
+                                                        <h:outputText value="#{d.dvrCompression}"/>
+                                                        <hr/>
+                                                    </div>
+                                                    <p class="price"> 
+                                                        <h:outputText value="#{d.prdid.prdPrice}">
+                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </p>
+
+                                                </div>
+                                                <div class="#{d.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                    <!--<div class="ribbon new">-->
+                                                    <div class="theribbon">#{d.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                    <div class="#{d.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>
+
+                                                <div class="#{d.prdid.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                    <div class="theribbon ">#{d.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                    <div class="#{d.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>  
+                                            </div>
+
+                                        </div>      
+
+
+
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </h:form> 
+                    </div>
+                    <div id="hot">
+                        <div class="box py-4">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2 class="mb-0">New Other</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h:form>
+                            <div class="container">  
+                                <div class="product-slider owl-carousel owl-theme">
+                                    <c:forEach var="p" items="#{productController.newOther}">
+                                        <div class="item">
+                                            <div class="product">
+                                                <div class="flip-container">
+                                                    <div class="flipper">
+                                                        <div class="front">
+                                                            <h:commandLink action="${productController.details(p)}">
+                                                                <h:graphicImage name="#{p.prdImage}" alt="" class="img-fluid"/>
+                                                            </h:commandLink>
+                                                        </div>
+                                                        <div class="back">
+                                                            <h:commandLink action="${productController.details(p)}">
+                                                                <h:graphicImage name="#{p.prdImage2}" alt="" class="img-fluid"/>
+                                                            </h:commandLink>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h:commandLink action="#{productController.details(p)}" 
+                                                               class="invisible">
+                                                    <h:graphicImage name="#{p.prdImage3}" alt="" class="img-fluid"/>
+                                                </h:commandLink>
+                                                <div class="text">
+                                                    <h3>
+                                                        <h:outputText value="#{p.prdTittle}"/>
+                                                        <hr/>
+                                                    </h3>
+                                                    <p class="price"> 
+                                                        <h:outputText value="#{p.prdPrice}">
+                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </p>
+
+                                                </div>
+                                                <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                    <!--<div class="ribbon new">-->
+                                                    <div class="theribbon">#{p.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                    <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>
+
+                                                <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                    <div class="theribbon ">#{p.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                    <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>  
+                                            </div>
+
+                                        </div>      
+
+
+
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </h:form> 
+                    </div>
                     <div id="hot">
                         <div class="box py-4">
                             <div class="container">
@@ -71,23 +285,31 @@
                                                     <h:graphicImage name="#{p.prdImage3}" alt="" class="img-fluid"/>
                                                 </h:commandLink>
                                                 <div class="text">
-                                                    <h3>
-                                                        <h:outputText value="#{p.prdTittle}"/>
-                                                    </h3>
+                                                    <div class="text-center"> 
+                                                        <h:outputText class="font-weight-bold" value="#{p.prdTittle}"/>
+                                                        <br/>
+                                                        <h:outputText value="#{p.prdWarranty} month"/>                                                       
+                                                        <hr/>
+                                                    </div>
                                                     <p class="price"> 
                                                         <h:outputText value="#{p.prdPrice}">
                                                             <f:convertNumber pattern="#,###,###,### đ"/>
                                                         </h:outputText>
                                                     </p>
-
                                                 </div>
 
+                                                <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                    <!--<div class="ribbon new">-->
+                                                    <div class="theribbon">#{p.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                    <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>
+
+                                                <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                    <div class="theribbon ">#{p.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                    <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>  
                                             </div>
-
                                         </div>      
-
-
-
                                     </c:forEach>
                                 </div>
                             </div>
@@ -103,7 +325,7 @@
                                 <h3>Best Seller</h3>
                                 <p class="lead">Best product for security</p>
                                 <div id="get-inspired" class="owl-carousel owl-theme">
-                                    <div class="item"><a href="#"><h:graphicImage name="img/get1.jpg" alt="Get inspired" class="img-fluid"/></a></div>
+                                    <div class="item"><a href="bestcamera.xhtml"><h:graphicImage name="img/get1.jpg" alt="Get inspired" class="img-fluid"/></a></div>
                                     <div class="item"><a href="#"><h:graphicImage name="img/get2.jpg" alt="Get inspired" class="img-fluid"/></a></div>
                                     <div class="item"><a href="#"><h:graphicImage name="img/git3.jpg" alt="Get inspired" class="img-fluid"/></a></div>
                                 </div>

@@ -37,17 +37,36 @@ public class ProductFacade extends AbstractFacade<Product> {
         q.setParameter("type", ctg);
         return q.getResultList();
     }
-
+    public List<Product> findProductall() {
+        TypedQuery q = em.createQuery("SELECT c FROM Product c Order by c.createdDate desc ", Product.class);
+        
+        return q.setMaxResults(10).getResultList();
+    }
     public List<Product> Listproduct(String ctgType) {
-        TypedQuery q = em.createQuery("SELECT  p FROM Product p where p.ctgid.ctgType = :type", Product.class);
-        q.setParameter("type", ctgType);
-        return q.getResultList().subList(1, 10);
+        try {
+            TypedQuery q = em.createQuery("SELECT  p FROM Product p where p.ctgid.ctgType = :type Order by p.createdDate desc", Product.class);
+        q.setParameter("type",ctgType);
+        return q.setMaxResults(10).getResultList();
+        } catch (Exception e) {
+        }
+        
+       return null;
     }
 
     public List<Product> findProductbyName(String name) {
         try {
             TypedQuery q = em.createQuery("SELECT c  FROM Product c WHERE c.prdTittle like :type", Product.class);
             q.setParameter("type", "%" + name + "%");
+            return q.getResultList();
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+    public List<Product> findProductbyid(String id) {
+        try {
+            TypedQuery q = em.createQuery("SELECT c  FROM Product c WHERE c.prdid = :type", Product.class);
+            q.setParameter("type", id);
             return q.getResultList();
         } catch (Exception e) {
 
