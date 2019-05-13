@@ -12,38 +12,28 @@
             <h:outputStylesheet name="assets/plugins/jquery.steps/css/jquery.steps.css" />
         </ui:define>
 
-        <ui:define name="content">
-            <!-- Start content -->
-            <div class="content">
-                <div class="container">
-                    <!-- Page-Title -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="btn-group pull-right m-t-15">
-                                <h:link outcome="#{aProductMB.productViewNav()}"
-                                        styleClass="btn btn-default btn-custom waves-effect waves-light">
-                                    Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
-                                </h:link>
+       <ui:define name="content">
+                <div class="content">
+                    <div class="container">
+                        <!--Page-Title--> 
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right m-t-15">
+                                    <h:link outcome="#{aProductMB.productViewNav()}"
+                                            styleClass="btn btn-default btn-custom waves-effect waves-light">
+                                        Back <span class="m-l-5"><i class="fa fa-backward"></i></span>
+                                    </h:link>
+                                </div>
+
+                                <h4 class="page-title">Product</h4>
+                                <ol class="breadcrumb">
+                                    <li><a href="#">ATC</a></li>
+                                    <li><a href="#">Product</a></li>
+                                    <li class="active">Details</li>
+                                </ol>
                             </div>
-
-                            <h4 class="page-title">Product</h4>
-                            <ol class="breadcrumb">
-                                <li>
-                                    <a href="#">ATC</a>
-                                </li>
-                                <li>
-                                    <a href="#">Product</a>
-                                </li>
-                                <li class="active">
-                                    Create Product
-                                </li>
-                            </ol>
                         </div>
-                    </div>
-                    <!-- End row -->
-
-                    <!-- Vertical Steps Example -->
-                    <div class="row">
+                      <div class="row">
                         <div class="col-sm-12">
                             <div class="card-box">
                                 <h:form id="wizard-vertical" prependId="false" enctype="multipart/form-data">
@@ -156,7 +146,7 @@
                                             </div>
 
                                         </div>
-                                        <c:if test="#{aProductMB.productCreateTittle=='camera'}">
+                                        <c:if test="#{aProductMB.productCreateTittle.equalsIgnoreCase('camera')}">
 
                                             <div class="form-group clearfix">
                                                 <h:outputLabel value="CamSensor *" for="camSensor" styleClass="col-lg-4 control-label" />
@@ -280,13 +270,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End row -->
-                </div> 
-                <!-- container -->
-            </div> 
-            <!-- content -->
 
-        </ui:define>
+                    </div><!--container--> 
+                </div><!--content-->
+            </ui:define>
 
         <ui:define name="jsplus">
             <script>

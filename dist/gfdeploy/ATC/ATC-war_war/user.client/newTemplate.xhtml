@@ -51,7 +51,7 @@
                                 <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome to An Thang camera store</a></div>
                                 <div class="col-lg-6 text-center text-lg-right">
                                     <ul class="menu list-inline mb-0">
-<!--                                        <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>-->
+                                        <!--                                        <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>-->
                                         <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
                                         <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
                                         <li class="list-inline-item"><a href="login.xhtml">Login</a></li>
@@ -128,26 +128,22 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item dropdown menu-large">
-                                    <a href="#" data-toggle="dropdown" data-hover="dropdown" 
-                                       data-delay="200" class="dropdown-toggle nav-link">Page<b class="caret"></b></a>
-                                    <ul class="dropdown-menu megamenu">
-                                        <div class="row">
-                                            <div class="col-md-6 col-lg-3">
-                                                <li class="nav-item"><a href="aboutus.xhtml">About us</a></li>
-                                            </div>                                      
-                                            <div class="col-md-6 col-lg-3">
-                                                <li class="nav-item"><a href="termsandconditions.xhtml">Terms and conditions</a></li>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3">
-                                                <li class="nav-item"> <a href="fag.xhtml">FAG</a></li>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3">
-                                                <li class="nav-item"> <a href="contact.xhtml">Contact Us</a></li>
-                                            </div>
-                                        </div>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        Page
+                                    </a>
+                                    <ul>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#"><h5>About us</h5></a>
+                                            <a class="dropdown-item" href="#"><h5>Terms and conditions</h5></a>
+                                            <a class="dropdown-item" href="#"><h5>FAG</h5></a>
+                                            <a class="dropdown-item" href="#"><h5>News</h5></a>
+                                            <a class="dropdown-item" href="#"><h5>Contact</h5></a>
+                                        </div>  
                                     </ul>
+
                                 </li>
+
                                 <li class="nav-item"><a href="news.xhtml" class="nav-link">News</a></li>
                             </ul>
 
@@ -162,6 +158,23 @@
                                         </span>
                                     </h:link>
                                 </div>
+                                <div id="account" class="navbar-collapse collapse d-none d-lg-block collapse ">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item dropdown">
+                                            <a class="btn btn-primary navbar-link" href="myAccount.xhtml" id="nav" data-toggle="dropdown">
+                                                <i class="fa fa-user"></i>
+
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="login.xhtml"><i class="fa fa-sign-in">Login</i></a>
+                                                <a class="dropdown-item" href="register.xhtml"><i class="fa fa-user-plus">Register</i></a>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+
                             </div>
                         </div>
 
@@ -221,7 +234,7 @@
                     <!-- /.col-lg-3-->
                     <div class="col-lg-3 col-md-6">
                         <h4 class="mb-3">Where to find us</h4>
-                        <p><strong>An Thắng Camera</strong><br/>872 Ta Quang Buu<br/>District 5<br/>Ho Chi Minh<br/>Viet Nam<br/><strong>Smart Security</strong></p><a href="contact.xhtml">Go to contact page</a>
+                        <p><strong>An Thắng Camera</strong><br/>295A Nguyen Anh Thu W.Hiep Thanh<br/>District 12<br/>Ho Chi Minh<br/>Viet Nam<br/><strong>Smart Security</strong></p><a href="contact.xhtml">Go to contact page</a>
                         <hr class="d-block d-md-none"/>
                     </div>
                     <!-- /.col-lg-3-->
