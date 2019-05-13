@@ -73,7 +73,13 @@
                                                                     <f:convertNumber pattern="#,###,###,### đ"/>
                                                                 </h:outputText>
                                                             </td>
-                                                            <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                                            <td>
+                                                                <h:commandLink id="btnAdd" styleClass="fa fa-trash-o">
+                                                                    <f:ajax event="click" listener="#{orderController.removeCart(item)}" 
+                                                                            render="@form summaryForm cartSize"/>
+                                                                </h:commandLink>
+                                                                <a href="#"><i class=""></i></a>
+                                                            </td>
                                                         </tr>                
                                                     </tbody>    
                                                 </c:forEach>
@@ -93,25 +99,22 @@
                                         <!-- /.table-responsive-->
                                         <!--<h:form prependId="false">-->
                                         <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
-                                            <div class="left"><a href="index.xhtml" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
+                                            <div class="left">
+                                                <a href="index.xhtml" class="btn btn-outline-secondary">
+                                                    <i class="fa fa-chevron-left"></i> Continue shopping
+                                                </a>
+                                            </div>
                                             <div class="right">
                                                 <!--<button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button>-->
                                                 <!--<button type="submit" class="btn btn-primary">Proceed to checkout </button>-->
                                                 <h:commandLink id="btnCheckout" action="#{orderController.checkOutNav()}"
-                                                               value="Proceed to checkout " styleClass="btn btn-primary">
+                                                               value="Proceed to checkout " styleClass="btn btn-primary"
+                                                               onclick="checkEmptyCart('#{orderController.cart.size()}', '#{member}')">
                                                     <i class="fa fa-chevron-right"></i>
                                                 </h:commandLink>
-                                                <p:commandButton id="btnPrint" action="#{orderPrint.createPDF()}"
-                                                                 value="Print" styleClass="btn btn-primary"
-                                                                 ajax="false" onclick="this.checkoutForm.targer = '_blank'">
-                                                </p:commandButton>
-                                                <a href="orderPrint.xhtml" class="btn btn-primary waves-effect waves-light" 
-                                                   data-toggle="modal" data-target=".bs-example-modal-lg">Large modal
-                                                </a>
-                                                <h:commandLink action="orderPrint" class="btn btn-primary waves-effect waves-light">
-                                                    nav to print
-                                                </h:commandLink>
-                                                <p>#{orderController.msg}</p>
+                                                
+                                                <a class="btn btn-default waves-effect waves-light" href="javascript:;" onclick="$.Notification.notify('custom', 'top right', 'Sample Notification', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae orci ut dolor scelerisque aliquam.')">Right</a>
+                                                
                                             </div>
                                         </div>
                                         <!--</h:form>-->
@@ -197,6 +200,17 @@
 
         </ui:define>
         <ui:define name="jsplus">
+            <script>
+                //<![CDATA[
+                function checkEmptyCart(s, ob) {
+                    if (s <= 0)
+                        alert('Please add some product to cart');
+                    if (ob.toString() <= 0)
+                        confirm('Login to continue');
+                }
+                //]]>
+            </script>
+
             <!-- Modal-Effect -->
             <h:outputScript name="assets/plugins/custombox/js/custombox.min.js"></h:outputScript>
             <h:outputScript name="assets/plugins/custombox/js/legacy.min.js"></h:outputScript>

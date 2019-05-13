@@ -6,6 +6,7 @@
 package user;
 
 import controller.CameraFacade;
+import controller.CustomerFacade;
 import controller.OrderDetailFacade;
 import controller.OrderMasterFacade;
 import controller.ProductFacade;
@@ -29,7 +30,10 @@ import javax.servlet.http.HttpSession;
 @ManagedBean
 @SessionScoped
 public class OrderController implements Serializable {
+    @EJB
+    private CustomerFacade customerFacade;
 
+    
     @EJB
     private CameraFacade cameraFacade;
 
@@ -44,6 +48,7 @@ public class OrderController implements Serializable {
     private List<OrderDetail> cart;
     private List<OrderDetail> cartPreview;
     private Camera camera;
+    private Customer checkoutCustomer;
     private String msg;
     private int discount = 0;
 
@@ -54,24 +59,34 @@ public class OrderController implements Serializable {
         cart = new ArrayList();
         cartPreview = new ArrayList();
         camera = new Camera();
+        checkoutCustomer = new Customer();
         msg = "";
     }
 
     public String checkOutNav() {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-//        HttpSession httpSession = request.getSession(false);
-//        Customer c = null;
-//        try {
-//            c = (Customer) httpSession.getAttribute("member");
-//        } catch (Exception e) {
-//        }
-//        if (c != null) {
-            return "checkout?faces-redirect=true";
-//        } else {
-//            context.getExternalContext().getSessionMap().put("afterLogin", "orderBasket.xhtml");
-//            return "login?faces-redirect=true";
-//        }
+        if (cart.size() <= 0) {
+            return "orderBasket?faces-redirect=true";
+        } else {
+            checkoutCustomer = pickLoginCustomer();
+            if (checkoutCustomer != null) {
+                return "checkout?faces-redirect=true";
+            } else {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("beforeLogin", "orderBasket.xhtml");
+                return "login?faces-redirect=true";
+            }
+        }
+    }
+
+    private Customer pickLoginCustomer() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession httpSession = request.getSession(false);
+        Customer c = null;
+        try {
+            c = (Customer) httpSession.getAttribute("member");
+        } catch (Exception e) {
+        }
+        return c;
     }
 
     public List<Product> getTestProduct() {
@@ -87,11 +102,12 @@ public class OrderController implements Serializable {
             if (cart.size() < 1) {
                 throw new Exception("Please choose some product");
             }
+            customerFacade.edit(checkoutCustomer);
             //        create order master
             OrderMaster om = new OrderMaster();
             om.setOdmid(tools.CommonUse.generateUUID());
             om.setCreatedDate(new Timestamp(new Date().getTime()));
-//            om.setCtmid(new Customer());
+            om.setCtmid(checkoutCustomer);
             om.setOdmPrice(pickODMasterPrice());
             om.setOdmStatus("new");
             orderMasterFacade.create(om);
@@ -104,7 +120,7 @@ public class OrderController implements Serializable {
                 productFacade.edit(item.getPrdid());
             }
 //            cartPreview = cart;
-//            cart = new ArrayList<>();
+            cart = new ArrayList<>();
             msg = "Tao order thanh cong";
             return "index?faces-redirect=true";
         } catch (Exception e) {
@@ -135,6 +151,7 @@ public class OrderController implements Serializable {
                         int cartItemIndex = cart.indexOf(existItem);
                         int existItemQuan = 0;
                         double existItemPrice = 0;
+//                        dung cho nut cong tru
                         switch (quanControl) {
                             case "additem":
                                 existItemQuan = existItem.getOddQuantity() + 1;
@@ -159,7 +176,6 @@ public class OrderController implements Serializable {
                         break;
                     }
                 }
-
                 if (!cartHasItem) {
                     //chua co selectProduct
                     cart.add(selectItem);
@@ -170,6 +186,10 @@ public class OrderController implements Serializable {
             System.err.println("------------ ??? ----------------" + e.getMessage());
         }
         return "orderBasket";
+    }
+
+    public void removeCart(OrderDetail item) {
+        cart.remove(item);
     }
 
     public double pickODMasterPrice() {
@@ -226,6 +246,14 @@ public class OrderController implements Serializable {
 
     public void setCartPreview(List<OrderDetail> cartPreview) {
         this.cartPreview = cartPreview;
+    }
+
+    public Customer getCheckoutCustomer() {
+        return checkoutCustomer;
+    }
+
+    public void setCheckoutCustomer(Customer checkoutCustomer) {
+        this.checkoutCustomer = checkoutCustomer;
     }
 
 }

@@ -101,28 +101,26 @@ public class login implements Serializable {
     }
 
     public void login() {
-
         loginCustomer = customerFacade.checkAccountLogin(email, password);
         FacesContext context = FacesContext.getCurrentInstance();
-       //        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-//        HttpSession httpSession = request.getSession(false);
-            if (loginCustomer != null) {
-                context.getExternalContext().getSessionMap().put("member", loginCustomer);
-                //                String beforeLoginUrl = (String) httpSession.getAttribute("afterLogin");
-//                if (beforeLoginUrl != null) {
-//                    context.getExternalContext().redirect(beforeLoginUrl);
-//                }
-                try {
-                    context.getExternalContext().redirect("index.xhtml");
-                } catch (IOException e) {
-                    e.printStackTrace();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        HttpSession httpSession = request.getSession(false);
+        if (loginCustomer != null) {
+            context.getExternalContext().getSessionMap().put("member", loginCustomer);
+            try {
+                String beforeLoginUrl = (String) httpSession.getAttribute("beforeLogin");
+                if (beforeLoginUrl != null) {
+                    context.getExternalContext().redirect(beforeLoginUrl);
                 }
-            } else {
-                //Send an error message on Login Failure 
-                context.addMessage(null, new FacesMessage("Authentication Failed. Check email or password."));
-                
-
+                context.getExternalContext().redirect("index.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+        } else {
+            //Send an error message on Login Failure 
+            context.addMessage(null, new FacesMessage("Authentication Failed. Check email or password."));
+
+        }
     }
 
     public void logout() {

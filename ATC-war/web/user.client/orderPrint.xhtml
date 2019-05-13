@@ -27,17 +27,24 @@
         <h:outputScript name="assets/js/modernizr.min.js"></h:outputScript>
     </h:head>
     <h:body>
-
         <div class="container-alt">
             <!-- Page-Title -->
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="panel panel-default">
-                        <!-- <div class="panel-heading">
+                         <div class="panel-heading">
                             <h4>Invoice</h4>
-                        </div> -->
+                        </div> 
                         <div class="panel-body">
+                            <div class="hidden-print">
+                                <div class="pull-right">
+                                    <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print">&nbsp;&nbsp;Print</i></a>
+                                </div>
+                            </div>
+                            
+                            <div class="clearfix"></div>
+                            <hr class="hidden-print"/>
                             <h:form id="checkoutForm" prependId="false">
                                 <div class="box">
                                     <table class="table table-responsive table-bordered" >
@@ -87,12 +94,12 @@
                                                         </h:outputText>
                                                     </td>
                                                     <td class="text-right">
-                                                        <h:outputText id="total-item" value="#{item.prdid.prdPrice}">
+                                                        <h:outputText  value="#{item.prdid.prdPrice}">
                                                             <f:convertNumber pattern="#,###,###,### đ"/>
                                                         </h:outputText>
                                                     </td>
                                                     <td class="text-right">
-                                                        <h:outputText id="total-item" value="#{item.oddPrice}">
+                                                        <h:outputText value="#{item.oddPrice}">
                                                             <f:convertNumber pattern="#,###,###,### đ"/>
                                                         </h:outputText>
                                                     </td>
@@ -149,9 +156,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- /.box-->
+                                 /.box
                             </h:form>
-
 
                             <div class="row">
                                 <div class="pull-right m-t-30">
@@ -161,16 +167,16 @@
                                     <strong>Order ID: </strong> #123456
                                 </div>
                             </div>
-                            <hr/>
+                            <div class="clearfix"></div>
+                            <hr class="hidden-print"/>
                             <div class="hidden-print">
                                 <div class="pull-right">
                                     <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print">&nbsp;&nbsp;Print</i></a>
-                                    <a href="#" class="btn btn-primary waves-effect waves-light">Back</a>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
