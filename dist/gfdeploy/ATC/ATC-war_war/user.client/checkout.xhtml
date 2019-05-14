@@ -83,17 +83,6 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <h:outputLabel value="DoB" for="DoB" />
-                                                    <h:inputText id="DoB" value="#{orderController.checkoutCustomer.ctmDob}" 
-                                                                 class="form-control" a:placeholder="yyyy/MM/dd">
-                                                        <f:ajax event="keyup" render="DoBmsg"/>
-                                                        <f:validator validatorId="admin.customValidate.checkDob"/>
-                                                    </h:inputText>
-                                                    <h:message id="DoBmsg" for="Phone" styleClass="alert-danger"/>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
                                                     <h:outputLabel value="Email:" for="Email" />
                                                     <h:inputText id="ctmEmail" value="#{orderController.checkoutCustomer.ctmEmail}" class="form-control" readonly="true"/>
                                                 </div>

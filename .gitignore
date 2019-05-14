@@ -58,3 +58,11 @@ build/ATC-war.war
 dist/ATC.ear
 dist/gfdeploy/ATC/ATC-ejb_jar/resouces.res
 nbproject/private/private.properties
+ATC-ejb/nbproject/private/private.xml
+ATC-war/build/web/admin/categoryCreate.xhtml
+ATC-war/build/web/admin/template.xhtml
+ATC-war/build/web/WEB-INF/classes/admin/mb/phu/aAccountMB.class
+ATC-war/dist/ATC-war.war
+ATC-war/nbproject/private/private.xml
+build/ATC-ejb.jar
+build/ATC-war.war

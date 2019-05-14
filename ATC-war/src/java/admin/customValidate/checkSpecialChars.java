@@ -22,9 +22,9 @@ public class checkSpecialChars implements Validator{
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 //        String pattern = "[a-zA-z0-9]+([ '-][a-zA-Z0-9]+)*";
-        String patternSpecialChars = "[a-zA-z0-9]+";
+        String patternSpecialChars = "[a-zA-z0-9ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+";
         if (!value.toString().matches(patternSpecialChars)){
-            FacesMessage msg = new FacesMessage("check special character", component.getClientId() + " cannot contain special characters");
+            FacesMessage msg = new FacesMessage("check special character", component.getClientId() + " cannot contain special characters (expect 'underscore')");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);
         }

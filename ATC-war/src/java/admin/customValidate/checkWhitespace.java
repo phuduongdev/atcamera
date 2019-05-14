@@ -22,8 +22,8 @@ public class checkWhitespace implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 //        String pattern = "[a-zA-z0-9]+([ '-][a-zA-Z0-9]+)*";
-        String patternWhiteSpace = "[a-zA-z0-9~!@#$%^&*]+";
-        if (!value.toString().matches(patternWhiteSpace)) {
+        String patternWhiteSpace = "[a-zA-z0-9~!@#$%^&*ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+";
+        if (!value.toString().isEmpty() && !value.toString().matches(patternWhiteSpace)) {
             FacesMessage msg = new FacesMessage("check whitespace", component.getClientId() + " cannot contain whitespace");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(msg);

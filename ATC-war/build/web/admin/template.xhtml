@@ -169,7 +169,7 @@
                                 </li>
                                 <c:if test="#{aLogin.loginAccount.accRole eq 'admin'}">
                                     <li class="has_sub">
-                                        <h:commandLink action="#{aAccountMB.accountViewNav()}" class="waves-effect">
+                                        <h:commandLink action="#{aAccountMB.accountViewNav()}" class="waves-effect" disabled="">
                                             <i class="ti-key"></i>  <span> Account </span> <span class="menu-arrow"></span>
                                         </h:commandLink>
                                     </li>

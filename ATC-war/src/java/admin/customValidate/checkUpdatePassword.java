@@ -22,7 +22,7 @@ public class checkUpdatePassword implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         if (!value.toString().isEmpty()) {
-            String patternWhiteSpace = "[a-zA-z0-9~!@#$%^&*]+";
+            String patternWhiteSpace = "[a-zA-z0-9~!@#$%^&*ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+";
             if (!value.toString().matches(patternWhiteSpace)) {
                 FacesMessage msg = new FacesMessage("check whitespace", component.getClientId() + " cannot contain whitespace");
                 msg.setSeverity(FacesMessage.SEVERITY_ERROR);

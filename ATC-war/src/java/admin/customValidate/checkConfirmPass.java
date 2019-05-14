@@ -23,7 +23,7 @@ public class checkConfirmPass implements Validator {
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         String passwordId = (String) component.getAttributes().get("fieldPassword");
-        System.out.println("_________________________" + passwordId);
+//        System.out.println("_________________________" + passwordId);
         UIInput textInput = (UIInput) context.getViewRoot().findComponent(passwordId);
         if (textInput == null) {
             throw new IllegalArgumentException(String.format("Unable to find component with id %s", passwordId));

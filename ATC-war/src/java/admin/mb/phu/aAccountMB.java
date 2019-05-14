@@ -66,7 +66,7 @@ public class aAccountMB implements Serializable {
     public String createAccount() {
         try {
             List<Account> acc = accountFacade.checkDuplicateAccUsername(account.getAccUserName());
-            if (accountFacade.checkDuplicateAccUsername(account.getAccUserName()).size() == 0) {
+            if (accountFacade.checkDuplicateAccUsername(account.getAccUserName()).isEmpty()) {
                 msg = "";
                 account.setAccid(tools.CommonUse.generateUUID());
                 account.setCreatedDate(new Timestamp(new Date().getTime()));
