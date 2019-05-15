@@ -8,6 +8,8 @@ package admin.mb.chien;
 
 import controller.ViewTopProductFacade;
 import entity.ViewTopProduct;
+import java.sql.Timestamp;
+import java.util.Date;
 
 
 import java.util.List;
@@ -26,8 +28,16 @@ public class Report {
 //    private ViewTopProductByDateFacade viewTopProductByDateFacade;
     @EJB
     private ViewTopProductFacade viewTopProductFacade;
-    String todate , enddate;
-    
+    String todate  , enddate;
+    private Date currentDate = new Timestamp(new Date().getTime());
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
+    }
     public String getTodate() {
         return todate;
     }
@@ -68,6 +78,7 @@ public class Report {
      * Creates a new instance of Report
      */
     public Report() {
+        
     }
     public List<ViewTopProduct> getViewtop(){
         return viewTopProductFacade.findAll();
@@ -80,9 +91,11 @@ public class Report {
 //      
 //        return viewTopProductByDateFacade.findproductdate(todate,enddate);
 //    }
+    
     public String date(String todate,String enddate){
         this.todate = todate;
         this.enddate = enddate;
         return "report?faces-redirect=true";
     }
+    
 }

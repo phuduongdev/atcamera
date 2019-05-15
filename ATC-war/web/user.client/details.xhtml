@@ -124,24 +124,23 @@
                                             <p><em><h:outputLabel>#{productController.product.prdDescript}</h:outputLabel></em></p>
                                         </blockquote>
                                         <c:if test="#{productController.product.ctgid.ctgType.equalsIgnoreCase('dvr')}">
-                                            <h5>Channel: <em><h:outputLabel value="#{aProductMB.dvr.dvrChannel}" styleClass="text-purple"/></em></h5>          
-                                            <h5>Compression: <em><h:outputLabel value="#{aProductMB.dvr.dvrCompression}" styleClass="text-purple" /></em></h5>
-                                            <h5>In Port: <em><h:outputLabel value="#{aProductMB.dvr.dvrInPort}" styleClass="text-purple" /></em></h5>                                               
-                                            <h5>Out Port: <em><h:outputLabel value="#{aProductMB.dvr.dvrOutPort}" styleClass="text-purple" /></em></h5>
-                                            <h5>Playback: <em><h:outputLabel value="#{aProductMB.dvr.dvrPlayback}" styleClass="text-purple" /></em></h5>      
-                                            <h5>Record: <em><h:outputLabel value="#{aProductMB.dvr.dvrRecord}" styleClass="text-purple" /></em> </h5>
-
-
+                                            <h5>Channel: <em><h:outputLabel value="#{productController.dvr1.dvrChannel}" styleClass="text-purple"/></em></h5>          
+                                            <h5>Compression: <em><h:outputLabel value="#{productController.dvr1.dvrCompression}" styleClass="text-purple" /></em></h5>
+                                            <h5>In Port: <em><h:outputLabel value="#{productController.dvr1.dvrInPort}" styleClass="text-purple" /></em></h5>                                               
+                                            <h5>Out Port: <em><h:outputLabel value="#{productController.dvr1.dvrOutPort}" styleClass="text-purple" /></em></h5>
+                                            <h5>Playback: <em><h:outputLabel value="#{productController.dvr1.dvrPlayback}" styleClass="text-purple" /></em></h5>      
+                                            <h5>Record: <em><h:outputLabel value="#{productController.dvr1.dvrRecord}" styleClass="text-purple" /></em> </h5>
                                         </c:if>
+                                        
                                         <c:if test="#{productController.product.ctgid.ctgType.equalsIgnoreCase('camera')}">      
-                                            <h5>IR:  <em><h:outputLabel value="#{aProductMB.camera.camIR}" styleClass="text-purple"/></em></h5>   
-                                            <h5>Len: <em><h:outputLabel value="#{aProductMB.camera.camLen}" styleClass="text-purple" /></em></h5>              
-                                            <h5>Material: <em><h:outputLabel value="#{aProductMB.camera.camMaterial}" styleClass="text-purple" /></em> </h5>                                            
-                                            <h5>Record: <em><h:outputLabel value="#{aProductMB.camera.camRecord}" styleClass="text-purple" /></em></h5>                                                                                        
-                                            <h5>Resolution: <em><h:outputLabel value="#{aProductMB.camera.camResolution}" styleClass="text-purple" /></em></h5>
-                                            <h5>Sensor: <em><h:outputLabel value="#{aProductMB.camera.camSensor}" styleClass="text-purple" /></em></h5>                                          
-                                            <h5>Temperature: <em><h:outputLabel value="#{aProductMB.camera.camTemperature}" styleClass="text-purple" /></em> </h5>       
-                                            <h5>Video Standard: <em><h:outputLabel value="#{aProductMB.camera.camVideoStandard}" styleClass="text-purple" /></em></h5>                                                  
+                                            <h5>IR:  <em><h:outputLabel value="#{productController.cam.camIR}" styleClass="text-purple"/></em></h5>   
+                                            <h5>Len: <em><h:outputLabel value="#{productController.cam.camLen}" styleClass="text-purple" /></em></h5>              
+                                            <h5>Material: <em><h:outputLabel value="#{productController.cam.camMaterial}" styleClass="text-purple" /></em> </h5>                                            
+                                            <h5>Record: <em><h:outputLabel value="#{productController.cam.camRecord}" styleClass="text-purple" /></em></h5>                                                                                        
+                                            <h5>Resolution: <em><h:outputLabel value="#{productController.cam.camResolution}" styleClass="text-purple" /></em></h5>
+                                            <h5>Sensor: <em><h:outputLabel value="#{productController.cam.camSensor}" styleClass="text-purple" /></em></h5>                                          
+                                            <h5>Temperature: <em><h:outputLabel value="#{productController.cam.camTemperature}" styleClass="text-purple" /></em> </h5>       
+                                            <h5>Video Standard: <em><h:outputLabel value="#{productController.cam.camVideoStandard}" styleClass="text-purple" /></em></h5>                                                  
                                         </c:if>
                                         <hr/>
                                         <div class="social">

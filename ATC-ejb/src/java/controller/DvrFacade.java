@@ -5,7 +5,6 @@
  */
 package controller;
 
-import entity.Camera;
 import entity.Dvr;
 import entity.Product;
 import java.util.List;
@@ -32,9 +31,13 @@ public class DvrFacade extends AbstractFacade<Dvr> {
         super(Dvr.class);
     }
      public Dvr findDVRByProduct(Product item){
-        TypedQuery<Dvr> q = em.createQuery("SELECT d FROM Dvr d WHERE d.prdid = :p", Dvr.class);
+         try {
+             TypedQuery<Dvr> q = em.createQuery("SELECT d FROM Dvr d WHERE d.prdid = :p", Dvr.class);
         q.setParameter("p", item);
         return q.getSingleResult();
+         } catch (Exception e) {
+         }
+        return null;
     }
 
 
