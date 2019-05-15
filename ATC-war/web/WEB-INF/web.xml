@@ -20,6 +20,8 @@
         <filter-name>userAuthen</filter-name>
         <url-pattern>/faces/user.client/myAccount.xhtml</url-pattern>
         <url-pattern>/faces/user.client/checkout.xhtml</url-pattern>
+        <url-pattern>/faces/user.client/orderHistory.xhtml</url-pattern>
+        <url-pattern>/faces/user.client/orderPrint.xhtml</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
@@ -27,6 +29,12 @@
         <filter-name>roleAuthen</filter-name>
         <url-pattern>/faces/admin/accountView.xhtml</url-pattern>
         <url-pattern>/faces/admin/accountCreate.xhtml</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>adminAuthen</filter-name>
+        <url-pattern>/faces/admin/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
@@ -44,7 +52,6 @@
             30
         </session-timeout>
     </session-config>
-
     <welcome-file-list>
         <welcome-file>faces/user.client/index.xhtml</welcome-file>
     </welcome-file-list>
