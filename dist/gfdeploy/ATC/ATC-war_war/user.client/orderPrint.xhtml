@@ -36,25 +36,24 @@
                         <div class="panel-body">
                             <div class="hidden-print">
                                 <div class="pull-right">
+                                    <a href="index.xhtml" class="btn btn-success waves-effect waves-light"><i class="fa fa-home">&nbsp;&nbsp;Home</i></a>
                                     <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print">&nbsp;&nbsp;Print</i></a>
                                 </div>
                             </div>
                             
-                            <div class="clearfix"></div>
-                            <hr class="hidden-print"/>
                             <h:form id="checkoutForm" prependId="false">
                                 <div class="box">
-                                    <table class="table table-responsive table-bordered" >
+                                    <table class="table table-bordered" >
                                         <thead>
                                             <tr>
-                                                <h:graphicImage name="hardImage/nameCard.png" alt="Name Card" styleClass="img-responsive"/>
+                                                <h:graphicImage name="hardImage/nameCard.png" alt="Banner" styleClass="img-responsive"/>
                                             </tr>
                                             <tr><h4 class="text-center"><b>BẢNG CHÀO GIÁ CAMERA KBVISION USA</b></h4></tr>
                                             <tr><h5 class="text-center text-muted">CTY An Thắng xin trân trọng gửi đến Quý khách hàng bảng chào giá camera KB-VISION - USA</h5></tr>
                                             <tr>
                                                 <h4><b>PHẦN I: HỆ THỐNG CAMERA GIÁM SÁT</b></h4>
                                             </tr>
-                                            <tr class="text-center">
+                                            <tr class="small">
                                                 <th>Image</th>
                                                 <th>Product Details</th>
                                                 <th>Technology</th>
@@ -65,42 +64,130 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach var="item" items="#{orderController.cart}">
-                                                <tr class="text-center">
+                                            <c:forEach var="item2" items="#{orderController.findDvrByOrder()}">
+                                                <tr class="text-center small">
                                                     <td>
-                                                        <a href="#"><h:graphicImage name="#{item.prdid.prdImage}" alt="" style="logo" height="100"/></a>
-                                                        <br/><h:outputLabel value="#{item.prdid.prdTittle}"/>
+                                                        <a href="#"><h:graphicImage name="#{item2.prdImage}" alt="" style="logo" height="100"/></a>
+
+                                                        <br/><h:outputLabel value="#{item2.prdTittle}"/>
                                                     </td>
+
                                                     <td class="text-left">
                                                         <ul class="list-group list-unstyled">
-                                                            <li>test</li>
-                                                            <li>test</li>
-                                                            <li>test</li>
-                                                            <li>test</li>
+                                                            <li><br/><h:outputLabel value="#{item2.ctgTitle}"/> #{item2.dvrChannel} kênh</li>
+                                                            <li>- Video Compression: #{item2.dvrCompression}</li>
+                                                            <li>- Input Port: #{item2.dvrInPort}</li>
+                                                            <li>- Output Port: #{item2.dvrOutPort}</li>
+                                                            <li>- Playback: #{item2.dvrPlayback}</li>
+                                                            <li>- Power: #{item2.dvrPower}</li>
+                                                            <li>- Record: #{item2.dvrRecord}</li>
+                                                            <li class="text-justify">- #{item2.prdDescript}</li>
                                                         </ul>
                                                     </td>
-                                                    <td class="">
-                                                        <h:outputText value="#{item.prdid.ctgid.ctgOrigin}" styleClass="form-control-sm"/>
+
+                                                    <td>
+                                                        <h:outputText value="#{item2.ctgOrigin}" styleClass="form-control-sm"/>
                                                     </td>
-                                                    <td class="text-right">
-                                                        <h:outputText value="#{item.prdid.prdWarranty}" >
+                                                    <td>
+                                                        <h:outputText value="#{item2.prdWarranty} tháng" >
                                                         </h:outputText>
                                                     </td>
                                                     <td >
-                                                        <h:outputText value="#{item.oddQuantity}">
+                                                        <h:outputText value="#{item2.oddQuantity}">
                                                         </h:outputText>
                                                     </td>
                                                     <td class="text-right">
-                                                        <h:outputText  value="#{item.prdid.prdPrice}">
-                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        <h:outputText  value="#{item2.oddPrice/item2.oddQuantity}">
+                                                            <f:convertNumber pattern="#,###,###,###đ"/>
                                                         </h:outputText>
                                                     </td>
                                                     <td class="text-right">
-                                                        <h:outputText value="#{item.oddPrice}">
-                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        <h:outputText value="#{item2.oddPrice}">
+                                                            <f:convertNumber pattern="#,###,###,###đ"/>
                                                         </h:outputText>
                                                     </td>
                                                 </tr>
+                                            </c:forEach>
+
+                                            <c:forEach var="item1" items="#{orderController.findCameraByOrder()}">
+                                                <tr class="text-center small">
+                                                    <td>
+                                                        <a href="#"><h:graphicImage name="#{item1.prdImage}" alt="" style="logo" height="100"/></a>
+
+                                                        <br/><h:outputLabel value="#{item1.prdTittle}"/>
+                                                    </td>
+
+                                                    <td class="text-left">
+                                                        <ul class="list-group list-unstyled">
+                                                            <li><h:outputLabel value="#{item1.ctgType} #{item1.ctgTitle}"/></li>
+
+                                                            <li>Sensor: #{item1.camSensor}</li>
+                                                            <li>Resolution: #{item1.camResolution}</li>
+                                                            <li>Len: #{item1.camLen}</li>
+                                                            <li>IR range: #{item1.camIR}</li>
+                                                            <li>Video Stardand: #{item1.camVideoStandard}</li>
+                                                            <li>Power: #{item1.prdPower}</li>
+                                                            <li>Memory: #{item1.camMemory eq null ? 'none' : item1.camMemory}</li>
+                                                            <li>Temperature: #{item1.camTemperature}</li>
+                                                            <li>Material: #{item1.camMaterial}</li>
+                                                            <li class="text-justify">#{item1.prdDescript}</li>
+                                                        </ul>
+                                                    </td>
+                                                    <td class="">
+                                                        <h:outputText value="#{item1.ctgOrigin}" styleClass="form-control-sm"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <h:outputText value="#{item1.prdWarranty} Tháng" >
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td >
+                                                        <h:outputText value="#{item1.oddQuantity}">
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <h:outputText  value="#{item1.oddPrice/item1.oddQuantity}">
+                                                            <f:convertNumber pattern="#,###,###,###đ"/>
+                                                        </h:outputText>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <h:outputText value="#{item1.oddPrice}">
+                                                            <f:convertNumber pattern="#,###,###,###đ"/>
+                                                        </h:outputText>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+
+                                            <c:forEach var="item" items="#{orderController.findProductByOrder()}" >
+                                                    <tr class="text-center small vertical-middle">
+                                                        <td>
+                                                            <a href="#"><h:graphicImage name="#{item.prdImage}" alt="" style="logo" height="100"/></a>
+                                                            
+                                                        </td>
+                                                        <td class="text-left">
+                                                            <h:outputLabel value="#{item.prdTittle}"/>
+                                                        </td>
+                                                        <td class="">
+                                                            <h:outputText value="#{item.ctgOrigin}" styleClass="form-control-sm"/>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <h:outputText value="#{item.prdWarranty} tháng" >
+                                                            </h:outputText>
+                                                        </td>
+                                                        <td >
+                                                            <h:outputText value="#{item.oddQuantity}">
+                                                            </h:outputText>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <h:outputText  value="#{item.oddPrice/item.oddQuantity}">
+                                                                <f:convertNumber pattern="#,###,###,###đ"/>
+                                                            </h:outputText>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <h:outputText value="#{item.oddPrice}">
+                                                                <f:convertNumber pattern="#,###,###,###đ"/>
+                                                            </h:outputText>
+                                                        </td>
+                                                    </tr>
                                             </c:forEach>
                                         </tbody>
                                     </table>
@@ -111,8 +198,8 @@
                                             <td></td>
                                             <td colspan="5">• Tổng giá trị hợp đồng trước thuế (chưa VAT) :</td>
                                             <th class="text-right">
-                                                <h:outputText value="#{orderController.pickODMasterPrice()}">
-                                                    <f:convertNumber pattern="#,###,###,###,### đ"/>
+                                                <h:outputText value="#{orderController.pickOrderPriceHistory()}">
+                                                    <f:convertNumber pattern="#,###,###,###,###đ"/>
                                                 </h:outputText>
                                             </th>
                                         </tr>
@@ -120,8 +207,8 @@
                                             <td></td>
                                             <td colspan="5" >• Thuế VAT 10% :</td>
                                             <th class="text-right">
-                                                <h:outputText value="#{orderController.pickODMasterPrice()*0.1}">
-                                                    <f:convertNumber pattern="#,###,###,###,### đ"/>
+                                                <h:outputText value="#{orderController.pickOrderPriceHistory()*0.1}">
+                                                    <f:convertNumber pattern="#,###,###,###,###đ"/>
                                                 </h:outputText>
                                             </th>
                                         </tr>
@@ -129,8 +216,8 @@
                                             <td></td>
                                             <td colspan="5">• Tổng thành tiền :</td>
                                             <th class="text-right">
-                                                <h:outputText value="#{orderController.pickODMasterPrice()*1.1}">
-                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                <h:outputText value="#{orderController.pickOrderPriceHistory()*1.1}">
+                                                    <f:convertNumber pattern="#,###,###,###đ"/>
                                                 </h:outputText>
                                             </th>
                                         </tr>
@@ -153,23 +240,33 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                 /.box
+                                <!--/.box-->
                             </h:form>
-
-                            <div class="row">
-                                <div class="pull-right m-t-30">
-                                    <strong>Customer(Mr/Mrs): </strong> test test tes test
-                                    <strong>Order Date: </strong> Jun 15, 2015 
-                                    <strong>Order Status: </strong> <span class="label label-pink">Pending</span> 
-                                    <strong>Order ID: </strong> #123456
-                                </div>
+                            
+                            <div class="pull-left m-t-30">
+                                <span>
+                                    Customer(Mr/Mrs): <strong>#{orderController.orderMaster.ctmid.ctmFirstName}</strong>
+                                </span><br/>
+                                <span>
+                                    Order Date : <strong>#{orderController.orderMaster.createdDate}</strong>
+                                </span><br/>
+                                <span>
+                                    Order Status: <span class="badge #{orderController.orderMaster.odmStatus eq 'new' ? 'badge-danger' : (
+                                                         orderController.orderMaster.odmStatus eq 'active' ? 'badge-info' : (
+                                                         orderController.orderMaster.odmStatus eq 'half' ? 'lbadge-warning' : (
+                                                         orderController.orderMaster.odmStatus eq 'completed' ? 'badge-success' : 'badge-inverse')))}">
+                                          #{orderController.orderMaster.odmStatus}
+                                    </span>
+                                </span><br/>
+                                <span>
+                                    Order ID: <strong>#{orderController.orderMaster.odmid}</strong>
+                                </span><br/>
                             </div>
-                            <div class="clearfix"></div>
                             <hr class="hidden-print"/>
                             <div class="hidden-print">
                                 <div class="pull-right">
+                                    <a href="index.xhtml" class="btn btn-success waves-effect waves-light"><i class="fa fa-home">&nbsp;&nbsp;Home</i></a>
                                     <a href="javascript:window.print()" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print">&nbsp;&nbsp;Print</i></a>
-
                                 </div>
                             </div>
                         </div>
@@ -200,8 +297,6 @@
         <h:outputScript name="assets/js/jquery.app.js"></h:outputScript>
 
         <h:outputScript name="assets/pages/jquery.form-pickers.init.js"></h:outputScript>
-
-
     </h:body>
 
 </html>

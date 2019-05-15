@@ -20,7 +20,7 @@ import javax.faces.validator.ValidatorException;
  * @author DTP
  */
 @ManagedBean
-@FacesValidator("admin.customValidate.checkDuplicate")
+@FacesValidator("admin.customValidate.checkDuplicateUsername")
 public class checkDuplicateUsername implements Validator{
     @EJB
     private AccountFacade accountFacade;

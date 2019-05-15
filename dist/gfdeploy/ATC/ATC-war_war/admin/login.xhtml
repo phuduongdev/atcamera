@@ -7,8 +7,6 @@
     <h:head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc."/>
-        <meta name="author" content="Coderthemes"/>
 
         <h:outputStylesheet name="assets/images/favicon_1.ico"/>
 
@@ -24,69 +22,63 @@
         <h:outputScript name="assets/js/modernizr.min.js"></h:outputScript>
     </h:head>
     <h:body>
-        <div class="account-pages"></div>
-        <div class="clearfix"></div>
-        <div class="wrapper-page">
-            <div class=" card-box">
-                <div class="panel-heading"> 
-                    <h3 class="text-center"><strong class="text-custom">An Thang Group</strong><br/>Sign In</h3>
-                </div> 
+        <div class="container">
+            <div class="row">
+                <div class="account-pages"></div>
+                <div class="clearfix"></div>
+                <div class="wrapper-page">
+                    <div class=" card-box">
+                        <div class="panel-heading"> 
+                            <h3 class="text-center"><strong class="text-custom">An Thang Group</strong><br/>Sign In</h3>
+                        </div> 
 
-                <div class="panel-body">
-                    <h:form class="form-horizontal m-t-20" prependId="false" id="adminLogin">
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                <h:message id="msgUsername" for="Username" styleClass="alert-danger"/>
-                            </div>
-                            <div class="col-xs-12">
+                        <div class="panel-body">
+                            <h:form prependId="false">
+                                <div styleClass="form-horizontal m-t-20">
+                                    <div class="form-group">
+                                        <h:inputText value="#{aLogin.username}" id="Username" 
+                                                     a:placeholder="User Name" autocomplete="off"
+                                                     styleClass="form-control">
+                                            <f:ajax event="keyup" render="msgUsername"/>
+                                            <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                            <f:validator validatorId="admin.customValidate.checkNameLength"/>
+                                            <f:validator validatorId="admin.customValidate.checkSpecialChars"/>
+                                        </h:inputText>
+                                        <h:message id="msgUsername" for="Username" styleClass="alert-danger"/>
+                                    </div>
 
-                                <h:inputText value="#{aLogin.username}" id="Username" 
-                                             a:placeholder="User Name" class="form-control">
-                                    <f:ajax event="keyup" render="msgUsername"/>
-                                    <f:validator validatorId="admin.customValidate.checkBlank"/>
-                                    <f:validator validatorId="admin.customValidate.checkNameLength"/>
-                                    <f:validator validatorId="admin.customValidate.checkSpecialChars"/>
-                                </h:inputText>
+                                    <div class="form-group">
+                                        <h:inputSecret value="#{aLogin.password}" id="Password"
+                                                       a:placeholder="Password" autocomplete="off"
+                                                       styleClass="form-control">
+                                            <f:ajax event="keyup" render="msgPassword"/>
+                                            <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                            <f:validator validatorId="admin.customValidate.checkPasswordLength"/>
+                                            <f:validator validatorId="admin.customValidate.checkWhitespace"/>
+                                        </h:inputSecret>
+                                        <h:message id="msgPassword" for="Password" styleClass="alert-danger" />
+                                    </div>
 
-                            </div>
-                        </div>
+                                    <div class="form-group text-center m-t-40">
+                                        <h:commandLink action="#{aLogin.login()}" class="btn btn-info btn-block 
+                                                       text-uppercase waves-effect waves-light">Log In</h:commandLink>
 
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <h:message id="msgPassword" for="Password" styleClass="alert-danger" />
-                            </div>
-                            <div class="col-xs-12">
-                                <h:inputSecret value="#{aLogin.password}" id="Password"
-                                               a:placeholder="Password" class="form-control">
-                                    <f:ajax event="keyup" render="msgPassword"/>
-                                    <f:validator validatorId="admin.customValidate.checkBlank"/>
-                                    <f:validator validatorId="admin.customValidate.checkPasswordLength"/>
-                                    <f:validator validatorId="admin.customValidate.checkWhitespace"/>
-                                </h:inputSecret>
+                                        <!--<h:messages globalOnly="true" styleClass="alert-danger list-group list-unstyled" />-->
+                                        <h:outputText id="authenMsg" value="#{aLogin.msg}" styleClass="alert-danger"/>
+                                    </div>
+                                </div>
+                            </h:form> 
+                        </div>   
+                    </div>                              
 
-                            </div>
-                        </div>
-
-                        <div class="form-group text-center m-t-40">
-                            
-                                <h:commandLink action="#{aLogin.login()}" class="btn btn-info btn-block 
-                                               text-uppercase waves-effect waves-light">Log In</h:commandLink>
-                            
-                            
-                                <!--<h:messages globalOnly="true" styleClass="alert-danger list-group list-unstyled" />-->
-                                <h:outputText id="authenMsg" value="#{aLogin.msg}" styleClass="alert-danger"/>
-                            
-                        </div>
-
-                    </h:form> 
-                </div>   
-            </div>                              
-
+                </div>
+            </div>
         </div>
 
-        <script>
+
+        <script>//<![CDATA[
             var resizefunc = [];
-        </script>
+            //]]></script>
         <h:outputScript name="assets/js/jquery.min.js"></h:outputScript>
         <h:outputScript name="assets/js/bootstrap.min.js"></h:outputScript>
         <h:outputScript name="assets/js/detect.js"></h:outputScript>

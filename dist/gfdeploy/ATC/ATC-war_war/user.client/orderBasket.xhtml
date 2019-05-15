@@ -65,9 +65,8 @@
                                                                 </h:outputText>
                                                             </td>
                                                             <td >
-                                                                <h:outputText value="#{orderController.discount}">
-                                                                    <f:convertNumber pattern="###%"/>
-                                                                </h:outputText></td>
+                                                                <h:outputText value="#{item.prdid.prdDiscount}%"/>
+                                                            </td>
                                                             <td class="text-right">
                                                                 <h:outputText id="total-item" value="#{item.oddPrice}">
                                                                     <f:convertNumber pattern="#,###,###,### đ"/>
@@ -149,38 +148,38 @@
                                         <div class="box-header">
                                             <h3 class="mb-0">Order summary</h3>
                                         </div>
-                                        <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                                        <p class="text-muted">Installation and additional costs are calculated based on the values you have entered.</p>
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td>Order subtotal</td>
-                                                        <th>
+                                                        <th class="text-right">
                                                             <h:outputText value="#{orderController.pickODMasterPrice()}">
                                                                 <f:convertNumber pattern="#,###,###,### đ"/>
                                                             </h:outputText>
                                                         </th>
                                                     </tr>
                                                     <tr>
-                                                        <td>Shipping and handling</td>
-                                                        <th>
-                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                        <td>Installation</td>
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickInstallationPrice()}">
                                                                 <f:convertNumber pattern="#,###,###,### đ"/>
                                                             </h:outputText>
                                                         </th>
                                                     </tr>
                                                     <tr>
                                                         <td>Tax</td>
-                                                        <th>
-                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()*0.1}">
                                                                 <f:convertNumber pattern="#,###,###,### đ"/>
                                                             </h:outputText>
                                                         </th>
                                                     </tr>
                                                     <tr class="total">
                                                         <td>Total</td>
-                                                        <th>
-                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickSummaryTotal()}">
                                                                 <f:convertNumber pattern="#,###,###,### đ"/>
                                                             </h:outputText>
                                                         </th>

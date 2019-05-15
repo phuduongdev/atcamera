@@ -37,18 +37,17 @@
                     -->
 
                     <!-- /.ribbon-->
-
-                    <div id="hot">
-                        <div class="box py-4">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h2 class="mb-0">New Camera</h2>
+                    <h:form prependId="false">
+                        <div id="hot">
+                            <div class="box py-4">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2 class="mb-0">New Camera</h2>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <h:form>
                             <div class="container">  
                                 <div class="product-slider owl-carousel owl-theme">
                                     <c:forEach var="p" items="#{productController.camera}">
@@ -57,7 +56,6 @@
                                                 <div class="flip-container">
                                                     <div class="flipper">
                                                         <div class="front">
-
                                                             <h:commandLink action="${productController.details(p.prdid)}">
                                                                 <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
                                                             </h:commandLink>
@@ -74,15 +72,12 @@
                                                     <h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/>
                                                 </h:commandLink>
                                                 <div class="text">
-
                                                     <div class="text-center"> 
                                                         <h:outputText class="font-weight-bold" value="#{p.prdid.prdTittle}"/>
                                                         <br/>
                                                         <h:outputText value="#{p.camResolution}"/>
                                                         <hr/>
                                                     </div>
-
-
                                                     <p class="price"> 
                                                         <h:outputText value="#{p.prdid.prdPrice}">
                                                             <f:convertNumber pattern="#,###,###,### đ"/>
@@ -90,7 +85,6 @@
                                                     </p>
 
                                                 </div>
-
                                             </div>
                                             <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
                                                 <!--<div class="ribbon new">-->
@@ -102,15 +96,13 @@
                                                 <div class="theribbon ">#{p.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
                                                 <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
                                             </div>  
-                                        </div>      
-
-
-
+                                        </div>
                                     </c:forEach>
                                 </div>
                             </div>
-                        </h:form> 
-                    </div>
+                        </div>
+                    </h:form>
+                    
                     <div id="hot">
                         <div class="box py-4">
                             <div class="container">
@@ -171,16 +163,13 @@
                                                     <div class="#{d.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>  
                                             </div>
-
-                                        </div>      
-
-
-
+                                        </div>     
                                     </c:forEach>
                                 </div>
                             </div>
                         </h:form> 
                     </div>
+
                     <div id="hot">
                         <div class="box py-4">
                             <div class="container">
@@ -232,22 +221,18 @@
                                                     <div class="theribbon">#{p.prdStatus ne 'new' ? '' : 'NEW'}</div>
                                                     <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>
-
                                                 <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
                                                     <div class="theribbon ">#{p.prdDiscount le 0 ? '' : 'SALE'}</div>
                                                     <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>  
                                             </div>
-
                                         </div>      
-
-
-
                                     </c:forEach>
                                 </div>
                             </div>
                         </h:form> 
                     </div>
+
                     <div id="hot">
                         <div class="box py-4">
                             <div class="container">

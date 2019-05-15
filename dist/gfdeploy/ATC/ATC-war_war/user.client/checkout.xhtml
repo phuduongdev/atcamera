@@ -39,7 +39,7 @@
                                                         <f:validator validatorId="admin.customValidate.checkBlank"/>
                                                         <f:validator validatorId="admin.customValidate.checkMultiSpecialChars"/>
                                                     </h:inputText>
-                                                    <h:message id="fnmsg" for="FirstName" styleClass="alert-danger"/>
+                                                    <h:message id="fnmsg" for="FirstName" styleClass="form-text form-control-sm alert alert-danger"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -50,7 +50,7 @@
                                                         <f:ajax event="keyup" render="lnmsg"/>
                                                         <f:validator validatorId="admin.customValidate.checkMultiSpecialChars"/>
                                                     </h:inputText>
-                                                    <h:message id="lnmsg" for="LastName" styleClass="alert-danger"/>
+                                                    <h:message id="lnmsg" for="LastName" styleClass="form-text form-control-sm alert alert-danger"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                                         <f:validator validatorId="admin.customValidate.checkBlank"/>
                                                         <f:validator validatorId="admin.customValidate.checkAddress"/>
                                                     </h:inputText>
-                                                    <h:message id="addrmsg" for="Address" styleClass="alert-danger"/>
+                                                    <h:message id="addrmsg" for="Address" styleClass="form-text form-control-sm alert alert-danger"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -76,15 +76,15 @@
                                                         <f:validator validatorId="admin.customValidate.checkBlank"/>
                                                         <f:validator validatorId="admin.customValidate.checkPhone"/>
                                                     </h:inputText>
-                                                    <h:message id="phonemsg" for="Phone" styleClass="alert-danger"/>
+                                                    <h:message id="phonemsg" for="Phone" styleClass="form-text form-control-sm alert alert-danger"/>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <h:outputLabel value="Email:" for="Email" />
-                                                    <h:inputText id="ctmEmail" value="#{orderController.checkoutCustomer.ctmEmail}" class="form-control" readonly="true"/>
+                                                    <h:outputLabel value="Email" for="Email" />
+                                                    <h:inputText id="Email" value="#{orderController.checkoutCustomer.ctmEmail}" class="form-control" readonly="true"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,39 +93,38 @@
                                         </div>
                                     </section>
 
-<!--                                    <h3><br/>Payment <i class="fa fa-money"></i></h3>
-                                    <section>
-                                        <div class="col-md-6">
-                                            <div class="box shipping-method">
-                                                <h4>USPS Next Day</h4>
-                                                <p>Get it right on next day - fastest option possible.</p>
-                                                <div class="box-footer text-center">
-                                                    <input type="radio" name="delivery" value="delivery1"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="box shipping-method">
-                                                <h4>USPS Next Day</h4>
-                                                <p>Get it right on next day - fastest option possible.</p>
-                                                <div class="box-footer text-center">
-                                                    <input type="radio" name="delivery" value="delivery1"/>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </section>-->
+                                    <!--                                    <h3><br/>Payment <i class="fa fa-money"></i></h3>
+                                                                        <section>
+                                                                            <div class="col-md-6">
+                                                                                <div class="box shipping-method">
+                                                                                    <h4>USPS Next Day</h4>
+                                                                                    <p>Get it right on next day - fastest option possible.</p>
+                                                                                    <div class="box-footer text-center">
+                                                                                        <input type="radio" name="delivery" value="delivery1"/>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="box shipping-method">
+                                                                                    <h4>USPS Next Day</h4>
+                                                                                    <p>Get it right on next day - fastest option possible.</p>
+                                                                                    <div class="box-footer text-center">
+                                                                                        <input type="radio" name="delivery" value="delivery1"/>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                    
+                                                                        </section>-->
 
                                     <h3><br/>Order Review <i class="fa fa-eye"></i></h3>
                                     <section>
-                                        <table class="table table-responsive">
+                                        <table class="table">
                                             <thead>
                                                 <tr class="text-center">
-                                                    <th>Image</th>
+                                                    <!--<th>Image</th>-->
                                                     <th>Product</th>
                                                     <th>Quantity</th>
                                                     <th>Unit price</th>
-                                                    <th>Discount</th>
                                                     <th>Total</th>
                                                 </tr>
                                             </thead>
@@ -133,20 +132,16 @@
                                                 <c:forEach var="item" items="#{orderController.cart}">
 
                                                     <tr class="text-center">
-                                                        <td><a href="#"><h:graphicImage name="#{item.prdid.prdImage}" alt="#{item.prdid.prdTittle}" height="80"/></a></td>
+                                                        <!--<td><a href="#"><h:graphicImage name="#{item.prdid.prdImage}" alt="#{item.prdid.prdTittle}" height="80"/></a></td>-->
                                                         <td>#{item.prdid.prdTittle}</td>
                                                         <td class="text-center form-group">
                                                             <h:outputText id="testQuan" value="#{item.oddQuantity}" styleClass="form-control-sm"/>
                                                         </td>
                                                         <td class="text-right">
-                                                            <h:outputText value="#{item.prdid.prdPrice}" >
+                                                            <h:outputText value="#{item.oddPrice/item.oddQuantity}" >
                                                                 <f:convertNumber pattern="#,###,###,### đ"/>
                                                             </h:outputText>
                                                         </td>
-                                                        <td >
-                                                            <h:outputText value="#{orderController.discount}">
-                                                                <f:convertNumber pattern="###%"/>
-                                                            </h:outputText></td>
                                                         <td class="text-right">
                                                             <h:outputText id="total-item" value="#{item.oddPrice}">
                                                                 <f:convertNumber pattern="#,###,###,### đ"/>
@@ -158,7 +153,7 @@
                                             </tbody>  
                                             <tfoot>
                                                 <tr>
-                                                    <th colspan="5">Total</th>
+                                                    <th colspan="3">Total</th>
                                                     <th class="text-right">
                                                         <h:outputText value="#{orderController.pickODMasterPrice()}">
                                                             <f:convertNumber pattern="#,###,###,### đ"/>
@@ -168,16 +163,13 @@
                                                 <tr class="text-center">
                                                     <td colspan="7">
                                                         <h:commandLink action="#{orderController.checkOut()}" value="Confirm" 
-                                                                       styleClass="row btn btn-success waves-effect waves-light"
-                                                                       onclick="{
-                                                                                   return alert('Order completed.')
-                                                                               }">
+                                                                       styleClass="row btn btn-success waves-effect waves-light">
                                                         </h:commandLink>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<h:commandLink action="orderPrint" class="btn btn-outline-success waves-effect waves-light">
+<!--                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <h:commandLink action="orderPrint" class="btn btn-outline-success waves-effect waves-light">
                                                             <span class="fa fa-print"/>
-                                                        </h:commandLink>
+                                                        </h:commandLink>-->
                                                     </td>
-
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -190,43 +182,43 @@
                     <!--<iframe class="col-lg-12" id="order-review" frameborder="0" align="middle" src="orderPrint.xhtml"/>-->
                     <!-- /.col-lg-9-->
                     <div class="col-lg-4">
-                        <div id="order-summary" class="card">
-                            <div class="table-responsive">
-                                <div class="card-header">
-                                    <h3 class="mt-4 mb-4">Order summary</h3>
+                        <h:form prependId="false" id="summaryForm">
+                            <div id="order-summary" class="box">
+                                <div class="box-header">
+                                    <h3 class="mb-0">Order summary</h3>
                                 </div>
-                                <div class="card-body">
-                                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                                <p class="text-muted">Installation and additional costs are calculated based on the values you have entered.</p>
+                                <div class="table-responsive">
                                     <table class="table">
                                         <tbody>
                                             <tr>
                                                 <td>Order subtotal</td>
-                                                <th>
+                                                <th class="text-right">
                                                     <h:outputText value="#{orderController.pickODMasterPrice()}">
                                                         <f:convertNumber pattern="#,###,###,### đ"/>
                                                     </h:outputText>
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <td>Shipping and handling</td>
-                                                <th>
-                                                    <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                <td>Installation</td>
+                                                <th class="text-right">
+                                                    <h:outputText value="#{orderController.pickInstallationPrice()}">
                                                         <f:convertNumber pattern="#,###,###,### đ"/>
                                                     </h:outputText>
                                                 </th>
                                             </tr>
                                             <tr>
                                                 <td>Tax</td>
-                                                <th>
-                                                    <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                <th class="text-right">
+                                                    <h:outputText value="#{orderController.pickODMasterPrice()*0.1}">
                                                         <f:convertNumber pattern="#,###,###,### đ"/>
                                                     </h:outputText>
                                                 </th>
                                             </tr>
                                             <tr class="total">
                                                 <td>Total</td>
-                                                <th>
-                                                    <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                <th class="text-right">
+                                                    <h:outputText value="#{orderController.pickSummaryTotal()}">
                                                         <f:convertNumber pattern="#,###,###,### đ"/>
                                                     </h:outputText>
                                                 </th>
@@ -234,9 +226,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
-                        </div>
+                        </h:form>
                     </div>
                 </div>
             </div>
@@ -255,8 +246,10 @@
                 });
                 $().ready(function () {
                     $(".actions ul li").last().hide();
-
                 });
+                function checkCustomerInfo(s) {
+
+                }
                 function setIframeHeight(iframe) {
                     if (iframe) {
                         var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
