@@ -110,18 +110,55 @@
                                     <ul class="dropdown-menu megamenu">
                                         <li>
                                             <div class="row">
-                                                <c:forEach items="#{aCategoryMB.categoryType}" var="type">
+                                                <c:forEach items="#{aCategoryMB.categoryType}" var="type" >
+                                                     <c:if test="#{type.equalsIgnoreCase('camera')}">
                                                     <div class="col-md-6 col-lg-3">
                                                         <h5>#{type}</h5>
                                                         <ul class="list-unstyled mb-3">
-                                                            <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title">
+                                                            <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title" begin="0" end="21">
                                                                 <c:if test="#{title.ctgStatus.equalsIgnoreCase('active')}">
                                                                     <li class="nav-item"><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle}</h:commandLink></li>
                                                                 </c:if>
-                                                            </c:forEach>
+                                                            </c:forEach> 
                                                         </ul>
                                                     </div>
+                                                    <div class="col-md-6 col-lg-3">
+                                                        <h5>...</h5>
+                                                        <ul class="list-unstyled mb-3">
+                                                            <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title" begin="22" end="40">
+                                                                <c:if test="#{title.ctgStatus.equalsIgnoreCase('active')}">
+                                                                <li class="nav-item"><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle}</h:commandLink></li>
+                                                                </c:if>
+                                                            </c:forEach> 
+                                                        </ul>
+                                                    </div>
+                                                         </c:if>
+                                                    <c:if test="#{type.equalsIgnoreCase('dvr')}">
+                                                    <div class="col-md-6 col-lg-3">   
+                                                        <ul class="list-unstyled mb-3">
+                                                            <h5>#{type}</h5>
+                                                            <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title" begin="0" end="21">
+                                                                <c:if test="#{title.ctgStatus.equalsIgnoreCase('active')}">
+                                                                <li class="nav-item"><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle}</h:commandLink></li>
+                                                                </c:if>
+                                                            </c:forEach> 
+                                                        </ul>
+                                                    </div>
+                                                         </c:if>
+                                                    <c:if test="#{type.equalsIgnoreCase('other')}">
+                                                    <div class="col-md-6 col-lg-3">   
+                                                        <ul class="list-unstyled mb-3">
+                                                            <h5>#{type}</h5>
+                                                            <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title" begin="0" end="21">
+                                                                <c:if test="#{title.ctgStatus.equalsIgnoreCase('active')}">
+                                                                <li class="nav-item"><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle}</h:commandLink></li>
+                                                                </c:if>
+                                                            </c:forEach> 
+                                                        </ul>
+                                                    </div>
+                                                         </c:if>
                                                 </c:forEach>
+                                                
                                             </div>
                                         </li>
                                     </ul>

@@ -33,8 +33,16 @@ public class ProductController implements Serializable {
     
     
     Category ctg = new Category();
-    Camera cam = new Camera();
-    Dvr dvr = new Dvr();
+    Camera cam ;
+    Dvr dvr1;
+
+    public Dvr getDvr1() {
+        return dvr1;
+    }
+
+    public void setDvr1(Dvr dvr1) {
+        this.dvr1 = dvr1;
+    }
 
     public Camera getCam() {
         return cam;
@@ -85,6 +93,9 @@ public class ProductController implements Serializable {
      * Creates a new instance of ProductController
      */
     public ProductController() {
+        this.product = new Product();
+        this.cam = new Camera();
+        this.dvr1 = new Dvr();
     }
 
     public List<Product> findAll() {
@@ -93,6 +104,17 @@ public class ProductController implements Serializable {
 
     public String details(Product p) {
         this.product = p;
+        if (p.getCtgid().getCtgType().equalsIgnoreCase("camera")) {
+            productFacade.edit(p);
+            this.cam = cameraFacade.findCameraByProduct(p);
+            cameraFacade.edit(cam);
+        } else if (p.getCtgid().getCtgType().equalsIgnoreCase("dvr")) {
+            productFacade.edit(p);
+            this.dvr1 = dvrFacade.findDVRByProduct(p);
+            dvrFacade.edit(dvr1);
+        } else {
+            productFacade.edit(p);
+        }
         return "details?faces-redirect=true";
     }
 
@@ -131,7 +153,7 @@ public class ProductController implements Serializable {
         return productFacade.Listproduct("dvr");
     }
      
-      public List<Product> getNewOther() {
+    public List<Product> getNewOther() {
         return productFacade.Listproduct("other");
     }
     public List<Product> getCamlist() {

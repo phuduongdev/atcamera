@@ -42,7 +42,14 @@ public class CameraFacade extends AbstractFacade<Camera> {
     }
 
     public List<Camera> Listcamera() {
-        TypedQuery q = em.createQuery("SELECT c FROM Camera c Order by c.createdDate desc ", Camera.class);
+
+        try {
+             TypedQuery q = em.createQuery("SELECT c FROM Camera c Order by c.createdDate desc ", Camera.class);
+        
+
         return q.setMaxResults(10).getResultList();
+        } catch (Exception e) {
+        }
+       return null;
     }
 }
