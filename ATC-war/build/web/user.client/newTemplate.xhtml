@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>An Thang Camera : e-commerce</title>
+        <meta name="deh:outputScription" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="robots" content="all,follow"/>
+
+        <ui:insert name="cssplus">
+            
+        </ui:insert>
+
+        <!-- Bootstrap CSS-->
+        <h:outputStylesheet name="vendor/bootstrap/css/bootstrap.min.css"/>
+        <!-- Font Awesome CSS-->
+        <h:outputStylesheet name="vendor/font-awesome/css/font-awesome.min.css"/>
+        <!-- Google fonts - Roboto -->
+
+        <!-- owl carousel-->
+        <h:outputStylesheet name="vendor/owl.carousel/assets/owl.carousel.css"/>
+        <h:outputStylesheet name="vendor/owl.carousel/assets/owl.theme.default.css"/>
+        <!-- theme stylesheet-->
+        <h:outputStylesheet name="css/style.default.css" id="theme-stylesheet"/>
+        <!-- Custom stylesheet - for your changes-->
+        <h:outputStylesheet name="css/custom.css"/>
+
+
+    </h:head>
+
+    <h:body>
+
+        <header class="header mb-5">
+            
+          
+            <h:form id="topbarform" prependId="false">
+                <div id="top">
+                    <div class="container">
+                        <div class="row">
+                            <c:if test="${member==null}">
+                                <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome to An Thang camera store</a></div>
+                                <div class="col-lg-6 text-center text-lg-right">
+                                    <ul class="menu list-inline mb-0">
+                                                                                <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                                        <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
+                                        <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
+                                        <li class="list-inline-item"><a href="login.xhtml">Login</a></li>
+                                    </ul>
+                                </div>
+                            </c:if>
+                            <c:if test="${member!=null}">
+                                <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome <h:commandLink style="color: orange" action="#{login.accountViewNav()}" value="#{member.ctmEmail}"/> </a><a>to An Thang camera store</a></div>
+
+                                <div class="col-lg-6 text-center text-lg-right">
+                                    <ul class="menu list-inline mb-0">
+                                        <li class="list-inline-item"><h:commandLink action="#{login.logout()}">Logout</h:commandLink></li>
+                                        <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
+                                        <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
+                                        <li class="list-inline-item"><h:commandLink action="#{wishListController.navWish()}">Wish List</h:commandLink></li>
+                                    </ul>
+                                </div>
+                            </c:if>
+                        </div>
+                    </div>
+                </div> 
+            </h:form>
+
+            <h:form id="navbarform" prependId="false"> 
+                <nav class="navbar navbar-expand-lg">
+
+                    <div class="container">
+
+                        <a href="index.xhtml" class="navbar-brand home">
+                            <h:graphicImage name="hardImage/homeLogo.png" alt="ATC logo" class="d-none d-md-inline-block" height="72"/>
+                            <h:graphicImage name="hardImage/homeLogo.png" alt="ATC logo" class="d-inline-block d-md-none" height="64"/>
+                            <span class="sr-only">Obaju - go to homepage</span>
+                        </a>
+
+                        <div class="navbar-buttons">
+                            <button type="button" data-toggle="collapse" data-target="#navigation" 
+                                    class="btn btn-outline-secondary navbar-toggler">
+                                <span class="sr-only">Toggle navigation</span>
+                                <i class="fa fa-align-justify"></i>
+                            </button>
+                            <button type="button" data-toggle="collapse" data-target="#search" 
+                                    class="btn btn-outline-secondary navbar-toggler">
+                                <span class="sr-only">Toggle search</span>
+                                <i class="fa fa-search"></i>
+                            </button>
+                            <h:link outcome="orderBasket" class="btn btn-outline-secondary navbar-toggler">
+                                <i class="fa fa-shopping-cart"></i>
+                            </h:link>
+                        </div>
+
+                        <div id="navigation" class="collapse navbar-collapse">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item"><a href="index.xhtml" class="nav-link">Home</a></li>
+
+                                <li class="nav-item dropdown menu-large">
+                                    <a href="#" data-toggle="dropdown" data-hover="dropdown" 
+                                       data-delay="200" class="dropdown-toggle nav-link">Product<b class="caret"></b></a>
+                                    <ul class="dropdown-menu megamenu">
+                                        <li>
+                                            <div class="row">
+                                                <c:forEach items="#{aCategoryMB.categoryType}" var="type">
+                                                    <div class="col-md-6 col-lg-3">
+                                                        <h5>#{type}</h5>
+                                                        <ul class="list-unstyled mb-3">
+
+                                                            <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title">
+                                                                <c:if test="#{title.ctgStatus.equalsIgnoreCase('active')}">
+                                                                <li class="nav-item"><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle}</h:commandLink></li>
+                                                                </c:if>
+                                                            </c:forEach>
+
+                                                        </ul>
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        Page
+                                    </a>
+                                    <ul>
+                                        <div class="dropdown-menu">
+                                            <h:commandLink class="dropdown-item" action="#{nav1.navAboutus()}"><h5>About us</h5></h:commandLink>
+                                            <h:commandLink class="dropdown-item" action="#{nav1.navterm()}"><h5>Terms and conditions</h5></h:commandLink>
+                                            <h:commandLink class="dropdown-item" action="#{nav1.navfag()}"><h5>FAG</h5></h:commandLink>
+                                            <h:commandLink class="dropdown-item" action="#{nav1.newNav()}"><h5>News</h5></h:commandLink>
+                                           
+                                        </div>  
+                                    </ul>
+
+                                </li>
+
+                                <li class="nav-item"><h:commandLink action="#{nav1.navContact()}" class="nav-link">Contact</h:commandLink></li>
+                            </ul>
+
+                            <div class="navbar-buttons d-flex justify-content-end">
+                                <!-- /.nav-collapse-->
+                                <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
+                                <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block">
+                                    <h:link outcome="orderBasket" class="btn btn-primary navbar-btn">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>
+                                            <h:outputText id="cartSize" value="#{orderController.cart.size()}"/> items in cart
+                                        </span>
+                                    </h:link>
+                                </div>
+                                <div id="account" class="navbar-collapse collapse d-none d-lg-block collapse ">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item dropdown">
+                                            <a class="btn btn-primary navbar-link" href="myAccount.xhtml" id="nav" data-toggle="dropdown">
+                                                <i class="fa fa-user"></i>
+                                            </a>
+<<<<<<< HEAD
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="login.xhtml"><i class="fa fa-sign-in">Login</i></a>
+                                                <a class="dropdown-item" href="register.xhtml"><i class="fa fa-user-plus">Register</i></a>
+=======
+                                            <div class="dropdown-menu">    
+                                                <c:if test="${member==null}">
+                                                    <h:commandLink styleClass="dropdown-item" action="#{login.navlogin()}"><i class="fa fa-sign-in">Login</i></h:commandLink> 
+                                                <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user">Register</i></h:commandLink>
+                                                </c:if>
+                                                <c:if test="${member!=null}">
+                                                     <h:commandLink styleClass="dropdown-item" action="#{login.accountViewNav()}"><i class="fa fa-user">#{member.ctmEmail}</i></h:commandLink>
+                                                       <h:commandLink styleClass="dropdown-item" action="#{wishListController.navWish()}"><i class="fa fa-heart">Wish List</i></h:commandLink>
+                                                       <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user">Register</i></h:commandLink>
+                                                     <h:commandLink styleClass="dropdown-item" action="#{login.logout()}"><i class="fa fa-sign-out">Logout</i></h:commandLink>                                                
+                                                </c:if>
+>>>>>>> chien
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </nav>
+            </h:form>
+
+            <h:form id="searchbarform" prependId="false">
+                <div id="search" class="collapse">
+                    <div class="container">
+                        <div role="search" class="ml-auto">
+                            <div class="input-group">
+                                <h:inputText value="#{name}"  pt:placeholder="Search" styleClass="form-control"/>
+                                <div class="input-group-append">
+                                    <h:commandLink type="button" styleClass="btn btn-primary" action="#{productController.findname(name)}"><i class="fa fa-search"></i></h:commandLink>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </header>
+
+        <ui:insert name="content">
+            Content
+        </ui:insert>
+        <!--
+                                    *** FOOTER ***
+                                    _________________________________________________________
+        -->
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">Pages</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="aboutus.xhtml">About us</a></li>
+                            <li><a href="termsandconditions.xhtml">Terms and conditions</a></li>
+                            <li><a href="fag.xhtml">FAQ</a></li>
+                            <li><a href="contact.xhtml">Contact us</a></li>
+                        </ul>
+                        <hr/>
+                        <h4 class="mb-3">User section</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="login.xhtml">Login</a></li>
+                            <li><a href="register.xhtml">Regiter</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.col-lg-3-->
+                    <div class="col-lg-3 col-md-6">
+
+                        <h4 class="mb-3">Top categories</h4>
+                        <c:forEach items="#{aCategoryMB.categoryType}" var="type">
+                            <h5>#{type}</h5>
+                        </c:forEach>
+                    </div>
+                    <!-- /.col-lg-3-->
+                    <div class="col-lg-3 col-md-6">
+                        <h4 class="mb-3">Where to find us</h4>
+                        <p><strong>An Thắng Camera</strong><br/>295A Nguyen Anh Thu W.Hiep Thanh<br/>District 12<br/>Ho Chi Minh<br/>Viet Nam<br/><strong>Smart Security</strong></p><a href="contact.xhtml">Go to contact page</a>
+                        <hr class="d-block d-md-none"/>
+                    </div>
+                    <!-- /.col-lg-3-->
+                    <div class="col-lg-3 col-md-6">                       
+                        <h4 class="mb-3">Stay in touch</h4>
+                        <p class="social"><a href="#" class="facebook external"><i class="fa fa-facebook"></i></a><a href="#" class="twitter external"><i class="fa fa-twitter"></i></a><a href="#" class="instagram external"><i class="fa fa-instagram"></i></a><a href="#" class="gplus external"><i class="fa fa-google-plus"></i></a><a href="#" class="email external"><i class="fa fa-envelope"></i></a></p>
+                    </div>
+                    <!-- /.row-->
+                </div>
+            </div>
+            <!-- /.container-->
+        </div>
+        <!-- /#footer-->
+        <!-- *** FOOTER END ***-->
+
+
+        <!--
+        *** COPYRIGHT ***
+        _________________________________________________________
+        -->
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mb-2 mb-lg-0">
+                        <p class="text-center text-lg-left">©2019 Your name goes here.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <p class="text-center text-lg-right">Template design by <a href="https://bootstrapious.com/p/big-bootstrap-tutorial">Bootstrapious</a>
+                            <!-- If you want to remove this backlink, pls purchase an Attribution-free License @ https://bootstrapious.com/p/obaju-e-commerce-template. Big thanks!-->
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END ***-->
+
+        <!-- Login modal -->
+
+
+        <!-- JavaScript files-->
+        <h:outputScript name="vendor/jquery/jquery.min.js"></h:outputScript>
+        <h:outputScript name="vendor/bootstrap/js/bootstrap.bundle.min.js"></h:outputScript>
+        <h:outputScript name="vendor/jquery.cookie/jquery.cookie.js"> </h:outputScript>
+        <h:outputScript name="vendor/owl.carousel/owl.carousel.min.js"></h:outputScript>
+        <h:outputScript name="vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.js"></h:outputScript>
+        <h:outputScript name="js/front.js"></h:outputScript>
+        <ui:insert name="jsplus">
+        </ui:insert>
+    </h:body>
+
+</html>

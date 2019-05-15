@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <ui:composition template="./newTemplate.xhtml">
+
+        <ui:define name="cssplus">
+            <h:outputStylesheet name="assets/plugins/jquery.steps/css/jquery.steps.css"/>
+        </ui:define>
+        <ui:define name="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- breadcrumb-->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li aria-current="page" class="breadcrumb-item active">Checkout - Address</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div id="checkout" class="col-lg-8">
+                        <div class="box">
+                            <h:form id="basic-form" prependId="false">
+                                <div>
+                                    <h3><br/>Address <i class="fa fa-map-marker"></i></h3>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <h:outputLabel value="First Name *" for="FirstName" />
+                                                    <h:inputText id="FirstName" value="#{orderController.checkoutCustomer.ctmFirstName}" 
+                                                                 class="form-control" a:placeholder="e.g Jack">
+                                                        <f:ajax event="keyup" render="fnmsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                        <f:validator validatorId="admin.customValidate.checkMultiSpecialChars"/>
+                                                    </h:inputText>
+                                                    <h:message id="fnmsg" for="FirstName" styleClass="form-text form-control-sm alert alert-danger"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Last Name" for="LastName" />
+                                                    <h:inputText id="LastName" value="#{orderController.checkoutCustomer.ctmLastName}" 
+                                                                 class="form-control" a:placeholder="e.g Sparrow">
+                                                        <f:ajax event="keyup" render="lnmsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkMultiSpecialChars"/>
+                                                    </h:inputText>
+                                                    <h:message id="lnmsg" for="LastName" styleClass="form-text form-control-sm alert alert-danger"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Address *" for="Address" />
+                                                    <h:inputText id="Address" value="#{orderController.checkoutCustomer.ctmAddress}" 
+                                                                 class="form-control" a:placeholder="e.g 61 Park Street, Camden, ME, 04843, US">
+                                                        <f:ajax event="keyup" render="addrmsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                        <f:validator validatorId="admin.customValidate.checkAddress"/>
+                                                    </h:inputText>
+                                                    <h:message id="addrmsg" for="Address" styleClass="form-text form-control-sm alert alert-danger"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Phone *" for="Phone" />
+                                                    <h:inputText id="Phone" value="#{orderController.checkoutCustomer.ctmPhone}"
+                                                                 class="form-control">
+                                                        <f:ajax event="keyup" render="phonemsg"/>
+                                                        <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                        <f:validator validatorId="admin.customValidate.checkPhone"/>
+                                                    </h:inputText>
+                                                    <h:message id="phonemsg" for="Phone" styleClass="form-text form-control-sm alert alert-danger"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <h:outputLabel value="Email" for="Email" />
+                                                    <h:inputText id="Email" value="#{orderController.checkoutCustomer.ctmEmail}" class="form-control" readonly="true"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <label class="col-lg-12 control-label ">(*) Required</label>
+                                        </div>
+                                    </section>
+
+                                    <!--                                    <h3><br/>Payment <i class="fa fa-money"></i></h3>
+                                                                        <section>
+                                                                            <div class="col-md-6">
+                                                                                <div class="box shipping-method">
+                                                                                    <h4>USPS Next Day</h4>
+                                                                                    <p>Get it right on next day - fastest option possible.</p>
+                                                                                    <div class="box-footer text-center">
+                                                                                        <input type="radio" name="delivery" value="delivery1"/>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="box shipping-method">
+                                                                                    <h4>USPS Next Day</h4>
+                                                                                    <p>Get it right on next day - fastest option possible.</p>
+                                                                                    <div class="box-footer text-center">
+                                                                                        <input type="radio" name="delivery" value="delivery1"/>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                    
+                                                                        </section>-->
+
+                                    <h3><br/>Order Review <i class="fa fa-eye"></i></h3>
+                                    <section>
+                                        <table class="table">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <!--<th>Image</th>-->
+                                                    <th>Product</th>
+                                                    <th>Quantity</th>
+                                                    <th>Unit price</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach var="item" items="#{orderController.cart}">
+
+                                                    <tr class="text-center">
+                                                        <!--<td><a href="#"><h:graphicImage name="#{item.prdid.prdImage}" alt="#{item.prdid.prdTittle}" height="80"/></a></td>-->
+                                                        <td>#{item.prdid.prdTittle}</td>
+                                                        <td class="text-center form-group">
+                                                            <h:outputText id="testQuan" value="#{item.oddQuantity}" styleClass="form-control-sm"/>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <h:outputText value="#{item.oddPrice/item.oddQuantity}" >
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <h:outputText id="total-item" value="#{item.oddPrice}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </td>
+                                                    </tr>                
+
+                                                </c:forEach>
+                                            </tbody>  
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="3">Total</th>
+                                                    <th class="text-right">
+                                                        <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </th>
+                                                </tr>
+                                                <tr class="text-center">
+                                                    <td colspan="7">
+                                                        <h:commandLink action="#{orderController.checkOut()}" value="Confirm" 
+                                                                       styleClass="row btn btn-success waves-effect waves-light">
+                                                        </h:commandLink>
+<!--                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <h:commandLink action="orderPrint" class="btn btn-outline-success waves-effect waves-light">
+                                                            <span class="fa fa-print"/>
+                                                        </h:commandLink>-->
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </section>
+                                </div>
+                            </h:form> 
+                        </div>
+                        <!-- /.box-->
+                    </div>
+                    <!--<iframe class="col-lg-12" id="order-review" frameborder="0" align="middle" src="orderPrint.xhtml"/>-->
+                    <!-- /.col-lg-9-->
+                    <div class="col-lg-4">
+                        <h:form prependId="false" id="summaryForm">
+                            <div id="order-summary" class="box">
+                                <div class="box-header">
+                                    <h3 class="mb-0">Order summary</h3>
+                                </div>
+                                <p class="text-muted">Installation and additional costs are calculated based on the values you have entered.</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Order subtotal</td>
+                                                <th class="text-right">
+                                                    <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                        <f:convertNumber pattern="#,###,###,### đ"/>
+                                                    </h:outputText>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Installation</td>
+                                                <th class="text-right">
+                                                    <h:outputText value="#{orderController.pickInstallationPrice()}">
+                                                        <f:convertNumber pattern="#,###,###,### đ"/>
+                                                    </h:outputText>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td>Tax</td>
+                                                <th class="text-right">
+                                                    <h:outputText value="#{orderController.pickODMasterPrice()*0.1}">
+                                                        <f:convertNumber pattern="#,###,###,### đ"/>
+                                                    </h:outputText>
+                                                </th>
+                                            </tr>
+                                            <tr class="total">
+                                                <td>Total</td>
+                                                <th class="text-right">
+                                                    <h:outputText value="#{orderController.pickSummaryTotal()}">
+                                                        <f:convertNumber pattern="#,###,###,### đ"/>
+                                                    </h:outputText>
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+            <!--                </div>
+                        </div>-->
+        </ui:define>
+
+        <ui:define name="jsplus">
+            <script>
+                //<![CDATA[
+                var resizefunc = [];
+                $().ready(function () {
+                    $(".actions ul li a").last().show(function () {
+                        $(".actions ul li a").last().hide();
+                    });
+                });
+                $().ready(function () {
+                    $(".actions ul li").last().hide();
+                });
+                function checkCustomerInfo(s) {
+
+                }
+                function setIframeHeight(iframe) {
+                    if (iframe) {
+                        var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+                        if (iframeWin.document.body) {
+                            iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+                        }
+                    }
+                }
+                ;
+                $(window).load(function () {
+                    setIframeHeight(document.getElementById('order-review'));
+                });
+                //]]>
+            </script>
+
+            <h:outputScript name="assets/pages/jquery.form-pickers.init.js"></h:outputScript>
+            <!--Form Wizard-->
+            <h:outputScript name="assets/plugins/jquery.steps/js/jquery.steps.min.js" ></h:outputScript>
+            <h:outputScript name="assets/plugins/jquery-validation/js/jquery.validate.min.js" ></h:outputScript>
+
+            <!--wizard initialization-->
+            <h:outputScript name="assets/pages/jquery.wizard-init.js" ></h:outputScript>
+
+        </ui:define>
+
+    </ui:composition>
+</html>

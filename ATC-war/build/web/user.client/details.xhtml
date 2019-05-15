@@ -1,0 +1,164 @@
+<!--<?xml version='1.0' encoding='UTF-8' ?>-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <!-- Bootstrap CSS-->
+
+    <ui:composition template="./newTemplate.xhtml">
+
+        <ui:define name="content">
+
+            <div id="all">
+                <div id="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- breadcrumb-->
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>                               
+                                        <li aria-current="page" class="breadcrumb-item active">#{productController.product.prdTittle}</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <div class="col-lg-3 order-2 order-lg-1">  
+
+                                <div class="card sidebar-menu mb-4">
+                                    <h:form>
+                                        <div class="card-header">
+                                            <h3 class="h4 card-title">Categories</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-pills flex-column category-menu">
+                                                <c:forEach items="#{aCategoryMB.categoryType}" var="type">
+                                                    <li><a class="nav-link">#{type} <span class="badge badge-secondary"></span></a>
+                                                        <ul class="list-unstyled">
+                                                            <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title">
+                                                                <c:if test="#{title.ctgStatus.equalsIgnoreCase('active')}">
+                                                                    <li><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle} </h:commandLink></li>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </li>
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
+                                    </h:form>
+                                </div>
+
+
+                                <div class="card sidebar-menu mb-4">
+                                    <div class="card-header">
+                                        <h3 class="h4 card-title">Price </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <h:form>
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <h:selectOneRadio id="ctgStatus" value="#{price}" 
+                                                                          title="CtgStatus" class="radio radio-purple"  layout="pageDirection">
+                                                            <f:selectItem itemValue = "0" itemLabel="less than 1 million"/>
+                                                            <f:selectItem itemValue = "1000000" itemLabel = "1 million to 2 million" />
+                                                            <f:selectItem itemValue = "2000000" itemLabel = "2 million to 3 million" />
+                                                            <f:selectItem itemValue = "3000000" itemLabel = "3 million to 4 million" />
+                                                            <f:selectItem itemValue = "4000000" itemLabel = "4 million to 5 million" />
+                                                        </h:selectOneRadio>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <h:commandLink class="btn btn-default btn-sm btn-primary" action="#{productController.findprice(price)}"><i class="fa fa-pencil"></i> Apply</h:commandLink>
+                                        </h:form>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-9 order-1 order-lg-2">
+                                <div id="productMain" class="row">
+                                    <div class="col-md-6">
+                                        <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+                                            <div class="item"> <h:graphicImage name="#{productController.product.prdImage}" alt="" class="img-fluid"/></div>
+                                            <div class="item"> <h:graphicImage name="#{productController.product.prdImage2}" alt="" class="img-fluid"/></div>
+                                            <div class="item"> <h:graphicImage name="#{productController.product.prdImage3}" alt="" class="img-fluid"/></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="box">
+                                            <h:form>
+                                                <h1 class="text-center"><h:outputLabel>#{productController.product.prdTittle}</h:outputLabel></h1>
+
+                                                <p class="price text-center"><h:outputLabel value="#{productController.product.prdPrice}">
+                                                        <f:convertNumber pattern="#,###,###,### đ"/>
+                                                    </h:outputLabel></p>
+
+                                                <p class="text-center buttons">
+                                                    <h:commandLink class="btn btn-primary">
+                                                        <i class="fa fa-shopping-cart"></i> Add to cart
+                                                        <f:ajax render="cartSize" listener="#{orderController.cartsControl(productController.product, 'additem')}"/>
+                                                    </h:commandLink>
+                                                    <h:commandLink action="#{wishListController.addWL()}" class="btn btn-outline-primary">
+                                                        <i class="fa fa-heart"></i> Add to wishlist
+                                                        <f:setPropertyActionListener target="#{wishListController.prd}" value="#{productController.product}"/>
+                                                    </h:commandLink>
+                                                </p>
+
+                                            </h:form>
+                                        </div>
+                                        <div data-slider-id="1" class="owl-thumbs">
+                                            <button class="owl-thumb-item"><h:graphicImage name="#{productController.product.prdImage}" alt="" class="img-fluid"/></button>
+                                            <button class="owl-thumb-item"><h:graphicImage name="#{productController.product.prdImage2}" alt="" class="img-fluid"/></button>
+                                            <button class="owl-thumb-item"><h:graphicImage name="#{productController.product.prdImage3}" alt="" class="img-fluid"/></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="details" class="box panel-body">
+                                    <form class="form-horizontal">
+                                        <p></p>
+                                        <h5>Power : <em><h:outputLabel>#{productController.product.prdPower}</h:outputLabel></em></h5>                                
+                                        <h5>Warranty: <em><h:outputLabel>#{productController.product.prdWarranty}</h:outputLabel></em></h5>
+                                        <blockquote>
+                                            <p><em><h:outputLabel>#{productController.product.prdDescript}</h:outputLabel></em></p>
+                                        </blockquote>
+                                        <c:if test="#{productController.product.ctgid.ctgType.equalsIgnoreCase('dvr')}">
+                                            <h5>Channel: <em><h:outputLabel value="#{aProductMB.dvr.dvrChannel}" styleClass="text-purple"/></em></h5>          
+                                            <h5>Compression: <em><h:outputLabel value="#{aProductMB.dvr.dvrCompression}" styleClass="text-purple" /></em></h5>
+                                            <h5>In Port: <em><h:outputLabel value="#{aProductMB.dvr.dvrInPort}" styleClass="text-purple" /></em></h5>                                               
+                                            <h5>Out Port: <em><h:outputLabel value="#{aProductMB.dvr.dvrOutPort}" styleClass="text-purple" /></em></h5>
+                                            <h5>Playback: <em><h:outputLabel value="#{aProductMB.dvr.dvrPlayback}" styleClass="text-purple" /></em></h5>      
+                                            <h5>Record: <em><h:outputLabel value="#{aProductMB.dvr.dvrRecord}" styleClass="text-purple" /></em> </h5>
+
+
+                                        </c:if>
+                                        <c:if test="#{productController.product.ctgid.ctgType.equalsIgnoreCase('camera')}">      
+                                            <h5>IR:  <em><h:outputLabel value="#{aProductMB.camera.camIR}" styleClass="text-purple"/></em></h5>   
+                                            <h5>Len: <em><h:outputLabel value="#{aProductMB.camera.camLen}" styleClass="text-purple" /></em></h5>              
+                                            <h5>Material: <em><h:outputLabel value="#{aProductMB.camera.camMaterial}" styleClass="text-purple" /></em> </h5>                                            
+                                            <h5>Record: <em><h:outputLabel value="#{aProductMB.camera.camRecord}" styleClass="text-purple" /></em></h5>                                                                                        
+                                            <h5>Resolution: <em><h:outputLabel value="#{aProductMB.camera.camResolution}" styleClass="text-purple" /></em></h5>
+                                            <h5>Sensor: <em><h:outputLabel value="#{aProductMB.camera.camSensor}" styleClass="text-purple" /></em></h5>                                          
+                                            <h5>Temperature: <em><h:outputLabel value="#{aProductMB.camera.camTemperature}" styleClass="text-purple" /></em> </h5>       
+                                            <h5>Video Standard: <em><h:outputLabel value="#{aProductMB.camera.camVideoStandard}" styleClass="text-purple" /></em></h5>                                                  
+                                        </c:if>
+                                        <hr/>
+                                        <div class="social">
+                                            <h5>Show it to your friends</h5>
+                                            <p><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+
+
+</html>

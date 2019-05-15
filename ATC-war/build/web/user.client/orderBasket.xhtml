@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="./newTemplate.xhtml">
+        <ui:define name="cssplus">
+            <h:outputScript name="assets/js/modernizr.min.js"></h:outputScript>
+        </ui:define>
+
+        <ui:define name="content">
+            <div id="all">
+                <div id="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- breadcrumb-->
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li aria-current="page" class="breadcrumb-item active">Shopping cart</li>
+                                    </ol>
+                                </nav>
+                            </div>
+
+                            <div id="basket" class="col-lg-8">
+                                <h:form id="checkoutForm" prependId="false">
+                                    <div class="box">
+                                        <h1>Shopping cart</h1>
+                                        <!--<h:form id="checkoutForm" prependId="false">-->
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr class="text-center">
+                                                        <th>Image</th>
+                                                        <th>Product</th>
+                                                        <th>Quantity</th>
+                                                        <th>Unit price</th>
+                                                        <th>Discount</th>
+                                                        <th colspan="2">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <c:forEach var="item" items="#{orderController.cart}">
+                                                    <tbody>
+                                                        <tr class="text-center">
+                                                            <td><a href="#"><h:graphicImage name="#{item.prdid.prdImage}" alt=""/></a></td>
+                                                            <td>#{item.prdid.prdTittle}</td>
+                                                            <td class="text-center form-group">
+                                                                <h:commandLink id="btnSub" styleClass="fa fa-minus-square">
+                                                                    <f:ajax event="click" listener="#{orderController.cartsControl( item.prdid , 'subitem')}" 
+                                                                            render="@form summaryForm" />
+                                                                </h:commandLink>
+                                                                <h:inputText id="testQuan" value="#{item.oddQuantity}" styleClass="form-control-sm"  readonly="true"/>
+                                                                <h:commandLink id="btnAdd" styleClass="fa fa-plus-square">
+                                                                    <f:ajax event="click" listener="#{orderController.cartsControl(item.prdid , 'additem')}" 
+                                                                            render="@form summaryForm"/>
+                                                                </h:commandLink>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <h:outputText value="#{item.prdid.prdPrice}" >
+                                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td >
+                                                                <h:outputText value="#{item.prdid.prdDiscount}%"/>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <h:outputText id="total-item" value="#{item.oddPrice}">
+                                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td>
+                                                                <h:commandLink id="btnAdd" styleClass="fa fa-trash-o">
+                                                                    <f:ajax event="click" listener="#{orderController.removeCart(item)}" 
+                                                                            render="@form summaryForm cartSize"/>
+                                                                </h:commandLink>
+                                                                <a href="#"><i class=""></i></a>
+                                                            </td>
+                                                        </tr>                
+                                                    </tbody>    
+                                                </c:forEach>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th colspan="5">Total</th>
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <!--</h:form>-->
+                                        <!-- /.table-responsive-->
+                                        <!--<h:form prependId="false">-->
+                                        <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                                            <div class="left">
+                                                <a href="index.xhtml" class="btn btn-outline-secondary">
+                                                    <i class="fa fa-chevron-left"></i> Continue shopping
+                                                </a>
+                                            </div>
+                                            <div class="right">
+                                                <!--<button class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button>-->
+                                                <!--<button type="submit" class="btn btn-primary">Proceed to checkout </button>-->
+                                                <h:commandLink id="btnCheckout" action="#{orderController.checkOutNav()}"
+                                                               value="Proceed to checkout " styleClass="btn btn-primary"
+                                                               onclick="checkEmptyCart('#{orderController.cart.size()}', '#{member}')">
+                                                    <i class="fa fa-chevron-right"></i>
+                                                </h:commandLink>
+                                                
+                                                <a class="btn btn-default waves-effect waves-light" href="javascript:;" onclick="$.Notification.notify('custom', 'top right', 'Sample Notification', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae orci ut dolor scelerisque aliquam.')">Right</a>
+                                                
+                                            </div>
+                                        </div>
+                                        <!--</h:form>-->
+                                    </div>
+                                    <!-- /.box-->
+                                </h:form>
+                            </div>
+
+
+                            <!--  Modal content for the above example -->
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- /.col-lg-9-->
+                            <div class="col-lg-4">
+                                <h:form prependId="false" id="summaryForm">
+                                    <div id="order-summary" class="box">
+                                        <div class="box-header">
+                                            <h3 class="mb-0">Order summary</h3>
+                                        </div>
+                                        <p class="text-muted">Installation and additional costs are calculated based on the values you have entered.</p>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Order subtotal</td>
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Installation</td>
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickInstallationPrice()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tax</td>
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickODMasterPrice()*0.1}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                    <tr class="total">
+                                                        <td>Total</td>
+                                                        <th class="text-right">
+                                                            <h:outputText value="#{orderController.pickSummaryTotal()}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </th>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </h:form>
+
+                            </div>
+                            <!-- /.col-md-3-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ui:define>
+        <ui:define name="jsplus">
+            <script>
+                //<![CDATA[
+                function checkEmptyCart(s, ob) {
+                    if (s <= 0)
+                        alert('Please add some product to cart');
+                    if (ob.toString() <= 0)
+                        confirm('Login to continue');
+                }
+                //]]>
+            </script>
+
+            <!-- Modal-Effect -->
+            <h:outputScript name="assets/plugins/custombox/js/custombox.min.js"></h:outputScript>
+            <h:outputScript name="assets/plugins/custombox/js/legacy.min.js"></h:outputScript>
+        </ui:define>
+    </ui:composition>
+</html>
+

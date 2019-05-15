@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+     <ui:composition template="./newTemplate.xhtml">
+         <ui:define name="content">
+             <div id="content">
+                <div id="hot">
+                    <div class="box py-4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    
+                                    <h2 class="mb-0">Product</h2>
+                                       
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               <h:form>
+                            <div class="container"> 
+                                <div class="product-slider owl-carousel owl-theme">
+                                   
+                                    <c:forEach var="p" items="#{productController.getname()}">
+                                        <c:if test="#{p.prdStatus.equalsIgnoreCase('new') || p.prdStatus.equalsIgnoreCase('active')}">
+                                        <div class="item">
+                                            <div class="product">
+                                                <div class="flip-container">
+                                                    <div class="flipper">
+                                                        <div class="front">
+                                                            <h:commandLink action="${productController.details(p)}">
+                                                                <h:graphicImage name="#{p.prdImage}" alt="" class="img-fluid"/>
+                                                            </h:commandLink>
+                                                        </div>
+                                                        <div class="back">
+                                                            <h:commandLink action="${productController.details(p)}">
+                                                                <h:graphicImage name="#{p.prdImage2}" alt="" class="img-fluid"/>
+                                                            </h:commandLink>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h:commandLink action="#{productController.details(p)}" 
+                                                               class="invisible">
+                                                    <h:graphicImage name="#{p.prdImage3}" alt="" class="img-fluid"/>
+                                                </h:commandLink>
+                                                <div class="text">
+                                                    <h3>
+                                                        <h:outputText value="#{p.prdTittle}"/>
+                                                    </h3>
+                                                    <p class="price"> 
+                                                        <h:outputText value="#{p.prdPrice}">
+                                                        <f:convertNumber pattern="#,###,###,### đ"/>
+                                                        </h:outputText>
+                                                    </p>
+                                                </div>
+                                                <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                    <!--<div class="ribbon new">-->
+                                                    <div class="theribbon">#{p.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                    <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>
+
+                                                <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                    <div class="theribbon ">#{p.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                    <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </div>     
+                            </div>   
+                        </h:form>
+                </div>
+            </div>
+         </ui:define>
+     </ui:composition>
+</html>
+

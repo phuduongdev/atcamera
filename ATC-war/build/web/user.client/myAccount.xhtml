@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="./newTemplate.xhtml">
+        <ui:define name="content">
+            <div id="all">
+                <div id="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- breadcrumb-->
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li aria-current="page" class="breadcrumb-item active">My account</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <div class="col-lg-3">
+                                <!--
+                                *** CUSTOMER MENU ***
+                                _________________________________________________________
+                                -->
+                                <div class="card sidebar-menu">
+                                    <h:form>
+                                        <div class="card-header">
+                                            <h3 class="h4 card-title">Customer section</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="nav nav-pills flex-column"><a href="customer-orders.html" class="nav-link"><i class="fa fa-list"></i> My orders</a>
+                                                <h:commandLink action="#{wishListController.navWish()}" styleClass="nav-link"><i class="fa fa-heart"></i> My wishlist</h:commandLink>
+                                                <a href="myAccount.xhtml" class="nav-link  active"><i class="fa fa-user"></i> My account</a>
+                                                <h:commandLink action="#{login.logout()}" styleClass="nav-link"><i class="fa fa-sign-out"></i> Logout</h:commandLink></ul>
+                                        </div>
+                                    </h:form>
+                                </div>
+                                <!-- /.col-lg-3-->
+                                <!-- *** CUSTOMER MENU END ***-->
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="box">
+                                    <h1>My account</h1>
+                                    <p class="lead">Change your personal details or your password here.</p>
+                                    <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                    <h3>Change password</h3>
+                                    <h:form>
+                                       
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="password_old">Old password</label>
+                                                    <h:inputSecret id="password_old" value="#{login.password}" styleClass="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="password_1">New password</label>
+                                                    <h:inputSecret id="password" value="#{login.newPass}" styleClass="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="password_2">Retype new password</label>
+                                                    <h:inputSecret id="password2" value="#{login.confirm}" styleClass="form-control"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.row-->
+                                        <div class="col-md-12 text-center">
+                                            <h:commandLink  styleClass="btn btn-primary" action="#{login.changePass()}"><i class="fa fa-save"></i> Change Pass</h:commandLink>
+                                        </div>
+                                    </h:form>
+                                    <h3 class="mt-5">Personal details</h3>
+                                    <h:form enctype="multipart/form-data">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="firstname">Firstname</label>
+                                                    <h:inputText id="firstname" value="#{login.loginCustomer.ctmFirstName}" required="true" requiredMessage="First Name Required" 
+                                                                 validatorMessage="Max 30 length for first name please." styleClass="form-control">
+                                                        <f:validateLength maximum="30"/>
+                                                    </h:inputText>
+                                                    <h:message for="firstname" style="color: red"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="lastname">Lastname</label>
+                                                    <h:inputText id="lastname" value="#{login.loginCustomer.ctmLastName}" required="true" 
+                                                                 requiredMessage="Last Name Required"
+                                                                 validatorMessage="Max 50 length for last name please." styleClass="form-control">
+                                                        <f:validateLength maximum="50" parent="^([a-zA-Z]+(.)?[\s]*)$"/>
+
+                                                    </h:inputText>
+                                                    <h:message for="lastname" style="color: red"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="address">Address</label>
+                                                    <h:inputText id="address" value="#{login.loginCustomer.ctmAddress}" styleClass="form-control" 
+                                                                 required="true" requiredMessage="Address Required" validatorMessage="Min 10 and Max 150 length for address please.">
+                                                        <f:validateLength minimum="10" maximum="150"/>
+
+                                                    </h:inputText>
+                                                    <h:message for="address" style="color: red"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="phone">Phone</label>
+                                                    <h:inputText id="phone" value="#{login.loginCustomer.ctmPhone}" required="true" 
+                                                                 requiredMessage="Phone Required" validatorMessage="Phone valid" styleClass="form-control">
+                                                        <f:validateRegex pattern="^[0-9\\+]{1}[1-9]{1}[0-9]{6,13}" />
+                                                    </h:inputText>
+                                                    <h:message for="phone" style="color: red"/>
+                                                </div>
+                                            </div>
+                                             <div class="col-md-6 col-lg-3">
+                                                <div class="form-group">
+                                                    <label for="dob">Date of Birth</label>
+                                                    <h:inputText id="dob" value="#{login.loginCustomer.ctmDob}" required="true" 
+                                                                 requiredMessage="Dob Required" validatorMessage="DOB valid . Input MM/dd/yyyy plz" styleClass="form-control">
+                                                        <f:validateRegex pattern="((?:0[1-9])|(?:1[0-2]))\/((?:0[0-9])|(?:[1-2][0-9])|(?:3[0-1]))\/(\d{4})"/>
+                                                    </h:inputText>
+                                                    <h:message for="dob" style="color: red"/>
+                                                </div>
+                                            </div>    
+                                        </div>
+                                        
+
+                                        
+                                        <div class="col-md-12 text-center">
+                                            <h:commandLink  styleClass="btn btn-primary" action="#{login.updatePro()}"><i class="fa fa-save"></i> Save changes</h:commandLink>
+                                        </div>
+
+
+                                    </h:form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+
