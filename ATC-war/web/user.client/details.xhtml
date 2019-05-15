@@ -97,7 +97,7 @@
                                                 <p class="text-center buttons">
                                                     <h:commandLink class="btn btn-primary">
                                                         <i class="fa fa-shopping-cart"></i> Add to cart
-                                                        <f:ajax render="cartSize" listener="#{orderController.cartsControl(productController.product, 'additem')}"/>
+                                                        <f:ajax render="cartSize" listener="#{orderController.cartsControl(productController.product,'additem')}"/>
                                                     </h:commandLink>
                                                     <h:commandLink action="#{wishListController.addWL()}" class="btn btn-outline-primary">
                                                         <i class="fa fa-heart"></i> Add to wishlist
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div id="details" class="box panel-body">
-                                    <form class="form-horizontal">
+                                    <div class="form-horizontal">
                                         <p></p>
                                         <h5>Power : <em><h:outputLabel>#{productController.product.prdPower}</h:outputLabel></em></h5>                                
                                         <h5>Warranty: <em><h:outputLabel>#{productController.product.prdWarranty}</h:outputLabel></em></h5>
@@ -148,7 +148,7 @@
                                             <h5>Show it to your friends</h5>
                                             <p><a href="#" class="external facebook"><i class="fa fa-facebook"></i></a><a href="#" class="external gplus"><i class="fa fa-google-plus"></i></a><a href="#" class="external twitter"><i class="fa fa-twitter"></i></a><a href="#" class="email"><i class="fa fa-envelope"></i></a></p>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

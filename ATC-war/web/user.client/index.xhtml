@@ -57,14 +57,15 @@
                                                     <div class="flip-container">
                                                         <div class="flipper">
                                                             <div class="front">
-
                                                                 <h:commandLink action="${productController.details(p.prdid)}">
                                                                     <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                                    <f:setPropertyActionListener value="#{p.prdid}" target="#{orderController.selectProduct}"/>
                                                                 </h:commandLink>
                                                             </div>
                                                             <div class="back">
                                                                 <h:commandLink action="${productController.details(p.prdid)}">
                                                                     <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                                    <f:setPropertyActionListener value="#{p.prdid}" target="#{orderController.selectProduct}"/>
                                                                 </h:commandLink>
                                                             </div>
                                                         </div>
@@ -72,6 +73,7 @@
                                                     <h:commandLink action="#{productController.details(p.prdid)}" 
                                                                    class="invisible">
                                                         <h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/>
+                                                        <f:setPropertyActionListener value="#{p.prdid}" target="#{orderController.selectProduct}"/>
                                                     </h:commandLink>
                                                     <div class="text">
                                                         <div class="text-center"> 
@@ -128,11 +130,13 @@
                                                         <div class="front">
                                                             <h:commandLink action="${productController.details(d.prdid)}">
                                                                 <h:graphicImage name="#{d.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                                <f:setPropertyActionListener value="#{d.prdid}" target="#{orderController.selectProduct}"/>
                                                             </h:commandLink>
                                                         </div>
                                                         <div class="back">
                                                             <h:commandLink action="${productController.details(d.prdid)}">
                                                                 <h:graphicImage name="#{d.prdid.prdImage2}" alt="" class="img-fluid"/>
+                                                                <f:setPropertyActionListener value="#{d.prdid}" target="#{orderController.selectProduct}"/>
                                                             </h:commandLink>
                                                         </div>
                                                     </div>
@@ -140,6 +144,7 @@
                                                 <h:commandLink action="#{productController.details(d.prdid)}" 
                                                                class="invisible">
                                                     <h:graphicImage name="#{d.prdid.prdImage3}" alt="" class="img-fluid"/>
+                                                    <f:setPropertyActionListener value="#{d.prdid}" target="#{orderController.selectProduct}"/>
                                                 </h:commandLink>
                                                 <div class="text">
                                                     <div class="text-center"> 
@@ -198,11 +203,13 @@
                                                         <div class="front">
                                                             <h:commandLink action="${productController.details(p)}">
                                                                 <h:graphicImage name="#{p.prdImage}" alt="" class="img-fluid"/>
+                                                                <f:setPropertyActionListener value="#{p}" target="#{orderController.selectProduct}"/>
                                                             </h:commandLink>
                                                         </div>
                                                         <div class="back">
                                                             <h:commandLink action="${productController.details(p)}">
                                                                 <h:graphicImage name="#{p.prdImage2}" alt="" class="img-fluid"/>
+                                                                <f:setPropertyActionListener value="#{p}" target="#{orderController.selectProduct}"/>
                                                             </h:commandLink>
                                                         </div>
                                                     </div>
@@ -210,6 +217,7 @@
                                                 <h:commandLink action="#{productController.details(p)}" 
                                                                class="invisible">
                                                     <h:graphicImage name="#{p.prdImage3}" alt="" class="img-fluid"/>
+                                                    <f:setPropertyActionListener value="#{p}" target="#{orderController.selectProduct}"/>
                                                 </h:commandLink>
                                                 <div class="text">
                                                     <h3>

@@ -47,11 +47,10 @@ public class OrderController implements Serializable {
     private List<OrderDetail> cart;
     private List<OrderDetail> orderReview;
     private OrderMaster orderMaster;
-    private Product checkoutProduct;
+    private Product selectProduct;
     private Camera camera;
     private Customer checkoutCustomer;
     private String msg;
-    private double odmPrice, installPirce, summaryPrice;
 
     /**
      * Creates a new instance of CartController
@@ -60,10 +59,9 @@ public class OrderController implements Serializable {
         cart = new ArrayList<>();
         orderReview = new ArrayList<>();
         orderMaster = new OrderMaster();
-        checkoutProduct = new Product();
+        selectProduct = new Product();
         camera = new Camera();
         checkoutCustomer = new Customer();
-        odmPrice = installPirce = summaryPrice = 0;
         msg = "";
     }
 //    navigation zone
@@ -138,7 +136,12 @@ public class OrderController implements Serializable {
             selectItem.setOddid(tools.CommonUse.generateUUID());
             selectItem.setCreatedDate(new Timestamp(new Date().getTime()));
             selectItem.setOddQuantity(1);
-            double orderPrice = (selectProduct.getPrdPrice()) * (1d - (selectProduct.getPrdDiscount()) / 100d);
+            double orderPrice = 0;
+            if(selectProduct.getPrdDiscount()!= null){
+                orderPrice = (selectProduct.getPrdPrice()) * (1d - (selectProduct.getPrdDiscount()) / 100d);
+            }else{
+                orderPrice = selectProduct.getPrdPrice();
+            }
             System.out.println("------------------" + orderPrice);
             selectItem.setOddPrice(orderPrice);
             selectItem.setPrdid(selectProduct);
@@ -314,28 +317,14 @@ public class OrderController implements Serializable {
         this.orderMaster = orderMaster;
     }
 
-    public double getOdmPrice() {
-        return odmPrice;
+    public Product getSelectProduct() {
+        return selectProduct;
     }
 
-    public void setOdmPrice(double odmPrice) {
-        this.odmPrice = odmPrice;
+    public void setSelectProduct(Product selectProduct) {
+        this.selectProduct = selectProduct;
     }
 
-    public double getInstallPirce() {
-        return installPirce;
-    }
-
-    public void setInstallPirce(double installPirce) {
-        this.installPirce = installPirce;
-    }
-
-    public double getSummaryPrice() {
-        return summaryPrice;
-    }
-
-    public void setSummaryPrice(double summaryPrice) {
-        this.summaryPrice = summaryPrice;
-    }
+    
 
 }

@@ -16,7 +16,7 @@
         <meta name="robots" content="all,follow"/>
 
         <ui:insert name="cssplus">
-            
+
         </ui:insert>
 
         <!-- Bootstrap CSS-->
@@ -39,8 +39,8 @@
     <h:body>
 
         <header class="header mb-5">
-            
-          
+
+
             <h:form id="topbarform" prependId="false">
                 <div id="top">
                     <div class="container">
@@ -49,7 +49,7 @@
                                 <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome to An Thang camera store</a></div>
                                 <div class="col-lg-6 text-center text-lg-right">
                                     <ul class="menu list-inline mb-0">
-                                                                                <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                                        <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                                         <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
                                         <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
                                         <li class="list-inline-item"><a href="login.xhtml">Login</a></li>
@@ -114,13 +114,11 @@
                                                     <div class="col-md-6 col-lg-3">
                                                         <h5>#{type}</h5>
                                                         <ul class="list-unstyled mb-3">
-
                                                             <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title">
                                                                 <c:if test="#{title.ctgStatus.equalsIgnoreCase('active')}">
-                                                                <li class="nav-item"><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle}</h:commandLink></li>
+                                                                    <li class="nav-item"><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle}</h:commandLink></li>
                                                                 </c:if>
                                                             </c:forEach>
-
                                                         </ul>
                                                     </div>
                                                 </c:forEach>
@@ -138,7 +136,6 @@
                                             <h:commandLink class="dropdown-item" action="#{nav1.navterm()}"><h5>Terms and conditions</h5></h:commandLink>
                                             <h:commandLink class="dropdown-item" action="#{nav1.navfag()}"><h5>FAG</h5></h:commandLink>
                                             <h:commandLink class="dropdown-item" action="#{nav1.newNav()}"><h5>News</h5></h:commandLink>
-                                           
                                         </div>  
                                     </ul>
 
@@ -168,13 +165,16 @@
                                             <div class="dropdown-menu">    
                                                 <c:if test="${member==null}">
                                                     <h:commandLink styleClass="dropdown-item" action="#{login.navlogin()}"><i class="fa fa-sign-in">Login</i></h:commandLink> 
-                                                <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user">Register</i></h:commandLink>
+                                                    <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user">Register</i></h:commandLink>
                                                 </c:if>
                                                 <c:if test="${member!=null}">
-                                                     <h:commandLink styleClass="dropdown-item" action="#{login.accountViewNav()}"><i class="fa fa-user">#{member.ctmEmail}</i></h:commandLink>
-                                                       <h:commandLink styleClass="dropdown-item" action="#{wishListController.navWish()}"><i class="fa fa-heart">Wish List</i></h:commandLink>
-                                                       <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user">Register</i></h:commandLink>
-                                                     <h:commandLink styleClass="dropdown-item" action="#{login.logout()}"><i class="fa fa-sign-out">Logout</i></h:commandLink>                                                
+                                                    <h:commandLink styleClass="dropdown-item" action="#{login.accountViewNav()}"><i class="fa fa-user"> #{member.ctmEmail}</i></h:commandLink>
+                                                    <div class="dropdown-divider"/>
+                                                    <h:commandLink styleClass="dropdown-item" action="orderHistory?faces-redirect=true"><i class="fa fa-history"> Order History</i></h:commandLink>
+                                                    <h:commandLink styleClass="dropdown-item" action="#{wishListController.navWish()}"><i class="fa fa-heart"> Wish List</i></h:commandLink>
+                                                    <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user"> Register</i></h:commandLink>
+                                                    <div class="dropdown-divider"/>
+                                                    <h:commandLink styleClass="dropdown-item" action="#{login.logout()}"><i class="fa fa-sign-out"> Logout</i></h:commandLink>                                                
                                                 </c:if>
 
                                             </div>
