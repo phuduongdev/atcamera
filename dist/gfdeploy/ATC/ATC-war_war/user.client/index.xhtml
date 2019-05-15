@@ -53,60 +53,54 @@
                             <div class="container">  
                                 <div class="product-slider owl-carousel owl-theme">
                                     <c:forEach var="p" items="#{productController.camera}">
-                                        <div class="item">
-                                            <div class="product">
-                                                <div class="flip-container">
-                                                    <div class="flipper">
-                                                        <div class="front">
+                                        <c:if test="#{p.prdid.prdStatus.equalsIgnoreCase('new') || p.prdid.prdStatus.equalsIgnoreCase('active')}">
+                                            <div class="item">
+                                                <div class="product">
+                                                    <div class="flip-container">
+                                                        <div class="flipper">
+                                                            <div class="front">
 
-                                                            <h:commandLink action="${productController.details(p.prdid)}">
-                                                                <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
-                                                            </h:commandLink>
-                                                        </div>
-                                                        <div class="back">
-                                                            <h:commandLink action="${productController.details(p.prdid)}">
-                                                                <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
-                                                            </h:commandLink>
+                                                                <h:commandLink action="${productController.details(p.prdid)}">
+                                                                    <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                                </h:commandLink>
+                                                            </div>
+                                                            <div class="back">
+                                                                <h:commandLink action="${productController.details(p.prdid)}">
+                                                                    <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                                </h:commandLink>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <h:commandLink action="#{productController.details(p.prdid)}" 
-                                                               class="invisible">
-                                                    <h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/>
-                                                </h:commandLink>
-                                                <div class="text">
-
-                                                    <div class="text-center"> 
-                                                        <h:outputText class="font-weight-bold" value="#{p.prdid.prdTittle}"/>
-                                                        <br/>
-                                                        <h:outputText value="#{p.camResolution}"/>
-                                                        <hr/>
+                                                    <h:commandLink action="#{productController.details(p.prdid)}" 
+                                                                   class="invisible">
+                                                        <h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/>
+                                                    </h:commandLink>
+                                                    <div class="text">
+                                                        <div class="text-center"> 
+                                                            <h:outputText class="font-weight-bold" value="#{p.prdid.prdTittle}"/>
+                                                            <br/>
+                                                            <h:outputText value="#{p.camResolution}"/>
+                                                            <hr/>
+                                                        </div>
+                                                        <p class="price"> 
+                                                            <h:outputText value="#{p.prdid.prdPrice}">
+                                                                <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputText>
+                                                        </p>
                                                     </div>
-
-
-                                                    <p class="price"> 
-                                                        <h:outputText value="#{p.prdid.prdPrice}">
-                                                            <f:convertNumber pattern="#,###,###,### đ"/>
-                                                        </h:outputText>
-                                                    </p>
-
+                                                </div>
+                                                <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                    <!--<div class="ribbon new">-->
+                                                    <div class="theribbon">#{p.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                    <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>
 
-                                            </div>
-                                            <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
-                                                <!--<div class="ribbon new">-->
-                                                <div class="theribbon">#{p.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
-                                                <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
-                                            </div>
-
-                                            <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
-                                                <div class="theribbon ">#{p.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
-                                                <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
-                                            </div>  
-                                        </div>      
-
-
-
+                                                <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                    <div class="theribbon ">#{p.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                    <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>  
+                                            </div>      
+                                        </c:if>
                                     </c:forEach>
                                 </div>
                             </div>
@@ -126,6 +120,7 @@
                             <div class="container">  
                                 <div class="product-slider owl-carousel owl-theme">
                                     <c:forEach var="d" items="#{productController.dvr}">
+                                        <c:if test="#{d.prdid.prdStatus.equalsIgnoreCase('new') || d.prdid.prdStatus.equalsIgnoreCase('active')}">
                                         <div class="item">
                                             <div class="product">
                                                 <div class="flip-container">
@@ -160,7 +155,6 @@
                                                             <f:convertNumber pattern="#,###,###,### đ"/>
                                                         </h:outputText>
                                                     </p>
-
                                                 </div>
                                                 <div class="#{d.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
                                                     <!--<div class="ribbon new">-->
@@ -173,11 +167,8 @@
                                                     <div class="#{d.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>  
                                             </div>
-
                                         </div>      
-
-
-
+                                        </c:if>
                                     </c:forEach>
                                 </div>
                             </div>
@@ -197,6 +188,7 @@
                             <div class="container">  
                                 <div class="product-slider owl-carousel owl-theme">
                                     <c:forEach var="p" items="#{productController.newOther}">
+                                        <c:if test="#{p.prdStatus.equalsIgnoreCase('new') || p.prdStatus.equalsIgnoreCase('active')}">
                                         <div class="item">
                                             <div class="product">
                                                 <div class="flip-container">
@@ -239,12 +231,9 @@
                                                     <div class="theribbon ">#{p.prdDiscount le 0 ? '' : 'SALE'}</div>
                                                     <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>  
-                                            </div>
-
-                                        </div>      
-
-
-
+                                            </div>  
+                                        </div>   
+                                            </c:if>
                                     </c:forEach>
                                 </div>
                             </div>
@@ -264,6 +253,7 @@
                             <div class="container">  
                                 <div class="product-slider owl-carousel owl-theme">
                                     <c:forEach var="p" items="#{productController.camlist}">
+                                        <c:if test="#{p.prdStatus.equalsIgnoreCase('new') || p.prdStatus.equalsIgnoreCase('active')}">
                                         <div class="item">
                                             <div class="product">
                                                 <div class="flip-container">
@@ -309,7 +299,8 @@
                                                     <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>  
                                             </div>
-                                        </div>      
+                                        </div>   
+                                        </c:if>
                                     </c:forEach>
                                 </div>
                             </div>

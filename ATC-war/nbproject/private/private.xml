@@ -3,8 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/atcamera/ATC-war/web/user.client/index.xhtml</file>
-            <file>file:/E:/atcamera/ATC-war/src/java/user/ProductController.java</file>
+            <file>file:/E:/atcamera/ATC-war/src/java/admin/mb/chien/Report.java</file>
+            <file>file:/E:/atcamera/ATC-war/src/java/user/ShoppingCart.java</file>
+            <file>file:/E:/atcamera/ATC-war/web/admin/report.xhtml</file>
         </group>
     </open-files>
 </project-private>

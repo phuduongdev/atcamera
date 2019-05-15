@@ -42,6 +42,7 @@ public class CustomerFacade extends AbstractFacade<Customer> {
         }
         return null;
     }
+    
 
     public List<Customer> findCustomerTitleByType(String type) {
         TypedQuery q = em.createQuery("SELECT c  FROM Customer c WHERE c.ctmid = :type", Customer.class);
@@ -49,4 +50,5 @@ public class CustomerFacade extends AbstractFacade<Customer> {
 
         return q.getResultList();
     }
+    
 }

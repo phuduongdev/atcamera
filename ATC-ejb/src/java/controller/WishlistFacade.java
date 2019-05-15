@@ -52,9 +52,13 @@ public class WishlistFacade extends AbstractFacade<Wishlist> {
     }
 
     public void insert(Wishlist wl) {
-        TypedQuery q = em.createQuery("Insert into Wishlist(prdid,ctmid) values(?,?)", Wishlist.class);
-        q.setParameter(1, wl.getPrdid());
-        q.setParameter(2, wl.getCtmid());
-        q.executeUpdate();
+        try {
+            TypedQuery q = em.createQuery("Insert into Wishlist(prdid,ctmid) values(?,?)", Wishlist.class);
+            q.setParameter(1, wl.getPrdid());
+            q.setParameter(2, wl.getCtmid());
+            q.executeUpdate();
+        } catch (Exception e) {
+        }
+
     }
 }

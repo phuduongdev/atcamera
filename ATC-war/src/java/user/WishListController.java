@@ -31,7 +31,23 @@ public class WishListController implements Serializable {
     private static final long serialVersionUID = 1L;
     @EJB
     private WishlistFacade wishlistFacade;
+    private String ctmid , prdid;
 
+    public String getCtmid() {
+        return ctmid;
+    }
+
+    public void setCtmid(String ctmid) {
+        this.ctmid = ctmid;
+    }
+
+    public String getPrdid() {
+        return prdid;
+    }
+
+    public void setPrdid(String prdid) {
+        this.prdid = prdid;
+    }
     private Wishlist wl = new Wishlist();
     private Customer ctm = new Customer();
     private Product prd = new Product();
@@ -60,7 +76,7 @@ public class WishListController implements Serializable {
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         HttpSession httpSession = request.getSession(false);
         ctm = ((Customer) httpSession.getAttribute("member"));
-        
+            
             
             wl.setCtmid(ctm);
             wl.setPrdid(prd);

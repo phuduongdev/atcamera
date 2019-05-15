@@ -34,10 +34,8 @@
     <h:body>
 
         <header class="header mb-5">
-            <!--
-            *** TOPBAR ***
-            _________________________________________________________
-            -->
+            
+          
             <h:form id="topbarform" prependId="false">
                 <div id="top">
                     <div class="container">
@@ -46,7 +44,7 @@
                                 <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome to An Thang camera store</a></div>
                                 <div class="col-lg-6 text-center text-lg-right">
                                     <ul class="menu list-inline mb-0">
-                                        <!--                                        <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>-->
+                                                                                <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                                         <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
                                         <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
                                         <li class="list-inline-item"><a href="login.xhtml">Login</a></li>
@@ -67,7 +65,7 @@
                             </c:if>
                         </div>
                     </div>
-                </div><!-- *** TOP BAR END ***-->
+                </div> 
             </h:form>
 
             <h:form id="navbarform" prependId="false"> 
@@ -113,7 +111,9 @@
                                                         <ul class="list-unstyled mb-3">
 
                                                             <c:forEach items="#{aCategoryMB.getCategoryTitle(type)}" var="title">
+                                                                <c:if test="#{title.ctgStatus.equalsIgnoreCase('active')}">
                                                                 <li class="nav-item"><h:commandLink action="#{productController.productclient(title)}" class="nav-link">#{title.ctgTitle}</h:commandLink></li>
+                                                                </c:if>
                                                             </c:forEach>
 
                                                         </ul>
@@ -129,17 +129,17 @@
                                     </a>
                                     <ul>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#"><h5>About us</h5></a>
-                                            <a class="dropdown-item" href="#"><h5>Terms and conditions</h5></a>
-                                            <a class="dropdown-item" href="#"><h5>FAG</h5></a>
-                                            <a class="dropdown-item" href="#"><h5>News</h5></a>
-                                            <a class="dropdown-item" href="#"><h5>Contact</h5></a>
+                                            <h:commandLink class="dropdown-item" action="#{nav1.navAboutus()}"><h5>About us</h5></h:commandLink>
+                                            <h:commandLink class="dropdown-item" action="#{nav1.navterm()}"><h5>Terms and conditions</h5></h:commandLink>
+                                            <h:commandLink class="dropdown-item" action="#{nav1.navfag()}"><h5>FAG</h5></h:commandLink>
+                                            <h:commandLink class="dropdown-item" action="#{nav1.newNav()}"><h5>News</h5></h:commandLink>
+                                           
                                         </div>  
                                     </ul>
 
                                 </li>
 
-                                <li class="nav-item"><a href="news.xhtml" class="nav-link">News</a></li>
+                                <li class="nav-item"><h:commandLink action="#{nav1.navContact()}" class="nav-link">Contact</h:commandLink></li>
                             </ul>
 
                             <div class="navbar-buttons d-flex justify-content-end">
@@ -158,12 +158,18 @@
                                         <li class="nav-item dropdown">
                                             <a class="btn btn-primary navbar-link" href="myAccount.xhtml" id="nav" data-toggle="dropdown">
                                                 <i class="fa fa-user"></i>
-
                                             </a>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="login.xhtml"><i class="fa fa-sign-in">Login</i></a>
-                                                <a class="dropdown-item" href="register.xhtml"><i class="fa fa-user-plus">Register</i></a>
-
+                                            <div class="dropdown-menu">    
+                                                <c:if test="${member==null}">
+                                                    <h:commandLink styleClass="dropdown-item" action="#{login.navlogin()}"><i class="fa fa-sign-in">Login</i></h:commandLink> 
+                                                <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user">Register</i></h:commandLink>
+                                                </c:if>
+                                                <c:if test="${member!=null}">
+                                                     <h:commandLink styleClass="dropdown-item" action="#{login.accountViewNav()}"><i class="fa fa-user">#{member.ctmEmail}</i></h:commandLink>
+                                                       <h:commandLink styleClass="dropdown-item" action="#{wishListController.navWish()}"><i class="fa fa-heart">Wish List</i></h:commandLink>
+                                                       <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user">Register</i></h:commandLink>
+                                                     <h:commandLink styleClass="dropdown-item" action="#{login.logout()}"><i class="fa fa-sign-out">Logout</i></h:commandLink>                                                
+                                                </c:if>
                                             </div>
                                         </li>
                                     </ul>

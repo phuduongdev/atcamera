@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="./newTemplate.xhtml">
         <ui:define name="content">
             <div id="all">
@@ -46,22 +47,40 @@
 
                                         <div class="col-lg-3 col-md-4">
                                             <c:forEach var="p" items="#{wishListController.wishList}">
+                                                 <c:if test="#{p.prdid.prdStatus.equalsIgnoreCase('new') || p.prdid.prdStatus.equalsIgnoreCase('active')}">
                                                 <div class="product">
                                                     <div class="flip-container">
                                                         <div class="flipper">
-                                                            <div class="front"><a href="faces/detail.xhtml"><h:graphicImage name="img/product1.jpg" alt="" class="img-fluid"/></a></div>
-                                                            <div class="back"><a href="faces/detail.xhtml"><h:graphicImage name="img/product1_2.jpg" alt="" class="img-fluid"/></a></div>
+                                                            <div class="front"><a href="faces/detail.xhtml"><h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/></a></div>
+                                                            <div class="back"><a href="faces/detail.xhtml"><h:graphicImage name="#{p.prdid.prdImage2}" alt="" class="img-fluid"/></a></div>
                                                         </div>
-                                                    </div><a href="faces/detail.xhtml" class="invisible"><h:graphicImage name="img/product1.jpg" alt="" class="img-fluid"/></a>
+                                                    </div><a href="faces/detail.xhtml" class="invisible"><h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/></a>
                                                     <div class="text">
                                                         <h3><a href="faces/details.xhtml">#{p.prdid.prdTittle}</a></h3>
                                                         <p class="price"> 
-                                                            <del></del>#{p.prdid.prdPrice}
+                                                            <del></del><h:outputLabel value="#{p.prdid.prdPrice}">
+                                                            <f:convertNumber pattern="#,###,###,### đ"/>
+                                                            </h:outputLabel>
                                                         </p>
-                                                        <p class="buttons"><a href="faces/detail.xhtml" class="btn btn-outline-secondary">View detail</a><a href="faces/basket.xhtml" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a></p>
+                                                        <p class="buttons"><a href="faces/detail.xhtml" class="btn btn-outline-secondary">View detail</a>
+                                                     <h:commandLink class="btn btn-primary">
+                                                        <i class="fa fa-shopping-cart"></i> Add to cart
+                                                        <f:ajax render="cartSize" listener="#{orderController.cartsControl(productController.product, 'additem')}"/>
+                                                     </h:commandLink></p>
                                                     </div>
+                                                    <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                    <!--<div class="ribbon new">-->
+                                                    <div class="theribbon">#{p.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                    <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>
+
+                                                <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                    <div class="theribbon ">#{p.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                    <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>  
                                                     <!-- /.text-->
                                                 </div>
+                                                 </c:if>
                                             </c:forEach>
                                             <!-- /.product-->
                                         </div>

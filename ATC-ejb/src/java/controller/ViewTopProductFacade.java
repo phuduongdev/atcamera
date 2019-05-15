@@ -6,9 +6,11 @@
 package controller;
 
 import entity.ViewTopProduct;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -27,5 +29,5 @@ public class ViewTopProductFacade extends AbstractFacade<ViewTopProduct> {
     public ViewTopProductFacade() {
         super(ViewTopProduct.class);
     }
-    
+   
 }

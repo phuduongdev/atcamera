@@ -26,6 +26,7 @@
                                 <div class="product-slider owl-carousel owl-theme">
                                    
                                     <c:forEach var="p" items="#{productController.getprice()}">
+                                        <c:if test="#{p.prdStatus.equalsIgnoreCase('new') || p.prdStatus.equalsIgnoreCase('active')}">
                                         <div class="item">
                                             <div class="product">
                                                 <div class="flip-container">
@@ -56,8 +57,19 @@
                                                         </h:outputText>
                                                     </p>
                                                 </div>
+                                                <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                    <!--<div class="ribbon new">-->
+                                                    <div class="theribbon">#{p.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                    <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>
+
+                                                <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                    <div class="theribbon ">#{p.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                    <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>  
                                             </div>
-                                        </div>      
+                                        </div>
+                                    </c:if>
                                     </c:forEach>
                                 </div>     
                             </div>   

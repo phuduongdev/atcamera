@@ -30,8 +30,7 @@ import javax.servlet.http.Part;
  */
 @ManagedBean
 @SessionScoped
-public class login implements Serializable{
-    
+public class login implements Serializable {
 
     @EJB
     private CustomerFacade customerFacade;
@@ -39,12 +38,23 @@ public class login implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private Customer loginCustomer;
-    private String email, password, msg , namefile;
+
 
    
-    private Part file; 
-    
-    
+    private String email, password, msg, namefile , confirm , newPass;
+
+    public String getNewPass() {
+        return newPass;
+    }
+
+    public void setNewPass(String newPass) {
+        this.newPass = newPass;
+    }
+
+   
+
+    private Part file;
+
     public List<Customer> getMyaccount(String type) {
         return customerFacade.findCustomerTitleByType(type);
     }
@@ -58,39 +68,58 @@ public class login implements Serializable{
     }
 
     public String updatePro() {
-        if(file != null){
-        uploadFile();
-        loginCustomer.setCtmImage("img/"+file.getSubmittedFileName());
-        customerFacade.edit(loginCustomer);
-        }
-        else{
-        customerFacade.edit(loginCustomer);
+        if (file != null) {
+            uploadFile();
+            loginCustomer.setCtmImage("img/" + file.getSubmittedFileName());
+            customerFacade.edit(loginCustomer);
+        } else {
+            customerFacade.edit(loginCustomer);
         }
         return "myAccount?faces-redirect=true";
 
     }
-    public void uploadFile(){
+    public String changePass() {
+        loginCustomer = customerFacade.checkAccountLogin(loginCustomer.getCtmEmail(),password);
+        loginCustomer.setCtmPassword(newPass);
+        if(loginCustomer != null){
+           
+            if (this.confirm.equals(loginCustomer.getCtmPassword())) {
+                
+                customerFacade.edit(loginCustomer);
+                msg="Change password successfully!";
+            }else{
+            
+                msg ="Password not match!";
+            }
+        }else{
+       
+             msg ="Your password is incorrect!";
+        }
+      
+        return "myAccount?faces-redirect=true";
+    }
+    public void uploadFile() {
         try {
-            
+
             InputStream input = file.getInputStream();
-            
-            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/"+file.getSubmittedFileName());
-            
-            if(!f.exists()){
+
+            File f = new File("E:/anthangcamera/ATC-war/web/resources/img/" + file.getSubmittedFileName());
+
+            if (!f.exists()) {
                 f.createNewFile();
             }
-            FileOutputStream output= new FileOutputStream(f);
+            FileOutputStream output = new FileOutputStream(f);
             byte[] buffer = new byte[1024];
             int length;
-            while((length=input.read(buffer))>0){
-                output.write(buffer,0,length);
+            while ((length = input.read(buffer)) > 0) {
+                output.write(buffer, 0, length);
             }
             input.close();
             output.close();
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
-        
+
     }
 
     /**
@@ -103,22 +132,20 @@ public class login implements Serializable{
     public void login() {
         loginCustomer = customerFacade.checkAccountLogin(email, password);
         FacesContext context = FacesContext.getCurrentInstance();
-       
-            if (loginCustomer != null) {
-                context.getExternalContext().getSessionMap().put("member", loginCustomer);
-                try {
-                    context.getExternalContext().redirect("index.xhtml");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                //Send an error message on Login Failure 
-                context.addMessage(null, new FacesMessage("Authentication Failed. Check email or password."));
-                
 
+        if (loginCustomer != null) {
+            context.getExternalContext().getSessionMap().put("member", loginCustomer);
+            try {
+                context.getExternalContext().redirect("index.xhtml");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        
-       
+        } else {
+            //Send an error message on Login Failure 
+            context.addMessage(null, new FacesMessage("Authentication Failed. Check email or password."));
+
+        }
+
     }
 
     public void logout() {
@@ -129,6 +156,12 @@ public class login implements Serializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String navlogin() {
+        
+
+        return "login";
     }
 
     public Customer getLoginCustomer() {
@@ -162,6 +195,7 @@ public class login implements Serializable{
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
     public Part getFile() {
         return file;
     }
@@ -169,11 +203,20 @@ public class login implements Serializable{
     public void setFile(Part file) {
         this.file = file;
     }
-     public String getNamefile() {
+
+    public String getNamefile() {
         return namefile;
     }
 
     public void setNamefile(String namefile) {
         this.namefile = namefile;
     }
+     public String getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
+    }
+   
 }

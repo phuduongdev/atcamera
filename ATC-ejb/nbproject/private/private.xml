@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/atcamera/ATC-ejb/src/java/controller/DvrFacade.java</file>
-            <file>file:/E:/atcamera/ATC-ejb/src/java/controller/CameraFacade.java</file>
+            <file>file:/E:/atcamera/ATC-ejb/src/java/entity/ViewTopProduct.java</file>
             <file>file:/E:/atcamera/ATC-ejb/src/java/controller/ProductFacade.java</file>
+            <file>file:/E:/atcamera/ATC-ejb/src/java/controller/ViewTopProductFacade.java</file>
         </group>
     </open-files>
 </project-private>
