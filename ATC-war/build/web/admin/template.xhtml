@@ -167,6 +167,11 @@
                                         <i class="ti-user"></i> <span> Customer </span> <span class="menu-arrow"></span>
                                     </h:commandLink>
                                 </li>
+                                <li class="has_sub">
+                                    <h:commandLink action="#{report.customerViewNav()}" class="waves-effect">
+                                        <i class="ti-export"></i> <span> Report Statistical </span> <span class="menu-arrow"></span>
+                                    </h:commandLink>
+                                </li>
                                 <c:if test="#{aLogin.loginAccount.accRole eq 'admin'}">
                                     <li class="has_sub">
                                         <h:commandLink action="#{aAccountMB.accountViewNav()}" class="waves-effect" disabled="">

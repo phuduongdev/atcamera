@@ -22,7 +22,7 @@
         </ui:define>
 
         <ui:define name="content">
-            <div class="content-page">
+            
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
@@ -31,43 +31,37 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="btn-group pull-right m-t-15">
-                                    <button type="button" class="hidden-print btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Settings <span class="m-l-5"><i class="fa fa-cog"></i></span></button>
-                                    <ul class="dropdown-menu drop-menu-right" role="menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
-                                    </ul>
+<!--                                    <h:form>
+                                        <h:outputText value="From"></h:outputText>
+                                        <h:inputText value="#{todate}"></h:inputText>
+                                        <h:outputText value="To">To</h:outputText>
+                                        <h:inputText value="#{enddate}"></h:inputText>
+                                        
+                                        <h:commandLink value="ExPort" action="#{report.date(todate,enddate)}" styleClass="btn btn-primary"></h:commandLink>
+                                    
+                                    </h:form>-->
                                 </div>
-
-                                <h4 class="page-title">Invoice</h4>
-                                <ol class="breadcrumb">
-                                    <li><a href="#">Ubold</a></li>
+                                    <h4 class="page-title">Statistical</h4>
+                                    <ol class="breadcrumb">
+                                    <li><a href="#">An Thang</a></li>
                                     <li><a href="#">Extras</a></li>
-                                    <li class="active">Invoice</li>
-                                </ol>
+                                    <li class="active">Report</li>
+                                    </ol>
+                                
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="panel panel-default">
-                                    <!-- <div class="panel-heading">
-                                        <h4>Invoice</h4>
-                                    </div> -->
+                                <div class="panel panel-default">                              
                                     <div class="panel-body">
                                         <div class="clearfix">
                                             <div class="pull-left">
                                                 <h4 class="text-right"><h:graphicImage name="hardImage/logo_gold.png" alt="velonic"/></h4>
-
                                             </div>
-
                                         </div>
                                         <hr/>
                                         <div class="row">
                                             <div class="col-md-12">
-
                                                 <div class="pull-left m-t-30">
                                                     <address>
                                                         <strong>An Thang Camera.</strong><br></br>
@@ -78,7 +72,6 @@
                                                 </div>
                                                 <div class="pull-right m-t-30">
                                                     <p><strong>Report Date: </strong> </p>
-                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -92,7 +85,7 @@
                                                 <div class="table-responsive">
                                                     <table class="table m-t-30">
                                                         <thead>
-                                                            <tr><th>#</th>
+                                                            <tr>
                                                                 <th>ID</th>
                                                                 <th>Mode</th>
                                                                 <th>Quantity</th>
@@ -100,9 +93,9 @@
                                                                 <th>Total</th>
                                                             </tr></thead>
                                                         <tbody>
-                                                            <c:forEach var="v" items="#{report.viewtop}">
+                                                            <c:forEach var="v" items="#{report.viewtop}" >
                                                                 <tr>
-                                                                    <td>1</td>
+                                                                    <td></td>
                                                                     <td>#{v.prdid}</td>
                                                                     <c:forEach var="p" items="#{aProductMB.getpdbyid(v.prdid)}">
                                                                     <td>#{p.prdTittle}</td>
@@ -131,11 +124,12 @@
 
                             </div>
 
-                        </div>
+                        
 
-                    </div> <!-- container -->
+                    </div> 
+                            
 
-                </div> <!-- content -->
+                </div> 
 
                 <footer class="footer">
                     © 2016. All rights reserved.

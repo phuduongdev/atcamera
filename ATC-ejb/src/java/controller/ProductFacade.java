@@ -44,7 +44,7 @@ public class ProductFacade extends AbstractFacade<Product> {
     }
     public List<Product> Listproduct(String ctgType) {
         try {
-            TypedQuery q = em.createQuery("SELECT  p FROM Product p where p.ctgid.ctgType = :type Order by p.createdDate desc", Product.class);
+            TypedQuery q = em.createQuery("SELECT  p FROM Product p where  p.ctgid.ctgType = :type Order by p.createdDate desc", Product.class);
         q.setParameter("type",ctgType);
         return q.setMaxResults(10).getResultList();
         } catch (Exception e) {

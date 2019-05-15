@@ -52,6 +52,7 @@
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Type *" for="ctgType" styleClass="col-lg-3 control-label" />                                                
                                             <div class="col-lg-9">
+
                                                 <c:if test="#{aLogin.loginAccount.accRole ne 'admin'}">
                                                     <h:selectOneMenu id="ctgType" value="#{aCategoryMB.category.ctgType}"
                                                                      styleClass="form-control" required="true" requiredMessage="Select Type Plz">
@@ -70,6 +71,7 @@
                                                     </h:inputText>
                                                     <h:message id="CutomCategoryTypeMsg" for="CutomCategoryType" styleClass="alert-danger"/>
                                                 </c:if>
+
 
                                             </div>
                                         </div>

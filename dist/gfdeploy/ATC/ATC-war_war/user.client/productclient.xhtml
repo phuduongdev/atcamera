@@ -6,27 +6,28 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="./newTemplate.xhtml">
-            <ui:define name="content">
-                
-                 <div id="content">
+        <ui:define name="content">
+
+            <div id="content">
                 <div id="hot">
                     <div class="box py-4">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    
+
                                     <h2 class="mb-0">#{productController.ctg.ctgTitle}</h2>
-                                       
-                                    
+
+
                                 </div>
                             </div>
                         </div>
                     </div>
-               <h:form>
-                            <div class="container"> 
-                                <div class="product-slider owl-carousel owl-theme">
-                                   
-                                        <c:forEach var="p" items="#{productController.getProductType()}">
+                    <h:form>
+                        <div class="container"> 
+                            <div class="product-slider owl-carousel owl-theme">
+
+                                <c:forEach var="p" items="#{productController.getProductType()}">
+                                    <c:if test="#{p.prdStatus.equalsIgnoreCase('new') || p.prdStatus.equalsIgnoreCase('active')}">
                                         <div class="item">
                                             <div class="product">
                                                 <div class="flip-container">
@@ -58,15 +59,26 @@
                                                     </p>
 
                                                 </div>
+                                                <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                    <!--<div class="ribbon new">-->
+                                                    <div class="theribbon">#{p.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                    <div class="#{p.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>
+
+                                                <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                    <div class="theribbon ">#{p.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                    <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                </div>  
                                             </div>
-                                        </div>      
-                                    </c:forEach>
-                                </div>     
-                            </div>   
-                        </h:form>
+                                        </div>
+                                    </c:if>
+                                </c:forEach>
+                            </div>     
+                        </div>   
+                    </h:form>
                 </div>
             </div>
-            </ui:define>
+        </ui:define>
     </ui:composition>
 </html>
 

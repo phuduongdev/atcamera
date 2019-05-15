@@ -41,7 +41,21 @@ public class login implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Customer loginCustomer;
-    private String email, password, msg, namefile;
+
+
+
+   
+    private String email, password, msg, namefile , confirm , newPass;
+
+    public String getNewPass() {
+        return newPass;
+    }
+
+    public void setNewPass(String newPass) {
+        this.newPass = newPass;
+    }
+
+   
 
     private Part file;
 
@@ -67,6 +81,27 @@ public class login implements Serializable {
         }
         return "myAccount?faces-redirect=true";
 
+    }
+
+    public String changePass() {
+        loginCustomer = customerFacade.checkAccountLogin(loginCustomer.getCtmEmail(),password);
+        loginCustomer.setCtmPassword(newPass);
+        if(loginCustomer != null){
+           
+            if (this.confirm.equals(loginCustomer.getCtmPassword())) {
+                
+                customerFacade.edit(loginCustomer);
+                msg="Change password successfully!";
+            }else{
+            
+                msg ="Password not match!";
+            }
+        }else{
+       
+             msg ="Your password is incorrect!";
+        }
+      
+        return "myAccount?faces-redirect=true";
     }
 
     public void uploadFile() {
@@ -133,6 +168,12 @@ public class login implements Serializable {
         }
     }
 
+    public String navlogin() {
+        
+
+        return "login";
+    }
+
     public Customer getLoginCustomer() {
         return loginCustomer;
     }
@@ -180,4 +221,12 @@ public class login implements Serializable {
     public void setNamefile(String namefile) {
         this.namefile = namefile;
     }
+     public String getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
+    }
+   
 }

@@ -1,11 +1,5 @@
 /ATC-ejb/build/
-<<<<<<< HEAD
 /ATC-ejb/dist/
-=======
-/ATC-ejb/dist/
-/ATC-war/build/
-/ATC-war/dist/
->>>>>>> ae91deaa1f6865571fd5b5e5fd175d096b905eef
 ATC-ejb/nbproject/private/private.xml
 ATC-war/nbproject/private/private.xml
 dist/gfdeploy/ATC/ATC-ejb_jar/resouces.res
@@ -110,3 +104,4 @@ dist/gfdeploy/ATC/ATC-war_war/WEB-INF/classes/admin/mb/phu/aDashboard.class
 dist/gfdeploy/ATC/ATC-war_war/WEB-INF/classes/admin/mb/phu/aOrderMB.class
 dist/gfdeploy/ATC/ATC-war_war/WEB-INF/classes/user/OrderController.class
 dist/gfdeploy/ATC/ATC-war_war/WEB-INF/web.xml
+
