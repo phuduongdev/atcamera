@@ -44,11 +44,8 @@
                                             <f:validator validatorId="admin.customValidate.checkNameLength"/>
                                             <f:validator validatorId="admin.customValidate.checkSpecialChars"/>
                                         </h:inputText>
+                                        <h:message id="msgUsername" for="Username" styleClass="alert-danger"/>
                                     </div>
-                                    <div class="form-group form-group-sm">
-                                        <h:message id="msgUsername" for="Username" class="alert alert-danger small"/>
-                                    </div>
-
 
                                     <div class="form-group">
                                         <h:inputSecret value="#{aLogin.password}" id="Password"
@@ -59,9 +56,7 @@
                                             <f:validator validatorId="admin.customValidate.checkPasswordLength"/>
                                             <f:validator validatorId="admin.customValidate.checkWhitespace"/>
                                         </h:inputSecret>
-                                    </div>
-                                    <div class="form-group form-group-sm">
-                                        <h:message id="msgPassword" for="Password" styleClass="small alert alert-danger"/>
+                                        <h:message id="msgPassword" for="Password" styleClass="alert-danger" />
                                     </div>
 
                                     <div class="form-group text-center m-t-40">
@@ -69,12 +64,7 @@
                                                        text-uppercase waves-effect waves-light">Log In</h:commandLink>
 
                                         <!--<h:messages globalOnly="true" styleClass="alert-danger list-group list-unstyled" />-->
-
-                                    </div>
-                                    <div class="form-group form-group-sm">
-                                        <div class="text-center">
-                                            <h:messages globalOnly="true" styleClass="" class="list-unstyled small alert alert-danger"/>
-                                        </div>
+                                        <h:outputText id="authenMsg" value="#{aLogin.msg}" styleClass="alert-danger"/>
                                     </div>
                                 </div>
                             </h:form> 

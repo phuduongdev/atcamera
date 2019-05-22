@@ -51,25 +51,26 @@
                                             <h:outputText value="#{aAccountMB.msg}" styleClass="alert-danger"/>
                                         </div>
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="User Name *" for="Username" styleClass="col-lg-4 control-label" />
-                                            <div class="col-lg-8">
+                                            <h:outputLabel value="User Name *" for="Username" styleClass="col-lg-3 control-label" />                                                
+                                            <div class="col-lg-9">
+                                                
                                                 <h:inputText id="Username" value="#{aAccountMB.account.accUserName}"
                                                              a:placeholder="e.g. John"
-                                                             styleClass="form-control">
+                                                             styleClass="form-control form">
                                                     <f:ajax event="keyup" render="msgUsername"/>
                                                     <f:validator validatorId="admin.customValidate.checkBlank" />
                                                     <f:validator validatorId="admin.customValidate.checkNameLength"/>
                                                     <f:validator validatorId="admin.customValidate.checkSpecialChars"/>
                                                     <f:validator validatorId="admin.customValidate.checkDuplicateUsername"/>
                                                 </h:inputText>
-                                                <h:message id="msgUsername" for="Username" styleClass="alert-danger small"/>
+                                                <h:message id="msgUsername" for="Username" styleClass="alert-danger"/>
                                             </div>
                                         </div>
-                                        
-                                        <div class="form-group clearfix">
-                                            <h:outputLabel value="Password *" for="Password" styleClass="col-lg-4 control-label" />
-                                            <div class="col-lg-8">
 
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Password *" for="Password" styleClass="col-lg-3 control-label" />
+                                            <div class="col-lg-9">
+                                                
                                                 <h:inputSecret id="Password" value="#{aAccountMB.account.accPassword}" 
                                                                a:placeholder="Must be 6 to 30 character"
                                                                styleClass="required form-control">
@@ -78,29 +79,30 @@
                                                     <f:validator validatorId="admin.customValidate.checkPasswordLength"/>
                                                     <f:validator validatorId="admin.customValidate.checkWhitespace"/>
                                                 </h:inputSecret>
-                                                <h:message id="passwordMsg" for="Password" styleClass="alert-danger small" />
+                                                <h:message id="passwordMsg" for="Password" styleClass="alert-danger" />
                                             </div>
                                         </div>
 
-<!--                                        <div class="form-group clearfix">
-                                            <h:outputLabel value="Confirm Password *" for="ConfirmPassword" styleClass="col-lg-4 control-label" />
-                                            <div class="col-lg-8">
-
+                                        <div class="form-group clearfix">
+                                            <h:outputLabel value="Confirm Password *" for="ConfirmPassword" styleClass="col-lg-3 control-label" />
+                                            <div class="col-lg-9">
+                                                
                                                 <h:inputSecret id="ConfirmPassword" value="${aAccountMB.confirmPassword}" 
                                                                a:placeholder="Must be same password"
                                                                styleClass="required form-control" >
                                                     <f:ajax event="keyup" render="msgConfirmPassword"/>
-                                                    <f:attribute name="fieldPassword" value="#{component.parent.parent.clientId}:Password"/>
+                                                    <f:attribute name="fieldPassword" value="#{component.parent.parent.clientId}:Username"/>
                                                     <f:validator validatorId="admin.customValidate.checkBlank"/>
-                                                    <f:validator validatorId="admin.customValidate.checkConfirmPass"/>
+                                                    <!--<f:validator validatorId="admin.customValidate.checkConfirmPass"/>-->
                                                 </h:inputSecret>
-                                                <h:message id="msgConfirmPassword" for="ConfirmPassword" styleClass="alert-danger small" />
+                                                <h:message id="msgConfirmPassword" for="ConfirmPassword" styleClass="alert-danger" />
+                                                
                                             </div>
-                                        </div>-->
+                                        </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Role *" for="accRole" class="col-lg-4 control-label" />
-                                            <div class="col-lg-8">
+                                            <h:outputLabel value="Role *" for="accRole" class="col-lg-3 control-label" />
+                                            <div class="col-lg-9">
                                                 <h:selectOneMenu styleClass="form-control" value="#{aAccountMB.account.accRole}">
                                                     <f:selectItem itemValue="manager" itemLabel="Manager"/>
                                                     <f:selectItem itemValue="admin" itemLabel="Admin"/>
@@ -109,9 +111,9 @@
                                         </div>
 
                                         <div class="form-group clearfix">
-                                            <h:outputLabel value="Description" for="accDescript" class="col-lg-4 control-label" />
-                                            <div class="col-lg-8">
-                                                <h:inputTextarea id="accDescript" value="#{aAccountMB.account.accDescript}" title="AccDescript" styleClass="form-control" />
+                                            <h:outputLabel value="Description" for="accDescript" class="col-lg-3 control-label" />
+                                            <div class="col-lg-9">
+                                                <h:inputTextarea id="accDescript" value="#{aAccountMB.account.accDescript}" title="AccDescript" styleClass="required form-control" />
                                             </div>
                                         </div>
 
@@ -140,7 +142,7 @@
                                                                             </section>-->
 
                                     <div class="text-center btnCreate">
-                                        <h:commandLink action="#{aAccountMB.createAccount()}" value="Confirm" 
+                                        <h:commandLink action="index" value="Confirm" 
                                                        styleClass="row btn btn-success waves-effect waves-light">
                                         </h:commandLink>
                                     </div>

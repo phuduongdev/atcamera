@@ -17,10 +17,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -40,7 +38,7 @@ public class aOrderMB implements Serializable {
 
     private OrderMaster order;
     private OrderDetail orderDetail;
-    private String installDate, installTime, msg;
+    private String installDate, installTime;
 
     /**
      * Creates a new instance of aOrderMB
@@ -56,16 +54,6 @@ public class aOrderMB implements Serializable {
     }
 
     public String updateNav() {
-        if (order.getInstallationDate() != null) {
-            SimpleDateFormat date = new SimpleDateFormat("MM/dd/yyyy");
-            SimpleDateFormat time = new SimpleDateFormat("HH:ss");
-            Date installationDate = order.getInstallationDate();
-            installDate = date.format(installationDate);
-            installTime = time.format(installationDate);
-        }else{
-            installDate = "";
-            installTime = "";
-        }
         return "orderUpdate?faces-redirect=true";
     }
 
@@ -87,25 +75,18 @@ public class aOrderMB implements Serializable {
     }
 
     public String updateOrder() {
-        FacesContext context = FacesContext.getCurrentInstance();
         try {
-            System.out.println("------------------" + installDate);
-            SimpleDateFormat datetimeFormatter1 = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+            System.out.println("------------------"+installDate);
+            SimpleDateFormat datetimeFormatter1 = new SimpleDateFormat(
+                    "MM/dd/yyyy hh:mm:ss");
             Date FromDate = datetimeFormatter1.parse(installDate + " " + installTime);
-            if (FromDate.before(order.getCreatedDate())){
-                throw new Exception("Wrong Installation date");
-            }
             order.setInstallationDate(new Timestamp(FromDate.getTime()));
-            if (order.getOdmStatus() == null) {
+            if(order.getOdmStatus().isEmpty()){
                 order.setOdmStatus("active");
             }
             orderMasterFacade.edit(order);
             return "orderView?faces-redirect=true";
         } catch (ParseException ex) {
-            
-            Logger.getLogger(aOrderMB.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            context.addMessage(null, new FacesMessage(ex.getMessage()));
             Logger.getLogger(aOrderMB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "orderUpdate";
@@ -141,14 +122,6 @@ public class aOrderMB implements Serializable {
 
     public void setInstallTime(String installTime) {
         this.installTime = installTime;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 
 }

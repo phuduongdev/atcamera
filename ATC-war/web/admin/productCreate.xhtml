@@ -56,9 +56,15 @@
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Product Model *" for="prdTittle" styleClass="col-lg-4 control-label"/>                                                
                                             <div class="col-lg-8">
-                                                <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" styleClass="form-control" 
-                                                             required="true" requiredMessage="Enter Model"/>
-                                                <h:message for="prdTittle" style="color: red"/>
+                                                <h:inputText id="prdTittle" value="#{aProductMB.product.prdTittle}" title="PrdTittle" 
+                                                             styleClass="form-control" 
+                                                             required="true" requiredMessage="Enter Model" 
+                                                             validatorMessage="Max 30 length for title please.">
+                                                        <f:validateLength maximum="30"/>
+                                                        
+                                                        <f:ajax render="msgprdTittle" event="keyup"/>
+                                                </h:inputText>
+                                                <h:message id="msgprdTittle" for="prdTittle" style="color: red"/>
                                             </div>
                                         </div>
                                         <div class="form-group clearfix">
@@ -69,7 +75,15 @@
                                                 <h:message for="prdPrice" style="color: red"/>
                                             </div>
                                         </div>
-
+                                         <div class="form-group clearfix">
+                                            <h:outputLabel value="Discount" for="prdDiscount" styleClass="col-lg-4 control-label" />                                                
+                                            <div class="col-lg-8">
+                                                <h:inputText id="prdDiscount" value="#{aProductMB.product.prdDiscount}" title="Discount" validatorMessage="0-75 for discount please."
+                                                             styleClass="form-control" />
+                                                
+                                                <h:message for="prdDiscount" style="color: red"/>
+                                            </div>
+                                        </div>
                                         <div class="form-group clearfix">
                                             <h:outputLabel value="Product Power" for="prdPower" styleClass="col-lg-4 control-label" />
                                             <div class="col-lg-8">

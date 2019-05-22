@@ -10,9 +10,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.*;
 import entity.*;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,7 +49,7 @@ public class CustomerController implements Serializable {
             ctm.setCreatedDate(new Timestamp(new Date().getTime()));
             ctm.setCtmStatus("new");
             this.customerFacade.create(this.ctm);
-            this.ctm = new Customer();
+            ctm = new Customer();
             return "index";
         } else {
             this.msg = "Not match!!!";

@@ -94,12 +94,10 @@
                                                     </td>
                                                     <td>#{item.ctmid.ctmFirstName}</td>
                                                     <td>
-                                                        <c:if test="#{item.odmStatus ne 'completed' or 'block' }">
-                                                            <h:commandLink action="#{aOrderMB.updateNav()}" styleClass="table-action-btn">
-                                                                <i class="md md-edit"></i>
-                                                                <f:setPropertyActionListener value="#{item}" target="#{aOrderMB.order}"/>
-                                                            </h:commandLink>
-                                                        </c:if>
+                                                        <h:commandLink action="#{aOrderMB.updateNav()}" styleClass="table-action-btn">
+                                                            <i class="md md-edit"></i>
+                                                            <f:setPropertyActionListener value="#{item}" target="#{aOrderMB.order}"/>
+                                                        </h:commandLink>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

@@ -49,8 +49,8 @@ public class WishListController implements Serializable {
         this.prdid = prdid;
     }
     private Wishlist wl = new Wishlist();
-    private Customer ctm = new Customer();
-    private Product prd = new Product();
+    private Customer ctm;
+    private Product prd ;
 
     /**
      * Creates a new instance of WishList
@@ -70,19 +70,19 @@ public class WishListController implements Serializable {
 
         return "customer-wishlist?faces-redirect=true";
     }
-
-    public String addWL() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-        HttpSession httpSession = request.getSession(false);
-        ctm = ((Customer) httpSession.getAttribute("member"));
-            
-            
-            wl.setCtmid(ctm);
-            wl.setPrdid(prd);
-            wishlistFacade.create(wl);
+   
+    public String addWL(Customer ctm , Product prd) {
+//        this.ctm = ctm;
+//        this.prd = prd;
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+//        HttpSession httpSession = request.getSession(false);
+//        Customer ctm1 = ((Customer) httpSession.getAttribute("member"));
+        wl.setCtmid(ctm);
+        wl.setPrdid(prd);
+        wishlistFacade.insert(wl);
        
-            return "customer-wishlist?faces-redirect=true";
+        return "customer-wishlist?faces-redirect=true";
        
     }
 

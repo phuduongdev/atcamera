@@ -16,7 +16,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 
 /**
  *
@@ -67,9 +66,8 @@ public class aLogin implements Serializable {
             }
         } else {
             //Send an error message on Login Failure 
-            context.addMessage(null, new FacesMessage("Authentication Failed. Check username or password."));
-//            msg = "Authentication Failed. Check username or password.";
-            
+//            context.addMessage(null, new FacesMessage());
+            msg = "Authentication Failed. Check username or password.";
         }
 
     }
@@ -128,4 +126,5 @@ public class aLogin implements Serializable {
         this.loginAccount = loginAccount;
     }
 
+    
 }

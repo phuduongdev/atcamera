@@ -143,12 +143,11 @@
                                             <div class="form-group">
                                                 <h:outputLabel value="Password *" for="accPassword" styleClass="col-sm-4 control-label"/>
                                                 <div class="col-sm-8">
-                                                    
+                                                    <h:message id="passwordMsg" for="Password" styleClass="alert-danger" />
                                                     <h:inputSecret id="Password" value="#{aAccountMB.pass}" styleClass="form-control" >
                                                         <f:ajax event="keyup" render="passwordMsg"/>
                                                         <f:validator validatorId="admin.customValidate.checkUpdatePassword"/>
                                                     </h:inputSecret>
-                                                    <h:message id="passwordMsg" for="Password" styleClass="alert-danger small" />
                                                 </div>
                                             </div>
                                             <c:if test="#{aLogin.loginAccount.accRole eq 'admin'}">
@@ -164,17 +163,14 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <h:outputLabel value="Status *" for="Status" styleClass="col-sm-4 control-label" />
+                                                    <h:outputLabel value="Status *" for="accStatus" styleClass="col-sm-4 control-label" />
                                                     <div class="col-sm-8">
-                                                        <h:selectOneRadio id="Status" value="#{aAccountMB.account.accStatus}" 
-                                                                          title="Status" class="radio radio-purple"  layout="pageDirection">
+                                                        <h:selectOneRadio id="ctgStatus" value="#{aAccountMB.account.accStatus}" 
+                                                                          title="CtgStatus" class="radio radio-purple"  layout="pageDirection">
                                                             <f:selectItem itemValue = "active" itemLabel="Active"/>
                                                             <f:selectItem itemValue = "block" itemLabel = "Block" />
-                                                            <f:ajax event="focus" render="statusMsg"/>
-                                                            <f:ajax event="mouseover" render="statusMsg"/>
-                                                            <f:validator validatorId="admin.customValidate.checkStatus"/>
+                                                            <f:selectItem itemValue = "new" itemLabel = "New" />
                                                         </h:selectOneRadio>
-                                                        <h:message id="statusMsg" for="Status" styleClass="alert-danger small" />
                                                     </div>
                                                 </div>
                                             </c:if>
