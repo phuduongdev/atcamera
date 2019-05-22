@@ -30,20 +30,21 @@
                                         <h3 class="h4 card-title">Customer section</h3>
                                     </div>
                                     <div class="card-body">
-                                        <ul class="nav nav-pills flex-column">
-                                            <a href="orderHistory.xhtml" class="nav-link">
-                                                <i class="fa fa-list"></i> My orders
-                                            </a>
-                                            <a href="customer-wishlist.xhtml" class="nav-link  active">
-                                                <i class="fa fa-heart"></i> My wishlist
-                                            </a>
-                                            <a href="myAccount.xhtml" class="nav-link ">
-                                                <i class="fa fa-user"></i> My account
-                                            </a>
-                                            <a href="index.html" class="nav-link">
-                                                <i class="fa fa-sign-out"></i> Logout
-                                            </a>
-                                        </ul>
+                                        <h:form>
+                                            <ul class="nav nav-pills flex-column">
+                                                <a href="orderHistory.xhtml" class="nav-link">
+                                                    <i class="fa fa-list"></i> My orders
+                                                </a>
+                                                <a href="customer-wishlist.xhtml" class="nav-link  active">
+                                                    <i class="fa fa-heart"></i> My wishlist
+                                                </a>
+                                                <a href="myAccount.xhtml" class="nav-link ">
+                                                    <i class="fa fa-user"></i> My account
+                                                </a>
+                                                <h:commandLink action="#{login.logout()}" styleClass="nav-link">
+                                                    <i class="fa fa-sign-out"></i> Logout</h:commandLink>
+                                            </ul>
+                                        </h:form>
                                     </div>
                                 </div>
 
@@ -53,50 +54,53 @@
 
                                 <div class="box">
                                     <h1>My wishlist</h1>
-
                                 </div>
                                 <h:form>
                                     <div class="row products">
-
+                                        <c:forEach var="p" items="#{wishListController.wishList}">
                                         <div class="col-lg-3 col-md-4">
-                                            <c:forEach var="p" items="#{wishListController.wishList}">
-                                                 <c:if test="#{p.prdid.prdStatus.equalsIgnoreCase('new') || p.prdid.prdStatus.equalsIgnoreCase('active')}">
-                                                <div class="product">
-                                                    <div class="flip-container">
-                                                        <div class="flipper">
-                                                            <div class="front"><a href="faces/detail.xhtml"><h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/></a></div>
-                                                            <div class="back"><a href="faces/detail.xhtml"><h:graphicImage name="#{p.prdid.prdImage2}" alt="" class="img-fluid"/></a></div>
+                                            
+                                                <c:if test="#{p.prdid.prdStatus.equalsIgnoreCase('new') || p.prdid.prdStatus.equalsIgnoreCase('active')}">
+                                                    <div class="product ">
+                                                        <div class="flip-container">
+                                                            <div class="flipper">
+                                                                <div class="front"><a href="#"><h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/></a></div>
+                                                                <div class="back"><a href="#"><h:graphicImage name="#{p.prdid.prdImage2}" alt="" class="img-fluid"/></a></div>
+                                                            </div>
+                                                        </div><a href="#" class="invisible"><h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/></a>
+                                                        <div class="text">
+                                                            <h3><a href="#">#{p.prdid.prdTittle}</a></h3>
+                                                            <p class="price"> 
+                                                                <del></del><h:outputLabel value="#{p.prdid.prdPrice}">
+                                                                    <f:convertNumber pattern="#,###,###,### đ"/>
+                                                                </h:outputLabel>
+                                                            </p>
+                                                            <p class="buttons">
+                                                                <h:commandLink action="#{productController.details(p.prdid)}" 
+                                                                               class="invisible" styleClass="btn btn-outline-secondary">View detail</h:commandLink>
+                                                                <h:commandLink class="btn btn-primary">
+                                                                    <i class="fa fa-shopping-cart"></i> Add to cart
+                                                                    <f:ajax render="cartSize" listener="#{orderController.cartsControl(p.prdid,'additem')}"/>
+                                                                </h:commandLink>
+                                                            </p>
                                                         </div>
-                                                    </div><a href="faces/detail.xhtml" class="invisible"><h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/></a>
-                                                    <div class="text">
-                                                        <h3><a href="faces/details.xhtml">#{p.prdid.prdTittle}</a></h3>
-                                                        <p class="price"> 
-                                                            <del></del><h:outputLabel value="#{p.prdid.prdPrice}">
-                                                            <f:convertNumber pattern="#,###,###,### đ"/>
-                                                            </h:outputLabel>
-                                                        </p>
-                                                        <p class="buttons"><a href="faces/detail.xhtml" class="btn btn-outline-secondary">View detail</a>
-                                                     <h:commandLink class="btn btn-primary">
-                                                        <i class="fa fa-shopping-cart"></i> Add to cart
-                                                        <f:ajax render="cartSize" listener="#{orderController.cartsControl(productController.product, 'additem')}"/>
-                                                     </h:commandLink></p>
-                                                    </div>
-                                                    <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
-                                                    <!--<div class="ribbon new">-->
-                                                    <div class="theribbon">#{p.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
-                                                    <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
-                                                </div>
+                                                        <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
+                                                            <!--<div class="ribbon new">-->
+                                                            <div class="theribbon">#{p.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
+                                                            <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
+                                                        </div>
 
-                                                <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
-                                                    <div class="theribbon ">#{p.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
-                                                    <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
-                                                </div>  
-                                                    <!-- /.text-->
-                                                </div>
-                                                 </c:if>
-                                            </c:forEach>
+                                                        <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
+                                                            <div class="theribbon ">#{p.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
+                                                            <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
+                                                        </div>  
+                                                        <!-- /.text-->
+                                                    </div>
+                                                </c:if>
+                                            
                                             <!-- /.product-->
                                         </div>
+                                            </c:forEach>
                                     </div>
                                 </h:form>
                             </div>

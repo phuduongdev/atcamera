@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <ui:composition template="./newTemplate.xhtml">
         <ui:define name="content">
             <div id="all">
@@ -31,7 +32,8 @@
                                             <h3 class="h4 card-title">Customer section</h3>
                                         </div>
                                         <div class="card-body">
-                                            <ul class="nav nav-pills flex-column"><a href="customer-orders.html" class="nav-link"><i class="fa fa-list"></i> My orders</a>
+                                            <ul class="nav nav-pills flex-column">
+                                                <a href="orderHistory.xhtml" class="nav-link"><i class="fa fa-list"></i> My orders</a>
                                                 <h:commandLink action="#{wishListController.navWish()}" styleClass="nav-link"><i class="fa fa-heart"></i> My wishlist</h:commandLink>
                                                 <a href="myAccount.xhtml" class="nav-link  active"><i class="fa fa-user"></i> My account</a>
                                                 <h:commandLink action="#{login.logout()}" styleClass="nav-link"><i class="fa fa-sign-out"></i> Logout</h:commandLink></ul>
@@ -48,12 +50,18 @@
                                     <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
                                     <h3>Change password</h3>
                                     <h:form>
-                                       
+                                        <h:outputText styleClass="form-check-label" value="#{login.msg}" escape="false" style="color: olivedrab"></h:outputText>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="password_old">Old password</label>
-                                                    <h:inputSecret id="password_old" value="#{login.password}" styleClass="form-control"/>
+                                                    <h:inputSecret id="password_old" value="#{login.password}" styleClass="form-control" required="true" requiredMessage="Enter Your Password"
+                                                                   validatorMessage="Must be between 6 to 15 characters and contain at least one letter(a-z)"
+                                                                   >
+                                                        <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
+                                                        <f:ajax render="oldMsg" event="keyup"/>                                          
+                                                    </h:inputSecret> 
+                                                    <h:message id="oldMsg" for="password_old" styleClass="form-check-label"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,13 +69,23 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="password_1">New password</label>
-                                                    <h:inputSecret id="password" value="#{login.newPass}" styleClass="form-control"/>
+                                                    <h:inputSecret id="password" value="#{login.newPass}" styleClass="form-control" required="true" requiredMessage="Enter Password" 
+                                                                   validatorMessage="Must be between 6 to 15 characters which contain at least one letter(a-z)" a:placeholder="Must be 6 to 15 character">
+                                                        <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
+                                                        <f:ajax render="passMsg" event="keyup"/>
+                                                    </h:inputSecret>
+                                                    <h:message id="passMsg" for="password" styleClass="form-check-label"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="password_2">Retype new password</label>
-                                                    <h:inputSecret id="password2" value="#{login.confirm}" styleClass="form-control"/>
+                                                    <h:inputSecret id="password2" value="#{login.confirm}" styleClass="form-control" required="true" requiredMessage="Enter Password" 
+                                                                   validatorMessage="Must be between 6 to 15 characters which contain at least one letter(a-z)" a:placeholder="Must be same password">
+                                                        <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
+                                                        <f:ajax render="passMsg2" event="keyup"/>
+                                                    </h:inputSecret>
+                                                    <h:message id="passMsg2" for="password2" styleClass="form-check-label"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -84,10 +102,12 @@
                                                 <div class="form-group">
                                                     <label for="firstname">Firstname</label>
                                                     <h:inputText id="firstname" value="#{login.loginCustomer.ctmFirstName}" required="true" requiredMessage="First Name Required" 
-                                                                 validatorMessage="Max 30 length for first name please." styleClass="form-control">
+                                                                 validatorMessage="Max 30 length for first name please." styleClass="form-control" a:placeholder="Peter">
                                                         <f:validateLength maximum="30"/>
+                                                        <f:validator validatorId="admin.customValidate.checkSpecialChars"/>
+                                                        <f:ajax render="msgFistname" event="keyup"/>
                                                     </h:inputText>
-                                                    <h:message for="firstname" style="color: red"/>
+                                                    <h:message id="msgFistname" for="firstname" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -95,11 +115,11 @@
                                                     <label for="lastname">Lastname</label>
                                                     <h:inputText id="lastname" value="#{login.loginCustomer.ctmLastName}" required="true" 
                                                                  requiredMessage="Last Name Required"
-                                                                 validatorMessage="Max 50 length for last name please." styleClass="form-control">
+                                                                 validatorMessage="Max 50 length for last name please." styleClass="form-control" a:placeholder="Cesh">
                                                         <f:validateLength maximum="50" parent="^([a-zA-Z]+(.)?[\s]*)$"/>
-
+                                                        <f:ajax render="msglastname" event="keyup"/>
                                                     </h:inputText>
-                                                    <h:message for="lastname" style="color: red"/>
+                                                    <h:message id="msglastname" for="lastname" style="color: red"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,37 +129,42 @@
                                                 <div class="form-group">
                                                     <label for="address">Address</label>
                                                     <h:inputText id="address" value="#{login.loginCustomer.ctmAddress}" styleClass="form-control" 
-                                                                 required="true" requiredMessage="Address Required" validatorMessage="Min 10 and Max 150 length for address please.">
+                                                                 required="true" requiredMessage="Address Required" 
+                                                                 validatorMessage="Min 10 and Max 150 length for address please."
+                                                                 a:placeholder="New York">
                                                         <f:validateLength minimum="10" maximum="150"/>
-
+                                                        <f:ajax render="msgadr" event="keyup"/>
+                                                        <f:validator validatorId="admin.customValidate.checkAddress"/>
                                                     </h:inputText>
-                                                    <h:message for="address" style="color: red"/>
+                                                    <h:message id="msgadr" for="address" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="phone">Phone</label>
                                                     <h:inputText id="phone" value="#{login.loginCustomer.ctmPhone}" required="true" 
-                                                                 requiredMessage="Phone Required" validatorMessage="Phone valid" styleClass="form-control">
+                                                                 requiredMessage="Phone Required" validatorMessage="Phone valid" styleClass="form-control" a:placeholder="09xxxxxxxx">
                                                         <f:validateRegex pattern="^[0-9\\+]{1}[1-9]{1}[0-9]{6,13}" />
+                                                        <f:ajax render="msgphonectm" event="keyup"/>
                                                     </h:inputText>
-                                                    <h:message for="phone" style="color: red"/>
+                                                    <h:message id="msgphonectm" for="phone" style="color: red"/>
                                                 </div>
                                             </div>
-                                             <div class="col-md-6 col-lg-3">
+                                            <div class="col-md-6 col-lg-3">
                                                 <div class="form-group">
                                                     <label for="dob">Date of Birth</label>
                                                     <h:inputText id="dob" value="#{login.loginCustomer.ctmDob}" required="true" 
-                                                                 requiredMessage="Dob Required" validatorMessage="DOB valid . Input MM/dd/yyyy plz" styleClass="form-control">
+                                                                 requiredMessage="Dob Required" validatorMessage="DOB valid . Input MM/dd/yyyy plz" styleClass="form-control" a:placeholder="04/11/1996">
                                                         <f:validateRegex pattern="((?:0[1-9])|(?:1[0-2]))\/((?:0[0-9])|(?:[1-2][0-9])|(?:3[0-1]))\/(\d{4})"/>
+                                                        <f:ajax render="mgsdobctm" event="keyup"/>
                                                     </h:inputText>
-                                                    <h:message for="dob" style="color: red"/>
+                                                    <h:message id="mgsdobctm" for="dob" style="color: red"/>
                                                 </div>
                                             </div>    
                                         </div>
-                                        
 
-                                        
+
+
                                         <div class="col-md-12 text-center">
                                             <h:commandLink  styleClass="btn btn-primary" action="#{login.updatePro()}"><i class="fa fa-save"></i> Save changes</h:commandLink>
                                         </div>

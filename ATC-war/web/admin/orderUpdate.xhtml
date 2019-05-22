@@ -58,9 +58,18 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <h:outputText value="Created Date :" styleClass="col-sm-4 text-muted text-right"/>
+                                                <h:outputText value="Order Date :" styleClass="col-sm-4 text-muted text-right"/>
                                                 <div class="col-sm-8">
                                                     <h:outputLabel value="#{aOrderMB.order.createdDate}">
+                                                        <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
+                                                    </h:outputLabel>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <h:outputText value="Installation Date :" styleClass="col-sm-4 text-muted text-right"/>
+                                                <div class="col-sm-8">
+                                                    <h:outputLabel value="#{aOrderMB.order.installationDate}">
                                                         <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
                                                     </h:outputLabel>
                                                 </div>
@@ -113,7 +122,7 @@
                                                 <div class="col-lg-12">
                                                     <h4 class="m-t-0 header-title"><b>Product</b></h4>
                                                     <div class="p-20">
-                                                        <table class="table table-striped m-0 table-responsive">
+                                                        <table class="table table-striped m-0">
                                                             <thead >
                                                                 <tr>
                                                                     <th>Type</th>
@@ -179,34 +188,41 @@
                                                 <h:outputLabel value="Created Date" for="createdDate" styleClass="col-sm-4 control-label text-muted"/>
                                                 <div class="col-sm-8">
                                                     <h:inputText id="createdDate" value="#{aOrderMB.order.createdDate}" 
-                                                                 title="CreatedDate" styleClass="form-control" readonly="true">
-                                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                                 title="CreatedDate" styleClass="form-control" readonly="true"
+                                                                 binding="#{createdDate}">
+                                                        <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" />
                                                     </h:inputText>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <h:outputLabel value="Installation Date" for="installationDate" styleClass="col-sm-4 control-label text-muted"/>
+                                                <h:outputLabel value="Installation Date" styleClass="col-sm-4 control-label text-muted"/>
                                                 <div class="col-sm-8">
-<!--                                                    <h:inputText id="installationDate" value="#{aOrderMB.order.installationDate}" 
-                                                                 title="installationDate" styleClass="form-control">
-                                                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                                                    </h:inputText>-->
-
                                                     <div class="input-group">
                                                         <h:inputText value="#{aOrderMB.installDate}" styleClass="form-control" 
-                                                                     a:placeholder="yyyy/MM/dd" id="datepicker-autoclose"/>
+                                                                     a:placeholder="MM/dd/yyyy" id="datepicker-autoclose" autocomplete="off"
+                                                                     title="Installation Date">
+                                                            <f:ajax event="keyup" render="datepickerMsg"/>
+                                                            <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                        </h:inputText>
                                                         <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                                                     </div>
+                                                    <h:message id="datepickerMsg" for="datepicker-autoclose" styleClass="form-control small alert alert-danger"/>
                                                 </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <div class="col-sm-4"/>
                                                 <div class="col-sm-8">
                                                     <div class="input-group clockpicker " data-placement="top" data-align="top" data-autoclose="true">
-                                                        <h:inputText value="#{aOrderMB.installTime}" styleClass="form-control"/>
+                                                        <h:inputText id="Time" value="#{aOrderMB.installTime}" styleClass="form-control" autocomplete="off">
+                                                            <f:ajax event="keyup" render="timepickerMsg"/>
+                                                            <f:validator validatorId="admin.customValidate.checkBlank"/>
+                                                            
+                                                        </h:inputText>
                                                         <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span>
                                                     </div>
+                                                    <h:message id="timepickerMsg" for="Time" styleClass="form-control small alert alert-danger"/>
                                                 </div>
                                             </div>
 
@@ -236,57 +252,14 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <h:outputLabel value="Created Date" for="createdDate" styleClass="col-sm-4 control-label text-muted"/>
+                                                <h:outputLabel value="Description" for="Description" styleClass="col-sm-4 control-label text-muted"/>
                                                 <div class="col-sm-8">
                                                     <h:inputTextarea id="Description" value="#{aOrderMB.order.odmDescript}" 
-                                                                     title="CreatedDate" styleClass="form-control"/>
+                                                                     title="Description" styleClass="form-control"/>
 
                                                 </div>
                                             </div>
-                                            <!--xu ly order quan trong-->
-                                            <!--                                            <div class="form-group">
-                                                                                            <h:outputLabel value="Camera" for="productHasTypeCamera" styleClass="col-sm-4 control-label text-muted"/>
-                                                                                            <div class="col-sm-8">
-                                                                                                <h:selectOneMenu value="#{aOrderMB.orderDetail.prdid}" styleClass="form-control"
-                                                                                                                 id="productHasTypeCamera">
-                                                                                                    <f:selectItems value="#{aOrderMB.productHasTypeCamera}" var="camera"
-                                                                                                                   itemValue="#{camera}" itemLabel="#{camera.prdModel}"/>
-                                                                                                </h:selectOneMenu>
-                                                                                            </div>
-                                                                                        </div>-->
-
-                                            <!--                                            <div class="form-group">
-                                                                                            <h:outputLabel value="Camera" for="odmPayments" styleClass="col-sm-4 control-label text-muted"/>
-                                                                                            <div class="col-sm-8">
-                                                                                                <h:selectOneMenu value="#{aOrderMB.order.odmPayments}" styleClass="form-control"
-                                                                                                                 id="odmPayments">
-                                                                                                    <f:selectItem itemValue="tranfer" itemLabel="Transfer"/>
-                                                                                                    <f:selectItem itemValue="direct" itemLabel="Direct"/>
-                                                                                                </h:selectOneMenu>
-                                                                                            </div>
-                                                                                        </div>-->
-
-                                            <!--                                            <div class="form-group">
-                                                                                            <h:outputLabel value="Payments" for="odmPayments" styleClass="col-sm-4 control-label text-muted"/>
-                                                                                            <div class="col-sm-8">
-                                                                                                <h:selectOneMenu value="#{aOrderMB.order.odmPayments}" styleClass="form-control"
-                                                                                                                 id="odmPayments">
-                                                                                                    <f:selectItem itemValue="tranfer" itemLabel="Transfer"/>
-                                                                                                    <f:selectItem itemValue="direct" itemLabel="Direct"/>
-                                                                                                </h:selectOneMenu>
-                                                                                            </div>
-                                                                                        </div>
                                             
-                                                                                        <div class="form-group">
-                                                                                            <h:outputLabel value="Payments" for="odmPayments" styleClass="col-sm-4 control-label text-muted"/>
-                                                                                            <div class="col-sm-8">
-                                                                                                <h:selectOneMenu value="#{aOrderMB.order.odmPayments}" styleClass="form-control"
-                                                                                                                 id="odmPayments">
-                                                                                                    <f:selectItem itemValue="tranfer" itemLabel="Transfer"/>
-                                                                                                    <f:selectItem itemValue="direct" itemLabel="Direct"/>
-                                                                                                </h:selectOneMenu>
-                                                                                            </div>
-                                                                                        </div>-->
 
                                             <div class="form-group">
                                                 <h:outputLabel value="(*) Required" styleClass="col-sm-4 control-label text-muted" />
@@ -297,8 +270,10 @@
                                                     <h:commandLink action="#{aOrderMB.updateOrder()}" value="Submit"
                                                                    styleClass="btn btn-success waves-effect waves-light">
                                                     </h:commandLink>
+                                                    
                                                 </div>
                                             </div>
+                                                <h:messages globalOnly="true" class="list-unstyled small alert alert-danger"/>
                                         </h:form>
                                     </div>
                                 </div>
