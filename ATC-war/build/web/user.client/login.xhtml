@@ -27,38 +27,40 @@
                                     <p class="text-muted">Not our registered customer yet?</p>
                                     <hr/>
                                     <h:form>
-                                        <h:outputText styleClass="form-check-label" value="#{customerController.msg}" escape="false"></h:outputText>
+                                        <h:outputText styleClass="form-check-label" value="#{customerController.msg}" escape="false" ></h:outputText>
                                         <div class="form-group">
                                             <label  for="email">Email</label>
                                             <h:inputText id="email" class="form-control" value="#{customerController.ctm.ctmEmail}" required="true" requiredMessage="Enter Email"
                                                          validatorMessage="Enter Email with form 'abc@gmail.com' or 'abc@gmail.com.vn'"
-                                                         a:placeholder="abc@gmail.com">
+                                                         a:placeholder="abc@gmail.com"
+                                                         autocomplete="off">
                                                 <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
                                                 <f:ajax render="emailMsg" event="keyup"/>
                                             </h:inputText>
-                                            <h:message id="emailMsg" for="email" styleClass="form-control form-check-label"/>
+                                            <h:message id="emailMsg" for="email" styleClass="form-check-label" style="color: red"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
                                             <h:inputSecret id="password" class="form-control" value="#{customerController.ctm.ctmPassword}" 
                                                            required="true" requiredMessage="Enter Password" 
-                                                           validatorMessage="Must be between 6 to 20 characters which contain at least one letter(a-z)"
+                                                           validatorMessage="Must be between 6 to 15 characters which contain at least one letter(a-z)"
                                                            a:placeholder="Must be 6 to 15 character">
                                                 <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
                                                 <f:ajax render="passMsg" event="keyup"/>
                                             </h:inputSecret>
-                                            <h:message id="passMsg" for="password" styleClass="form-check-label"/>
+                                            <h:message id="passMsg" for="password" styleClass="form-check-label" style="color: red"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="confirm1password">Confirm Password</label>
                                             <h:inputSecret id="confirm1password" class="form-control" value="#{customerController.confim}" 
                                                            required="true" requiredMessage="Enter Confirm Password"
+                                                           
                                                            validatorMessage="Must be between 6 to 20 characters and contain at least one letter(a-z)"
                                                            a:placeholder="Must be same password">
                                                 <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
                                                 <f:ajax render="confirmMsg" event="keyup"/>
                                             </h:inputSecret>
-                                            <h:message id="confirmMsg" for="confirm1password" style="color: red"/>
+                                            <h:message id="confirmMsg" for="confirm1password" styleClass="form-check-label" style="color: red"/>
                                         </div>
                                         <div class="text-center">
                                             <h:commandLink styleClass="btn btn-primary" action="#{customerController.add()}">
@@ -81,7 +83,8 @@
                                             <h:inputText id="loginemail" class="form-control" value="#{login.email}" 
                                                          required="true" requiredMessage="Enter Email"
                                                          a:placeholder="abc@gmail.com"
-                                                         validatorMessage="Enter email in the form 'abc@abc.abc' plz">
+                                                         validatorMessage="Enter email in the form 'abc@abc.abc' plz"
+                                                         autocomplete="off">
                                                 <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"></f:validateRegex>
                                                 <f:ajax event="keyup" render="loginEmailMsg"/>
                                             </h:inputText>
@@ -89,13 +92,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="loginpassword">Password</label>
-                                            <h:inputSecret id="password" class="form-control" value="#{login.password}" 
+                                            <h:inputSecret id="lgpassword" class="form-control" value="#{login.password}" 
                                                            required="true" requiredMessage="Enter Password" 
                                                            a:placeholder="Must be 6 to 15 character"
                                                            validatorMessage="Must be between 6 to 20 characters and contain at least one letter(a-z). ex: a12345 ">
-                                                <!--<f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />-->
+                                                <f:ajax event="keyup" render="logPassMsg"/>
+                                                <f:validateRegex pattern = "((?=.*[a-z]).{6,15})" />
                                             </h:inputSecret>
-                                            <h:message for="password" style="color: red"/>
+                                            <h:message id="logPassMsg" for="lgpassword" style="color: red"/>
                                         </div>
                                         <div class="form-group">
                                             

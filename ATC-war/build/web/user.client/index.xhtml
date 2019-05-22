@@ -43,7 +43,7 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h2 class="mb-0">New Camera</h2>
+                                            <h2 class="mb-0">Camera</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -51,38 +51,29 @@
                             <div class="container">  
                                 <div class="product-slider owl-carousel owl-theme">
                                     <c:forEach var="p" items="#{productController.camera}">
-<<<<<<< HEAD
-                                        <div class="item">
-                                            <div class="product">
-                                                <div class="flip-container">
-                                                    <div class="flipper">
-                                                        <div class="front">
-                                                            <h:commandLink action="${productController.details(p.prdid)}">
-                                                                <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
-                                                            </h:commandLink>
-=======
                                         <c:if test="#{p.prdid.prdStatus.equalsIgnoreCase('new') || p.prdid.prdStatus.equalsIgnoreCase('active')}">
                                             <div class="item">
                                                 <div class="product">
                                                     <div class="flip-container">
                                                         <div class="flipper">
                                                             <div class="front">
-
                                                                 <h:commandLink action="${productController.details(p.prdid)}">
                                                                     <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                                    <f:setPropertyActionListener value="#{p.prdid}" target="#{orderController.selectProduct}"/>
                                                                 </h:commandLink>
                                                             </div>
                                                             <div class="back">
                                                                 <h:commandLink action="${productController.details(p.prdid)}">
                                                                     <h:graphicImage name="#{p.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                                    <f:setPropertyActionListener value="#{p.prdid}" target="#{orderController.selectProduct}"/>
                                                                 </h:commandLink>
                                                             </div>
->>>>>>> chien
                                                         </div>
                                                     </div>
                                                     <h:commandLink action="#{productController.details(p.prdid)}" 
                                                                    class="invisible">
                                                         <h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/>
+                                                        <f:setPropertyActionListener value="#{p.prdid}" target="#{orderController.selectProduct}"/>
                                                     </h:commandLink>
                                                     <div class="text">
                                                         <div class="text-center"> 
@@ -98,38 +89,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
-<<<<<<< HEAD
-                                                <h:commandLink action="#{productController.details(p.prdid)}" 
-                                                               class="invisible">
-                                                    <h:graphicImage name="#{p.prdid.prdImage3}" alt="" class="img-fluid"/>
-                                                </h:commandLink>
-                                                <div class="text">
-                                                    <div class="text-center"> 
-                                                        <h:outputText class="font-weight-bold" value="#{p.prdid.prdTittle}"/>
-                                                        <br/>
-                                                        <h:outputText value="#{p.camResolution}"/>
-                                                        <hr/>
-                                                    </div>
-                                                    <p class="price"> 
-                                                        <h:outputText value="#{p.prdid.prdPrice}">
-                                                            <f:convertNumber pattern="#,###,###,### đ"/>
-                                                        </h:outputText>
-                                                    </p>
 
-                                                </div>
-                                            </div>
-                                            <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
-                                                <!--<div class="ribbon new">-->
-                                                <div class="theribbon">#{p.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
-                                                <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon-background'}"></div>
-                                            </div>
-
-                                            <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon sale'}">
-                                                <div class="theribbon ">#{p.prdid.prdDiscount le 0 ? '' : 'SALE'}</div>
-                                                <div class="#{p.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
-                                            </div>  
-                                        </div>
-=======
                                                 <div class="#{p.prdid.prdStatus ne 'new' ? 'hide' : 'ribbon new' }">
                                                     <!--<div class="ribbon new">-->
                                                     <div class="theribbon">#{p.prdid.prdStatus ne 'new' ? '' : 'NEW'}</div>
@@ -142,7 +102,6 @@
                                                 </div>  
                                             </div>      
                                         </c:if>
->>>>>>> chien
                                     </c:forEach>
                                 </div>
                             </div>
@@ -154,7 +113,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h2 class="mb-0">New DVR</h2>
+                                        <h2 class="mb-0">Digital Video Recorder</h2>
                                     </div>
                                 </div>
                             </div>
@@ -171,11 +130,13 @@
                                                         <div class="front">
                                                             <h:commandLink action="${productController.details(d.prdid)}">
                                                                 <h:graphicImage name="#{d.prdid.prdImage}" alt="" class="img-fluid"/>
+                                                                <f:setPropertyActionListener value="#{d.prdid}" target="#{orderController.selectProduct}"/>
                                                             </h:commandLink>
                                                         </div>
                                                         <div class="back">
                                                             <h:commandLink action="${productController.details(d.prdid)}">
                                                                 <h:graphicImage name="#{d.prdid.prdImage2}" alt="" class="img-fluid"/>
+                                                                <f:setPropertyActionListener value="#{d.prdid}" target="#{orderController.selectProduct}"/>
                                                             </h:commandLink>
                                                         </div>
                                                     </div>
@@ -183,6 +144,7 @@
                                                 <h:commandLink action="#{productController.details(d.prdid)}" 
                                                                class="invisible">
                                                     <h:graphicImage name="#{d.prdid.prdImage3}" alt="" class="img-fluid"/>
+                                                    <f:setPropertyActionListener value="#{d.prdid}" target="#{orderController.selectProduct}"/>
                                                 </h:commandLink>
                                                 <div class="text">
                                                     <div class="text-center"> 
@@ -210,12 +172,9 @@
                                                     <div class="#{d.prdid.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>  
                                             </div>
-<<<<<<< HEAD
-                                        </div>     
-=======
+
                                         </div>      
                                         </c:if>
->>>>>>> chien
                                     </c:forEach>
                                 </div>
                             </div>
@@ -227,7 +186,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h2 class="mb-0">New Other</h2>
+                                        <h2 class="mb-0">Accessory</h2>
                                     </div>
                                 </div>
                             </div>
@@ -244,11 +203,13 @@
                                                         <div class="front">
                                                             <h:commandLink action="${productController.details(p)}">
                                                                 <h:graphicImage name="#{p.prdImage}" alt="" class="img-fluid"/>
+                                                                <f:setPropertyActionListener value="#{p}" target="#{orderController.selectProduct}"/>
                                                             </h:commandLink>
                                                         </div>
                                                         <div class="back">
                                                             <h:commandLink action="${productController.details(p)}">
                                                                 <h:graphicImage name="#{p.prdImage2}" alt="" class="img-fluid"/>
+                                                                <f:setPropertyActionListener value="#{p}" target="#{orderController.selectProduct}"/>
                                                             </h:commandLink>
                                                         </div>
                                                     </div>
@@ -256,6 +217,7 @@
                                                 <h:commandLink action="#{productController.details(p)}" 
                                                                class="invisible">
                                                     <h:graphicImage name="#{p.prdImage3}" alt="" class="img-fluid"/>
+                                                    <f:setPropertyActionListener value="#{p}" target="#{orderController.selectProduct}"/>
                                                 </h:commandLink>
                                                 <div class="text">
                                                     <h3>
@@ -278,14 +240,10 @@
                                                     <div class="theribbon ">#{p.prdDiscount le 0 ? '' : 'SALE'}</div>
                                                     <div class="#{p.prdDiscount le 0 ? 'hide' : 'ribbon-background'}"></div>
                                                 </div>  
-<<<<<<< HEAD
-                                            </div>
-                                        </div>      
-=======
+
                                             </div>  
                                         </div>   
                                             </c:if>
->>>>>>> chien
                                     </c:forEach>
                                 </div>
                             </div>
@@ -363,7 +321,7 @@
                     *** GET INSPIRED ***
                     _________________________________________________________
                     -->
-                    <div class="container">
+<!--                    <div class="container">
                         <div class="col-md-12">
                             <div class="box slideshow">
                                 <h3>Best Seller</h3>
@@ -375,7 +333,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- *** GET INSPIRED END ***-->
                     <!--
                     *** BLOG HOMEPAGE ***
