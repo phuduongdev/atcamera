@@ -47,12 +47,26 @@
                         <div class="row">
                             <c:if test="${member==null}">
                                 <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome to An Thang camera store</a></div>
-                                
+                                <div class="col-lg-6 text-center text-lg-right">
+                                    <ul class="menu list-inline mb-0">
+                                        <li class="list-inline-item"><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                                        <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
+                                        <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
+                                        <li class="list-inline-item"><a href="login.xhtml">Login</a></li>
+                                    </ul>
+                                </div>
                             </c:if>
                             <c:if test="${member!=null}">
                                 <div class="col-lg-6 offer mb-3 mb-lg-0"><a class="ml-1">Wellcome <h:commandLink style="color: orange" action="#{login.accountViewNav()}" value="#{member.ctmEmail}"/> </a><a>to An Thang camera store</a></div>
 
-                                
+                                <div class="col-lg-6 text-center text-lg-right">
+                                    <ul class="menu list-inline mb-0">
+                                        <li class="list-inline-item"><h:commandLink action="#{login.logout()}">Logout</h:commandLink></li>
+                                        <li class="list-inline-item"><h:commandLink id="btnRegister" action="#{customerController.navResgiter()}">Register</h:commandLink></li>
+                                        <li class="list-inline-item"><a href="contact.xhtml">Contact</a></li>
+                                        <li class="list-inline-item"><h:commandLink action="#{wishListController.navWish()}">Wish List</h:commandLink></li>
+                                    </ul>
+                                </div>
                             </c:if>
                         </div>
                     </div>
@@ -187,15 +201,15 @@
 
                                             <div class="dropdown-menu">    
                                                 <c:if test="${member==null}">
-                                                    <h:commandLink styleClass="dropdown-item" action="#{login.navlogin()}"><i class="fa fa-sign-in">Sign In/Up</i></h:commandLink> 
-                                                    
+                                                    <h:commandLink styleClass="dropdown-item" action="#{login.navlogin()}"><i class="fa fa-sign-in">Login</i></h:commandLink> 
+                                                    <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user">Register</i></h:commandLink>
                                                 </c:if>
                                                 <c:if test="${member!=null}">
                                                     <h:commandLink styleClass="dropdown-item" action="#{login.accountViewNav()}"><i class="fa fa-user"> #{member.ctmEmail}</i></h:commandLink>
                                                     <div class="dropdown-divider"/>
                                                     <h:commandLink styleClass="dropdown-item" action="orderHistory?faces-redirect=true"><i class="fa fa-history"> Order History</i></h:commandLink>
                                                     <h:commandLink styleClass="dropdown-item" action="#{wishListController.navWish()}"><i class="fa fa-heart"> Wish List</i></h:commandLink>
-                                                   
+                                                    <h:commandLink styleClass="dropdown-item" action="#{customerController.navResgiter()}"><i class="fa fa-user"> Register</i></h:commandLink>
                                                     <div class="dropdown-divider"/>
                                                     <h:commandLink styleClass="dropdown-item" action="#{login.logout()}"><i class="fa fa-sign-out"> Logout</i></h:commandLink>                                                
                                                 </c:if>
@@ -246,7 +260,11 @@
                             <li><a href="contact.xhtml">Contact us</a></li>
                         </ul>
                         <hr/>
-                        
+                        <h4 class="mb-3">User section</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="login.xhtml">Login</a></li>
+                            <li><a href="register.xhtml">Regiter</a></li>
+                        </ul>
                     </div>
                     <!-- /.col-lg-3-->
                     <div class="col-lg-3 col-md-6">

@@ -36,11 +36,8 @@ public class accRoleFilter implements Filter {
         HttpSession session = reqt.getSession(false);
 
         String indexURI = reqt.getContextPath() + "/faces/admin/index.xhtml";
-        Account a = new Account();
-        try {
-            a = (Account) session.getAttribute("user");
-        } catch (Exception e) {
-        }
+        Account a = (Account) session.getAttribute("user");
+        
         boolean checkRole = a.getAccRole().equals("admin");
 
         if (checkRole) {
